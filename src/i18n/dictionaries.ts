@@ -193,6 +193,15 @@ export type Dict = {
     title: string;
     cta: string;
   };
+  slots: {
+    label: string;
+    of: string;
+    progressAria: string;
+    exhaustedLabel: string;
+    subcopy: string;
+    updatedJustNow: string;
+    updatedSecondsAgo: string;
+  };
 };
 
 export const dict: Record<Lang, Dict> = {
@@ -541,6 +550,16 @@ export const dict: Record<Lang, Dict> = {
       title: "The Arkwright Method",
       cta: "Comprar",
     },
+    slots: {
+      label: "Workbook Oficial reservado",
+      of: "de",
+      progressAria: "Reservas del Workbook Oficial",
+      exhaustedLabel: "Cupo agotado · lista de espera abierta",
+      subcopy:
+        "Cada ejemplar físico de la primera edición incluye un código único. Sólo los primeros 100 ejemplares dan acceso al Workbook.",
+      updatedJustNow: "actualizado ahora",
+      updatedSecondsAgo: "actualizado hace {s}s",
+    },
   },
   en: {
     nav: {
@@ -886,6 +905,16 @@ export const dict: Record<Lang, Dict> = {
     sticky: {
       title: "The Arkwright Method",
       cta: "Order",
+    },
+    slots: {
+      label: "Official Workbook reserved",
+      of: "of",
+      progressAria: "Official Workbook reservations",
+      exhaustedLabel: "All reserved · waitlist open",
+      subcopy:
+        "Every first-edition physical copy contains a unique code. Only the first 100 copies unlock the Workbook.",
+      updatedJustNow: "updated just now",
+      updatedSecondsAgo: "updated {s}s ago",
     },
   },
 };

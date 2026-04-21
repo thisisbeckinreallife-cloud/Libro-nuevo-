@@ -15,8 +15,12 @@ import { FAQ } from "@/components/FAQ";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
+import { getSlots } from "@/lib/slots";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const initialSlots = await getSlots();
   return (
     <>
       <Nav />
@@ -31,10 +35,10 @@ export default function Home() {
         <Differentiation />
         <Extracts />
         <Proof />
-        <Buy />
+        <Buy initialSlots={initialSlots} />
         <Depth />
         <FAQ />
-        <FinalCTA />
+        <FinalCTA initialSlots={initialSlots} />
       </main>
       <Footer />
       <StickyMobileCTA />

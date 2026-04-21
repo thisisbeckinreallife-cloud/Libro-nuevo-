@@ -2,8 +2,9 @@
 
 import { useLang } from "./LangProvider";
 import { Reveal } from "./Reveal";
+import { SlotsCounter, type SlotsData } from "./SlotsCounter";
 
-export function FinalCTA() {
+export function FinalCTA({ initialSlots }: { initialSlots: SlotsData }) {
   const { t } = useLang();
   return (
     <section className="final-cta">
@@ -16,6 +17,7 @@ export function FinalCTA() {
           {t.final.h2Post}
         </h2>
         <p>{t.final.p}</p>
+        <SlotsCounter initial={initialSlots} variant="dark" />
         <div className="cta-buttons">
           <a href="#buy" className="btn-primary-light">
             <span>{t.final.ctaPrimary}</span>

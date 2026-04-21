@@ -1,0 +1,37 @@
+// Prisma schema — Arkwright Method
+// Phase 1: bonus_tokens + counter_cache only.
+// Later phases (2–8) extend this with users, sessions, claims, etc.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BonusTokenStatus {
+  unissued
+  claimed
+  revoked
+}
+
+model BonusToken {
+  id         String           @id @default(uuid()) @db.Uuid
+  token      String           @unique
+  status     BonusTokenStatus @default(unissued)
+  bookLot    String?          @map("book_lot")
+  createdAt  DateTime         @default(now()) @map("created_at")
+  claimedAt  DateTime?        @map("claimed_at")
+
+  @@map("bonus_tokens")
+}
+
+model CounterCache {
+  id            Int      @id @default(1)
+  claimedCount  Int      @default(0) @map("claimed_count")
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("counter_cache")
+}

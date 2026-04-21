@@ -2,8 +2,9 @@
 
 import { useLang } from "./LangProvider";
 import { Reveal } from "./Reveal";
+import { SlotsCounter, type SlotsData } from "./SlotsCounter";
 
-export function Buy() {
+export function Buy({ initialSlots }: { initialSlots: SlotsData }) {
   const { t } = useLang();
   return (
     <section className="buy" id="buy">
@@ -61,6 +62,8 @@ export function Buy() {
                 </div>
               </div>
             </div>
+
+            <SlotsCounter initial={initialSlots} variant="light" showSubcopy />
 
             <div className="buy-cta">
               <a

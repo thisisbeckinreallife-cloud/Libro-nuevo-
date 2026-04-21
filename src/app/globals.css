@@ -942,3 +942,35 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   padding: 2px 8px; border: 1px dashed var(--accent);
   margin-left: 8px; vertical-align: middle;
 }
+
+/* ============ Slots counter (bonus urgency) ============ */
+.slots-counter { margin: 28px 0 22px; }
+.slots-counter-row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.slots-counter-num strong { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 20px; letter-spacing: 0; text-transform: none; }
+.slots-counter-sep { font-family: var(--serif); font-size: 14px; opacity: .55; letter-spacing: 0; text-transform: none; }
+.slots-counter-label { opacity: .72; }
+.slots-counter-exhausted { font-family: var(--serif); font-style: italic; font-size: 18px; letter-spacing: 0; text-transform: none; color: var(--accent); }
+.slots-counter-updated { font-size: 9px; opacity: .45; flex-shrink: 0; }
+.slots-counter-bar {
+  position: relative; height: 2px; width: 100%;
+  background: var(--rule-soft);
+  overflow: hidden;
+}
+.slots-counter-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width .6s var(--ease);
+}
+.slots-counter-subcopy {
+  margin-top: 12px;
+  font-family: var(--sans); font-size: 12px; line-height: 1.5;
+  color: var(--muted); font-weight: 300;
+  max-width: 520px;
+}
+.slots-counter--dark { color: var(--paper); }
+.slots-counter--dark .slots-counter-bar { background: rgba(246,241,234,.14); }
+.slots-counter--dark .slots-counter-subcopy { color: rgba(246,241,234,.6); }
