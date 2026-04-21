@@ -3,8 +3,14 @@ import Script from "next/script";
 import "./globals.css";
 import { LangProvider } from "@/components/LangProvider";
 
-const PRE_HYDRATION_LANG_SCRIPT =
-  "try{var l=localStorage.getItem('laraLang');if(l==='es'||l==='en'){document.documentElement.setAttribute('lang',l);}}catch(e){}";
+const PRE_HYDRATION_LANG_SCRIPT = `
+try {
+  var l = localStorage.getItem('laraLang');
+  if (l === 'es' || l === 'en') {
+    document.documentElement.setAttribute('lang', l);
+  }
+} catch (e) {}
+`;
 
 export const metadata: Metadata = {
   title: "The Arkwright Method — Lara Lawn",

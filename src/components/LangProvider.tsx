@@ -11,16 +11,23 @@ type Ctx = {
 
 const LangContext = createContext<Ctx | null>(null);
 
+const isLang = (v: unknown): v is Lang => v === "es" || v === "en";
+
 export function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("es");
 
   useEffect(() => {
-    const saved = (localStorage.getItem("laraLang") as Lang | null) ?? "es";
-    setLangState(saved);
-    document.documentElement.setAttribute("lang", saved);
+    const saved = localStorage.getItem("laraLang");
+    const next: Lang = isLang(saved) ? saved : "es";
+    setLangState(next);
+    document.documentElement.setAttribute("lang", next);
+    if (!isLang(saved)) {
+      localStorage.setItem("laraLang", next);
+    }
   }, []);
 
   const setLang = (l: Lang) => {
+    if (!isLang(l)) return;
     setLangState(l);
     localStorage.setItem("laraLang", l);
     document.documentElement.setAttribute("lang", l);
