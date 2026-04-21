@@ -204,6 +204,30 @@ export type Dict = {
     updatedJustNow: string;
     updatedSecondsAgo: string;
   };
+  registration: {
+    eyebrow: string;
+    h1Pre: string;
+    h1Em: string;
+    intro: string;
+    editionLine: string;
+    emailLabel: string;
+    emailPrivacy: string;
+    nameLabel: string;
+    nameOptional: string;
+    consentLabel: string;
+    submit: string;
+    errorEmailExists: string;
+    errorGeneric: string;
+    errorRateLimit: string;
+    errorInvalidEmail: string;
+    errorNeedsConsent: string;
+    confirmedH1: string;
+    confirmedBody: string;
+    confirmedCta: string;
+    exhaustedH1: string;
+    exhaustedBody: string;
+    exhaustedCta: string;
+  };
 };
 
 export const dict: Record<Lang, Dict> = {
@@ -564,6 +588,37 @@ export const dict: Record<Lang, Dict> = {
       updatedJustNow: "actualizado ahora",
       updatedSecondsAgo: "actualizado hace {s}s",
     },
+    registration: {
+      eyebrow: "Primera edición · Código único",
+      h1Pre: "Bienvenida. Has desbloqueado el ",
+      h1Em: "Workbook Oficial",
+      intro:
+        "Un cuaderno privado que te guía a aplicar el método del libro. Te damos acceso privado y te enviamos la confirmación por email.",
+      editionLine: "Primera edición · 1 de 100 códigos únicos",
+      emailLabel: "Email",
+      emailPrivacy: "Sólo para enviarte el Workbook. No lo compartiremos.",
+      nameLabel: "¿Cómo quieres que te llamemos?",
+      nameOptional: "Opcional",
+      consentLabel:
+        "Acepto recibir la confirmación y las actualizaciones del Workbook Oficial. Puedo darme de baja en cualquier momento.",
+      submit: "Activar mi Workbook",
+      errorEmailExists:
+        "Este email ya ha activado su Workbook. Entra con el mismo correo para acceder.",
+      errorGeneric:
+        "No hemos podido completar el registro. Tu código sigue siendo válido. Vuelve a intentarlo.",
+      errorRateLimit:
+        "Demasiados intentos en poco tiempo. Espera un momento y vuelve a intentarlo.",
+      errorInvalidEmail: "Introduce un email válido.",
+      errorNeedsConsent: "Necesitamos tu consentimiento para activar el Workbook.",
+      confirmedH1: "Tu ejemplar está registrado",
+      confirmedBody:
+        "Te estamos abriendo el Workbook Oficial. Revisa tu email por la confirmación en los próximos minutos.",
+      confirmedCta: "Entrar al Workbook",
+      exhaustedH1: "Este código ya ha sido utilizado",
+      exhaustedBody:
+        "Si te registraste con otro dispositivo, entra con tu email para acceder al Workbook.",
+      exhaustedCta: "Entrar con mi email",
+    },
   },
   en: {
     nav: {
@@ -921,6 +976,38 @@ export const dict: Record<Lang, Dict> = {
         "Every first-edition physical copy contains a unique code. Only the first 100 copies unlock the Workbook.",
       updatedJustNow: "updated just now",
       updatedSecondsAgo: "updated {s}s ago",
+    },
+    registration: {
+      eyebrow: "First edition · Unique code",
+      h1Pre: "Welcome. You just unlocked the ",
+      h1Em: "Official Workbook",
+      intro:
+        "A private companion that guides you to apply the method from the book. We'll grant you private access and email you the confirmation.",
+      editionLine: "First edition · 1 of 100 unique codes",
+      emailLabel: "Email",
+      emailPrivacy:
+        "Only to send you the Workbook. We will not share it.",
+      nameLabel: "What should we call you?",
+      nameOptional: "Optional",
+      consentLabel:
+        "I agree to receive the confirmation and updates about the Official Workbook. I can unsubscribe any time.",
+      submit: "Activate my Workbook",
+      errorEmailExists:
+        "This email has already activated its Workbook. Use the same address to sign in.",
+      errorGeneric:
+        "We could not complete the registration. Your code is still valid — please try again.",
+      errorRateLimit:
+        "Too many attempts. Please wait a moment and try again.",
+      errorInvalidEmail: "Please enter a valid email.",
+      errorNeedsConsent: "We need your consent to activate the Workbook.",
+      confirmedH1: "Your copy is registered",
+      confirmedBody:
+        "We're opening your Official Workbook. Check your email for the confirmation in the next few minutes.",
+      confirmedCta: "Enter the Workbook",
+      exhaustedH1: "This code has already been used",
+      exhaustedBody:
+        "If you registered on another device, sign in with your email to access the Workbook.",
+      exhaustedCta: "Sign in with my email",
     },
   },
 };
