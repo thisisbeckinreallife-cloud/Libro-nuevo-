@@ -1,6 +1,4 @@
 // Prisma schema — Arkwright Method
-// Phase 1: bonus_tokens + counter_cache only.
-// Later phases (2–8) extend this with users, sessions, claims, etc.
 
 generator client {
   provider = "prisma-client-js"
@@ -25,6 +23,8 @@ model BonusToken {
   createdAt  DateTime         @default(now()) @map("created_at")
   claimedAt  DateTime?        @map("claimed_at")
 
+  claim      Claim?
+
   @@map("bonus_tokens")
 }
 
@@ -34,4 +34,41 @@ model CounterCache {
   updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
 
   @@map("counter_cache")
+}
+
+model User {
+  id        String    @id @default(uuid()) @db.Uuid
+  email     String    @unique
+  name      String?
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  claim     Claim?
+  sessions  Session[]
+
+  @@map("users")
+}
+
+model Claim {
+  id        String     @id @default(uuid()) @db.Uuid
+  userId    String     @unique @map("user_id") @db.Uuid
+  tokenId   String     @unique @map("token_id") @db.Uuid
+  createdAt DateTime   @default(now()) @map("created_at")
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     BonusToken @relation(fields: [tokenId], references: [id], onDelete: Cascade)
+
+  @@map("claims")
+}
+
+model Session {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  secretHash String   @unique @map("secret_hash")
+  expiresAt  DateTime @map("expires_at")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
 }
