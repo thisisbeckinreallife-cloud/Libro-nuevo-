@@ -224,6 +224,14 @@ export type Dict = {
     confirmedBody: string;
     confirmedCta: string;
   };
+  workbook: {
+    eyebrow: string;
+    h1: string;
+    intro: string;
+    downloadLabel: string;
+    soonLabel: string;
+    items: Record<"ex1" | "ex2" | "template" | "checklist", { title: string; description: string }>;
+  };
 };
 
 export const dict: Record<Lang, Dict> = {
@@ -610,6 +618,31 @@ export const dict: Record<Lang, Dict> = {
         "Te estamos abriendo el Workbook Oficial. Revisa tu email por la confirmación en los próximos minutos.",
       confirmedCta: "Entrar al Workbook",
     },
+    workbook: {
+      eyebrow: "Primera edición · Workbook Oficial",
+      h1: "Tu Workbook",
+      intro: "Descarga las piezas y úsalas a tu ritmo.",
+      downloadLabel: "Descargar",
+      soonLabel: "Disponible próximamente",
+      items: {
+        ex1: {
+          title: "Hoja de ejercicios · 1",
+          description: "Primer set de ejercicios para aplicar el método.",
+        },
+        ex2: {
+          title: "Hoja de ejercicios · 2",
+          description: "Segundo set, más profundo, sobre la misma base.",
+        },
+        template: {
+          title: "Plantilla",
+          description: "Tu plantilla de trabajo para reutilizar cuando haga falta.",
+        },
+        checklist: {
+          title: "Checklist",
+          description: "Los puntos clave en una sola página para imprimir.",
+        },
+      },
+    },
   },
   en: {
     nav: {
@@ -994,6 +1027,31 @@ export const dict: Record<Lang, Dict> = {
       confirmedBody:
         "We're opening your Official Workbook. Check your email for the confirmation in the next few minutes.",
       confirmedCta: "Enter the Workbook",
+    },
+    workbook: {
+      eyebrow: "First edition · Official Workbook",
+      h1: "Your Workbook",
+      intro: "Download each piece and use them at your own pace.",
+      downloadLabel: "Download",
+      soonLabel: "Available soon",
+      items: {
+        ex1: {
+          title: "Exercise sheet · 1",
+          description: "First set of exercises to apply the method.",
+        },
+        ex2: {
+          title: "Exercise sheet · 2",
+          description: "Second, deeper set building on the first.",
+        },
+        template: {
+          title: "Template",
+          description: "Your working template, reusable whenever you need it.",
+        },
+        checklist: {
+          title: "Checklist",
+          description: "The key points on one printable page.",
+        },
+      },
     },
   },
 };
