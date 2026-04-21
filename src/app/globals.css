@@ -1170,7 +1170,6 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 .slots-counter-num strong { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 20px; letter-spacing: 0; text-transform: none; }
 .slots-counter-sep { font-family: var(--serif); font-size: 14px; opacity: .55; letter-spacing: 0; text-transform: none; }
 .slots-counter-label { opacity: .72; }
-.slots-counter-exhausted { font-family: var(--serif); font-style: italic; font-size: 18px; letter-spacing: 0; text-transform: none; color: var(--accent); }
 .slots-counter-updated { font-size: 9px; opacity: .45; flex-shrink: 0; }
 .slots-counter-bar {
   position: relative; height: 2px; width: 100%;

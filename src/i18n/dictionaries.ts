@@ -197,7 +197,6 @@ export type Dict = {
     label: string;
     of: string;
     progressAria: string;
-    exhaustedLabel: string;
     staticLine: string;
     remainingSuffix: string;
     subcopy: string;
@@ -577,7 +576,6 @@ export const dict: Record<Lang, Dict> = {
       label: "Workbook Oficial reservado",
       of: "de",
       progressAria: "Reservas del Workbook Oficial",
-      exhaustedLabel: "Cupo agotado · lista de espera abierta",
       staticLine: "Primera edición limitada a 100 ejemplares físicos",
       remainingSuffix: "· quedan {n}",
       subcopy:
@@ -962,7 +960,6 @@ export const dict: Record<Lang, Dict> = {
       label: "Official Workbook reserved",
       of: "of",
       progressAria: "Official Workbook reservations",
-      exhaustedLabel: "All reserved · waitlist open",
       staticLine: "First edition limited to 100 physical copies",
       remainingSuffix: "· {n} remaining",
       subcopy:

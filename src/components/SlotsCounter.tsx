@@ -79,28 +79,6 @@ export function SlotsCounter({ initial, variant = "light", showSubcopy = false }
     );
   }
 
-  if (data.mode === "exhausted") {
-    return (
-      <div className={`slots-counter slots-counter--${variant}`} aria-live="polite">
-        <div className="slots-counter-row">
-          <span className="slots-counter-num">
-            <span className="slots-counter-exhausted">{t.slots.exhaustedLabel}</span>
-          </span>
-        </div>
-        <div
-          className="slots-counter-bar"
-          role="progressbar"
-          aria-label={t.slots.progressAria}
-          aria-valuenow={data.total}
-          aria-valuemin={0}
-          aria-valuemax={data.total}
-        >
-          <div className="slots-counter-bar-fill" style={{ width: "100%" }} />
-        </div>
-      </div>
-    );
-  }
-
   const { claimed, total, remaining } = data;
   const pct = Math.min(100, Math.round((claimed / total) * 100));
   const secs = Math.max(0, Math.floor((now - fetchedAt) / 1000));
