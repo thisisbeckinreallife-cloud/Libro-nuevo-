@@ -694,6 +694,32 @@ section { position: relative; padding: 130px 0; }
 .extract:hover { transform: translateX(8px); box-shadow: 0 20px 40px -20px rgba(0,0,0,.1); }
 .extract:nth-child(even) { margin-left: 8%; margin-right: -2%; }
 .extract:nth-child(odd) { margin-right: 8%; margin-left: -2%; }
+
+/* Cinematic "chapter page" pin — desktop only.
+   Each extract stays at the viewport top while its successor scrolls up
+   behind it and eventually stacks over, like pages being laid on top. */
+@media (min-width: 901px) {
+  .extract-stack { display: block; position: relative; }
+  .extract {
+    position: sticky; top: 18vh;
+    margin: 0 auto 0 !important; max-width: 920px;
+    background: var(--paper);
+    padding: 70px 80px;
+    box-shadow: 0 1px 0 0 rgba(14,11,11,.04);
+    transition: box-shadow .4s var(--ease);
+  }
+  .extract + .extract { margin-top: 28vh !important; }
+  .extract:hover { transform: none; box-shadow: 0 20px 40px -20px rgba(14,11,11,.14); }
+  .extract::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0, var(--accent) 30%, var(--accent) 70%, transparent 100%);
+    opacity: .4;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .extract { position: relative !important; top: auto !important; }
+  .extract + .extract { margin-top: 40px !important; }
+}
 .extract .quote-mark {
   font-family: var(--serif); font-size: 100px; line-height: .5; color: var(--accent); opacity: .3;
   position: absolute; top: 50px; left: 30px;
