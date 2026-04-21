@@ -410,6 +410,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .reveal-stagger.in > *:nth-child(4) { transition-delay: .35s; }
 .reveal-stagger.in > *:nth-child(5) { transition-delay: .45s; }
 
+/* Problem cards — lock-in entry (subtle scale snap, not a generic fade) */
+.problem-grid.reveal-stagger > .problem-card {
+  transform: translateY(24px) scale(.965);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.problem-grid.reveal-stagger.in > .problem-card { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .problem-grid.reveal-stagger > .problem-card { transform: none !important; transition: none !important; opacity: 1 !important; }
+}
+
 /* ============ SECTIONS ============ */
 section { position: relative; padding: 130px 0; }
 .section-head { display: flex; gap: 60px; align-items: baseline; margin-bottom: 80px; }
@@ -943,6 +953,21 @@ section { position: relative; padding: 130px 0; }
 
 /* ============ FINAL CTA ============ */
 .final-cta { background: var(--ink); color: var(--paper); padding: 180px 0; position: relative; overflow: hidden; }
+.final-cta-watermark {
+  position: absolute;
+  right: -20px; top: 50%;
+  transform: translate(0, -50%) rotate(90deg);
+  transform-origin: right center;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(120px, 14vw, 220px);
+  line-height: .85; letter-spacing: -.03em;
+  color: var(--paper); opacity: .05;
+  pointer-events: none; user-select: none;
+  white-space: nowrap; z-index: 1;
+}
+@media (max-width: 900px) {
+  .final-cta-watermark { font-size: clamp(100px, 22vw, 180px); opacity: .045; }
+}
 .final-cta::before {
   content: ""; position: absolute; inset: 0;
   background:
