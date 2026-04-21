@@ -1,14 +1,46 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Book3D } from "./Book3D";
 import { useLang } from "./LangProvider";
+import { useReducedMotion } from "@/lib/motion";
 
 export function Hero() {
   const { t } = useLang();
+  const watermarkRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+
+  useEffect(() => {
+    if (reduced) return;
+    const wm = watermarkRef.current;
+    const section = sectionRef.current;
+    if (!wm || !section) return;
+    let rafId: number | null = null;
+    const update = () => {
+      rafId = null;
+      const rect = section.getBoundingClientRect();
+      const clampedY = Math.max(-rect.height, Math.min(rect.height, -rect.top));
+      const offset = clampedY * 0.12;
+      wm.style.transform = `translate(0, calc(-50% + ${offset}px)) rotate(-90deg)`;
+    };
+    const onScroll = () => {
+      if (rafId !== null) return;
+      rafId = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
+  }, [reduced]);
 
   return (
-    <section className="hero">
-      <div className="hero-watermark">Lara Lawn</div>
+    <section className="hero" ref={sectionRef}>
+      <div className="hero-watermark" ref={watermarkRef}>Lara Lawn</div>
 
       <div className="hero-grid">
         <div className="hero-left">
