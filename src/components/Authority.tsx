@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLang } from "./LangProvider";
 import { Reveal } from "./Reveal";
 
@@ -11,8 +12,15 @@ export function Authority() {
         <div className="authority-grid">
           <Reveal>
             <div className="lara-portrait">
+              <Image
+                src="/lara-portrait.png"
+                alt="Lara Lawn"
+                fill
+                sizes="(max-width: 900px) 100vw, 45vw"
+                priority
+              />
               <div className="portrait-mark">Lara</div>
-              <div className="placeholder-label">
+              <div className="portrait-caption">
                 <span>{t.authority.portraitRole}</span>
                 <span>{t.authority.portraitEdition}</span>
               </div>
