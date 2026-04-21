@@ -554,7 +554,15 @@ section { position: relative; padding: 130px 0; }
 }
 
 /* ============ AUTHORITY ============ */
-.authority { padding: 160px 0; background: var(--paper-warm); }
+.authority { padding: 160px 0; background: var(--paper-warm); position: relative; }
+.authority::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .035;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+.authority .wrap { position: relative; z-index: 1; }
 .authority-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
 .lara-portrait {
   aspect-ratio: 4/5;
