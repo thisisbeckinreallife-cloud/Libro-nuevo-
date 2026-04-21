@@ -2,9 +2,10 @@
 
 import { useLang } from "./LangProvider";
 import { Reveal } from "./Reveal";
-import { SlotsCounter, type SlotsData } from "./SlotsCounter";
+import { SlotsCounter } from "./SlotsCounter";
+import type { SlotsPayload } from "@/lib/slots";
 
-export function FinalCTA({ initialSlots }: { initialSlots: SlotsData }) {
+export function FinalCTA({ initialSlots }: { initialSlots: SlotsPayload }) {
   const { t } = useLang();
   return (
     <section className="final-cta">

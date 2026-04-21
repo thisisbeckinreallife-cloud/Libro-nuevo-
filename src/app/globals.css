@@ -974,3 +974,13 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 .slots-counter--dark { color: var(--paper); }
 .slots-counter--dark .slots-counter-bar { background: rgba(246,241,234,.14); }
 .slots-counter--dark .slots-counter-subcopy { color: rgba(246,241,234,.6); }
+.slots-counter-near { font-family: var(--serif); font-style: italic; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--accent); margin-left: 4px; }
+.slots-counter-static {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--muted);
+  padding: 10px 0;
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+  margin: 0 0 12px;
+}
+.slots-counter--dark .slots-counter-static { color: rgba(246,241,234,.72); border-color: rgba(246,241,234,.14); }
