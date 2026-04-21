@@ -19,7 +19,7 @@ export function ConfirmadoHero() {
       <section className="registration-inner registration-confirmed">
         <div className="registration-eyebrow">
           <span className="dot" />
-          <span className="mono">{t.registration.eyebrow}</span>
+          <span className="mono">{r.eyebrow}</span>
         </div>
         <h1 className="registration-h1">{r.confirmedH1}</h1>
         <p className="registration-intro">{r.confirmedBody}</p>

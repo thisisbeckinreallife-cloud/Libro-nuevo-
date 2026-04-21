@@ -224,9 +224,6 @@ export type Dict = {
     confirmedH1: string;
     confirmedBody: string;
     confirmedCta: string;
-    exhaustedH1: string;
-    exhaustedBody: string;
-    exhaustedCta: string;
   };
 };
 
@@ -614,10 +611,6 @@ export const dict: Record<Lang, Dict> = {
       confirmedBody:
         "Te estamos abriendo el Workbook Oficial. Revisa tu email por la confirmación en los próximos minutos.",
       confirmedCta: "Entrar al Workbook",
-      exhaustedH1: "Este código ya ha sido utilizado",
-      exhaustedBody:
-        "Si te registraste con otro dispositivo, entra con tu email para acceder al Workbook.",
-      exhaustedCta: "Entrar con mi email",
     },
   },
   en: {
@@ -1004,10 +997,6 @@ export const dict: Record<Lang, Dict> = {
       confirmedBody:
         "We're opening your Official Workbook. Check your email for the confirmation in the next few minutes.",
       confirmedCta: "Enter the Workbook",
-      exhaustedH1: "This code has already been used",
-      exhaustedBody:
-        "If you registered on another device, sign in with your email to access the Workbook.",
-      exhaustedCta: "Sign in with my email",
     },
   },
 };

@@ -1,11 +1,11 @@
 import { redirect } from "next/navigation";
 import { readSessionUserId } from "@/lib/session";
-import { RegistrationHero } from "./RegistrationHero";
+import { ConfirmadoHero } from "./ConfirmadoHero";
 
 export const dynamic = "force-dynamic";
 
-export default async function ReservarPage() {
+export default async function ReservarConfirmadoPage() {
   const userId = await readSessionUserId();
-  if (userId) redirect("/workbook");
-  return <RegistrationHero />;
+  if (!userId) redirect("/reservar");
+  return <ConfirmadoHero />;
 }

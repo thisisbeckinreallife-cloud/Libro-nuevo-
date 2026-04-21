@@ -3,7 +3,7 @@
 import { useLang } from "@/components/LangProvider";
 import { RegistrationForm } from "./RegistrationForm";
 
-export function RegistrationHero({ token }: { token: string }) {
+export function RegistrationHero() {
   const { t } = useLang();
   const r = t.registration;
   return (
@@ -19,7 +19,7 @@ export function RegistrationHero({ token }: { token: string }) {
         </h1>
         <p className="registration-intro">{r.intro}</p>
         <div className="registration-edition mono">{r.editionLine}</div>
-        <RegistrationForm token={token} />
+        <RegistrationForm />
       </section>
     </main>
   );
