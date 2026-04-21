@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Arkwright Method — Landing Page
 
-## Getting Started
+Landing de pre-reserva para el libro **"The Arkwright Method"** de Lara Lawn (primavera 2026). Next.js 14 App Router, TypeScript, Tailwind, ES/EN i18n.
 
-First, run the development server:
+Diseño original: ver [`docs/design-handoff/`](docs/design-handoff/).
+
+---
+
+## Arrancar en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+→ http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build de producción
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Variables de entorno
 
-To learn more about Next.js, take a look at the following resources:
+Copia [`.env.example`](.env.example) a `.env.local`. Ninguna variable es obligatoria para el build actual — son placeholders para las integraciones futuras (GA4, ConvertKit, Stripe) que el desarrollador ha de cablear antes del lanzamiento.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy en Railway
 
-## Deploy on Vercel
+1. Crea un nuevo proyecto en [Railway](https://railway.app/) y conecta este repo de GitHub.
+2. Railway detecta Next.js automáticamente. Usa el build por defecto:
+   - **Build command:** `npm run build`
+   - **Start command:** `npm start`
+3. Configura las variables de entorno del paso anterior (si las usas) en la pestaña **Variables** del servicio.
+4. Railway genera un dominio `*.up.railway.app`. Para dominio propio, ve a **Settings → Networking → Custom Domain** y añade un CNAME.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Estructura
+
+```
+src/
+  app/
+    layout.tsx        # root layout, fuentes, pre-hydration lang script
+    page.tsx          # compone las 15 secciones
+    globals.css       # tokens de diseño + estilos por sección
+  components/         # un componente por sección
+  i18n/
+    dictionaries.ts   # single source of truth ES/EN
+docs/
+  design-handoff/     # spec original (README + HTML de referencia)
+```
+
+## Idiomas
+
+ES / EN con toggle en la nav. El idioma se persiste en `localStorage` (`laraLang`) y se aplica a `<html lang>` antes de la hidratación para evitar flashes en el atributo.
+
+Nota conocida: el contenido de texto se rehidrata en ES primero y salta a EN para usuarios que habían seleccionado EN anteriormente. Solución completa requeriría SSR basado en cookie — fuera de scope de la entrega inicial.
+
+## Decisiones técnicas
+
+- **Sin Framer Motion.** Animaciones con keyframes CSS + IntersectionObserver. La entrega inicial no requería motion lib.
+- **Libro 3D en CSS puro.** Seis caras + drag + idle oscillation. Sustituir por render real cuando la portada esté lista (ver `docs/design-handoff/README.md`).
+- **Tailwind tokens mapeados a CSS vars.** Los estilos complejos viven en `globals.css`; Tailwind se usa solo como infra de build.
+
+## Handoff original
+
+Ver [`docs/design-handoff/README.md`](docs/design-handoff/README.md) para la especificación completa del diseño (tokens, tipografía, animaciones, secciones) y [`docs/design-handoff/The Arkwright Method.html`](docs/design-handoff/The%20Arkwright%20Method.html) para el prototipo HTML de referencia.
