@@ -1110,6 +1110,192 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   .workbook-card-main { gap: 14px; }
 }
 
+/* ============ Workbook · Diagnóstico (swipe cards) ============ */
+.diagnostico-page { align-items: flex-start; padding-top: 60px; }
+.diagnostico-inner {
+  position: relative; z-index: 1;
+  max-width: 640px; width: 100%;
+  padding: 0 24px 80px;
+}
+.diagnostico-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 44px;
+}
+.diagnostico-back {
+  font-size: 10px; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--muted);
+  transition: color .2s var(--ease);
+}
+.diagnostico-back:hover { color: var(--accent); }
+.diagnostico-progress {
+  display: flex; gap: 8px;
+}
+.diagnostico-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--rule-soft);
+  transition: background .3s var(--ease), transform .3s var(--ease);
+}
+.diagnostico-dot.is-active { background: var(--accent); transform: scale(1.4); }
+.diagnostico-dot.is-done { background: var(--ink); }
+
+.diagnostico-lead { margin-bottom: 32px; }
+.diagnostico-h1 {
+  font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 12px;
+}
+
+.diagnostico-card {
+  background: var(--paper);
+  border-left: 1px solid var(--accent);
+  box-shadow: 0 30px 60px -30px rgba(14,11,11,.18);
+  padding: 44px 36px;
+  position: relative;
+  user-select: none;
+  touch-action: pan-y;
+}
+.diagnostico-card--yesno { cursor: grab; }
+.diagnostico-card--yesno:active { cursor: grabbing; }
+.diagnostico-question {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(22px, 3vw, 30px); line-height: 1.25; letter-spacing: -.01em;
+  color: var(--ink);
+  margin-bottom: 30px;
+  text-wrap: balance;
+}
+.diagnostico-hint {
+  font-family: var(--sans); font-size: 12px; font-weight: 300; line-height: 1.5;
+  color: var(--muted);
+  margin-top: 20px;
+}
+
+/* Slider */
+.diagnostico-slider-value {
+  display: flex; align-items: baseline; gap: 10px;
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: 72px; line-height: 1; color: var(--accent);
+  margin: 12px 0 18px;
+}
+.diagnostico-slider-value small {
+  font-family: var(--mono); font-style: normal; font-size: 12px; letter-spacing: .2em;
+  color: var(--muted);
+}
+.diagnostico-slider {
+  appearance: none; -webkit-appearance: none;
+  width: 100%; height: 2px;
+  background: var(--rule-soft); outline: none;
+  margin: 14px 0 10px;
+  touch-action: pan-x;
+}
+.diagnostico-slider::-webkit-slider-thumb {
+  appearance: none; -webkit-appearance: none;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent); cursor: grab; border: 3px solid var(--paper);
+  box-shadow: 0 4px 14px -4px rgba(180,18,63,.4);
+}
+.diagnostico-slider::-moz-range-thumb {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent); cursor: grab; border: 3px solid var(--paper);
+  box-shadow: 0 4px 14px -4px rgba(180,18,63,.4);
+}
+.diagnostico-slider-labels {
+  display: flex; justify-content: space-between;
+  font-size: 9px; letter-spacing: .26em; text-transform: uppercase; color: var(--muted);
+}
+.diagnostico-next { margin-top: 30px; align-self: flex-start; }
+
+/* Yes/No */
+.diagnostico-card--yesno { padding: 48px 36px 60px; }
+.diagnostico-swipe-hint {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--muted); opacity: .45;
+  margin-bottom: 24px;
+}
+.diagnostico-card--yesno.is-yes-leaning { border-left-color: var(--accent); box-shadow: 0 30px 60px -20px rgba(180,18,63,.32); }
+.diagnostico-card--yesno.is-no-leaning { border-left-color: var(--ink); box-shadow: 0 30px 60px -20px rgba(14,11,11,.3); }
+.diagnostico-card--yesno.is-yes-leaning .diagnostico-swipe-hint .is-yes,
+.diagnostico-card--yesno.is-no-leaning .diagnostico-swipe-hint .is-no {
+  color: var(--accent); opacity: 1;
+}
+.diagnostico-prev {
+  margin-top: 14px; font-size: 10px; letter-spacing: .24em; color: var(--muted);
+}
+.diagnostico-yesno-buttons {
+  display: flex; gap: 16px; margin-top: 28px;
+  justify-content: space-between;
+}
+.diagnostico-yesno-buttons .btn-ghost,
+.diagnostico-yesno-buttons .btn-primary {
+  flex: 1; justify-content: center; padding-left: 20px; padding-right: 20px;
+  text-align: center;
+}
+
+/* Final card */
+.diagnostico-final {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: start;
+  background: var(--paper);
+  border-left: 1px solid var(--accent);
+  box-shadow: 0 30px 60px -30px rgba(14,11,11,.18);
+  padding: 52px 48px;
+}
+.diagnostico-final-visual {
+  position: relative;
+  aspect-ratio: 3/4;
+  background: var(--paper-warm);
+  overflow: hidden;
+}
+.diagnostico-final-image { object-fit: cover; width: 100%; height: 100%; }
+.diagnostico-final-caption {
+  position: absolute; bottom: 12px; left: 12px; right: 12px;
+  font-size: 9px; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--paper);
+  background: rgba(14,11,11,.5);
+  padding: 6px 10px;
+  backdrop-filter: blur(4px);
+}
+.diagnostico-final-text h1 { margin-top: 0; }
+.diagnostico-synth {
+  list-style: none; padding: 0; margin: 28px 0;
+  display: flex; flex-direction: column; gap: 18px;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 24px;
+}
+.diagnostico-synth li {
+  display: flex; gap: 18px; align-items: baseline;
+}
+.diagnostico-synth strong {
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 34px; line-height: 1; color: var(--accent); min-width: 60px;
+}
+.diagnostico-synth span {
+  font-family: var(--serif); font-weight: 300; font-size: 16px; line-height: 1.4; color: var(--ink-soft);
+}
+.diagnostico-synth em {
+  font-family: var(--mono); font-style: normal; font-size: 10px; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--muted);
+}
+.diagnostico-final-actions {
+  display: flex; gap: 18px; flex-wrap: wrap;
+  margin-top: 24px;
+}
+.diagnostico-final-actions .btn-ghost { padding-bottom: 6px; }
+.diagnostico-continue { flex-shrink: 0; }
+
+@media (max-width: 760px) {
+  .diagnostico-final { grid-template-columns: 1fr; gap: 32px; padding: 36px 24px; }
+}
+@media (max-width: 640px) {
+  .diagnostico-inner { padding: 0 16px 60px; }
+  .diagnostico-card { padding: 32px 22px; }
+  .diagnostico-card--yesno { padding: 36px 22px 44px; }
+  .diagnostico-slider-value { font-size: 56px; }
+  .diagnostico-synth strong { font-size: 28px; min-width: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .diagnostico-card { transition: none !important; }
+  .diagnostico-dot { transition: none !important; }
+}
+
 /* ============ Registration (private, QR-only) ============ */
 .registration-shell { background: var(--paper-warm); min-height: 100vh; }
 .registration-page {
