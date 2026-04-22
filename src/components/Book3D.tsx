@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useLang } from "./LangProvider";
 
 export function Book3D() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const wrapRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
 
@@ -22,6 +23,7 @@ export function Book3D() {
     let lastY = 0;
     let idleTimer: ReturnType<typeof setTimeout> | null = null;
     let rafId: number | null = null;
+    let activePointer: number | null = null;
 
     const apply = () => {
       stage.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
@@ -50,42 +52,48 @@ export function Book3D() {
       idleTimer = setTimeout(() => wrap.classList.add("idle"), 2200);
     };
 
-    const getPoint = (e: MouseEvent | TouchEvent) => {
-      if ("touches" in e && e.touches[0]) return e.touches[0];
-      return e as MouseEvent;
-    };
-
-    const onDown = (e: MouseEvent | TouchEvent) => {
-      e.preventDefault();
+    const onPointerDown = (e: PointerEvent) => {
+      // Skip drag when pressing on the rotation buttons
+      const target = e.target as HTMLElement | null;
+      if (target?.closest(".book-controls")) return;
+      // Ignore secondary pointers to avoid pinch-conflicts
+      if (activePointer !== null) return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      activePointer = e.pointerId;
       dragging = true;
       wrap.classList.add("dragging");
       wrap.classList.remove("idle");
-      const p = getPoint(e);
-      lastX = p.clientX;
-      lastY = p.clientY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      wrap.setPointerCapture(e.pointerId);
+      e.preventDefault();
     };
-    const onMove = (e: MouseEvent | TouchEvent) => {
-      if (!dragging) return;
-      const p = getPoint(e);
-      const dx = p.clientX - lastX;
-      const dy = p.clientY - lastY;
-      lastX = p.clientX;
-      lastY = p.clientY;
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragging || e.pointerId !== activePointer) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
       ry += dx * 0.5;
       rx = clampPitch(rx - dy * 0.3);
       targetRy = ry;
       targetRx = rx;
       apply();
     };
-    const onUp = () => {
+
+    const endDrag = (e: PointerEvent) => {
+      if (e.pointerId !== activePointer) return;
+      activePointer = null;
       if (!dragging) return;
       dragging = false;
       wrap.classList.remove("dragging");
+      wrap.releasePointerCapture?.(e.pointerId);
       startIdle();
     };
 
-    const onHover = (e: MouseEvent) => {
-      if (dragging) return;
+    const onHover = (e: PointerEvent) => {
+      if (dragging || e.pointerType !== "mouse") return;
       const rect = wrap.getBoundingClientRect();
       const px = (e.clientX - rect.left) / rect.width - 0.5;
       const py = (e.clientY - rect.top) / rect.height - 0.5;
@@ -94,58 +102,56 @@ export function Book3D() {
       wrap.classList.remove("idle");
       startTick();
     };
-    const onLeave = () => {
-      if (dragging) return;
+
+    const onLeave = (e: PointerEvent) => {
+      if (dragging || e.pointerType !== "mouse") return;
       targetRy = -28;
       targetRx = -6;
       startTick();
       startIdle();
     };
 
-    const onLeft = () => {
+    const rotateBy = (delta: number) => {
       wrap.classList.remove("idle");
-      targetRy = ry - 90;
-      startTick();
-      startIdle();
-    };
-    const onRight = () => {
-      wrap.classList.remove("idle");
-      targetRy = ry + 90;
+      targetRy = ry + delta;
       startTick();
       startIdle();
     };
 
-    wrap.addEventListener("mousedown", onDown);
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup", onUp);
-    wrap.addEventListener("touchstart", onDown, { passive: false });
-    window.addEventListener("touchmove", onMove, { passive: false });
-    window.addEventListener("touchend", onUp);
-    wrap.addEventListener("mousemove", onHover);
-    wrap.addEventListener("mouseleave", onLeave);
+    wrap.addEventListener("pointerdown", onPointerDown);
+    wrap.addEventListener("pointermove", onPointerMove);
+    wrap.addEventListener("pointerup", endDrag);
+    wrap.addEventListener("pointercancel", endDrag);
+    wrap.addEventListener("pointermove", onHover);
+    wrap.addEventListener("pointerleave", onLeave);
 
     const leftBtn = wrap.querySelector<HTMLButtonElement>("#rotLeft");
     const rightBtn = wrap.querySelector<HTMLButtonElement>("#rotRight");
+    const onLeft = () => rotateBy(-90);
+    const onRight = () => rotateBy(90);
     leftBtn?.addEventListener("click", onLeft);
     rightBtn?.addEventListener("click", onRight);
 
     startIdle();
 
     return () => {
-      wrap.removeEventListener("mousedown", onDown);
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup", onUp);
-      wrap.removeEventListener("touchstart", onDown);
-      window.removeEventListener("touchmove", onMove);
-      window.removeEventListener("touchend", onUp);
-      wrap.removeEventListener("mousemove", onHover);
-      wrap.removeEventListener("mouseleave", onLeave);
+      wrap.removeEventListener("pointerdown", onPointerDown);
+      wrap.removeEventListener("pointermove", onPointerMove);
+      wrap.removeEventListener("pointerup", endDrag);
+      wrap.removeEventListener("pointercancel", endDrag);
+      wrap.removeEventListener("pointermove", onHover);
+      wrap.removeEventListener("pointerleave", onLeave);
       leftBtn?.removeEventListener("click", onLeft);
       rightBtn?.removeEventListener("click", onRight);
       if (idleTimer) clearTimeout(idleTimer);
       if (rafId != null) cancelAnimationFrame(rafId);
     };
   }, []);
+
+  const suffix = lang === "en" ? "en" : "es";
+  const frontSrc = `/book/cover-front-${suffix}.jpg`;
+  const backSrc = `/book/cover-back-${suffix}.jpg`;
+  const spineSrc = `/book/cover-spine-${suffix}.png`;
 
   return (
     <div
@@ -156,36 +162,32 @@ export function Book3D() {
     >
       <div className="book-stage" ref={stageRef}>
         <div className="face front">
-          <div>
-            <div className="cover-top">{t.hero.coverTopline}</div>
-          </div>
-          <div>
-            <div className="cover-mark">{t.hero.coverMark}</div>
-            <h2 className="cover-title">
-              {t.hero.coverTitleLine1}
-              <br />
-              <em>{t.hero.coverTitleLine2}</em>
-            </h2>
-          </div>
-          <div className="cover-author">{t.hero.coverAuthor}</div>
+          <Image
+            src={frontSrc}
+            alt={`${t.hero.coverTitleLine1} ${t.hero.coverTitleLine2} — ${t.hero.coverAuthor}`}
+            fill
+            sizes="(max-width: 1000px) 70vw, 460px"
+            priority
+            className="book-face-img"
+          />
         </div>
         <div className="face back">
-          <div>
-            <div className="cover-top" style={{ marginBottom: 18 }}>
-              {t.hero.backLabel}
-            </div>
-            <p className="back-blurb">{t.hero.coverBlurb}</p>
-          </div>
-          <div>
-            <div className="back-author-line">{t.hero.backExcerptLabel}</div>
-            <div className="back-isbn" style={{ marginTop: 18 }}>
-              <span>{t.hero.backIsbn}</span>
-              <span>{t.hero.backPrice}</span>
-            </div>
-          </div>
+          <Image
+            src={backSrc}
+            alt=""
+            fill
+            sizes="(max-width: 1000px) 70vw, 460px"
+            className="book-face-img"
+          />
         </div>
         <div className="face spine">
-          <div className="spine-text">The Arkwright Method · Lara Lawn</div>
+          <Image
+            src={spineSrc}
+            alt=""
+            fill
+            sizes="(max-width: 1000px) 40px, 50px"
+            className="book-face-img"
+          />
         </div>
         <div className="face edge" />
         <div className="face top" />
