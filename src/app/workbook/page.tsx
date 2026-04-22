@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export default async function WorkbookPage() {
   const userId = await readSessionUserId();
-  if (!userId) redirect("/reservar");
+  if (!userId) redirect("/registro");
   const items = await getWorkbookItems();
   return <WorkbookIndex items={items} />;
 }

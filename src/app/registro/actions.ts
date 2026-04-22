@@ -50,5 +50,5 @@ export async function claimAction(
     return { error: "generic", email, name };
   }
 
-  redirect("/reservar/confirmado");
+  redirect("/registro/confirmado");
 }
