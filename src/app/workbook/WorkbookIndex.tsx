@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useLang } from "@/components/LangProvider";
-import type { WorkbookItem } from "@/lib/workbook";
 
-export function WorkbookIndex({ items }: { items: WorkbookItem[] }) {
+const SLUGS = ["diagnostico", "funeral", "proxima-vida", "lunes"] as const;
+
+export function WorkbookIndex() {
   const { t } = useLang();
   const w = t.workbook;
   return (
@@ -17,28 +19,23 @@ export function WorkbookIndex({ items }: { items: WorkbookItem[] }) {
         <p className="registration-intro">{w.intro}</p>
 
         <ul className="workbook-list">
-          {items.map((item) => {
-            const label = w.items[item.key];
+          {SLUGS.map((slug, i) => {
+            const section = w.sections[slug];
             return (
-              <li
-                key={item.slug}
-                className={`workbook-card${item.available ? "" : " workbook-card--soon"}`}
-              >
+              <li key={slug} className="workbook-card">
                 <div className="workbook-card-main">
-                  <div className="workbook-card-title">{label.title}</div>
-                  <div className="workbook-card-desc">{label.description}</div>
+                  <div className="workbook-card-num mono">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <div className="workbook-card-title">{section.title}</div>
+                    <div className="workbook-card-desc">{section.description}</div>
+                  </div>
                 </div>
-                {item.available ? (
-                  <a
-                    className="workbook-card-action"
-                    href={`/workbook/file/${item.slug}`}
-                  >
-                    {w.downloadLabel}
-                    <span className="workbook-card-arrow" aria-hidden="true" />
-                  </a>
-                ) : (
-                  <span className="workbook-card-soon mono">{w.soonLabel}</span>
-                )}
+                <Link className="workbook-card-action" href={`/workbook/${slug}`}>
+                  {section.cta}
+                  <span className="workbook-card-arrow" aria-hidden="true" />
+                </Link>
               </li>
             );
           })}

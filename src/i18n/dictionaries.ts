@@ -228,9 +228,66 @@ export type Dict = {
     eyebrow: string;
     h1: string;
     intro: string;
-    downloadLabel: string;
-    soonLabel: string;
-    items: Record<"ex1" | "ex2" | "template" | "checklist", { title: string; description: string }>;
+    sections: Record<
+      "diagnostico" | "funeral" | "proxima-vida" | "lunes",
+      { title: string; description: string; cta: string }
+    >;
+    diagnostico: {
+      h1: string;
+      intro: string;
+      doneTitle: string;
+      doneIntro: string;
+      restart: string;
+      continueLater: string;
+      questions: {
+        id: string;
+        kind: "slider" | "yesno";
+        question: string;
+        hint?: string;
+        minLabel?: string;
+        maxLabel?: string;
+      }[];
+      antCaption: string;
+    };
+    funeral: {
+      h1: string;
+      intro: string;
+      placeholder: string;
+      bury: string;
+      burying: string;
+      empty: string;
+      cemeteryTitle: string;
+    };
+    proximaVida: {
+      h1: string;
+      intro: string;
+      addMilestone: string;
+      labelPlaceholder: string;
+      monthLabels: string[];
+      done: string;
+      pending: string;
+      delete: string;
+      empty: string;
+    };
+    lunes: {
+      h1: string;
+      intro: string;
+      noteLabel: string;
+      notePlaceholder: string;
+      markDone: string;
+      markPending: string;
+      columnPending: string;
+      columnDone: string;
+      doneAt: string;
+      items: { id: string; title: string; framing: string }[];
+    };
+    common: {
+      back: string;
+      saving: string;
+      saved: string;
+      savedJustNow: string;
+      savedAgo: string;
+    };
   };
 };
 
@@ -621,26 +678,186 @@ export const dict: Record<Lang, Dict> = {
     workbook: {
       eyebrow: "Primera edición · Workbook Oficial",
       h1: "Tu Workbook",
-      intro: "Descarga las piezas y úsalas a tu ritmo.",
-      downloadLabel: "Descargar",
-      soonLabel: "Disponible próximamente",
-      items: {
-        ex1: {
-          title: "Hoja de ejercicios · 1",
-          description: "Primer set de ejercicios para aplicar el método.",
+      intro:
+        "Cuatro prácticas pensadas para que el método del libro entre en tu vida real, no sólo en tu cabeza.",
+      sections: {
+        diagnostico: {
+          title: "¿Qué hormiga eres hoy?",
+          description:
+            "Seis preguntas cortas que retratan tu punto de partida. Sin respuestas correctas, sólo honestidad.",
+          cta: "Empezar",
         },
-        ex2: {
-          title: "Hoja de ejercicios · 2",
-          description: "Segundo set, más profundo, sobre la misma base.",
+        funeral: {
+          title: "El funeral",
+          description:
+            "Escribes lo que estás dispuesta a enterrar: identidades, creencias, acuerdos viejos. Se disuelve en ceniza y queda archivado.",
+          cta: "Oficiar",
         },
-        template: {
-          title: "Plantilla",
-          description: "Tu plantilla de trabajo para reutilizar cuando haga falta.",
+        "proxima-vida": {
+          title: "Tu próxima vida",
+          description:
+            "Doce meses, hitos que tú arrastras en la línea del tiempo. Tu próximo año, en serio, visible.",
+          cta: "Construir",
         },
-        checklist: {
-          title: "Checklist",
-          description: "Los puntos clave en una sola página para imprimir.",
+        lunes: {
+          title: "Los 7 lunes",
+          description:
+            "Siete acciones concretas del capítulo 13. Ninguna glamurosa. Cada una mueve algo real.",
+          cta: "Empezar el lunes",
         },
+      },
+      diagnostico: {
+        h1: "¿Qué hormiga eres hoy?",
+        intro:
+          "Seis tarjetas. Respondes sin pensar demasiado. Al final te devolvemos un retrato — no un puntaje — de tu punto de partida.",
+        doneTitle: "Esta es tu hormiga",
+        doneIntro:
+          "El libro lo dice en el epílogo: la hormiga Cephalotes atratus se tira al vacío y sabe volver a casa. Esto eres tú hoy.",
+        restart: "Volver a responder",
+        continueLater: "Terminar después",
+        antCaption: "Tu punto de partida · guardado",
+        questions: [
+          {
+            id: "horas-por-precio",
+            kind: "slider",
+            question: "¿Cuántas horas estás vendiendo hoy por cada euro que te llega?",
+            hint: "0 = ninguna (pasivo). 10 = todas (hora-por-hora).",
+            minLabel: "ninguna",
+            maxLabel: "todas",
+          },
+          {
+            id: "colchon",
+            kind: "slider",
+            question: "Si dejaras de facturar mañana, ¿cuántos meses aguantas?",
+            hint: "0 = cero meses. 10 = más de doce.",
+            minLabel: "0 meses",
+            maxLabel: "12+",
+          },
+          {
+            id: "quien-te-definio",
+            kind: "yesno",
+            question:
+              "¿Todavía arrastras la etiqueta que un profesor o tu familia te puso antes de los 14?",
+          },
+          {
+            id: "cuerpo-contrae",
+            kind: "yesno",
+            question:
+              "¿Tu cuerpo se contrae físicamente cuando piensas en pedir el doble por tu trabajo?",
+          },
+          {
+            id: "tribu-alarga",
+            kind: "slider",
+            question:
+              "¿Cuánto te alarga o te limita el círculo con el que más tiempo pasas?",
+            hint: "0 = me empuja hacia abajo. 10 = me empuja hacia arriba.",
+            minLabel: "abajo",
+            maxLabel: "arriba",
+          },
+          {
+            id: "lunes-esta-semana",
+            kind: "yesno",
+            question:
+              "¿Sabes ya qué acción pequeña y poco glamurosa harías este lunes si tuvieras que mover una sola pieza?",
+          },
+        ],
+      },
+      funeral: {
+        h1: "El funeral",
+        intro:
+          "El capítulo 6 se llama así. Escribe lo que estás dispuesta a enterrar hoy: una creencia heredada, una identidad prestada, un acuerdo viejo. Una cosa por entrada.",
+        placeholder: "Hoy entierro…",
+        bury: "Enterrar",
+        burying: "Enterrando…",
+        empty: "Aún no has enterrado nada.",
+        cemeteryTitle: "Lo que dejaste atrás",
+      },
+      proximaVida: {
+        h1: "Tu próxima vida",
+        intro:
+          "Doce meses. Arrastra los hitos hasta su mes. Puedes editarlos, marcarlos como alcanzados o borrarlos.",
+        addMilestone: "Añadir hito",
+        labelPlaceholder: "Ej: 5 000 €/mes de forma recurrente",
+        monthLabels: [
+          "Ene",
+          "Feb",
+          "Mar",
+          "Abr",
+          "May",
+          "Jun",
+          "Jul",
+          "Ago",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dic",
+        ],
+        done: "Alcanzado",
+        pending: "Pendiente",
+        delete: "Borrar",
+        empty: "Aún no has añadido hitos. Pulsa “Añadir hito”.",
+      },
+      lunes: {
+        h1: "Los 7 lunes",
+        intro:
+          "El libro lo dice sin anestesia: “Hace falta que sea lunes.” Aquí están siete acciones concretas. Ninguna es glamurosa. Marca cada una cuando la hagas — y, si quieres, cuéntanos cómo fue.",
+        noteLabel: "Cuéntamelo",
+        notePlaceholder: "¿Cómo fue? ¿Qué pasó después?",
+        markDone: "Marcar como hecho",
+        markPending: "Deshacer",
+        columnPending: "Pendiente",
+        columnDone: "Hecho",
+        doneAt: "Hecho",
+        items: [
+          {
+            id: "transferencia",
+            title: "Configurar una transferencia automática",
+            framing:
+              "Una cantidad pequeña, fija, a una cuenta distinta. El primer lunes.",
+          },
+          {
+            id: "subir-tarifa",
+            title: "Subir tu tarifa donde antes callabas",
+            framing:
+              "Un cliente, una web, un presupuesto. El número nuevo, escrito.",
+          },
+          {
+            id: "email-no-te-atreves",
+            title: "Mandar el email que llevas semanas evitando",
+            framing:
+              "Ya sabes cuál. El que pondrías si supieras que va a salir bien.",
+          },
+          {
+            id: "decir-un-numero",
+            title: "Decir un número en voz alta sin disculparte",
+            framing:
+              "A un cliente, a tu socia, a ti misma en el espejo. Sin atenuantes.",
+          },
+          {
+            id: "despedir-cliente",
+            title: "Soltar al cliente, la amistad o la suscripción que te drena",
+            framing: "La que lleva años. La que tú sabes. Esa.",
+          },
+          {
+            id: "treinta-minutos",
+            title: "Dedicar 30 minutos a una sola cosa",
+            framing:
+              "Sin móvil. Sin pestaña nueva. Cronómetro. Sólo esa cosa.",
+          },
+          {
+            id: "escribir-tribu",
+            title: "Escribir el nombre de 3 personas de tu tribu futura",
+            framing:
+              "Las que existen pero aún no están cerca. El primer paso es tener la lista.",
+          },
+        ],
+      },
+      common: {
+        back: "Volver al Workbook",
+        saving: "Guardando…",
+        saved: "Guardado",
+        savedJustNow: "guardado ahora",
+        savedAgo: "guardado hace {s}s",
       },
     },
   },
@@ -1031,26 +1248,180 @@ export const dict: Record<Lang, Dict> = {
     workbook: {
       eyebrow: "First edition · Official Workbook",
       h1: "Your Workbook",
-      intro: "Download each piece and use them at your own pace.",
-      downloadLabel: "Download",
-      soonLabel: "Available soon",
-      items: {
-        ex1: {
-          title: "Exercise sheet · 1",
-          description: "First set of exercises to apply the method.",
+      intro:
+        "Four practices designed to move the book's method from your head into your real life.",
+      sections: {
+        diagnostico: {
+          title: "What ant are you today?",
+          description:
+            "Six short questions that sketch your starting point. No right answers, only honesty.",
+          cta: "Begin",
         },
-        ex2: {
-          title: "Exercise sheet · 2",
-          description: "Second, deeper set building on the first.",
+        funeral: {
+          title: "The funeral",
+          description:
+            "Write what you're ready to bury: identities, beliefs, old agreements. It dissolves into ash and stays archived.",
+          cta: "Officiate",
         },
-        template: {
-          title: "Template",
-          description: "Your working template, reusable whenever you need it.",
+        "proxima-vida": {
+          title: "Your next life",
+          description:
+            "Twelve months. Milestones you drag onto the timeline. Your next year, visible.",
+          cta: "Build",
         },
-        checklist: {
-          title: "Checklist",
-          description: "The key points on one printable page.",
+        lunes: {
+          title: "The 7 Mondays",
+          description:
+            "Seven concrete actions from chapter 13. None of them glamorous. Each one moves something real.",
+          cta: "Start Monday",
         },
+      },
+      diagnostico: {
+        h1: "What ant are you today?",
+        intro:
+          "Six cards. Answer without overthinking. At the end you get a portrait — not a score — of where you stand.",
+        doneTitle: "This is your ant",
+        doneIntro:
+          "The epilogue: Cephalotes atratus throws herself into the void and still finds her way home. That's you, today.",
+        restart: "Answer again",
+        continueLater: "Finish later",
+        antCaption: "Your starting point · saved",
+        questions: [
+          {
+            id: "horas-por-precio",
+            kind: "slider",
+            question: "How many hours are you selling today for each euro that comes in?",
+            hint: "0 = none (passive). 10 = all (hour-for-hour).",
+            minLabel: "none",
+            maxLabel: "all",
+          },
+          {
+            id: "colchon",
+            kind: "slider",
+            question: "If you stopped invoicing tomorrow, how many months could you last?",
+            hint: "0 = zero months. 10 = more than twelve.",
+            minLabel: "0 months",
+            maxLabel: "12+",
+          },
+          {
+            id: "quien-te-definio",
+            kind: "yesno",
+            question:
+              "Do you still carry the label a teacher or family member gave you before you turned 14?",
+          },
+          {
+            id: "cuerpo-contrae",
+            kind: "yesno",
+            question:
+              "Does your body physically contract when you think about asking for double for your work?",
+          },
+          {
+            id: "tribu-alarga",
+            kind: "slider",
+            question:
+              "How much does your closest circle lift you up or pull you down?",
+            hint: "0 = pulls me down. 10 = lifts me up.",
+            minLabel: "down",
+            maxLabel: "up",
+          },
+          {
+            id: "lunes-esta-semana",
+            kind: "yesno",
+            question:
+              "Do you already know the small, unglamorous action you'd take this Monday if you had to move one piece?",
+          },
+        ],
+      },
+      funeral: {
+        h1: "The funeral",
+        intro:
+          "Chapter 6. Write what you're ready to bury today: an inherited belief, a borrowed identity, an old agreement. One thing per entry.",
+        placeholder: "Today I bury…",
+        bury: "Bury",
+        burying: "Burying…",
+        empty: "You haven't buried anything yet.",
+        cemeteryTitle: "What you left behind",
+      },
+      proximaVida: {
+        h1: "Your next life",
+        intro:
+          "Twelve months. Drag each milestone to its month. You can edit, mark as reached, or delete.",
+        addMilestone: "Add milestone",
+        labelPlaceholder: "e.g. recurring €5,000/mo",
+        monthLabels: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ],
+        done: "Reached",
+        pending: "Pending",
+        delete: "Delete",
+        empty: "No milestones yet. Tap “Add milestone”.",
+      },
+      lunes: {
+        h1: "The 7 Mondays",
+        intro:
+          "The book says it without anaesthesia: “It needs to be Monday.” Here are seven concrete actions. None is glamorous. Mark each one when you do it — and tell us how it went if you'd like.",
+        noteLabel: "Tell me about it",
+        notePlaceholder: "How did it go? What happened next?",
+        markDone: "Mark as done",
+        markPending: "Undo",
+        columnPending: "Pending",
+        columnDone: "Done",
+        doneAt: "Done",
+        items: [
+          {
+            id: "transferencia",
+            title: "Set up an automatic transfer",
+            framing: "A small, fixed amount, to a different account. First Monday.",
+          },
+          {
+            id: "subir-tarifa",
+            title: "Raise your rate where you used to stay quiet",
+            framing: "One client, one website, one quote. The new number, written down.",
+          },
+          {
+            id: "email-no-te-atreves",
+            title: "Send the email you've been avoiding for weeks",
+            framing: "You know which one. The one you'd send if you knew it'd go well.",
+          },
+          {
+            id: "decir-un-numero",
+            title: "Say a number out loud without apologising",
+            framing: "To a client, a partner, yourself in the mirror. No softeners.",
+          },
+          {
+            id: "despedir-cliente",
+            title: "Let go of the client, friendship or subscription that drains you",
+            framing: "The one that's been going on for years. You know. That one.",
+          },
+          {
+            id: "treinta-minutos",
+            title: "Spend 30 minutes on one single thing",
+            framing: "No phone. No new tab. Timer. Only that thing.",
+          },
+          {
+            id: "escribir-tribu",
+            title: "Write the names of 3 people in your future tribe",
+            framing: "People who exist but aren't close yet. Step one is having the list.",
+          },
+        ],
+      },
+      common: {
+        back: "Back to Workbook",
+        saving: "Saving…",
+        saved: "Saved",
+        savedJustNow: "saved just now",
+        savedAgo: "saved {s}s ago",
       },
     },
   },
