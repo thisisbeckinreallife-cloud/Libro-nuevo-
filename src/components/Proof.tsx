@@ -5,10 +5,10 @@ import { useLang } from "./LangProvider";
 import { Reveal } from "./Reveal";
 
 const PRESS_LOGOS = [
-  { src: "/press/forbes_logo_hq.webp", alt: "Forbes", width: 5000, height: 1305 },
-  { src: "/press/lofficiel_processed.webp", alt: "L'Officiel", width: 1280, height: 295 },
-  { src: "/press/vanityfair_processed.webp", alt: "Vanity Fair", width: 1536, height: 337 },
-  { src: "/press/variety_processed.png", alt: "Variety", width: 920, height: 261 },
+  { src: "/press/forbes.png", alt: "Forbes", width: 5000, height: 1305 },
+  { src: "/press/lofficiel.png", alt: "L'Officiel", width: 1280, height: 295 },
+  { src: "/press/vanityfair.png", alt: "Vanity Fair", width: 1536, height: 337 },
+  { src: "/press/variety.png", alt: "Variety", width: 920, height: 261 },
 ] as const;
 
 export function Proof() {
