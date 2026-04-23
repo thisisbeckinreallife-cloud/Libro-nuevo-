@@ -466,17 +466,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted);
 }
 
-/* Mobile-only drag hint — an editorial chip that appears below the
-   book after the mount-nudge settles, then fades out. Permanently
-   hidden once the reader drags (the `.dragged` class is added by
-   Book3D on first pointerdown). Desktop hides it entirely. */
+/* Mobile drag hint — editorial chip sitting below the book. Stays
+   visible until the reader drags (the `.dragged` class on the wrap
+   is added on first pointerdown). Desktop hides it entirely.
+   The desktop `.book-controls` block (rotation arrows + "arrastra
+   para girar" text) is itself hidden on mobile — it overlaps the
+   smaller book image there and is redundant with this chip. */
 .book-drag-hint-mobile { display: none; }
 @media (max-width: 900px) {
+  .book-controls { display: none; }
+
   .book-drag-hint-mobile {
     display: block;
     position: absolute;
     left: 50%;
-    bottom: -38px;
+    bottom: -28px;
     transform: translateX(-50%);
     white-space: nowrap;
     font-family: var(--mono);
@@ -485,19 +489,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     text-transform: uppercase;
     color: var(--muted);
     opacity: 0;
-    animation: bookHintFade 6s ease 2.6s forwards;
+    /* Fade in after the mount-nudge, then hold indefinitely until
+       the reader drags. On first drag the .dragged class hides it. */
+    animation: bookHintAppear .6s ease 2.4s forwards;
     pointer-events: none;
     z-index: 6;
   }
   .hero-book-wrap.dragged .book-drag-hint-mobile {
     animation: none !important;
     opacity: 0 !important;
+    transition: opacity .4s ease;
   }
 }
-@keyframes bookHintFade {
-  0%, 10% { opacity: 0; transform: translate(-50%, 4px); }
-  25%, 75% { opacity: 1; transform: translate(-50%, 0); }
-  100% { opacity: 0; transform: translate(-50%, -2px); }
+@keyframes bookHintAppear {
+  from { opacity: 0; transform: translate(-50%, 4px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
 }
 
 /* Mobile mount-nudge — a one-time sweep that teaches "this is 3D"
@@ -576,7 +582,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero-watermark { display: none; }
   .hero-meta { display: none; }
 
-  .hero-eyebrow { order: 1; margin: 0 0 18px; }
+  .hero-eyebrow { order: 1; margin: 0 0 26px; }
 
   .hero-book-wrap {
     order: 2;
@@ -585,7 +591,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     width: clamp(240px, 72vw, 320px);
     min-height: 200px;               /* safety net */
     align-self: center;              /* cross-axis centre, no auto margins */
-    margin: 0 0 36px;                /* vertical only — horizontal handled by align-self */
+    /* Bottom margin: ~28 px of breathing room + space for the
+       .book-drag-hint-mobile chip that sits at `bottom: -28px`. */
+    margin: 0 0 60px;
     /* Reset the desktop optical lift so the book centres on the
        mobile viewport without clipping into the eyebrow. */
     transform: translateY(0);
@@ -595,7 +603,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     order: 3;
     font-size: clamp(30px, 10vw, 52px);
     line-height: 1.05;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
     letter-spacing: -.01em;
   }
 
@@ -603,7 +611,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     order: 4;
     font-size: clamp(16px, 4.5vw, 19px);
     line-height: 1.5;
-    margin-bottom: 26px;
+    margin-bottom: 32px;
   }
 
   .hero-cta-row {
@@ -623,7 +631,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   .hero-trust {
     order: 6;
-    margin-top: 24px;
+    margin-top: 32px;
     font-size: 9px;
     letter-spacing: .22em;
     flex-wrap: wrap;
@@ -634,12 +642,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* Smallest phones (iPhone SE / old Pixels / 360-width Androids) —
-   trim hero top padding to recover vertical space so the first
-   viewport comfortably shows nav + eyebrow + the whole book + the
-   start of the h1 without scroll. */
+   trim hero top padding to recover vertical space. Book margin
+   still leaves room for the drag-hint chip below. */
 @media (max-width: 480px) {
-  .hero { padding: 72px 0 36px; }
-  .hero-book-wrap { margin-bottom: 28px; }
+  .hero { padding: 76px 0 40px; }
+  .hero-book-wrap { margin-bottom: 52px; }
 }
 
 /* ============ REVEAL ============ */
