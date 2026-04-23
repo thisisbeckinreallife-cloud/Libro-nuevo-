@@ -63,6 +63,9 @@ export function Book3D() {
       dragging = true;
       wrap.classList.add("dragging");
       wrap.classList.remove("idle");
+      // `dragged` is persistent — it hides the mobile drag-hint chip
+      // so the lesson ("this is draggable") only shows until first use.
+      wrap.classList.add("dragged");
       lastX = e.clientX;
       lastY = e.clientY;
       wrap.setPointerCapture(e.pointerId);
@@ -132,6 +135,14 @@ export function Book3D() {
     leftBtn?.addEventListener("click", onLeft);
     rightBtn?.addEventListener("click", onRight);
 
+    // One-time mount-nudge (mobile only — the CSS animation is scoped to
+    // max-width: 900px). A deliberate sweep that signals "this is 3D"
+    // to readers who never hover.
+    wrap.classList.add("book-mount-nudge");
+    const nudgeTimer = setTimeout(() => {
+      wrap.classList.remove("book-mount-nudge");
+    }, 2400);
+
     startIdle();
 
     return () => {
@@ -145,6 +156,7 @@ export function Book3D() {
       rightBtn?.removeEventListener("click", onRight);
       if (idleTimer) clearTimeout(idleTimer);
       if (rafId != null) cancelAnimationFrame(rafId);
+      clearTimeout(nudgeTimer);
     };
   }, []);
 
@@ -232,6 +244,13 @@ export function Book3D() {
           </svg>
         </button>
       </div>
+
+      {/* Mobile-only drag hint — teaches the 3D interaction without
+          requiring hover. Fades in after the mount-nudge and disappears
+          permanently on first drag (`.dragged` class on the wrap). */}
+      <span className="book-drag-hint-mobile" aria-hidden="true">
+        {t.hero.dragHintMobile}
+      </span>
     </div>
   );
 }

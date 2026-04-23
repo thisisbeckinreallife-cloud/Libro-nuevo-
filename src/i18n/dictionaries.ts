@@ -24,6 +24,7 @@ export type Dict = {
     trustWomen: string;
     bookAria: string;
     dragHint: string;
+    dragHintMobile: string;
     coverBlurb: string;
     coverMark: string;
     coverTitleLine1: string;
@@ -368,6 +369,7 @@ export const dict: Record<Lang, Dict> = {
       trustWomen: "10.000 mujeres",
       bookAria: "Libro 3D — arrastra para rotar",
       dragHint: "Arrastra para girar",
+      dragHintMobile: "↔  arrastra",
       coverBlurb:
         "\u201cEn 1760, una máquina decidió quién sería rico durante doscientos años. Hoy está ocurriendo otra vez. Y casi nadie lo está viendo.\u201d",
       coverMark: "N°01",
@@ -1023,6 +1025,7 @@ export const dict: Record<Lang, Dict> = {
       trustWomen: "10,000 women",
       bookAria: "3D book — drag to rotate",
       dragHint: "Drag to rotate",
+      dragHintMobile: "↔  drag",
       coverBlurb:
         "\u201cIn 1760, a machine decided who would be rich for two hundred years. It's happening again. And almost no one is looking.\u201d",
       coverMark: "N°01",

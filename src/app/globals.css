@@ -466,6 +466,59 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted);
 }
 
+/* Mobile-only drag hint — an editorial chip that appears below the
+   book after the mount-nudge settles, then fades out. Permanently
+   hidden once the reader drags (the `.dragged` class is added by
+   Book3D on first pointerdown). Desktop hides it entirely. */
+.book-drag-hint-mobile { display: none; }
+@media (max-width: 900px) {
+  .book-drag-hint-mobile {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: -38px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    animation: bookHintFade 6s ease 2.6s forwards;
+    pointer-events: none;
+    z-index: 6;
+  }
+  .hero-book-wrap.dragged .book-drag-hint-mobile {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+@keyframes bookHintFade {
+  0%, 10% { opacity: 0; transform: translate(-50%, 4px); }
+  25%, 75% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -2px); }
+}
+
+/* Mobile mount-nudge — a one-time sweep that teaches "this is 3D"
+   without any text. Desktop keeps the existing subtle idle sway. */
+@media (max-width: 900px) {
+  .hero-book-wrap.book-mount-nudge .book-stage {
+    animation: bookMountNudge 2.4s cubic-bezier(0.32, 0.72, 0.27, 1) forwards !important;
+  }
+}
+@keyframes bookMountNudge {
+  0%   { transform: rotateX(-6deg) rotateY(-24deg); }
+  18%  { transform: rotateX(-6deg) rotateY(-30deg); }
+  52%  { transform: rotateX(-5deg) rotateY(-16deg); }
+  82%  { transform: rotateX(-6deg) rotateY(-26deg); }
+  100% { transform: rotateX(-6deg) rotateY(-24deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-book-wrap.book-mount-nudge .book-stage { animation: none !important; }
+  .book-drag-hint-mobile { animation: none !important; opacity: 1 !important; }
+}
+
 .hero-meta {
   position: absolute; bottom: 40px; left: 32px; right: 32px;
   display: flex; justify-content: space-between; align-items: center;
@@ -487,10 +540,84 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 @media (max-width: 900px) {
-  .hero { padding: 120px 0 60px; min-height: auto; }
-  .hero-grid { grid-template-columns: 1fr; gap: 60px; }
-  .hero-book-wrap { max-width: 320px; margin: 0 auto; }
+  .hero { padding: 96px 0 56px; min-height: auto; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-book-wrap { max-width: clamp(260px, 78vw, 340px); margin: 0 auto; }
   .hero-meta { display: none; }
+}
+
+/* Mobile hero — reorder so the 3D book sits between the eyebrow and
+   the h1, compress typography, and stack the CTAs for full-width tap
+   targets. Uses `display: contents` on `.hero-left` so its children
+   become direct flex items of `.hero-grid` and can be reordered. */
+@media (max-width: 640px) {
+  .hero {
+    padding: 84px 0 40px;
+    min-height: 100dvh;
+  }
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 22px;
+    align-items: stretch;
+  }
+  .hero-left { display: contents; }
+
+  .hero-watermark { display: none; }
+  .hero-meta { display: none; }
+
+  .hero-eyebrow { order: 1; margin: 0 0 18px; }
+
+  .hero-book-wrap {
+    order: 2;
+    max-width: clamp(260px, 78vw, 340px);
+    margin: 0 auto 48px;
+    /* Reset the desktop optical lift so the book centres on the mobile
+       viewport without clipping into the eyebrow. */
+    transform: translateY(0);
+  }
+
+  .hero h1 {
+    order: 3;
+    font-size: clamp(32px, 10.5vw, 56px);
+    line-height: 1.05;
+    margin-bottom: 18px;
+    letter-spacing: -.01em;
+  }
+
+  .hero-lede {
+    order: 4;
+    font-size: clamp(16px, 4.5vw, 19px);
+    line-height: 1.5;
+    margin-bottom: 26px;
+  }
+
+  .hero-cta-row {
+    order: 5;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .hero-cta-row .btn-primary {
+    justify-content: center;
+    padding: 18px 24px;
+  }
+  .hero-cta-row .btn-ghost {
+    align-self: center;
+    border-bottom-color: rgba(14,11,11,.35);
+  }
+
+  .hero-trust {
+    order: 6;
+    margin-top: 24px;
+    font-size: 9px;
+    letter-spacing: .22em;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .hero-trust .sep { width: 14px; }
 }
 
 /* ============ REVEAL ============ */
@@ -787,7 +914,12 @@ section { position: relative; padding: 130px 0; }
 @media (max-width: 900px) { .diff-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .diff-grid { grid-template-columns: 1fr; } }
 
-/* ============ EXTRACTS ============ */
+/* ============ EXTRACTS ============
+   Three editorial "chapter pages" with distinct typographic voices:
+   paper (default), ink (inverted), paper-warm (framed). On desktop
+   they keep the cinematic sticky-pin effect — each card hovers at
+   18vh while the next scrolls behind. On mobile the pin is disabled
+   and the reader gets a clean editorial stack with big N° numbers. */
 .extracts { padding: 160px 0; background: var(--paper-warm); }
 .extracts-head { text-align: center; margin-bottom: 80px; }
 .extracts-head .label { margin-bottom: 18px; color: var(--accent); display: inline-flex; align-items: center; gap: 10px; }
@@ -797,9 +929,16 @@ section { position: relative; padding: 130px 0; }
   font-size: clamp(36px, 4.6vw, 60px); line-height: 1; letter-spacing: -.015em;
 }
 .extracts-head h2 em { font-style: italic; color: var(--accent); }
+
 .extract-stack { display: grid; gap: 40px; max-width: 1100px; margin: 0 auto; }
+
+/* Base card — padding reserves space for the quote-mark ornament
+   (top-left) and the N° number (top-right) so they never overlap
+   the body text. */
 .extract {
-  background: var(--paper); padding: 60px 70px; position: relative;
+  position: relative;
+  padding: 84px 72px 64px;
+  background: var(--paper);
   border-left: 1px solid var(--accent);
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);
 }
@@ -807,44 +946,97 @@ section { position: relative; padding: 130px 0; }
 .extract:nth-child(even) { margin-left: 8%; margin-right: -2%; }
 .extract:nth-child(odd) { margin-right: 8%; margin-left: -2%; }
 
+.extract .quote-mark {
+  position: absolute; top: 32px; left: 40px;
+  font-family: var(--serif); font-size: 72px; line-height: .5;
+  color: var(--accent); opacity: .55;
+  pointer-events: none;
+}
+.extract-num {
+  position: absolute; top: 28px; right: 40px;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 32px; line-height: 1;
+  color: var(--accent); opacity: .45;
+  pointer-events: none;
+}
+.extract .chapter {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 22px;
+}
+.extract blockquote {
+  font-family: var(--serif); font-size: 23px; line-height: 1.5; font-weight: 300;
+  color: var(--ink); letter-spacing: -.005em; margin: 0;
+}
+.extract blockquote em { font-style: italic; color: var(--accent); }
+
+/* ── Editorial variants ────────────────────────────────────────────
+   Same structure, three distinct voices. Ordered paper → ink → warm
+   by Extracts.tsx — this creates a rhythm of lightness → weight →
+   lightness as the reader scrolls. */
+.extract--paper {
+  background: var(--paper);
+  border-left: 1px solid var(--accent);
+}
+.extract--ink {
+  background: var(--ink);
+  border-left: 1px solid var(--accent);
+}
+.extract--ink .chapter { color: rgba(246, 241, 234, .55); }
+.extract--ink blockquote { color: var(--paper); }
+.extract--ink blockquote em { color: var(--accent); }
+.extract--ink .quote-mark { color: var(--accent); opacity: .85; }
+.extract--ink .extract-num { color: var(--accent); opacity: .85; }
+
+.extract--warm {
+  background: var(--paper-warm);
+  border-left: none;
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.extract--warm .extract-num { color: var(--accent); opacity: .5; }
+
 /* Cinematic "chapter page" pin — desktop only.
-   Each extract stays at the viewport top while its successor scrolls up
-   behind it and eventually stacks over, like pages being laid on top. */
+   Each extract stays at the viewport top while its successor scrolls
+   up behind it, like pages being laid on top. The variant backgrounds
+   survive the pin because we removed the `background: var(--paper)`
+   override that used to live here. */
 @media (min-width: 901px) {
   .extract-stack { display: block; position: relative; }
   .extract {
     position: sticky; top: 18vh;
     margin: 0 auto 0 !important; max-width: 920px;
-    background: var(--paper);
-    padding: 70px 80px;
+    padding: 88px 88px 72px;
     box-shadow: 0 1px 0 0 rgba(14,11,11,.04);
     transition: box-shadow .4s var(--ease);
   }
   .extract + .extract { margin-top: 28vh !important; }
   .extract:hover { transform: none; box-shadow: 0 20px 40px -20px rgba(14,11,11,.14); }
+  .extract--ink:hover { box-shadow: 0 20px 40px -20px rgba(0,0,0,.3); }
   .extract::before {
     content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
     background: linear-gradient(90deg, transparent 0, var(--accent) 30%, var(--accent) 70%, transparent 100%);
     opacity: .4;
   }
+  .extract--warm::before { display: none; } /* already has a top border */
 }
 @media (prefers-reduced-motion: reduce) {
   .extract { position: relative !important; top: auto !important; }
   .extract + .extract { margin-top: 40px !important; }
 }
-.extract .quote-mark {
-  font-family: var(--serif); font-size: 100px; line-height: .5; color: var(--accent); opacity: .3;
-  position: absolute; top: 50px; left: 30px;
-}
-.extract .chapter { font-family: var(--mono); font-size: 10px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-.extract blockquote {
-  font-family: var(--serif); font-size: 24px; line-height: 1.45; font-weight: 300;
-  color: var(--ink); letter-spacing: -.005em;
-}
-.extract blockquote em { font-style: italic; color: var(--accent); }
+
 @media (max-width: 900px) {
-  .extract { padding: 40px 32px; }
-  .extract:nth-child(even), .extract:nth-child(odd) { margin: 0; }
+  .extracts { padding: 88px 0 72px; }
+  .extracts-head { margin-bottom: 48px; padding: 0 22px; }
+  .extract-stack { gap: 18px; padding: 0 18px; }
+  .extract {
+    padding: 64px 26px 40px;
+    margin: 0 !important;
+  }
+  .extract:hover { transform: none; }
+  .extract .quote-mark { font-size: 52px; top: 22px; left: 22px; }
+  .extract-num { font-size: 24px; top: 22px; right: 22px; }
+  .extract .chapter { margin-bottom: 18px; font-size: 9px; letter-spacing: .26em; }
+  .extract blockquote { font-size: 19px; line-height: 1.5; }
 }
 
 /* ============ PROOF ============ */

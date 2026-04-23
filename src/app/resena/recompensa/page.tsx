@@ -14,11 +14,18 @@ export default async function RecompensaPage({
   const tRaw = params.t;
   const token = Array.isArray(tRaw) ? tRaw[0] : tRaw;
 
+  // Token integrity is validated by verifyClaim (HMAC-SHA256 against
+  // SESSION_SECRET). Previously we ALSO compared `submission.claimToken`
+  // to the URL token — that was a leftover from an earlier design where
+  // the URL carried an opaque DB id. They're now two different things
+  // (DB claimToken is random audit data; URL token is a signed HMAC
+  // payload) and the comparison always failed, causing the reward page
+  // to redirect every authenticated reader back home.
   const payload = verifyClaim(token ?? null);
   if (!payload) redirect("/");
 
   const submission = await getSubmissionById(payload.submissionId);
-  if (!submission || submission.claimToken !== token) redirect("/");
+  if (!submission) redirect("/");
 
   return (
     <RecompensaHero

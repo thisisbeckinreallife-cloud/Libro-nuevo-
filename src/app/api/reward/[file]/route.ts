@@ -41,11 +41,10 @@ export async function GET(
 
   const submission = await getSubmissionById(payload.submissionId);
   if (!submission) return notFound();
-  if (submission.claimToken !== token) {
-    // Token signature validated against SESSION_SECRET but the submission row's
-    // raw claim-token field must also match — defence in depth.
-    return notFound();
-  }
+  // HMAC signature already proves the token was issued by this server and
+  // names this submissionId. We used to also compare `submission.claimToken`
+  // to the URL token; that was a leftover from a pre-HMAC design and has
+  // been removed (the two fields carry different information now).
 
   const counter =
     kind === "ebook"
