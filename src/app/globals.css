@@ -915,14 +915,15 @@ section { position: relative; padding: 130px 0; }
   width: auto;
   max-width: 180px;
   object-fit: contain;
-  filter: grayscale(1) brightness(0.18);
-  opacity: .78;
-  transition: opacity .25s var(--ease), filter .25s var(--ease);
+  /* multiply blend lets the white backgrounds baked into the source
+     webp files disappear into the paper-warm, leaving only the logo ink. */
+  mix-blend-mode: multiply;
+  opacity: .82;
+  transition: opacity .25s var(--ease);
   flex-shrink: 0;
 }
 .press-logo-img:hover {
   opacity: 1;
-  filter: grayscale(1) brightness(0);
 }
 @media (max-width: 700px) {
   .press-marquee-track { gap: 56px; animation-duration: 24s; }
