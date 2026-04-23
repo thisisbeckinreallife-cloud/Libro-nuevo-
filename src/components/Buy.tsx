@@ -39,16 +39,6 @@ export function Buy({ initialSlots }: { initialSlots: SlotsPayload }) {
                   <span className="price">27&nbsp;€</span>
                 </div>
               </div>
-              <div className="buy-option">
-                <div className="buy-option-left">
-                  <div className="format">{t.buy.ebookFormat}</div>
-                  <div className="detail">{t.buy.ebookDetail}</div>
-                </div>
-                <div className="buy-option-right">
-                  <span className="price">—&nbsp;€</span>
-                  <span className="placeholder-flag">{t.buy.priceFlag}</span>
-                </div>
-              </div>
             </div>
 
             <SlotsCounter initial={initialSlots} variant="light" showSubcopy />

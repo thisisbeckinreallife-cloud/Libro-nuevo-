@@ -13,9 +13,14 @@ try {
 `;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://laralawn.com",
+  ),
   title: "The Arkwright Method — Lara Lawn",
   description:
     "Cómo tu cerebro, tu identidad y tu entorno deciden —sin que lo sepas— cuánto vas a ganar el resto de tu vida. Y cómo cambiarlo antes de perder la mayor oportunidad desde la Revolución Industrial.",
+  authors: [{ name: "Lara Lawn", url: "https://laralawn.com" }],
+  creator: "Lara Lawn",
   openGraph: {
     title: "The Arkwright Method — Lara Lawn",
     description:
@@ -23,6 +28,7 @@ export const metadata: Metadata = {
     type: "book",
     locale: "es_ES",
     alternateLocale: ["en_US"],
+    siteName: "Lara Lawn",
   },
   twitter: {
     card: "summary_large_image",
