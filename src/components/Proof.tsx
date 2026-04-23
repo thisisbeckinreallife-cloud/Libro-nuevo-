@@ -55,19 +55,22 @@ export function Proof() {
 
         <Reveal className="press-row">
           <div className="label">{t.proof.pressLabel}</div>
-          <div className="press-logos">
-            {PRESS_LOGOS.map((logo) => (
-              <Image
-                key={logo.src}
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                sizes="(max-width: 700px) 80px, 120px"
-                quality={92}
-                className="press-logo-img"
-              />
-            ))}
+          <div className="press-marquee" aria-label={t.proof.pressLabel}>
+            <div className="press-marquee-track">
+              {[...PRESS_LOGOS, ...PRESS_LOGOS, ...PRESS_LOGOS].map((logo, i) => (
+                <Image
+                  key={`${logo.src}-${i}`}
+                  src={logo.src}
+                  alt={i < PRESS_LOGOS.length ? logo.alt : ""}
+                  aria-hidden={i >= PRESS_LOGOS.length}
+                  width={logo.width}
+                  height={logo.height}
+                  sizes="(max-width: 700px) 120px, 180px"
+                  quality={92}
+                  className="press-logo-img"
+                />
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>
