@@ -549,7 +549,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Mobile hero — reorder so the 3D book sits between the eyebrow and
    the h1, compress typography, and stack the CTAs for full-width tap
    targets. Uses `display: contents` on `.hero-left` so its children
-   become direct flex items of `.hero-grid` and can be reordered. */
+   become direct flex items of `.hero-grid` and can be reordered.
+
+   FIX 2026-04-23: the previous version collapsed the book to 0×0
+   because `.hero-book-wrap` had `max-width` + `aspect-ratio` +
+   `margin: 0 auto` inside a stretch flex column but no explicit
+   `width`. The browser couldn't resolve the intrinsic size. Now
+   `width` is explicit, `align-self: center` handles centring, and
+   `align-items: stretch` on the grid was redundant — removed. A
+   `min-height` safety-net guards against similar failures. */
 @media (max-width: 640px) {
   .hero {
     padding: 84px 0 40px;
@@ -560,7 +568,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     flex-direction: column;
     gap: 0;
     padding: 0 22px;
-    align-items: stretch;
+    /* NOTE: no align-items: stretch — it interacts badly with
+       aspect-ratio + clamp width and caused the book to collapse. */
   }
   .hero-left { display: contents; }
 
@@ -571,16 +580,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   .hero-book-wrap {
     order: 2;
-    max-width: clamp(260px, 78vw, 340px);
-    margin: 0 auto 48px;
-    /* Reset the desktop optical lift so the book centres on the mobile
-       viewport without clipping into the eyebrow. */
+    /* EXPLICIT width — never collapses. Scales 240–320 px with the
+       viewport. Height resolves via aspect-ratio 1 / 1.25. */
+    width: clamp(240px, 72vw, 320px);
+    min-height: 200px;               /* safety net */
+    align-self: center;              /* cross-axis centre, no auto margins */
+    margin: 0 0 36px;                /* vertical only — horizontal handled by align-self */
+    /* Reset the desktop optical lift so the book centres on the
+       mobile viewport without clipping into the eyebrow. */
     transform: translateY(0);
   }
 
   .hero h1 {
     order: 3;
-    font-size: clamp(32px, 10.5vw, 56px);
+    font-size: clamp(30px, 10vw, 52px);
     line-height: 1.05;
     margin-bottom: 18px;
     letter-spacing: -.01em;
@@ -618,6 +631,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     justify-content: center;
   }
   .hero-trust .sep { width: 14px; }
+}
+
+/* Smallest phones (iPhone SE / old Pixels / 360-width Androids) —
+   trim hero top padding to recover vertical space so the first
+   viewport comfortably shows nav + eyebrow + the whole book + the
+   start of the h1 without scroll. */
+@media (max-width: 480px) {
+  .hero { padding: 72px 0 36px; }
+  .hero-book-wrap { margin-bottom: 28px; }
 }
 
 /* ============ REVEAL ============ */
