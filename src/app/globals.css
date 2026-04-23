@@ -204,13 +204,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-book-wrap {
   position: relative;
   aspect-ratio: 1/1.25;
-  perspective: 2400px;
+  /* Closer perspective reads as a real 3D object (far away = orthographic).
+     1400px with a ~500px-wide container gives a dramatic but editorial 3D. */
+  perspective: 1400px;
+  perspective-origin: 55% 40%;
   opacity: 0; animation: fadeIn 1.4s var(--ease) .6s forwards;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
-  /* pan-y: horizontal gestures rotate the book, vertical gestures
-     pass through to the page so mobile scroll still works. */
   touch-action: pan-y;
 }
 .hero-book-wrap.dragging { cursor: grabbing; }
@@ -233,7 +234,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .book-stage {
   position: absolute; inset: 0;
   transform-style: preserve-3d;
-  transform: rotateX(var(--rx, -6deg)) rotateY(var(--ry, -28deg));
+  transform: rotateX(var(--rx, -6deg)) rotateY(var(--ry, -24deg));
   transition: transform .8s var(--ease);
 }
 .hero-book-wrap.dragging .book-stage { transition: none; }
@@ -243,12 +244,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   50% { transform: rotateX(-4deg) rotateY(-20deg); }
 }
 .book-stage {
-  /* 6x9 book aspect: face width / face height = 6/9 = 0.667.
-     With wrap aspect 1/1.25 and bh = 86%, bw = 0.86 * 1.25 * 0.667 ≈ 72%.
-     --bd clamped so the spine reads as hardcover at every viewport. */
+  /* 6x9 KDP book: face width/height = 6/9 = 0.667.
+     With wrap aspect 1/1.25 and bh=86%, bw = 0.86 * 1.25 * 0.667 ≈ 72%.
+     --bd clamped so the spine reads as real hardcover: ~12% of bw. */
   --bw: 72%;
   --bh: 86%;
-  --bd: clamp(48px, 7%, 80px);
+  --bd: clamp(62px, 11%, 110px);
 }
 .face {
   position: absolute;
@@ -263,20 +264,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   -webkit-user-select: none;
   pointer-events: none;
 }
+
+/* Each face is flush with its corresponding edge of the book volume.
+   No trailing translateZ — that was shifting side faces inward by bd/2
+   and creating visible gaps between covers and spine. */
 .face.front {
   width: var(--bw); height: var(--bh);
   left: 50%; top: 50%;
   transform: translate(-50%, -50%) translateZ(calc(var(--bd) / 2));
   background: #0c0707;
   box-shadow:
-    inset 6px 0 18px rgba(0,0,0,.22),
-    0 28px 56px -18px rgba(0,0,0,.42),
-    0 80px 120px -50px rgba(180,18,63,.18);
+    0 28px 56px -18px rgba(0,0,0,.45),
+    0 80px 120px -50px rgba(180,18,63,.2);
 }
-.face.front::before {
-  content: ""; position: absolute;
-  top: 0; bottom: 0; left: 0; width: 14%;
-  background: linear-gradient(to right, rgba(0,0,0,.24), transparent);
+.face.front::after {
+  /* directional light: subtle highlight on top-left,
+     darker recession toward the spine (left edge). */
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 16%, rgba(0,0,0,0) 80%, rgba(0,0,0,.18) 100%),
+    linear-gradient(to bottom, rgba(255,255,255,.06), rgba(0,0,0,.12));
   pointer-events: none; z-index: 3;
 }
 .face.back {
@@ -284,57 +291,62 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   left: 50%; top: 50%;
   transform: translate(-50%, -50%) translateZ(calc(var(--bd) / -2)) rotateY(180deg);
   background: #0c0707;
-  box-shadow:
-    inset -6px 0 18px rgba(0,0,0,.22),
-    0 28px 56px -18px rgba(0,0,0,.36);
+  box-shadow: 0 28px 56px -18px rgba(0,0,0,.36);
 }
-.face.back::before {
-  content: ""; position: absolute;
-  top: 0; bottom: 0; right: 0; width: 14%;
-  background: linear-gradient(to left, rgba(0,0,0,.24), transparent);
+.face.back::after {
+  /* symmetric to front (back is rotated 180°). */
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,.18) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 84%, rgba(0,0,0,.28) 100%),
+    linear-gradient(to bottom, rgba(255,255,255,.05), rgba(0,0,0,.14));
   pointer-events: none; z-index: 3;
 }
 .face.spine {
   width: var(--bd); height: var(--bh);
   left: 50%; top: 50%;
-  transform: translate(-50%, -50%) translateX(calc(-1 * var(--bw) / 2)) rotateY(-90deg) translateZ(calc(-1 * var(--bd) / 2));
+  /* FIXED: flush at x=-bw/2. No trailing translateZ. */
+  transform: translate(-50%, -50%) translateX(calc(-1 * var(--bw) / 2)) rotateY(-90deg);
   background: #0c0707;
-  box-shadow: inset 0 0 14px rgba(0,0,0,.4);
 }
 .face.spine::after {
+  /* rounded-binding illusion: dark → light → dark across the spine width */
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(90deg,
-    rgba(0,0,0,.4) 0%,
-    rgba(0,0,0,0) 20%,
-    rgba(0,0,0,0) 80%,
-    rgba(0,0,0,.4) 100%);
+    rgba(0,0,0,.55) 0%,
+    rgba(255,255,255,.06) 25%,
+    rgba(255,255,255,.08) 75%,
+    rgba(0,0,0,.55) 100%);
   pointer-events: none; z-index: 3;
 }
 .face.edge {
   width: var(--bd); height: var(--bh);
   left: 50%; top: 50%;
-  transform: translate(-50%, -50%) translateX(calc(var(--bw) / 2)) rotateY(90deg) translateZ(calc(-1 * var(--bd) / 2));
+  /* FIXED: flush at x=+bw/2, flipped to face +X. */
+  transform: translate(-50%, -50%) translateX(calc(var(--bw) / 2)) rotateY(90deg);
   background:
     repeating-linear-gradient(to bottom, #ece3d2 0 1px, #d7ccb6 1px 2px, #e4dbc9 2px 3px);
   box-shadow:
-    inset 0 5px 10px rgba(0,0,0,.18),
-    inset 0 -5px 10px rgba(0,0,0,.18);
+    inset 0 6px 12px rgba(0,0,0,.22),
+    inset 0 -6px 12px rgba(0,0,0,.22),
+    inset 4px 0 8px rgba(0,0,0,.15);
 }
 .face.top {
   width: var(--bw); height: var(--bd);
   left: 50%; top: 50%;
-  transform: translate(-50%, -50%) translateY(calc(-1 * var(--bh) / 2)) rotateX(90deg) translateZ(calc(var(--bd) / 2));
+  /* FIXED: flush at y=-bh/2. Normal: -Y (up). */
+  transform: translate(-50%, -50%) translateY(calc(-1 * var(--bh) / 2)) rotateX(90deg);
   background:
     repeating-linear-gradient(to right, #ece3d2 0 1px, #d7ccb6 1px 2px, #e4dbc9 2px 3px);
-  box-shadow: inset 5px 0 10px rgba(0,0,0,.25);
+  box-shadow: inset 5px 0 10px rgba(0,0,0,.28), inset -3px 0 8px rgba(0,0,0,.18);
 }
 .face.bottom {
   width: var(--bw); height: var(--bd);
   left: 50%; top: 50%;
-  transform: translate(-50%, -50%) translateY(calc(var(--bh) / 2)) rotateX(-90deg) translateZ(calc(var(--bd) / 2));
+  /* FIXED: flush at y=+bh/2. Normal: +Y (down). */
+  transform: translate(-50%, -50%) translateY(calc(var(--bh) / 2)) rotateX(-90deg);
   background:
     repeating-linear-gradient(to right, #ece3d2 0 1px, #d7ccb6 1px 2px, #e4dbc9 2px 3px);
-  box-shadow: inset 5px 0 10px rgba(0,0,0,.25);
+  box-shadow: inset 5px 0 10px rgba(0,0,0,.28), inset -3px 0 8px rgba(0,0,0,.18);
 }
 
 .book-controls {
@@ -800,7 +812,8 @@ section { position: relative; padding: 130px 0; }
 }
 .book-hero {
   position: relative; width: 62%; aspect-ratio: 3/4.2;
-  perspective: 2200px;
+  perspective: 1400px;
+  perspective-origin: 55% 40%;
   animation: floatBook 6s ease-in-out infinite;
 }
 @keyframes floatBook {
@@ -814,12 +827,12 @@ section { position: relative; padding: 130px 0; }
 .book-stage.book-stage--static {
   position: absolute; inset: 0;
   transform-style: preserve-3d;
-  transform: rotateY(-18deg) rotateX(4deg);
+  transform: rotateY(-22deg) rotateX(6deg);
   animation: none;
   transition: none;
   --bw: 82%;
   --bh: 92%;
-  --bd: clamp(36px, 8%, 56px);
+  --bd: clamp(46px, 10%, 80px);
 }
 
 .buy-text .label { margin-bottom: 24px; color: var(--accent); }
