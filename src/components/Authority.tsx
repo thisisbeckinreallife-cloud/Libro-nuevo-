@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { BlueprintOverlay } from "./BlueprintOverlay";
 import { useLang } from "./LangProvider";
 import { Reveal } from "./Reveal";
 
@@ -19,13 +18,6 @@ export function Authority() {
                 fill
                 sizes="(max-width: 900px) 100vw, 45vw"
                 priority
-              />
-              <BlueprintOverlay
-                labels={{
-                  top: `BLUEPRINT · ${t.authority.portraitRole.toUpperCase()}`,
-                  right: t.authority.portraitEdition.toUpperCase(),
-                  bottom: "SCALE · 1 : 1",
-                }}
               />
               <div className="portrait-mark">Lara</div>
               <div className="portrait-caption">
