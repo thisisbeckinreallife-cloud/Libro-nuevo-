@@ -14,7 +14,7 @@ export function Book3D() {
     const stage = stageRef.current;
     if (!wrap || !stage) return;
 
-    let ry = -28;
+    let ry = -24;
     let rx = -6;
     let targetRy = ry;
     let targetRx = rx;
@@ -97,7 +97,7 @@ export function Book3D() {
       const rect = wrap.getBoundingClientRect();
       const px = (e.clientX - rect.left) / rect.width - 0.5;
       const py = (e.clientY - rect.top) / rect.height - 0.5;
-      targetRy = -28 + px * 22;
+      targetRy = -24 + px * 22;
       targetRx = clampPitch(-6 - py * 14);
       wrap.classList.remove("idle");
       startTick();
@@ -105,7 +105,7 @@ export function Book3D() {
 
     const onLeave = (e: PointerEvent) => {
       if (dragging || e.pointerType !== "mouse") return;
-      targetRy = -28;
+      targetRy = -24;
       targetRx = -6;
       startTick();
       startIdle();

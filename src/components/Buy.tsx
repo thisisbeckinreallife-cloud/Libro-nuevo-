@@ -1,5 +1,6 @@
 "use client";
 
+import { BookStatic } from "./BookStatic";
 import { useLang } from "./LangProvider";
 import { Reveal } from "./Reveal";
 import { SlotsCounter } from "./SlotsCounter";
@@ -13,20 +14,7 @@ export function Buy({ initialSlots }: { initialSlots: SlotsPayload }) {
         <div className="buy-grid">
           <Reveal className="buy-visual">
             <div className="book-hero">
-              <div className="book-cover">
-                <div>
-                  <div className="book-cover-top">{t.hero.coverTopline}</div>
-                </div>
-                <div>
-                  <div className="book-mark">{t.hero.coverMark}</div>
-                  <h2 className="book-cover-title">
-                    {t.hero.coverTitleLine1}
-                    <br />
-                    <em>{t.hero.coverTitleLine2}</em>
-                  </h2>
-                </div>
-                <div className="book-cover-author">{t.hero.coverAuthor}</div>
-              </div>
+              <BookStatic />
             </div>
           </Reveal>
 

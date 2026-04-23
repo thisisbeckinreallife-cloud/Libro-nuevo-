@@ -43,3 +43,6 @@ next-env.d.ts
 
 # token CSVs emitted by scripts/seed-tokens.mjs — plaintext, never commit
 /tmp/
+
+# visualplanner HTML artefacts (local-only plan breakdowns)
+*-breakdown.html

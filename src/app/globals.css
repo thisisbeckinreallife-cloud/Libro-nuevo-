@@ -214,11 +214,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   touch-action: pan-y;
 }
 .hero-book-wrap.dragging { cursor: grabbing; }
+.hero-book-wrap::before {
+  content: ""; position: absolute; left: 4%; right: 4%; bottom: -1%; height: 52px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.22), transparent 65%);
+  filter: blur(28px);
+  transform: translateZ(-120px);
+  z-index: 0;
+  pointer-events: none;
+}
 .hero-book-wrap::after {
-  content: ""; position: absolute; left: 15%; right: 15%; bottom: 2%; height: 30px;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,.35), transparent 70%);
-  filter: blur(14px);
+  content: ""; position: absolute; left: 20%; right: 20%; bottom: 1%; height: 26px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.5), transparent 55%);
+  filter: blur(10px);
   transform: translateZ(-100px);
+  z-index: 0;
+  pointer-events: none;
 }
 .book-stage {
   position: absolute; inset: 0;
@@ -229,15 +239,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-book-wrap.dragging .book-stage { transition: none; }
 .hero-book-wrap.idle .book-stage { animation: bookIdle 10s ease-in-out infinite; }
 @keyframes bookIdle {
-  0%, 100% { transform: rotateX(-6deg) rotateY(-28deg); }
-  50% { transform: rotateX(-4deg) rotateY(-22deg); }
+  0%, 100% { transform: rotateX(-6deg) rotateY(-24deg); }
+  50% { transform: rotateX(-4deg) rotateY(-20deg); }
 }
 .book-stage {
   /* 6x9 book aspect: face width / face height = 6/9 = 0.667.
-     With wrap aspect 1/1.25 and bh = 86%, bw = 0.86 * 1.25 * 0.667 ≈ 72%. */
+     With wrap aspect 1/1.25 and bh = 86%, bw = 0.86 * 1.25 * 0.667 ≈ 72%.
+     --bd clamped so the spine reads as hardcover at every viewport. */
   --bw: 72%;
   --bh: 86%;
-  --bd: 38px;
+  --bd: clamp(48px, 7%, 80px);
 }
 .face {
   position: absolute;
@@ -258,45 +269,72 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transform: translate(-50%, -50%) translateZ(calc(var(--bd) / 2));
   background: #0c0707;
   box-shadow:
-    inset 0 0 60px rgba(0,0,0,.35),
-    0 40px 80px -30px rgba(0,0,0,.5),
-    0 80px 120px -50px rgba(180,18,63,.22);
+    inset 6px 0 18px rgba(0,0,0,.22),
+    0 28px 56px -18px rgba(0,0,0,.42),
+    0 80px 120px -50px rgba(180,18,63,.18);
+}
+.face.front::before {
+  content: ""; position: absolute;
+  top: 0; bottom: 0; left: 0; width: 14%;
+  background: linear-gradient(to right, rgba(0,0,0,.24), transparent);
+  pointer-events: none; z-index: 3;
 }
 .face.back {
   width: var(--bw); height: var(--bh);
   left: 50%; top: 50%;
   transform: translate(-50%, -50%) translateZ(calc(var(--bd) / -2)) rotateY(180deg);
   background: #0c0707;
-  box-shadow: inset 0 0 50px rgba(0,0,0,.4);
+  box-shadow:
+    inset -6px 0 18px rgba(0,0,0,.22),
+    0 28px 56px -18px rgba(0,0,0,.36);
+}
+.face.back::before {
+  content: ""; position: absolute;
+  top: 0; bottom: 0; right: 0; width: 14%;
+  background: linear-gradient(to left, rgba(0,0,0,.24), transparent);
+  pointer-events: none; z-index: 3;
 }
 .face.spine {
   width: var(--bd); height: var(--bh);
   left: 50%; top: 50%;
   transform: translate(-50%, -50%) translateX(calc(-1 * var(--bw) / 2)) rotateY(-90deg) translateZ(calc(-1 * var(--bd) / 2));
   background: #0c0707;
-  box-shadow: inset 0 0 20px rgba(0,0,0,.5);
+  box-shadow: inset 0 0 14px rgba(0,0,0,.4);
+}
+.face.spine::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    rgba(0,0,0,.4) 0%,
+    rgba(0,0,0,0) 20%,
+    rgba(0,0,0,0) 80%,
+    rgba(0,0,0,.4) 100%);
+  pointer-events: none; z-index: 3;
 }
 .face.edge {
   width: var(--bd); height: var(--bh);
   left: 50%; top: 50%;
   transform: translate(-50%, -50%) translateX(calc(var(--bw) / 2)) rotateY(90deg) translateZ(calc(-1 * var(--bd) / 2));
   background:
-    repeating-linear-gradient(to bottom, #ece3d2 0 2px, #d7ccb6 2px 3px, #e4dbc9 3px 5px);
-  box-shadow: inset 0 0 20px rgba(0,0,0,.15);
+    repeating-linear-gradient(to bottom, #ece3d2 0 1px, #d7ccb6 1px 2px, #e4dbc9 2px 3px);
+  box-shadow:
+    inset 0 5px 10px rgba(0,0,0,.18),
+    inset 0 -5px 10px rgba(0,0,0,.18);
 }
 .face.top {
   width: var(--bw); height: var(--bd);
   left: 50%; top: 50%;
   transform: translate(-50%, -50%) translateY(calc(-1 * var(--bh) / 2)) rotateX(90deg) translateZ(calc(var(--bd) / 2));
   background:
-    repeating-linear-gradient(to right, #ece3d2 0 2px, #d7ccb6 2px 3px, #e4dbc9 3px 5px);
+    repeating-linear-gradient(to right, #ece3d2 0 1px, #d7ccb6 1px 2px, #e4dbc9 2px 3px);
+  box-shadow: inset 5px 0 10px rgba(0,0,0,.25);
 }
 .face.bottom {
   width: var(--bw); height: var(--bd);
   left: 50%; top: 50%;
   transform: translate(-50%, -50%) translateY(calc(var(--bh) / 2)) rotateX(-90deg) translateZ(calc(var(--bd) / 2));
   background:
-    repeating-linear-gradient(to right, #ece3d2 0 2px, #d7ccb6 2px 3px, #e4dbc9 3px 5px);
+    repeating-linear-gradient(to right, #ece3d2 0 1px, #d7ccb6 1px 2px, #e4dbc9 2px 3px);
+  box-shadow: inset 5px 0 10px rgba(0,0,0,.25);
 }
 
 .book-controls {
@@ -762,47 +800,26 @@ section { position: relative; padding: 130px 0; }
 }
 .book-hero {
   position: relative; width: 62%; aspect-ratio: 3/4.2;
-  transform-style: preserve-3d;
-  transform: rotateY(-22deg) rotateX(5deg);
+  perspective: 2200px;
   animation: floatBook 6s ease-in-out infinite;
 }
 @keyframes floatBook {
-  0%, 100% { transform: rotateY(-22deg) rotateX(5deg) translateY(0); }
-  50% { transform: rotateY(-18deg) rotateX(3deg) translateY(-12px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
-.book-hero .book-cover {
+@media (prefers-reduced-motion: reduce) {
+  .book-hero { animation: none; }
+}
+/* Echo of the hero Book3D inside Buy — same 6 faces, static pose, no JS. */
+.book-stage.book-stage--static {
   position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse at 20% 20%, rgba(240,230,216,.08), transparent 50%),
-    linear-gradient(135deg, #1c1411 0%, #2a1a17 45%, #0c0707 100%);
-  box-shadow:
-    inset 0 0 60px rgba(0,0,0,.4),
-    0 40px 80px -30px rgba(0,0,0,.5),
-    0 80px 120px -50px rgba(180,18,63,.22);
-  padding: 16% 14%;
-  display: flex; flex-direction: column; justify-content: space-between;
-  color: #f0e6d8;
-  border: 1px solid rgba(240,230,216,.06);
-}
-.book-hero .book-cover::after {
-  content: ""; position: absolute; inset: 8%; border: 1px solid rgba(240,230,216,.12); pointer-events: none;
-}
-.book-hero .book-cover-top { font-family: var(--mono); font-size: 10px; letter-spacing: .3em; opacity: .65; }
-.book-hero .book-mark {
-  display: flex; align-items: baseline; gap: 10px;
-  font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--accent);
-  margin-bottom: 14px;
-}
-.book-hero .book-mark::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
-.book-hero .book-cover-title {
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(26px, 2.8vw, 42px);
-  line-height: 1.02; letter-spacing: -.015em;
-}
-.book-hero .book-cover-title em { color: var(--accent); font-style: italic; display: block; margin-top: 2px; font-weight: 400; }
-.book-hero .book-cover-author {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .32em; text-transform: uppercase;
-  opacity: .75; padding-top: 14px; border-top: 1px solid rgba(240,230,216,.22);
+  transform-style: preserve-3d;
+  transform: rotateY(-18deg) rotateX(4deg);
+  animation: none;
+  transition: none;
+  --bw: 82%;
+  --bh: 92%;
+  --bd: clamp(36px, 8%, 56px);
 }
 
 .buy-text .label { margin-bottom: 24px; color: var(--accent); }
