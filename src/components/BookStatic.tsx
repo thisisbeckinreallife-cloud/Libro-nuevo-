@@ -27,7 +27,8 @@ export function BookStatic() {
           src={frontSrc}
           alt=""
           fill
-          sizes="(max-width: 900px) 60vw, 340px"
+          sizes="(max-width: 900px) 80vw, 480px"
+          quality={92}
           className="book-face-img"
         />
       </div>
@@ -36,7 +37,8 @@ export function BookStatic() {
           src={backSrc}
           alt=""
           fill
-          sizes="(max-width: 900px) 60vw, 340px"
+          sizes="(max-width: 900px) 80vw, 480px"
+          quality={92}
           className="book-face-img"
         />
       </div>
@@ -45,7 +47,8 @@ export function BookStatic() {
           src={spineSrc}
           alt=""
           fill
-          sizes="(max-width: 900px) 40px, 50px"
+          sizes="(max-width: 900px) 40px, 70px"
+          quality={92}
           className="book-face-img"
         />
       </div>

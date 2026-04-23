@@ -166,7 +166,8 @@ export function Book3D() {
             src={frontSrc}
             alt={`${t.hero.coverTitleLine1} ${t.hero.coverTitleLine2} — ${t.hero.coverAuthor}`}
             fill
-            sizes="(max-width: 1000px) 70vw, 460px"
+            sizes="(max-width: 1000px) 90vw, 620px"
+            quality={92}
             priority
             className="book-face-img"
           />
@@ -176,7 +177,8 @@ export function Book3D() {
             src={backSrc}
             alt=""
             fill
-            sizes="(max-width: 1000px) 70vw, 460px"
+            sizes="(max-width: 1000px) 90vw, 620px"
+            quality={92}
             className="book-face-img"
           />
         </div>
@@ -185,7 +187,8 @@ export function Book3D() {
             src={spineSrc}
             alt=""
             fill
-            sizes="(max-width: 1000px) 40px, 50px"
+            sizes="(max-width: 1000px) 80px, 110px"
+            quality={92}
             className="book-face-img"
           />
         </div>

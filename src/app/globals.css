@@ -220,17 +220,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .hero-book-wrap.dragging { cursor: grabbing; }
 .hero-book-wrap::before {
-  content: ""; position: absolute; left: 4%; right: 4%; bottom: -1%; height: 52px;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,.22), transparent 65%);
-  filter: blur(28px);
+  content: ""; position: absolute; left: -4%; right: -4%; bottom: -3%; height: 70px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.28), transparent 65%);
+  filter: blur(32px);
   transform: translateZ(-120px);
   z-index: 0;
   pointer-events: none;
 }
 .hero-book-wrap::after {
-  content: ""; position: absolute; left: 20%; right: 20%; bottom: 1%; height: 26px;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,.5), transparent 55%);
-  filter: blur(10px);
+  content: ""; position: absolute; left: 15%; right: 15%; bottom: 0%; height: 32px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.55), transparent 55%);
+  filter: blur(12px);
   transform: translateZ(-100px);
   z-index: 0;
   pointer-events: none;
@@ -248,12 +248,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   50% { transform: rotateX(-4deg) rotateY(-20deg); }
 }
 .book-stage {
-  /* 6x9 KDP book, ratio 0.667. All dimensions in cqw (container-query
-     width units) so percentages behave as absolute pixels and translateZ
-     works correctly. */
-  --bw: 72cqw;                          /* 72% of container width, in px */
-  --bh: 107.5cqw;                       /* 86% of container height = 86% × 125% bw */
-  --bd: clamp(62px, 11cqw, 110px);
+  /* 6x9 KDP book, ratio 0.667. All dimensions in cqw so percentages
+     behave as absolute px and translateZ works correctly. */
+  --bw: 78cqw;                          /* slightly bigger: the hero book earns presence */
+  --bh: 116.5cqw;                       /* 78 × 9/6 = ratio 0.669 */
+  --bd: clamp(68px, 12cqw, 120px);
   --bw-half: calc(var(--bw) / 2);
   --bh-half: calc(var(--bh) / 2);
   --bd-half: calc(var(--bd) / 2);
@@ -297,12 +296,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
      2px 0 3px rgba(0,0,0,.08);
   pointer-events: none; z-index: 3;
 }
-/* directional key light from upper-left + soft top sheen. */
+/* directional key light — softened so the cover art stays legible. */
 .face.front::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(135deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 28%, rgba(0,0,0,0) 58%, rgba(0,0,0,.24) 100%),
-    linear-gradient(to right, rgba(0,0,0,.24) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 86%, rgba(0,0,0,.14) 100%);
+    linear-gradient(135deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 32%, rgba(0,0,0,0) 62%, rgba(0,0,0,.14) 100%),
+    linear-gradient(to right, rgba(0,0,0,.16) 0%, rgba(0,0,0,0) 12%, rgba(0,0,0,0) 88%, rgba(0,0,0,.08) 100%);
   pointer-events: none; z-index: 2;
 }
 .face.back {
@@ -326,8 +325,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .face.back::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(225deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,.22) 100%),
-    linear-gradient(to right, rgba(0,0,0,.16) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 86%, rgba(0,0,0,.24) 100%);
+    linear-gradient(225deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 32%, rgba(0,0,0,0) 62%, rgba(0,0,0,.14) 100%),
+    linear-gradient(to right, rgba(0,0,0,.1) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 88%, rgba(0,0,0,.16) 100%);
   pointer-events: none; z-index: 2;
 }
 .face.spine {
