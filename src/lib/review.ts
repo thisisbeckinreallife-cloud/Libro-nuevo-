@@ -12,7 +12,6 @@ import { hashIp, rateLimit } from "./rate-limit";
  */
 
 const QR_COOKIE_NAME = "arkw_resena";
-const QR_COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
 
 export const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
 export const ALLOWED_MIME = new Set<string>([
@@ -23,33 +22,35 @@ export const ALLOWED_MIME = new Set<string>([
 
 // ───────────────────────────────────────────────────────────────────
 // QR secret gate
+//
+// Cookie writing lives in `src/middleware.ts` — Next 14 forbids Server
+// Components from mutating cookies. This function is read-only and
+// safe to call from pages.
 // ───────────────────────────────────────────────────────────────────
 
 function qrSecretCookieValue(): string {
   const secret = process.env["REVIEW_QR_SECRET"] ?? "";
   if (!secret) return "";
-  // Store a hash of the secret in the cookie — if the env rotates, old cookies
-  // are silently invalidated on next visit.
+  // The cookie stores a hash of the secret — env rotation silently
+  // invalidates old cookies on the next visit.
   return crypto.createHash("sha256").update(secret).digest("hex").slice(0, 32);
 }
 
 /**
- * True if either ?k matches REVIEW_QR_SECRET OR the visitor already has a
- * valid cookie from a previous valid-QR visit.
+ * True if either ?k matches REVIEW_QR_SECRET (fallback for
+ * middleware-skip cases) OR the visitor already has a valid cookie
+ * dropped by the middleware on a previous valid-QR visit.
+ *
+ * This function NEVER writes cookies — the middleware owns that.
  */
 export async function hasQrAccess(paramK: string | undefined): Promise<boolean> {
   const expected = process.env["REVIEW_QR_SECRET"] ?? "";
   if (!expected) return false;
 
   if (paramK && typeof paramK === "string") {
-    // constant-time-ish compare
     const a = Buffer.from(paramK);
     const b = Buffer.from(expected);
-    if (
-      a.length === b.length &&
-      crypto.timingSafeEqual(a, b)
-    ) {
-      await dropQrCookie();
+    if (a.length === b.length && crypto.timingSafeEqual(a, b)) {
       return true;
     }
   }
@@ -57,19 +58,6 @@ export async function hasQrAccess(paramK: string | undefined): Promise<boolean> 
   const jar = await cookies();
   const got = jar.get(QR_COOKIE_NAME)?.value;
   return !!got && got === qrSecretCookieValue();
-}
-
-async function dropQrCookie(): Promise<void> {
-  const value = qrSecretCookieValue();
-  if (!value) return;
-  const jar = await cookies();
-  jar.set(QR_COOKIE_NAME, value, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    maxAge: QR_COOKIE_MAX_AGE,
-  });
 }
 
 // ───────────────────────────────────────────────────────────────────
