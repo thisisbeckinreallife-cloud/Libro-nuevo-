@@ -141,7 +141,6 @@ export function UploadForm({ amazonUrl }: { amazonUrl: string }) {
             name="screenshot"
             type="file"
             accept="image/jpeg,image/png,image/webp,image/*"
-            capture="environment"
             required
             onChange={onFileChange}
           />
