@@ -1928,3 +1928,278 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   margin: 0 0 12px;
 }
 .slots-counter--dark .slots-counter-static { color: rgba(246,241,234,.72); border-color: rgba(246,241,234,.14); }
+
+/* ========================================================================
+   BUY BONUS STACK
+   Editorial "Incluido con tu pre-orden" block — sits directly below the
+   27 € price in Buy.tsx. Subtle, ink-on-paper, no new tokens.
+   ======================================================================== */
+.buy-bonus {
+  margin: 18px 0 0;
+  padding: 22px 22px 20px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  background: rgba(246, 241, 234, 0.45);
+}
+.buy-bonus-head { display: flex; flex-direction: column; gap: 6px; margin: 0 0 14px; }
+.buy-bonus-head .label {
+  font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--accent);
+}
+.buy-bonus-intro {
+  font-family: var(--serif); font-size: 17px; line-height: 1.45;
+  color: var(--ink); margin: 0;
+}
+.buy-bonus-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.buy-bonus-item {
+  display: grid; grid-template-columns: 18px 1fr; align-items: baseline;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.buy-bonus-item:last-child { border-bottom: none; padding-bottom: 0; }
+.buy-bonus-mark {
+  display: inline-block; margin-top: 8px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+}
+.buy-bonus-body { display: flex; flex-direction: column; gap: 4px; }
+.buy-bonus-title {
+  font-family: var(--serif); font-weight: 500; font-size: 17px; line-height: 1.25;
+  color: var(--ink); letter-spacing: 0;
+}
+.buy-bonus-title em {
+  font-style: italic; color: var(--accent); font-weight: 400;
+}
+.buy-bonus-detail {
+  font-family: var(--sans); font-size: 13px; line-height: 1.5;
+  color: var(--muted);
+}
+.buy-bonus-foot {
+  display: block; margin-top: 14px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ========================================================================
+   /resena — review upload funnel
+   ======================================================================== */
+.resena-page {
+  background: var(--paper-warm); min-height: 100vh;
+  padding: 88px 24px 72px;
+  display: flex; justify-content: center; align-items: flex-start;
+}
+.resena-inner {
+  width: 100%; max-width: 620px;
+  display: flex; flex-direction: column; gap: 22px;
+}
+.resena-eyebrow { display: flex; align-items: center; gap: 8px; }
+.resena-eyebrow .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+.resena-eyebrow .mono { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; }
+.resena-h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(32px, 5vw, 44px);
+  line-height: 1.12; color: var(--ink); margin: 0; letter-spacing: -0.01em;
+}
+.resena-h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.resena-intro {
+  font-family: var(--serif); font-size: 17px; line-height: 1.55;
+  color: var(--ink); margin: 0; max-width: 540px;
+}
+.resena-foot {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  margin: 8px 0 0;
+}
+
+.resena-form { display: flex; flex-direction: column; gap: 26px; margin: 8px 0 0; }
+
+.resena-steps {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.resena-steps > li {
+  display: grid; grid-template-columns: 36px 1fr; gap: 14px;
+  padding-bottom: 18px; border-bottom: 1px solid var(--rule-soft);
+}
+.resena-steps > li:last-child { border-bottom: none; padding-bottom: 0; }
+.resena-step-num {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  color: var(--paper); background: var(--ink);
+  letter-spacing: 0;
+}
+.resena-step-body { display: flex; flex-direction: column; gap: 6px; }
+.resena-step-body strong {
+  font-family: var(--serif); font-weight: 500; font-size: 17px; color: var(--ink);
+}
+.resena-step-body p {
+  margin: 0; font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--muted);
+}
+
+.resena-cta {
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; margin-top: 4px;
+  background: var(--ink); color: var(--paper);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; text-decoration: none; border-radius: 2px;
+  transition: background .18s ease;
+}
+.resena-cta:hover { background: var(--accent); }
+.resena-cta .arrow::after {
+  content: "→"; display: inline-block;
+}
+.resena-cta-disabled {
+  display: inline-flex; align-items: center;
+  padding: 8px 0; margin-top: 4px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+.resena-upload { margin: 4px 0 0; }
+.resena-dropzone {
+  position: relative; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  padding: 38px 24px;
+  border: 2px dashed var(--rule-soft);
+  border-radius: 4px; cursor: pointer; min-height: 180px;
+  transition: border-color .18s ease, background .18s ease;
+  background: rgba(255, 255, 255, 0.6);
+}
+.resena-dropzone:hover { border-color: var(--accent); }
+.resena-dropzone input[type="file"] {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: 0; cursor: pointer;
+}
+.resena-dropzone input[type="file"]:disabled { cursor: not-allowed; }
+.resena-dropzone.has-preview {
+  padding: 10px; align-items: stretch; justify-content: stretch;
+  background: var(--ink);
+  border-style: solid; border-color: var(--ink);
+}
+.resena-dropzone.is-blocked {
+  border-style: solid; opacity: 0.6; cursor: not-allowed;
+  background: rgba(246, 241, 234, 0.3);
+}
+.resena-dropzone.is-blocked:hover { border-color: var(--rule-soft); }
+.resena-dropzone-icon {
+  font-size: 22px; color: var(--accent); line-height: 1;
+}
+.resena-dropzone-label {
+  font-family: var(--serif); font-size: 16px; color: var(--ink);
+  text-align: center;
+}
+.resena-dropzone-hint {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+}
+.resena-preview {
+  width: 100%; max-height: 360px; object-fit: contain;
+  display: block; border-radius: 2px;
+}
+
+.resena-field { display: flex; flex-direction: column; gap: 8px; }
+.resena-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+}
+.resena-optional { color: var(--muted); font-weight: 300; letter-spacing: 0.2em; }
+.resena-field input {
+  padding: 12px 14px;
+  border: 1px solid var(--rule-soft); border-radius: 2px;
+  background: var(--paper); color: var(--ink);
+  font-family: var(--serif); font-size: 15px;
+  transition: border-color .18s ease;
+}
+.resena-field input:focus { outline: none; border-color: var(--accent); }
+.resena-field input[aria-invalid="true"] { border-color: #a02030; }
+
+.resena-error {
+  font-family: var(--sans); font-size: 14px; color: #8a1d2a;
+  padding: 10px 14px; background: rgba(180, 18, 63, 0.08);
+  border-left: 2px solid var(--accent);
+}
+
+.resena-submit { align-self: flex-start; margin-top: 4px; }
+.resena-submit:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ========================================================================
+   /resena/recompensa — reward downloads
+   ======================================================================== */
+.recompensa-page {
+  background: var(--paper-warm); min-height: 100vh;
+  padding: 88px 24px 72px;
+  display: flex; justify-content: center; align-items: flex-start;
+}
+.recompensa-inner {
+  width: 100%; max-width: 720px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.recompensa-eyebrow { display: flex; align-items: center; gap: 8px; }
+.recompensa-eyebrow .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+.recompensa-eyebrow .mono { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; }
+.recompensa-h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(32px, 5vw, 44px);
+  line-height: 1.12; color: var(--ink); margin: 0; letter-spacing: -0.01em;
+}
+.recompensa-h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.recompensa-intro {
+  font-family: var(--serif); font-size: 17px; line-height: 1.55; color: var(--ink);
+  margin: 0 0 12px; max-width: 600px;
+}
+
+.recompensa-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  margin: 8px 0;
+}
+@media (max-width: 720px) {
+  .recompensa-grid { grid-template-columns: 1fr; }
+}
+
+.recompensa-card {
+  padding: 24px 22px;
+  background: var(--paper); border: 1px solid var(--rule-soft); border-radius: 2px;
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 220px;
+}
+.recompensa-card.is-pending { opacity: 0.75; }
+.recompensa-card-label {
+  font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--accent);
+}
+.recompensa-card-title {
+  font-family: var(--serif); font-weight: 500; font-size: 21px; line-height: 1.2;
+  color: var(--ink); margin: 0;
+}
+.recompensa-card-title em {
+  font-style: italic; color: var(--accent); font-weight: 400;
+}
+.recompensa-card-body {
+  font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--muted);
+  margin: 0; flex: 1;
+}
+.recompensa-download {
+  align-self: flex-start; margin-top: 4px;
+}
+.recompensa-pending {
+  align-self: flex-start; margin-top: 4px;
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+}
+.recompensa-exhausted {
+  align-self: flex-start; margin-top: 4px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted);
+}
+.recompensa-remaining {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+  margin-top: 2px;
+}
+.recompensa-foot {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  margin: 12px 0 0;
+}

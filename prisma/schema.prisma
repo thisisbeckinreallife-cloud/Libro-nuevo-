@@ -89,3 +89,34 @@ model WorkbookEntry {
   @@index([userId, section])
   @@map("workbook_entries")
 }
+
+enum ReviewStatus {
+  submitted
+  approved
+  rejected
+}
+
+// Review-for-reward funnel.
+// Reader scans in-book QR → lands on /resena → writes Amazon review →
+// uploads screenshot → this row is created → claim token lets them
+// download the ebook + audio rewards. No cap — open to every buyer.
+model ReviewSubmission {
+  id             String       @id @default(uuid()) @db.Uuid
+  email          String?
+  status         ReviewStatus @default(submitted)
+  screenshot     Bytes
+  contentType    String       @map("content_type")
+  screenshotHash String       @map("screenshot_hash")
+  ipHash         String       @map("ip_hash")
+  userAgent      String?      @map("user_agent")
+  claimToken     String       @unique @map("claim_token")
+  ebookDownloads Int          @default(0) @map("ebook_downloads")
+  audioDownloads Int          @default(0) @map("audio_downloads")
+  claimedAt      DateTime?    @map("claimed_at")
+  createdAt      DateTime     @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@index([ipHash, createdAt])
+  @@index([screenshotHash])
+  @@map("review_submissions")
+}

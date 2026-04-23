@@ -158,6 +158,12 @@ export type Dict = {
     cta: string;
     note: string;
     priceFlag: string;
+    bonusStack: {
+      label: string;
+      intro: string;
+      items: { titlePre: string; titleEm: string; detail: string }[];
+      foot: string;
+    };
   };
   depth: {
     secNum: string;
@@ -287,6 +293,51 @@ export type Dict = {
       saved: string;
       savedJustNow: string;
       savedAgo: string;
+    };
+  };
+  resena: {
+    eyebrow: string;
+    h1Pre: string;
+    h1Em: string;
+    intro: string;
+    steps: { title: string; body: string }[];
+    amazonCta: string;
+    amazonSoon: string;
+    uploadLabel: string;
+    uploadHint: string;
+    uploadBlocked: string;
+    previewAlt: string;
+    emailLabel: string;
+    emailOptional: string;
+    submit: string;
+    footNote: string;
+    errors: {
+      tooBig: string;
+      badType: string;
+      empty: string;
+      duplicate: string;
+      rateLimit: string;
+      invalidEmail: string;
+      generic: string;
+    };
+    reward: {
+      eyebrow: string;
+      h1Pre: string;
+      h1Em: string;
+      intro: string;
+      ebookLabel: string;
+      ebookTitlePre: string;
+      ebookTitleEm: string;
+      ebookBody: string;
+      audioLabel: string;
+      audioTitlePre: string;
+      audioTitleEm: string;
+      audioBody: string;
+      download: string;
+      remaining: string;
+      exhausted: string;
+      soon: string;
+      footNote: string;
     };
   };
 };
@@ -567,6 +618,25 @@ export const dict: Record<Lang, Dict> = {
       cta: "Comprar en Amazon",
       note: "Edición limitada · Lanzamiento 2026",
       priceFlag: "precio",
+      bonusStack: {
+        label: "Incluido con tu pre-orden",
+        intro: "Comprando ahora también te llevas:",
+        items: [
+          {
+            titlePre: "",
+            titleEm: "No eres tú, es tu subconsciente",
+            detail:
+              "El primer libro de Lara en formato ebook · desbloqueado al dejar tu reseña.",
+          },
+          {
+            titlePre: "Audio ",
+            titleEm: "RSB",
+            detail:
+              "Guía sonora complementaria al libro · desbloqueado al dejar tu reseña.",
+          },
+        ],
+        foot: "Dentro del libro físico encontrarás el QR para reclamarlos.",
+      },
     },
     depth: {
       secNum: "07 / Profundidad",
@@ -860,6 +930,72 @@ export const dict: Record<Lang, Dict> = {
         savedAgo: "guardado hace {s}s",
       },
     },
+    resena: {
+      eyebrow: "Reseña + recompensa",
+      h1Pre: "Escribe tu reseña, llévate ",
+      h1Em: "los dos regalos.",
+      intro:
+        "Deja tu reseña honesta en Amazon, sube la captura y desbloquea al instante el primer libro de Lara en ebook y el audio RSB.",
+      steps: [
+        {
+          title: "Deja tu reseña en Amazon",
+          body: "Abre la ficha del libro, puntúa con honestidad y publica tu reseña. Cualquier valoración es válida — pedimos sinceridad, no cinco estrellas.",
+        },
+        {
+          title: "Haz una captura de pantalla",
+          body: "Cuando Amazon confirme que la reseña está publicada, captura la pantalla con tu móvil. La captura nunca se publica — queda privada en el servidor de Lara.",
+        },
+        {
+          title: "Súbela aquí",
+          body: "Añade la captura y, si quieres, tu email para recibir avisos de nuevas ediciones. Al subirla se abren las descargas automáticamente.",
+        },
+      ],
+      amazonCta: "Ir a la reseña en Amazon",
+      amazonSoon: "Próximamente disponible en Amazon",
+      uploadLabel: "Arrastra o selecciona tu captura",
+      uploadHint: "JPG, PNG o WEBP · máx. 5 MB",
+      uploadBlocked: "Las recompensas estarán disponibles muy pronto",
+      previewAlt: "Vista previa de la captura",
+      emailLabel: "Email",
+      emailOptional: "opcional",
+      submit: "Subir y desbloquear",
+      footNote:
+        "Tu captura se usa sólo para verificar la reseña. No se comparte con terceros.",
+      errors: {
+        tooBig: "El archivo supera los 5 MB. Comprime o recorta la imagen.",
+        badType: "Sube una imagen (JPG, PNG o WEBP).",
+        empty: "Selecciona una captura antes de enviar.",
+        duplicate:
+          "Esa captura ya se había subido. Sube una distinta o contacta con Lara si crees que es un error.",
+        rateLimit:
+          "Demasiados intentos en poco tiempo. Espera unos minutos y vuelve a probar.",
+        invalidEmail: "Ese email no parece válido. Déjalo vacío si prefieres.",
+        generic: "Algo ha salido mal al subir. Vuelve a intentarlo.",
+      },
+      reward: {
+        eyebrow: "Reseña recibida",
+        h1Pre: "Gracias. Ya puedes ",
+        h1Em: "descargar.",
+        intro:
+          "Tu captura se ha guardado. Estas dos descargas son tuyas — cada archivo admite hasta 2 descargas en las próximas 24 horas.",
+        ebookLabel: "Ebook · Libro 01",
+        ebookTitlePre: "",
+        ebookTitleEm: "No eres tú, es tu subconsciente",
+        ebookBody:
+          "El primer libro de Lara Lawn. Lectura directa, marco fundacional para leer el Arkwright Method con más profundidad.",
+        audioLabel: "Audio · Complemento",
+        audioTitlePre: "Audio ",
+        audioTitleEm: "RSB",
+        audioBody:
+          "Sesión sonora guiada que funciona como ancla física del método. Idealmente para escuchar la primera semana tras leer el libro.",
+        download: "Descargar",
+        remaining: "{n} descargas disponibles",
+        exhausted: "Descarga agotada para este enlace",
+        soon: "Próximamente disponible · vuelve en unos días",
+        footNote:
+          "Guarda esta página. El enlace deja de funcionar en 24 horas; los archivos se quedan en tu dispositivo.",
+      },
+    },
   },
   en: {
     nav: {
@@ -1136,6 +1272,25 @@ export const dict: Record<Lang, Dict> = {
       cta: "Order on Amazon",
       note: "Limited edition · 2026 release",
       priceFlag: "price",
+      bonusStack: {
+        label: "Included with your pre-order",
+        intro: "Order now and you also get:",
+        items: [
+          {
+            titlePre: "",
+            titleEm: "It's Not You, It's Your Subconscious",
+            detail:
+              "Lara's first book as an ebook · unlocked when you leave your review.",
+          },
+          {
+            titlePre: "",
+            titleEm: "RSB audio",
+            detail:
+              "Companion audio guide for the method · unlocked when you leave your review.",
+          },
+        ],
+        foot: "Inside the physical book you'll find the QR to redeem both.",
+      },
     },
     depth: {
       secNum: "07 / Depth",
@@ -1422,6 +1577,72 @@ export const dict: Record<Lang, Dict> = {
         saved: "Saved",
         savedJustNow: "saved just now",
         savedAgo: "saved {s}s ago",
+      },
+    },
+    resena: {
+      eyebrow: "Review + reward",
+      h1Pre: "Write your review, get ",
+      h1Em: "both gifts.",
+      intro:
+        "Leave an honest review on Amazon, upload the screenshot, and instantly unlock Lara's first book as an ebook plus the RSB audio.",
+      steps: [
+        {
+          title: "Leave your review on Amazon",
+          body: "Open the book's listing, rate it honestly, publish. Any rating works — we want truth, not five stars.",
+        },
+        {
+          title: "Take a screenshot",
+          body: "Once Amazon confirms the review is live, capture the screen on your phone. The screenshot stays private on Lara's server — never published.",
+        },
+        {
+          title: "Upload it here",
+          body: "Add the screenshot and, optionally, your email to hear about future editions. Uploading instantly opens the downloads.",
+        },
+      ],
+      amazonCta: "Open the Amazon review",
+      amazonSoon: "Coming soon on Amazon",
+      uploadLabel: "Drag or choose your screenshot",
+      uploadHint: "JPG, PNG or WEBP · 5 MB max",
+      uploadBlocked: "Rewards will be available very soon",
+      previewAlt: "Screenshot preview",
+      emailLabel: "Email",
+      emailOptional: "optional",
+      submit: "Upload and unlock",
+      footNote:
+        "Your screenshot is only used to verify the review. It's never shared.",
+      errors: {
+        tooBig: "File is over 5 MB. Compress or crop the image.",
+        badType: "Please upload an image (JPG, PNG or WEBP).",
+        empty: "Please choose a screenshot before submitting.",
+        duplicate:
+          "That screenshot was already uploaded. Please use a different one, or contact Lara if this looks wrong.",
+        rateLimit:
+          "Too many attempts in a short window. Wait a few minutes and try again.",
+        invalidEmail: "That email doesn't look valid. Leave it empty if you prefer.",
+        generic: "Something went wrong while uploading. Please try again.",
+      },
+      reward: {
+        eyebrow: "Review received",
+        h1Pre: "Thank you. You can now ",
+        h1Em: "download.",
+        intro:
+          "Your screenshot is saved. These two downloads are yours — each file allows up to 2 downloads in the next 24 hours.",
+        ebookLabel: "Ebook · Book 01",
+        ebookTitlePre: "",
+        ebookTitleEm: "It's Not You, It's Your Subconscious",
+        ebookBody:
+          "Lara Lawn's first book. A direct read and the foundational frame that lets you read The Arkwright Method deeper.",
+        audioLabel: "Audio · Companion",
+        audioTitlePre: "",
+        audioTitleEm: "RSB audio",
+        audioBody:
+          "A guided sonic session that works as a physical anchor for the method. Ideal for the first week after reading the book.",
+        download: "Download",
+        remaining: "{n} downloads left",
+        exhausted: "No downloads left on this link",
+        soon: "Coming soon · check back in a few days",
+        footNote:
+          "Bookmark this page. The link expires in 24 hours; the files stay on your device.",
       },
     },
   },

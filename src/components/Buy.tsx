@@ -41,6 +41,28 @@ export function Buy({ initialSlots }: { initialSlots: SlotsPayload }) {
               </div>
             </div>
 
+            <div className="buy-bonus">
+              <div className="buy-bonus-head">
+                <span className="mono label">{t.buy.bonusStack.label}</span>
+                <p className="buy-bonus-intro">{t.buy.bonusStack.intro}</p>
+              </div>
+              <ul className="buy-bonus-list">
+                {t.buy.bonusStack.items.map((item, i) => (
+                  <li key={i} className="buy-bonus-item">
+                    <span className="buy-bonus-mark" aria-hidden="true" />
+                    <div className="buy-bonus-body">
+                      <strong className="buy-bonus-title">
+                        {item.titlePre}
+                        <em>{item.titleEm}</em>
+                      </strong>
+                      <span className="buy-bonus-detail">{item.detail}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <span className="buy-bonus-foot">{t.buy.bonusStack.foot}</span>
+            </div>
+
             <SlotsCounter initial={initialSlots} variant="light" showSubcopy />
 
             <div className="buy-cta">
