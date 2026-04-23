@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import { getSubmissionById } from "@/lib/review";
-import { rewardAvailability } from "@/lib/reward-files";
 import { verifyClaim } from "@/lib/signed-token";
 import { RecompensaHero } from "./RecompensaHero";
 
@@ -21,12 +20,9 @@ export default async function RecompensaPage({
   const submission = await getSubmissionById(payload.submissionId);
   if (!submission || submission.claimToken !== token) redirect("/");
 
-  const availability = await rewardAvailability();
-
   return (
     <RecompensaHero
       token={token!}
-      availability={availability}
       ebookDownloads={submission.ebookDownloads}
       audioDownloads={submission.audioDownloads}
     />

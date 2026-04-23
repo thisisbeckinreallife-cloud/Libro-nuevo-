@@ -302,13 +302,10 @@ export type Dict = {
     intro: string;
     steps: { title: string; body: string }[];
     amazonCta: string;
-    amazonSoon: string;
     uploadLabel: string;
     uploadHint: string;
-    uploadBlocked: string;
     previewAlt: string;
     emailLabel: string;
-    emailOptional: string;
     submit: string;
     footNote: string;
     errors: {
@@ -318,6 +315,7 @@ export type Dict = {
       duplicate: string;
       rateLimit: string;
       invalidEmail: string;
+      needsEmail: string;
       generic: string;
     };
     reward: {
@@ -334,9 +332,11 @@ export type Dict = {
       audioTitleEm: string;
       audioBody: string;
       download: string;
+      preparing: string;
       remaining: string;
       exhausted: string;
-      soon: string;
+      emailFallback: string;
+      genericError: string;
       footNote: string;
     };
   };
@@ -946,18 +946,15 @@ export const dict: Record<Lang, Dict> = {
           body: "Cuando Amazon confirme que la reseña está publicada, captura la pantalla con tu móvil. La captura nunca se publica — queda privada en el servidor de Lara.",
         },
         {
-          title: "Súbela aquí",
-          body: "Añade la captura y, si quieres, tu email para recibir avisos de nuevas ediciones. Al subirla se abren las descargas automáticamente.",
+          title: "Súbela con tu email",
+          body: "Al subir la captura se abren las descargas automáticamente. Te mandamos también un recordatorio por email con los enlaces.",
         },
       ],
       amazonCta: "Ir a la reseña en Amazon",
-      amazonSoon: "Próximamente disponible en Amazon",
       uploadLabel: "Arrastra o selecciona tu captura",
       uploadHint: "JPG, PNG o WEBP · máx. 5 MB",
-      uploadBlocked: "Las recompensas estarán disponibles muy pronto",
       previewAlt: "Vista previa de la captura",
       emailLabel: "Email",
-      emailOptional: "opcional",
       submit: "Subir y desbloquear",
       footNote:
         "Tu captura se usa sólo para verificar la reseña. No se comparte con terceros.",
@@ -969,7 +966,8 @@ export const dict: Record<Lang, Dict> = {
           "Esa captura ya se había subido. Sube una distinta o contacta con Lara si crees que es un error.",
         rateLimit:
           "Demasiados intentos en poco tiempo. Espera unos minutos y vuelve a probar.",
-        invalidEmail: "Ese email no parece válido. Déjalo vacío si prefieres.",
+        invalidEmail: "Ese email no parece válido.",
+        needsEmail: "Añade tu email para recibir los enlaces de descarga.",
         generic: "Algo ha salido mal al subir. Vuelve a intentarlo.",
       },
       reward: {
@@ -977,7 +975,7 @@ export const dict: Record<Lang, Dict> = {
         h1Pre: "Gracias. Ya puedes ",
         h1Em: "descargar.",
         intro:
-          "Tu captura se ha guardado. Estas dos descargas son tuyas — cada archivo admite hasta 2 descargas en las próximas 24 horas.",
+          "Tu captura se ha guardado. Estas dos descargas son tuyas — cada archivo admite hasta 2 descargas en las próximas 24 horas. También te las enviamos por email.",
         ebookLabel: "Ebook · Libro 01",
         ebookTitlePre: "",
         ebookTitleEm: "No eres tú, es tu subconsciente",
@@ -989,9 +987,12 @@ export const dict: Record<Lang, Dict> = {
         audioBody:
           "Sesión sonora guiada que funciona como ancla física del método. Idealmente para escuchar la primera semana tras leer el libro.",
         download: "Descargar",
+        preparing: "Preparando…",
         remaining: "{n} descargas disponibles",
         exhausted: "Descarga agotada para este enlace",
-        soon: "Próximamente disponible · vuelve en unos días",
+        emailFallback:
+          "Te hemos enviado el enlace a tu email. Llega en unos minutos.",
+        genericError: "Algo ha salido mal. Reintenta en un momento.",
         footNote:
           "Guarda esta página. El enlace deja de funcionar en 24 horas; los archivos se quedan en tu dispositivo.",
       },
@@ -1595,18 +1596,15 @@ export const dict: Record<Lang, Dict> = {
           body: "Once Amazon confirms the review is live, capture the screen on your phone. The screenshot stays private on Lara's server — never published.",
         },
         {
-          title: "Upload it here",
-          body: "Add the screenshot and, optionally, your email to hear about future editions. Uploading instantly opens the downloads.",
+          title: "Upload with your email",
+          body: "Uploading the screenshot instantly opens the downloads. We also email you the links as a backup.",
         },
       ],
       amazonCta: "Open the Amazon review",
-      amazonSoon: "Coming soon on Amazon",
       uploadLabel: "Drag or choose your screenshot",
       uploadHint: "JPG, PNG or WEBP · 5 MB max",
-      uploadBlocked: "Rewards will be available very soon",
       previewAlt: "Screenshot preview",
       emailLabel: "Email",
-      emailOptional: "optional",
       submit: "Upload and unlock",
       footNote:
         "Your screenshot is only used to verify the review. It's never shared.",
@@ -1618,7 +1616,8 @@ export const dict: Record<Lang, Dict> = {
           "That screenshot was already uploaded. Please use a different one, or contact Lara if this looks wrong.",
         rateLimit:
           "Too many attempts in a short window. Wait a few minutes and try again.",
-        invalidEmail: "That email doesn't look valid. Leave it empty if you prefer.",
+        invalidEmail: "That email doesn't look valid.",
+        needsEmail: "Please add your email to receive the download links.",
         generic: "Something went wrong while uploading. Please try again.",
       },
       reward: {
@@ -1626,7 +1625,7 @@ export const dict: Record<Lang, Dict> = {
         h1Pre: "Thank you. You can now ",
         h1Em: "download.",
         intro:
-          "Your screenshot is saved. These two downloads are yours — each file allows up to 2 downloads in the next 24 hours.",
+          "Your screenshot is saved. These two downloads are yours — each file allows up to 2 downloads in the next 24 hours. We've also sent them to your email.",
         ebookLabel: "Ebook · Book 01",
         ebookTitlePre: "",
         ebookTitleEm: "It's Not You, It's Your Subconscious",
@@ -1638,9 +1637,12 @@ export const dict: Record<Lang, Dict> = {
         audioBody:
           "A guided sonic session that works as a physical anchor for the method. Ideal for the first week after reading the book.",
         download: "Download",
+        preparing: "Preparing…",
         remaining: "{n} downloads left",
         exhausted: "No downloads left on this link",
-        soon: "Coming soon · check back in a few days",
+        emailFallback:
+          "We've just emailed you this download. It lands in a couple of minutes.",
+        genericError: "Something went wrong. Try again in a moment.",
         footNote:
           "Bookmark this page. The link expires in 24 hours; the files stay on your device.",
       },

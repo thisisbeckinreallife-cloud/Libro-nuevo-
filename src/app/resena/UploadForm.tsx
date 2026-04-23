@@ -8,13 +8,13 @@ import { uploadScreenshotAction, type UploadState } from "./actions";
 const INITIAL: UploadState = { error: null, email: "" };
 const MAX_BYTES = 5 * 1024 * 1024;
 
-function SubmitButton({ label, disabled }: { label: string; disabled: boolean }) {
+function SubmitButton({ label }: { label: string }) {
   const { pending } = useFormStatus();
   return (
     <button
       type="submit"
       className="btn-primary resena-submit"
-      disabled={pending || disabled}
+      disabled={pending}
     >
       <span>{pending ? "…" : label}</span>
       <span className="arrow" />
@@ -22,13 +22,7 @@ function SubmitButton({ label, disabled }: { label: string; disabled: boolean })
   );
 }
 
-export function UploadForm({
-  amazonUrl,
-  rewardsReady,
-}: {
-  amazonUrl: string | null;
-  rewardsReady: boolean;
-}) {
+export function UploadForm({ amazonUrl }: { amazonUrl: string }) {
   const { t } = useLang();
   const r = t.resena;
   const [state, formAction] = useFormState(uploadScreenshotAction, INITIAL);
@@ -80,15 +74,14 @@ export function UploadForm({
         return r.errors.rateLimit;
       case "invalid_email":
         return r.errors.invalidEmail;
+      case "needs_email":
+        return r.errors.needsEmail;
       case "generic":
         return r.errors.generic;
       default:
         return null;
     }
   })();
-
-  const amazonDisabled = !amazonUrl;
-  const uploadBlocked = !rewardsReady || amazonDisabled;
 
   return (
     <form action={formAction} className="resena-form" noValidate>
@@ -114,19 +107,15 @@ export function UploadForm({
           <div className="resena-step-body">
             <strong>{r.steps[0].title}</strong>
             <p>{r.steps[0].body}</p>
-            {amazonDisabled ? (
-              <span className="resena-cta-disabled">{r.amazonSoon}</span>
-            ) : (
-              <a
-                href={amazonUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="resena-cta"
-              >
-                <span>{r.amazonCta}</span>
-                <span className="arrow" />
-              </a>
-            )}
+            <a
+              href={amazonUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="resena-cta"
+            >
+              <span>{r.amazonCta}</span>
+              <span className="arrow" />
+            </a>
           </div>
         </li>
         <li>
@@ -146,11 +135,7 @@ export function UploadForm({
       </ol>
 
       <div className="resena-upload">
-        <label
-          className={`resena-dropzone ${preview ? "has-preview" : ""} ${
-            uploadBlocked ? "is-blocked" : ""
-          }`}
-        >
+        <label className={`resena-dropzone ${preview ? "has-preview" : ""}`}>
           <input
             ref={fileInputRef}
             name="screenshot"
@@ -158,7 +143,6 @@ export function UploadForm({
             accept="image/jpeg,image/png,image/webp,image/*"
             capture="environment"
             required
-            disabled={uploadBlocked}
             onChange={onFileChange}
           />
           {preview ? (
@@ -174,9 +158,7 @@ export function UploadForm({
               <span className="resena-dropzone-icon" aria-hidden="true">
                 ↑
               </span>
-              <span className="resena-dropzone-label">
-                {uploadBlocked ? r.uploadBlocked : r.uploadLabel}
-              </span>
+              <span className="resena-dropzone-label">{r.uploadLabel}</span>
               <span className="resena-dropzone-hint">{r.uploadHint}</span>
             </>
           )}
@@ -184,17 +166,15 @@ export function UploadForm({
       </div>
 
       <label className="resena-field">
-        <span className="resena-label">
-          {r.emailLabel}{" "}
-          <span className="resena-optional">· {r.emailOptional}</span>
-        </span>
+        <span className="resena-label">{r.emailLabel}</span>
         <input
           name="email"
           type="email"
           autoComplete="email"
           inputMode="email"
+          required
           defaultValue={state.email}
-          aria-invalid={errorKey === "invalid_email"}
+          aria-invalid={errorKey === "invalid_email" || errorKey === "needs_email"}
         />
       </label>
 
@@ -204,7 +184,7 @@ export function UploadForm({
         </div>
       ) : null}
 
-      <SubmitButton label={r.submit} disabled={uploadBlocked} />
+      <SubmitButton label={r.submit} />
     </form>
   );
 }

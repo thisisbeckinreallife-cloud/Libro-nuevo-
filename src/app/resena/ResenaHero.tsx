@@ -3,13 +3,7 @@
 import { useLang } from "@/components/LangProvider";
 import { UploadForm } from "./UploadForm";
 
-export function ResenaHero({
-  amazonUrl,
-  rewardsReady,
-}: {
-  amazonUrl: string | null;
-  rewardsReady: boolean;
-}) {
+export function ResenaHero({ amazonUrl }: { amazonUrl: string }) {
   const { t } = useLang();
   const r = t.resena;
   return (
@@ -25,7 +19,7 @@ export function ResenaHero({
         </h1>
         <p className="resena-intro">{r.intro}</p>
 
-        <UploadForm amazonUrl={amazonUrl} rewardsReady={rewardsReady} />
+        <UploadForm amazonUrl={amazonUrl} />
 
         <p className="resena-foot">{r.footNote}</p>
       </section>

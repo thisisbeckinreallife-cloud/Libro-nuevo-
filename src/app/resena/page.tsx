@@ -1,9 +1,13 @@
 import { redirect } from "next/navigation";
 import { hasQrAccess } from "@/lib/review";
-import { rewardAvailability } from "@/lib/reward-files";
 import { ResenaHero } from "./ResenaHero";
 
 export const dynamic = "force-dynamic";
+
+// Default fallback for the Amazon CTA if REVIEW_AMAZON_URL isn't set yet —
+// lands the reader on a real search page instead of a dead state.
+const AMAZON_FALLBACK =
+  "https://www.amazon.es/s?k=Lara+Lawn+Arkwright+Method";
 
 export default async function ResenaPage({
   searchParams,
@@ -17,9 +21,8 @@ export default async function ResenaPage({
   const allowed = await hasQrAccess(k);
   if (!allowed) redirect("/");
 
-  const availability = await rewardAvailability();
-  const rewardsReady = availability.ebook || availability.audio;
-  const amazonUrl = (process.env["REVIEW_AMAZON_URL"] ?? "").trim() || null;
+  const amazonUrl =
+    (process.env["REVIEW_AMAZON_URL"] ?? "").trim() || AMAZON_FALLBACK;
 
-  return <ResenaHero amazonUrl={amazonUrl} rewardsReady={rewardsReady} />;
+  return <ResenaHero amazonUrl={amazonUrl} />;
 }
