@@ -2,7 +2,7 @@
 
 These PNGs encode the URL:
 ```
-https://libro-nuevo-production.up.railway.app/resena?k=wUbzyElrm3jmOz3XxdNWtxZv
+https://arkwrightmethod.com/resena?k=wUbzyElrm3jmOz3XxdNWtxZv
 ```
 
 Anyone who scans any of these lands on the gated /resena page. They are
