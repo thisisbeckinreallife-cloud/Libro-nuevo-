@@ -446,8 +446,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   pointer-events: none;
 }
 
+/* Desktop controls sit CLEAR of the book's rotated bounding box.
+   The 3D transform + perspective makes the visible face extend
+   ~10–15 px beyond the wrap's bottom at rest rotation; with the
+   previous `bottom: -8px` the hint text sat on top of the book's
+   bottom edge (over the author name). -52px puts the entire row
+   below both the wrap AND the rotated face, cleanly. */
 .book-controls {
-  position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+  position: absolute; bottom: -64px; left: 50%; transform: translateX(-50%);
   display: flex; align-items: center; gap: 16px; z-index: 5;
   opacity: 0; animation: fadeUp .8s var(--ease) 1.6s forwards;
 }
