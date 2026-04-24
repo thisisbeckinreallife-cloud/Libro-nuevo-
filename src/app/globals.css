@@ -944,13 +944,27 @@ section { position: relative; padding: 130px 0; }
 @media (max-width: 560px) { .diff-grid { grid-template-columns: 1fr; } }
 
 /* ============ EXTRACTS ============
-   Three editorial "chapter pages" with distinct typographic voices:
-   paper (default), ink (inverted), paper-warm (framed). On desktop
-   they keep the cinematic sticky-pin effect — each card hovers at
-   18vh while the next scrolls behind. On mobile the pin is disabled
-   and the reader gets a clean editorial stack with big N° numbers. */
-.extracts { padding: 160px 0; background: var(--paper-warm); }
-.extracts-head { text-align: center; margin-bottom: 80px; }
+   Three editorial "chapter pages" redesigned for a premium editorial
+   feel — paper texture, large ornamental quote-mark, serif drop-cap
+   on the first letter of the blockquote (the hallmark of a real
+   book page), serif-italic chapter label with side rules, folio-style
+   N°XX marker, and a warm diffused shadow instead of harsh drops.
+   Three variants: paper / ink / paper-warm. Desktop sticky-pin
+   cinematic effect preserved. */
+.extracts {
+  padding: 160px 0;
+  background: var(--paper-warm);
+  position: relative;
+}
+/* Section-wide paper noise — barely perceptible, like aged paper. */
+.extracts::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .04; mix-blend-mode: multiply;
+}
+.extracts .wrap { position: relative; z-index: 1; }
+
+.extracts-head { text-align: center; margin-bottom: 90px; }
 .extracts-head .label { margin-bottom: 18px; color: var(--accent); display: inline-flex; align-items: center; gap: 10px; }
 .extracts-head .label::before, .extracts-head .label::after { content: ""; width: 30px; height: 1px; background: var(--accent); }
 .extracts-head h2 {
@@ -959,113 +973,174 @@ section { position: relative; padding: 130px 0; }
 }
 .extracts-head h2 em { font-style: italic; color: var(--accent); }
 
-.extract-stack { display: grid; gap: 40px; max-width: 1100px; margin: 0 auto; }
+.extract-stack { display: grid; gap: 48px; max-width: 1100px; margin: 0 auto; }
 
-/* Base card — padding reserves space for the quote-mark ornament
-   (top-left) and the N° number (top-right) so they never overlap
-   the body text. */
+/* Base card — asymmetric padding (more top for the ornament, more
+   left than right to mirror the gutter of a real book page). */
 .extract {
   position: relative;
-  padding: 84px 72px 64px;
+  padding: 104px 92px 80px 100px;
   background: var(--paper);
-  border-left: 1px solid var(--accent);
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+  /* Warm diffused shadow — like a book page being held up, not a
+     flat web-card drop. Two layers: a fine contact + a soft ambient. */
+  box-shadow:
+    0 1px 2px rgba(14, 11, 11, .04),
+    0 28px 56px -20px rgba(14, 11, 11, .14);
+  overflow: hidden;
 }
-.extract:hover { transform: translateX(8px); box-shadow: 0 20px 40px -20px rgba(0,0,0,.1); }
-.extract:nth-child(even) { margin-left: 8%; margin-right: -2%; }
-.extract:nth-child(odd) { margin-right: 8%; margin-left: -2%; }
+/* Per-card paper grain — sits behind the text, contributes material. */
+.extract::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .05; mix-blend-mode: multiply;
+}
+/* Accent rule at the bottom — the editorial signature line.
+   Small, off-centre, matches the asymmetry of the inner typography. */
+.extract::after {
+  content: ""; position: absolute;
+  left: 100px; bottom: 48px;
+  width: 52px; height: 1px;
+  background: var(--accent); opacity: .45;
+  z-index: 2;
+}
+.extract > * { position: relative; z-index: 2; }
 
+/* Ornamental quote-mark — large, serif italic, sits as a background
+   letter the eye reads as a page-opener, not a speech bubble. */
 .extract .quote-mark {
-  position: absolute; top: 32px; left: 40px;
-  font-family: var(--serif); font-size: 72px; line-height: .5;
+  position: absolute;
+  top: 36px; left: 84px;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 148px; line-height: .6;
+  color: var(--accent); opacity: .22;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Folio marker — "— N°01" with an em-dash flourish above. Italic
+   serif matches the editorial voice, positioned top-right like the
+   recto folio of a real book. */
+.extract-num {
+  position: absolute;
+  top: 52px; right: 92px;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 44px; line-height: 1;
   color: var(--accent); opacity: .55;
   pointer-events: none;
+  display: flex; flex-direction: column; align-items: flex-end;
+  gap: 6px;
 }
-.extract-num {
-  position: absolute; top: 28px; right: 40px;
-  font-family: var(--serif); font-style: italic; font-weight: 300;
-  font-size: 32px; line-height: 1;
-  color: var(--accent); opacity: .45;
-  pointer-events: none;
+.extract-num::before {
+  content: "";
+  width: 28px; height: 1px;
+  background: currentColor; opacity: .7;
 }
+
+/* Chapter label — serif italic small caps with side rules, much
+   more book-page than the previous mono caps. */
 .extract .chapter {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .28em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 22px;
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: 14px; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--muted);
+  display: inline-flex; align-items: center; gap: 16px;
+  margin-bottom: 40px;
 }
+.extract .chapter::before,
+.extract .chapter::after {
+  content: ""; width: 28px; height: 1px;
+  background: currentColor; opacity: .35;
+}
+
 .extract blockquote {
-  font-family: var(--serif); font-size: 23px; line-height: 1.5; font-weight: 300;
-  color: var(--ink); letter-spacing: -.005em; margin: 0;
+  font-family: var(--serif); font-size: 26px; line-height: 1.55;
+  font-weight: 300; color: var(--ink); letter-spacing: -.005em;
+  margin: 0;
+}
+/* THE DROP-CAP — the premium signature. First letter of the quote
+   becomes an italic serif initial in the accent colour. */
+.extract blockquote::first-letter {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: 84px; line-height: .82;
+  color: var(--accent);
+  float: left;
+  padding: 6px 14px 0 0;
+  text-transform: uppercase;
 }
 .extract blockquote em { font-style: italic; color: var(--accent); }
 
-/* ── Editorial variants ────────────────────────────────────────────
-   Same structure, three distinct voices. Ordered paper → ink → warm
-   by Extracts.tsx — this creates a rhythm of lightness → weight →
-   lightness as the reader scrolls. */
+/* ── Editorial variants ─────────────────────────────────────────── */
 .extract--paper {
   background: var(--paper);
-  border-left: 1px solid var(--accent);
 }
+
 .extract--ink {
-  background: var(--ink);
-  border-left: 1px solid var(--accent);
+  /* Not pure black — an inked cream-on-charcoal page, warmer. */
+  background: linear-gradient(135deg, #1a0f0f 0%, #0b0606 100%);
 }
+.extract--ink::before { opacity: .08; mix-blend-mode: overlay; }
+.extract--ink .quote-mark { color: var(--accent); opacity: .4; }
 .extract--ink .chapter { color: rgba(246, 241, 234, .55); }
 .extract--ink blockquote { color: var(--paper); }
+.extract--ink blockquote::first-letter { color: var(--accent); }
 .extract--ink blockquote em { color: var(--accent); }
-.extract--ink .quote-mark { color: var(--accent); opacity: .85; }
-.extract--ink .extract-num { color: var(--accent); opacity: .85; }
+.extract--ink .extract-num { color: var(--accent); opacity: .75; }
+.extract--ink::after { background: var(--accent); opacity: .7; }
 
 .extract--warm {
-  background: var(--paper-warm);
-  border-left: none;
-  border-top: 1px solid var(--accent);
-  border-bottom: 1px solid var(--accent);
+  background: #F1E9DC;
 }
-.extract--warm .extract-num { color: var(--accent); opacity: .5; }
+.extract--warm::before { opacity: .06; }
+.extract--warm .quote-mark { opacity: .28; }
 
 /* Cinematic "chapter page" pin — desktop only.
    Each extract stays at the viewport top while its successor scrolls
-   up behind it, like pages being laid on top. The variant backgrounds
-   survive the pin because we removed the `background: var(--paper)`
-   override that used to live here. */
+   up behind it, like pages being laid on top. */
 @media (min-width: 901px) {
   .extract-stack { display: block; position: relative; }
   .extract {
-    position: sticky; top: 18vh;
+    position: sticky; top: 16vh;
     margin: 0 auto 0 !important; max-width: 920px;
-    padding: 88px 88px 72px;
-    box-shadow: 0 1px 0 0 rgba(14,11,11,.04);
-    transition: box-shadow .4s var(--ease);
+    padding: 112px 112px 92px 120px;
   }
   .extract + .extract { margin-top: 28vh !important; }
-  .extract:hover { transform: none; box-shadow: 0 20px 40px -20px rgba(14,11,11,.14); }
-  .extract--ink:hover { box-shadow: 0 20px 40px -20px rgba(0,0,0,.3); }
-  .extract::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent 0, var(--accent) 30%, var(--accent) 70%, transparent 100%);
-    opacity: .4;
-  }
-  .extract--warm::before { display: none; } /* already has a top border */
+  .extract:hover { transform: none; }
+  .extract .quote-mark { top: 44px; left: 104px; font-size: 168px; }
+  .extract-num { top: 60px; right: 112px; font-size: 52px; }
+  .extract::after { left: 120px; bottom: 56px; width: 60px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .extract { position: relative !important; top: auto !important; }
   .extract + .extract { margin-top: 40px !important; }
 }
 
+/* ── Mobile — scale everything down while preserving the editorial
+   details. The drop-cap stays prominent since it's THE signature. */
 @media (max-width: 900px) {
   .extracts { padding: 88px 0 72px; }
   .extracts-head { margin-bottom: 48px; padding: 0 22px; }
-  .extract-stack { gap: 18px; padding: 0 18px; }
+  .extract-stack { gap: 22px; padding: 0 18px; }
   .extract {
-    padding: 64px 26px 40px;
+    padding: 74px 28px 60px 34px;
     margin: 0 !important;
   }
   .extract:hover { transform: none; }
-  .extract .quote-mark { font-size: 52px; top: 22px; left: 22px; }
-  .extract-num { font-size: 24px; top: 22px; right: 22px; }
-  .extract .chapter { margin-bottom: 18px; font-size: 9px; letter-spacing: .26em; }
-  .extract blockquote { font-size: 19px; line-height: 1.5; }
+  .extract .quote-mark { font-size: 88px; top: 22px; left: 28px; }
+  .extract-num { font-size: 28px; top: 32px; right: 26px; gap: 4px; }
+  .extract-num::before { width: 18px; }
+  .extract .chapter {
+    font-size: 11px; letter-spacing: .22em; margin-bottom: 28px;
+    gap: 0;
+  }
+  /* The side rules wrap awkwardly at mobile widths — drop them and
+     let the label stand alone in italic serif small caps. */
+  .extract .chapter::before,
+  .extract .chapter::after { display: none; }
+  .extract blockquote { font-size: 19px; line-height: 1.55; }
+  .extract blockquote::first-letter {
+    font-size: 60px; padding: 4px 10px 0 0;
+  }
+  .extract::after { left: 34px; bottom: 32px; width: 40px; }
 }
 
 /* ============ PROOF ============ */
