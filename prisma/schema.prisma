@@ -120,3 +120,38 @@ model ReviewSubmission {
   @@index([screenshotHash])
   @@map("review_submissions")
 }
+
+// Unified marketing contacts table.
+// Filled automatically every time someone leaves their email (workbook
+// signup, review submission, future CTAs). Idempotent by email — repeat
+// touches just update `lastSeenAt` and append the new source.
+//
+// Source of truth for email marketing. Export to CSV via /admin to feed
+// Resend audiences, Meta Ads custom audiences, or anything else.
+//
+// Independent from `User` and `ReviewSubmission` so we can include people
+// who never finished those flows AND so deletion requests on this table
+// don't cascade into the workbook session model.
+model Contact {
+  id                String   @id @default(uuid()) @db.Uuid
+  email             String   @unique
+  name              String?
+  // First touchpoint — kept stable so we know the original CTA.
+  firstSource       String   @map("first_source")
+  // Latest touchpoint — overwritten on every upsert. Useful when the
+  // same person enters via multiple flows.
+  lastSource        String   @map("last_source")
+  // Comma-separated set of every source seen ("workbook,resena").
+  // Cheap segmentation without a join table.
+  sources           String   @default("")
+  lang              String   @default("es")
+  consentMarketing  Boolean  @default(true) @map("consent_marketing")
+  meta              Json?
+  firstSeenAt       DateTime @default(now()) @map("first_seen_at")
+  lastSeenAt        DateTime @default(now()) @updatedAt @map("last_seen_at")
+
+  @@index([firstSeenAt])
+  @@index([lastSource])
+  @@index([lang])
+  @@map("contacts")
+}

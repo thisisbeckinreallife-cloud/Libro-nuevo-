@@ -17,7 +17,7 @@ function SubmitButton({ label }: { label: string }) {
 const INITIAL: ClaimActionState = { error: null, email: "", name: "" };
 
 export function RegistrationForm() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [state, formAction] = useFormState(claimAction, INITIAL);
   const r = t.registration;
 
@@ -40,6 +40,8 @@ export function RegistrationForm() {
 
   return (
     <form action={formAction} className="registration-form" noValidate>
+      {/* Tells the server the active UI lang so the contact row records it. */}
+      <input type="hidden" name="lang" value={lang} />
       <label className="registration-field">
         <span className="registration-label">{r.emailLabel}</span>
         <input

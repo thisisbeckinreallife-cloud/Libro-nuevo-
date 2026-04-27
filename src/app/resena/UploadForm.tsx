@@ -23,7 +23,7 @@ function SubmitButton({ label }: { label: string }) {
 }
 
 export function UploadForm({ amazonUrl }: { amazonUrl: string }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const r = t.resena;
   const [state, formAction] = useFormState(uploadScreenshotAction, INITIAL);
   const [preview, setPreview] = useState<string | null>(null);
@@ -85,6 +85,9 @@ export function UploadForm({ amazonUrl }: { amazonUrl: string }) {
 
   return (
     <form action={formAction} className="resena-form" noValidate>
+      {/* Tells the server the active UI lang so the contact row records it. */}
+      <input type="hidden" name="lang" value={lang} />
+
       {/* Honeypot — bots fill this; humans don't see it. */}
       <input
         type="text"

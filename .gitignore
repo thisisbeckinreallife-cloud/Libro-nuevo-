@@ -46,3 +46,6 @@ next-env.d.ts
 
 # visualplanner HTML artefacts (local-only plan breakdowns)
 *-breakdown.html
+
+# Local Claude lesson log (auto-learning notes — not project artefacts)
+/tasks/

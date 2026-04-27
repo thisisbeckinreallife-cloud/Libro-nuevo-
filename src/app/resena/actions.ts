@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { upsertContact, detectLang, type ContactLang } from "@/lib/contact";
 import { createReview, type UploadReason } from "@/lib/review";
 import { signClaim } from "@/lib/signed-token";
 
@@ -36,6 +37,17 @@ export async function uploadScreenshotAction(
   if (!result.ok) {
     return { error: result.reason, email: emailRaw };
   }
+
+  // Mirror into the unified contacts table for marketing.
+  const langRaw = String(formData.get("lang") ?? "");
+  const lang: ContactLang =
+    langRaw === "es" || langRaw === "en" ? langRaw : await detectLang();
+  await upsertContact({
+    email: emailRaw,
+    source: "resena",
+    lang,
+    consentMarketing: true, // /resena copy explains the email is used to send rewards + remarketing
+  });
 
   const token = signClaim({ submissionId: result.submissionId });
   redirect(`/resena/recompensa?t=${encodeURIComponent(token)}`);
