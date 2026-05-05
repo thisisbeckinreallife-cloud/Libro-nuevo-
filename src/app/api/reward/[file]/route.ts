@@ -65,6 +65,19 @@ export async function GET(
     );
   }
 
+  // External URL mode (e.g. audiobook hosted as a GitHub Release asset).
+  // Increment the counter then 302 to the public URL — the browser
+  // downloads directly from the host without going through Railway,
+  // saving bandwidth on a 150 MB+ file.
+  if (resolved.mode === "url") {
+    await incrementDownload(submission.id, kind);
+    return NextResponse.redirect(resolved.url, {
+      status: 302,
+      headers: { "Cache-Control": "private, no-store" },
+    });
+  }
+
+  // Filesystem mode (small files like the ebook).
   let bytes: Buffer;
   try {
     bytes = await readFile(resolved.absolutePath);

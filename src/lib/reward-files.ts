@@ -4,25 +4,38 @@ import { readdir } from "node:fs/promises";
 import path from "node:path";
 
 /**
- * The reward files are intentionally NOT inside `public/` — Lara drops them
- * into `private/rewards/` and this resolver finds them at request time.
+ * Reward resolver — supports two delivery modes per file:
  *
- * Supported filename patterns (extension determines MIME):
- *   private/rewards/ebook.{epub,pdf,mobi}
- *   private/rewards/audio.{mp3,m4a,wav}
+ *  1. Filesystem (default for small files): drop the file into
+ *     `private/rewards/` and the route streams it.
+ *       private/rewards/ebook.{epub,pdf,mobi}
+ *       private/rewards/audio.{mp3,m4a,wav}
  *
- * If the file isn't there yet the resolver returns null and the UI renders a
- * "Próximamente disponible" state.
+ *  2. External URL (used for the audiobook — too big for git):
+ *     set `REWARD_EBOOK_URL` or `REWARD_AUDIO_URL` to a public download
+ *     link (e.g. a GitHub Release asset). The route 302-redirects.
+ *
+ * If neither mode produces a result, the UI renders "Próximamente
+ * disponible" (resolver returns null).
  */
 
 export type RewardKind = "ebook" | "audio";
 
-export type ResolvedReward = {
-  kind: RewardKind;
-  absolutePath: string;
-  filename: string;
-  contentType: string;
-};
+export type ResolvedReward =
+  | {
+      kind: RewardKind;
+      mode: "filesystem";
+      absolutePath: string;
+      filename: string;
+      contentType: string;
+    }
+  | {
+      kind: RewardKind;
+      mode: "url";
+      url: string;
+      filename: string;
+      contentType: string;
+    };
 
 const ACCEPTED: Record<RewardKind, { exts: string[]; mime: Record<string, string> }> = {
   ebook: {
@@ -45,9 +58,48 @@ const ACCEPTED: Record<RewardKind, { exts: string[]; mime: Record<string, string
 
 const REWARDS_DIR = path.join(process.cwd(), "private", "rewards");
 
+const ENV_URL_KEY: Record<RewardKind, string> = {
+  ebook: "REWARD_EBOOK_URL",
+  audio: "REWARD_AUDIO_URL",
+};
+
+/**
+ * Pick a content-type based on the URL's extension. Fallback is
+ * `application/octet-stream` so the browser still downloads it even
+ * if the URL has no recognisable suffix.
+ */
+function contentTypeForUrl(kind: RewardKind, url: string): { ext: string; contentType: string } {
+  const spec = ACCEPTED[kind];
+  // Strip query string before sniffing the extension.
+  const clean = url.split(/[?#]/)[0]!;
+  const ext = clean.split(".").pop()?.toLowerCase() ?? "";
+  if (spec.exts.includes(ext)) {
+    return { ext, contentType: spec.mime[ext] ?? "application/octet-stream" };
+  }
+  // No usable extension on the URL — return defaults per kind.
+  const fallbackExt = spec.exts[0]!;
+  return { ext: fallbackExt, contentType: spec.mime[fallbackExt]! };
+}
+
 export async function resolveReward(
   kind: RewardKind,
 ): Promise<ResolvedReward | null> {
+  // 1) External URL takes precedence — set REWARD_AUDIO_URL on Railway
+  //    once the GitHub Release asset is up, and the route stops touching
+  //    the filesystem for that kind.
+  const urlEnv = (process.env[ENV_URL_KEY[kind]] ?? "").trim();
+  if (urlEnv) {
+    const { ext, contentType } = contentTypeForUrl(kind, urlEnv);
+    return {
+      kind,
+      mode: "url",
+      url: urlEnv,
+      filename: `${kind}.${ext}`,
+      contentType,
+    };
+  }
+
+  // 2) Filesystem fallback — original behaviour for small files.
   let files: string[];
   try {
     files = await readdir(REWARDS_DIR);
@@ -67,6 +119,7 @@ export async function resolveReward(
   const ext = target.split(".").pop()!.toLowerCase();
   return {
     kind,
+    mode: "filesystem",
     absolutePath: path.join(REWARDS_DIR, target),
     filename: target,
     contentType: spec.mime[ext] ?? "application/octet-stream",
