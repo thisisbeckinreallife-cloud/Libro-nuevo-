@@ -2834,6 +2834,109 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   margin: 0;
 }
 
+/* Workbook bridge block — sits between the product cards and the
+   bookmark hint. Visually flagged as a bonus inclusion (red accent
+   border + "Incluido" badge). */
+.biblioteca-workbook {
+  position: relative;
+  background: linear-gradient(180deg, rgba(180, 18, 63, 0.05), var(--paper));
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 32px 28px;
+  margin-bottom: 32px;
+}
+.biblioteca-workbook-badge {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: var(--accent);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.biblioteca-workbook-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 30px);
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 8px 0 12px;
+}
+.biblioteca-workbook-body {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0 0 20px;
+  max-width: 600px;
+}
+.biblioteca-workbook-tiles {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+@media (max-width: 640px) {
+  .biblioteca-workbook-tiles { grid-template-columns: repeat(2, 1fr); }
+}
+.biblioteca-workbook-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.biblioteca-workbook-tile-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(180, 18, 63, 0.1);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.biblioteca-workbook-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 26px;
+  background: var(--accent);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: background 0.25s var(--ease), transform 0.2s var(--ease);
+}
+.biblioteca-workbook-cta:hover {
+  background: var(--ink);
+  transform: translateY(-1px);
+}
+.biblioteca-workbook-cta .arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
 .biblioteca-bookmark {
   background: var(--paper-warm);
   border-radius: 8px;

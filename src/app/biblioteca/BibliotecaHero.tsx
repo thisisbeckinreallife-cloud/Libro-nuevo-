@@ -96,6 +96,7 @@ export function BibliotecaHero({
 
   const audioHref = `/api/biblioteca/audio?token=${encodeURIComponent(access.accessToken)}`;
   const ebookHref = `/api/biblioteca/ebook?token=${encodeURIComponent(access.accessToken)}`;
+  const workbookEnterHref = `/api/biblioteca/workbook-enter?token=${encodeURIComponent(access.accessToken)}`;
 
   return (
     <main className="biblioteca-shell">
@@ -166,6 +167,31 @@ export function BibliotecaHero({
             </p>
           ) : null}
         </article>
+      </section>
+
+      {/* Workbook bridge — included with the purchase. The endpoint
+          validates the access token, ensures a User row exists for the
+          buyer's email, issues the workbook session cookie, and 302s
+          to /workbook. So a single click moves the buyer from "I have
+          downloads" to "I'm inside the four exercises". */}
+      <section className="biblioteca-workbook">
+        <span className="biblioteca-workbook-badge">{b.workbook.eyebrow}</span>
+        <h2 className="biblioteca-workbook-title">{b.workbook.h}</h2>
+        <p className="biblioteca-workbook-body">{b.workbook.body}</p>
+        <ul className="biblioteca-workbook-tiles">
+          {b.workbook.items.map((label, i) => (
+            <li key={label} className="biblioteca-workbook-tile">
+              <span className="biblioteca-workbook-tile-num">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span>{label}</span>
+            </li>
+          ))}
+        </ul>
+        <a className="biblioteca-workbook-cta" href={workbookEnterHref}>
+          <span>{b.workbook.cta}</span>
+          <span className="arrow">→</span>
+        </a>
       </section>
 
       <section className="biblioteca-bookmark">

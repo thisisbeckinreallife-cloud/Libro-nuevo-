@@ -385,6 +385,13 @@ export type Dict = {
       download: string;
       duration: string;      // "5h 10m"
     };
+    workbook: {
+      eyebrow: string;       // "Incluido con tu compra"
+      h: string;             // section title
+      body: string;          // 1-2 line description
+      items: string[];       // 4 mini-tile labels
+      cta: string;           // button label
+    };
     footNote: string;
   };
 };
@@ -1100,6 +1107,14 @@ export const dict: Record<Lang, Dict> = {
         download: "Descargar audiolibro",
         duration: "5h 10m · MP3",
       },
+      workbook: {
+        eyebrow: "Incluido con tu compra",
+        h: "Tus ejercicios del workbook.",
+        body:
+          "Cuatro operaciones para aplicar el método. Tu progreso se guarda automáticamente y puedes volver desde cualquier dispositivo.",
+        items: ["Diagnóstico", "Funeral", "Lunes", "Próxima vida"],
+        cta: "Entrar al workbook",
+      },
       footNote:
         "Las descargas se cuentan por archivo (máx. 5 por copia). Si tienes problemas, contacta con nosotros respondiendo al recibo de Stripe.",
     },
@@ -1808,6 +1823,14 @@ export const dict: Record<Lang, Dict> = {
           "Navigable MP3. Spanish narration, the full book read aloud. Plays in any podcast app or media player.",
         download: "Download audiobook",
         duration: "5h 10m · MP3",
+      },
+      workbook: {
+        eyebrow: "Included with your purchase",
+        h: "Your workbook exercises.",
+        body:
+          "Four operations to apply the method. Your progress saves automatically and you can return from any device.",
+        items: ["Diagnosis", "Funeral", "Monday", "Next life"],
+        cta: "Enter the workbook",
       },
       footNote:
         "Downloads are counted per file (max 5 per copy). If you have trouble, reply to your Stripe receipt and we'll help.",

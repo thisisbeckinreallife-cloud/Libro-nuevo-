@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import type Stripe from "stripe";
 import { upsertContact } from "@/lib/contact";
+import { prisma } from "@/lib/prisma";
 import { recordCheckoutCompleted, recordRefund } from "@/lib/purchase";
 import { getStripe, getWebhookSecret } from "@/lib/stripe";
 
@@ -150,6 +151,24 @@ async function handleCheckoutCompleted(
     lang: lang === "en" ? "en" : "es",
     consentMarketing: true, // explicit purchase = stronger consent than a free signup
   });
+
+  // Bridge purchase ↔ workbook by email. The workbook needs a User row
+  // (the model behind Session). Ensure one exists for this buyer so
+  // /api/biblioteca/workbook-enter can issue them a session in one
+  // hop. Idempotent: if the buyer already had a free workbook account
+  // under the same email, that User is reused and their existing
+  // workbook progress is preserved untouched.
+  try {
+    const emailNorm = email.trim().toLowerCase();
+    await prisma.user.upsert({
+      where: { email: emailNorm },
+      update: name ? { name } : {},
+      create: { email: emailNorm, name: name?.trim() || null },
+    });
+  } catch (err) {
+    // Non-fatal — workbook-enter has its own upsert as a safety net.
+    console.error("[stripe-webhook] user upsert failed (non-fatal)", { email, err });
+  }
 }
 
 async function handleChargeRefunded(
