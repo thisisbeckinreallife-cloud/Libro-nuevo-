@@ -684,10 +684,10 @@ export const dict: Record<Lang, Dict> = {
               "El primer libro de Lara en formato ebook · desbloqueado al dejar tu reseña.",
           },
           {
-            titlePre: "Audio ",
-            titleEm: "RSB",
+            titlePre: "",
+            titleEm: "Audiolibro · The Arkwright Method",
             detail:
-              "Guía sonora complementaria al libro · desbloqueado al dejar tu reseña.",
+              "Cinco horas con el método narrado · desbloqueado al dejar tu reseña.",
           },
         ],
         foot: "Dentro del libro físico encontrarás el QR para reclamarlos.",
@@ -1005,7 +1005,7 @@ export const dict: Record<Lang, Dict> = {
       h1Pre: "Escribe tu reseña, llévate ",
       h1Em: "los dos regalos.",
       intro:
-        "Deja tu reseña honesta en Amazon, sube la captura y desbloquea al instante el primer libro de Lara en ebook y el audio RSB.",
+        "Deja tu reseña honesta en Amazon, sube la captura y desbloquea al instante el primer libro de Lara en ebook y el audiolibro completo de The Arkwright Method.",
       steps: [
         {
           title: "Deja tu reseña en Amazon",
@@ -1051,11 +1051,11 @@ export const dict: Record<Lang, Dict> = {
         ebookTitleEm: "No eres tú, es tu subconsciente",
         ebookBody:
           "El primer libro de Lara Lawn. Lectura directa, marco fundacional para leer el Arkwright Method con más profundidad.",
-        audioLabel: "Audio · Complemento",
-        audioTitlePre: "Audio ",
-        audioTitleEm: "RSB",
+        audioLabel: "Audiolibro · The Arkwright Method",
+        audioTitlePre: "Cinco horas de ",
+        audioTitleEm: "el método narrado.",
         audioBody:
-          "Sesión sonora guiada que funciona como ancla física del método. Idealmente para escuchar la primera semana tras leer el libro.",
+          "El libro entero leído en voz alta. Cinco horas y diez minutos, MP3 navegable. Para escuchar mientras conduces, paseas o entrenas.",
         download: "Descargar",
         preparing: "Preparando…",
         remaining: "{n} descargas disponibles",
@@ -1407,9 +1407,9 @@ export const dict: Record<Lang, Dict> = {
           },
           {
             titlePre: "",
-            titleEm: "RSB audio",
+            titleEm: "Audiobook · The Arkwright Method",
             detail:
-              "Companion audio guide for the method · unlocked when you leave your review.",
+              "Five hours of the method, narrated · unlocked when you leave your review.",
           },
         ],
         foot: "Inside the physical book you'll find the QR to redeem both.",
@@ -1722,7 +1722,7 @@ export const dict: Record<Lang, Dict> = {
       h1Pre: "Write your review, get ",
       h1Em: "both gifts.",
       intro:
-        "Leave an honest review on Amazon, upload the screenshot, and instantly unlock Lara's first book as an ebook plus the RSB audio.",
+        "Leave an honest review on Amazon, upload the screenshot, and instantly unlock Lara's first book as an ebook plus the full Arkwright Method audiobook.",
       steps: [
         {
           title: "Leave your review on Amazon",
@@ -1768,11 +1768,11 @@ export const dict: Record<Lang, Dict> = {
         ebookTitleEm: "It's Not You, It's Your Subconscious",
         ebookBody:
           "Lara Lawn's first book. A direct read and the foundational frame that lets you read The Arkwright Method deeper.",
-        audioLabel: "Audio · Companion",
-        audioTitlePre: "",
-        audioTitleEm: "RSB audio",
+        audioLabel: "Audiobook · The Arkwright Method",
+        audioTitlePre: "Five hours of ",
+        audioTitleEm: "the method, narrated.",
         audioBody:
-          "A guided sonic session that works as a physical anchor for the method. Ideal for the first week after reading the book.",
+          "The full book read aloud. Five hours and ten minutes, navigable MP3. For driving, walking or training while you listen.",
         download: "Download",
         preparing: "Preparing…",
         remaining: "{n} downloads left",
