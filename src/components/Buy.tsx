@@ -1,6 +1,7 @@
 "use client";
 
 import { BookStatic } from "./BookStatic";
+import { BuyDigitalCta } from "./BuyDigitalCta";
 import { useLang } from "./LangProvider";
 import { Reveal } from "./Reveal";
 import { SlotsCounter } from "./SlotsCounter";
@@ -65,10 +66,22 @@ export function Buy({ initialSlots }: { initialSlots: SlotsPayload }) {
 
             <SlotsCounter initial={initialSlots} variant="light" showSubcopy />
 
+            {/* Digital bundle — Stripe checkout. Stub-safe: the CTA
+                gracefully shows "Próximamente disponible" until the
+                STRIPE_* env vars are set on Railway. */}
+            <BuyDigitalCta />
+
+            {/* Visual separator between digital + physical */}
+            <div className="buy-cta-sep" aria-hidden="true">
+              <span className="rule" />
+              <span className="buy-cta-sep-label">{t.buy.digital.orSep}</span>
+              <span className="rule" />
+            </div>
+
             <div className="buy-cta">
               <a
                 href="https://amazon.com"
-                className="btn-primary"
+                className="btn-secondary"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -1,0 +1,180 @@
+import { NextResponse, type NextRequest } from "next/server";
+import type Stripe from "stripe";
+import { upsertContact } from "@/lib/contact";
+import { recordCheckoutCompleted, recordRefund } from "@/lib/purchase";
+import { getStripe, getWebhookSecret } from "@/lib/stripe";
+
+/**
+ * POST /api/stripe/webhook
+ *
+ * Stripe → us. Receives async events about Checkout Sessions and
+ * payments. Two events matter for the digital offer:
+ *
+ *   - `checkout.session.completed` → buyer paid. Create Purchase row,
+ *     mirror into Contact for marketing.
+ *   - `charge.refunded` → buyer was refunded. Mark Purchase as
+ *     refunded so /api/biblioteca/[file] starts rejecting the token.
+ *
+ * Everything else returns 200 silently — Stripe expects a 2xx for
+ * acknowledgement; non-2xx triggers retries.
+ *
+ * SAFETY: this route uses the raw request body (NOT JSON-parsed) for
+ * the signature check. Next 14 App Router gives us the raw body via
+ * `req.text()`, which preserves bytes.
+ */
+
+export const dynamic = "force-dynamic";
+// We always need the raw body — disable any body-parser interference.
+// (Next 14 App Router doesn't have the Pages-Router `bodyParser` config
+//  knob, but `req.text()` already gives us the unparsed string.)
+
+export async function POST(req: NextRequest): Promise<NextResponse> {
+  const stripe = getStripe();
+  const secret = getWebhookSecret();
+
+  // Stub mode — Stripe not wired yet. Return 503 so any test
+  // delivery from the dashboard fails loudly instead of silently.
+  if (!stripe || !secret) {
+    return new NextResponse("stripe webhook not configured", { status: 503 });
+  }
+
+  const sig = req.headers.get("stripe-signature");
+  if (!sig) return new NextResponse("missing stripe-signature", { status: 400 });
+
+  // Use the raw body for signature verification.
+  const body = await req.text();
+  let event: Stripe.Event;
+  try {
+    event = stripe.webhooks.constructEvent(body, sig, secret);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "verify failed";
+    console.error("[stripe-webhook] signature verification failed:", msg);
+    return new NextResponse(`signature verification failed: ${msg}`, {
+      status: 400,
+    });
+  }
+
+  try {
+    switch (event.type) {
+      case "checkout.session.completed":
+        await handleCheckoutCompleted(event.data.object);
+        break;
+
+      case "charge.refunded":
+        await handleChargeRefunded(stripe, event.data.object);
+        break;
+
+      // We accept every other event silently to keep Stripe happy.
+      // Add a case here if/when we want to react to one.
+      default:
+        break;
+    }
+  } catch (err) {
+    // Log but still return 200 only if we already persisted the
+    // intent. Otherwise we want Stripe to retry. The handlers below
+    // throw on storage failure — let it bubble.
+    console.error(`[stripe-webhook] handler for ${event.type} failed`, err);
+    return new NextResponse("handler error", { status: 500 });
+  }
+
+  return NextResponse.json({ received: true }, { status: 200 });
+}
+
+async function handleCheckoutCompleted(
+  session: Stripe.Checkout.Session,
+): Promise<void> {
+  // Pull buyer info — Checkout always collects email; name is
+  // optional and depends on the price configuration.
+  // (`session.customer` may be a DeletedCustomer object when the
+  //  customer was removed in Stripe — guard before reading fields.)
+  const customerObj =
+    typeof session.customer === "object" &&
+    session.customer !== null &&
+    !("deleted" in session.customer && session.customer.deleted)
+      ? session.customer
+      : null;
+  const email =
+    session.customer_details?.email ||
+    session.customer_email ||
+    customerObj?.email ||
+    null;
+
+  if (!email) {
+    // Without an email we can't deliver the product or remarket.
+    // Record nothing and let Stripe retry — but log loudly.
+    console.error(
+      "[stripe-webhook] checkout.session.completed without email",
+      { sessionId: session.id },
+    );
+    return;
+  }
+
+  const name =
+    session.customer_details?.name ||
+    customerObj?.name ||
+    null;
+
+  const lang =
+    typeof session.metadata?.["lang"] === "string"
+      ? session.metadata["lang"]
+      : "es";
+
+  const paymentIntentId =
+    typeof session.payment_intent === "string"
+      ? session.payment_intent
+      : session.payment_intent?.id ?? null;
+
+  await recordCheckoutCompleted({
+    stripeSessionId: session.id,
+    stripePaymentIntentId: paymentIntentId,
+    email,
+    name,
+    amount: session.amount_total ?? 0,
+    currency: (session.currency ?? "eur").toLowerCase(),
+    lang,
+    meta: {
+      mode: session.mode,
+      paymentStatus: session.payment_status,
+      customer:
+        typeof session.customer === "string" ? session.customer : null,
+    },
+  });
+
+  // Mirror into the marketing contacts table — buyers join the same
+  // index as workbook signups but tagged with source="purchase" via
+  // the upsertContact's source-set logic.
+  await upsertContact({
+    email,
+    source: "purchase",
+    name,
+    lang: lang === "en" ? "en" : "es",
+    consentMarketing: true, // explicit purchase = stronger consent than a free signup
+  });
+}
+
+async function handleChargeRefunded(
+  stripe: Stripe,
+  charge: Stripe.Charge,
+): Promise<void> {
+  // The refund event references the charge, not the checkout
+  // session. We need to walk back to the session via the payment
+  // intent so we can mark the right Purchase row.
+  const paymentIntentId =
+    typeof charge.payment_intent === "string"
+      ? charge.payment_intent
+      : charge.payment_intent?.id ?? null;
+
+  if (!paymentIntentId) return;
+
+  // Find the Checkout Session that owns this PaymentIntent. We expect
+  // exactly one for our flow — if the buyer paid via something else
+  // there'll be zero, and we silently skip.
+  const sessions = await stripe.checkout.sessions.list({
+    payment_intent: paymentIntentId,
+    limit: 1,
+  });
+  const session = sessions.data[0];
+  if (!session) return;
+
+  await recordRefund(session.id);
+}

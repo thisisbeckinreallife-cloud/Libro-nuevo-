@@ -72,6 +72,70 @@ Ver [`docs/design-handoff/README.md`](docs/design-handoff/README.md) para la esp
 
 ---
 
+## Oferta digital · Stripe checkout (12€ ebook + audiolibro)
+
+El sitio está preparado para vender un pack digital (ebook + audiolibro de
+The Arkwright Method) por 12€ vía Stripe Checkout. **Toda la
+infraestructura está construida pero desactivada hasta que las env vars
+de Stripe estén puestas en Railway.** Mientras tanto:
+
+- El CTA de la landing muestra "Próximamente disponible".
+- `/api/checkout` devuelve 503 con `error: "checkout_not_configured"`.
+- `/api/stripe/webhook` devuelve 503 si llega un evento.
+- `/biblioteca` funciona (puedes generar URLs manuales con un script).
+
+### Activación · 4 pasos
+
+1. **Crear producto + precio en Stripe Dashboard**
+   - Producto: "The Arkwright Method · ebook + audiolibro"
+   - Precio: 12.00 EUR, one-time
+   - Copiar el `priceId` (`price_…`).
+
+2. **Configurar webhook endpoint en Stripe Dashboard**
+   - URL: `https://arkwright.laralawn.com/api/stripe/webhook`
+   - Eventos a escuchar: `checkout.session.completed`, `charge.refunded`
+   - Copiar el `signing secret` (`whsec_…`).
+
+3. **Setear env vars en Railway**
+   ```
+   STRIPE_SECRET_KEY=sk_live_…   (test_… para pruebas)
+   STRIPE_WEBHOOK_SECRET=whsec_…
+   STRIPE_PRICE_ID_OFFER_12EUR=price_…
+   ```
+
+4. **Subir el ebook a un GitHub Release y setear `PRODUCT_EBOOK_URL`**
+   - El audiolibro ya está subido (release `rewards-audio-es-v1`).
+   - El ebook iría en otro release (p.ej. `products-arkwright-ebook-es-v1`).
+   - `PRODUCT_AUDIO_URL` ya está configurado en Railway por defecto.
+
+Tras esos 4 pasos, el funnel se activa solo. **Cero cambios de código.**
+
+### Vida del flujo
+
+```
+1. Usuario hace click en "Comprar pack digital · 12€" en la landing.
+2. POST /api/checkout → Stripe Session → redirect a Checkout.
+3. Pago → Stripe envía webhook → Purchase row creada con accessToken.
+4. Stripe redirige al usuario a /biblioteca?session_id=…
+5. /biblioteca muestra ebook + audiolibro (descargas via GitHub Release).
+6. El usuario guarda /biblioteca?token=<accessToken> en favoritos para
+   volver desde otro dispositivo.
+```
+
+### Acceso manual (sin Stripe)
+
+Útil para QA, beta testers, regalos, o si Stripe se cae:
+
+```bash
+node scripts/create-test-purchase.mjs --email name@example.com --name "Lara" --lang es
+```
+
+Imprime una URL `/biblioteca?token=…` que el destinatario abre. Crea
+fila `Purchase` con `status=paid` y un `stripeSessionId` falso
+(`manual_<timestamp>`) que nunca colisiona con sessions reales de Stripe.
+
+---
+
 ## Contactos · email marketing
 
 Cada email capturado en `/registro` (workbook) y `/resena` (reseña + recompensa) se guarda automáticamente en la tabla unificada `Contact`. La tabla es idempotente por email: si la misma persona entra dos veces, no se duplica — solo se actualiza `lastSeenAt` y se añade el origen al set `sources` (`workbook,resena`).

@@ -2519,6 +2519,363 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 }
 
 /* ─────────────────────────────────────────────────────────────────
+   Buy section — digital offer (12€) block
+   Sits between the bonus stack and the Amazon CTA. Visually
+   distinct so the digital pack feels like the "primary" path.
+   ───────────────────────────────────────────────────────────────── */
+.buy-digital {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 12px;
+  padding: 28px 28px;
+  margin: 32px 0 24px;
+}
+.buy-digital-head { margin-bottom: 16px; }
+.buy-digital-head .label {
+  display: inline-block;
+  color: var(--accent);
+  background: rgba(180, 18, 63, 0.16);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.buy-digital-h {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.2;
+  margin: 0 0 8px;
+  color: var(--paper);
+}
+.buy-digital-detail {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(246, 241, 234, 0.78);
+  margin: 0;
+}
+.buy-digital-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.buy-digital-bullets li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(246, 241, 234, 0.85);
+}
+.buy-digital-mark {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.buy-digital-cta {
+  width: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  justify-content: space-between;
+}
+.buy-digital-cta:hover { background: var(--accent); color: var(--paper); }
+.buy-digital-cta.is-disabled,
+.buy-digital-cta:disabled {
+  background: rgba(246, 241, 234, 0.12);
+  color: rgba(246, 241, 234, 0.5);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.buy-digital-error {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: #ffb3b3;
+}
+
+.buy-cta-sep {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px 0 16px;
+}
+.buy-cta-sep .rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule-soft);
+}
+.buy-cta-sep-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Secondary button used for the Amazon link — a touch quieter than
+   the primary so the digital block can lead. */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease);
+}
+.btn-secondary:hover { background: var(--ink); color: var(--paper); }
+.btn-secondary .arrow {
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Biblioteca — /biblioteca (post-purchase library)
+   Same editorial palette. Two product cards stacked or side by side.
+   Pending / refunded / invalid states share a clean center layout.
+   ───────────────────────────────────────────────────────────────── */
+.biblioteca-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 80px 32px 96px;
+  font-family: var(--sans);
+  color: var(--ink);
+}
+.biblioteca-state {
+  max-width: 560px;
+  margin: 80px auto;
+  text-align: center;
+}
+.biblioteca-state-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  margin: 0 0 16px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.biblioteca-state-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+.biblioteca-state-hint {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.dot-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: dot-pulse 1.2s infinite ease-in-out;
+}
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.biblioteca-header {
+  text-align: center;
+  margin-bottom: 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.biblioteca-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 16px;
+}
+.biblioteca-h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1.05;
+  margin: 0 0 24px;
+  color: var(--ink);
+}
+.biblioteca-h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.biblioteca-welcome {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+.biblioteca-intro {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.biblioteca-products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+@media (max-width: 720px) {
+  .biblioteca-products { grid-template-columns: 1fr; }
+}
+.biblioteca-card {
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 8px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.biblioteca-card:hover { border-color: var(--ink); box-shadow: 0 4px 24px rgba(14, 11, 11, 0.06); }
+.biblioteca-card.is-pending {
+  background: var(--paper-warm);
+  border-style: dashed;
+}
+.biblioteca-card-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.biblioteca-card-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--ink);
+}
+.biblioteca-card-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+.biblioteca-card-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+  flex: 1;
+}
+.biblioteca-card-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.biblioteca-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 999px;
+  transition: background 0.25s var(--ease), transform 0.2s var(--ease);
+  align-self: flex-start;
+}
+.biblioteca-cta:hover { background: var(--accent); transform: translateY(-1px); }
+.biblioteca-cta .arrow { font-size: 16px; line-height: 1; }
+.biblioteca-cta.is-disabled {
+  background: transparent;
+  color: var(--muted);
+  border: 1px dashed var(--rule-soft);
+  pointer-events: none;
+}
+.biblioteca-card-foot {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+.biblioteca-bookmark {
+  background: var(--paper-warm);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.biblioteca-bookmark-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+.biblioteca-bookmark-url {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 4px;
+  padding: 8px 14px;
+  display: inline-block;
+  word-break: break-all;
+  max-width: 100%;
+}
+
+.biblioteca-foot {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 24px;
+}
+.biblioteca-foot p { margin: 0; }
+
+@media (max-width: 600px) {
+  .biblioteca-shell { padding: 48px 16px 64px; }
+  .biblioteca-card { padding: 24px 20px; }
+}
+
+/* ─────────────────────────────────────────────────────────────────
    Admin contacts dashboard — /admin
    Editorial palette, no dependencies, mobile-friendly. Single
    operator surface gated by ?token=.

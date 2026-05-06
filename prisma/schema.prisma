@@ -121,6 +121,50 @@ model ReviewSubmission {
   @@map("review_submissions")
 }
 
+enum PurchaseStatus {
+  pending
+  paid
+  refunded
+  failed
+}
+
+// One-time digital purchases — Stripe Checkout.
+//
+// Created by the Stripe webhook on `checkout.session.completed` and
+// looked up by either `stripeSessionId` (post-redirect from Stripe) or
+// `accessToken` (the secret key the buyer keeps in their bookmark to
+// re-enter /biblioteca later).
+//
+// Idempotency: the webhook upserts by `stripeSessionId` so duplicate
+// deliveries from Stripe never create double rows.
+//
+// `accessToken` is a UUID v4 — long enough that brute-forcing one is
+// pointless; treated as a bearer secret in URLs (same model that
+// SaaS share-links and email magic-links use).
+model Purchase {
+  id                    String         @id @default(uuid()) @db.Uuid
+  email                 String
+  name                  String?
+  stripeSessionId       String         @unique @map("stripe_session_id")
+  stripePaymentIntentId String?        @unique @map("stripe_payment_intent_id")
+  amount                Int            // in cents
+  currency              String         @default("eur")
+  status                PurchaseStatus @default(pending)
+  // The secret URL key — opaque to the user, never logged or exposed.
+  accessToken           String         @unique @map("access_token")
+  ebookDownloads        Int            @default(0) @map("ebook_downloads")
+  audioDownloads        Int            @default(0) @map("audio_downloads")
+  lang                  String         @default("es")
+  meta                  Json?          // raw Stripe payload snapshot for audit
+  createdAt             DateTime       @default(now()) @map("created_at")
+  paidAt                DateTime?      @map("paid_at")
+  refundedAt            DateTime?      @map("refunded_at")
+
+  @@index([email])
+  @@index([status, createdAt])
+  @@map("purchases")
+}
+
 // Unified marketing contacts table.
 // Filled automatically every time someone leaves their email (workbook
 // signup, review submission, future CTAs). Idempotent by email — repeat

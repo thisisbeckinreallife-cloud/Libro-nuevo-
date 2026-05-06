@@ -165,6 +165,18 @@ export type Dict = {
       items: { titlePre: string; titleEm: string; detail: string }[];
       foot: string;
     };
+    // Digital offer (12€) — Stripe checkout. Pre-orden of the bundle
+    // ebook + audiolibro that lives at /biblioteca after payment.
+    digital: {
+      tag: string;          // small badge above the digital block
+      h: string;            // headline ("Pack digital · 12€")
+      detail: string;       // 1-line summary of what's inside
+      bullets: string[];    // 2-3 micro-features below
+      cta: string;          // button label
+      ctaPending: string;   // shown while POST /api/checkout is in flight
+      ctaUnavailable: string; // shown if Stripe returns 503 (not configured yet)
+      orSep: string;        // "o si prefieres papel:" between digital + amazon
+    };
   };
   depth: {
     secNum: string;
@@ -340,6 +352,40 @@ export type Dict = {
       genericError: string;
       footNote: string;
     };
+  };
+  biblioteca: {
+    eyebrow: string;
+    h1Pre: string;
+    h1Em: string;
+    welcomeWithName: string; // "Bienvenido, {name}"
+    welcomeAnon: string;     // shown if no name on the Purchase
+    intro: string;
+    bookmark: string;        // hint to save the URL
+    pendingTitle: string;    // shown while waiting for the webhook
+    pendingBody: string;
+    pendingHint: string;
+    notFoundTitle: string;
+    notFoundBody: string;
+    refundedTitle: string;
+    refundedBody: string;
+    ebook: {
+      label: string;
+      titlePre: string;
+      titleEm: string;
+      body: string;
+      download: string;
+      pending: string;       // shown while ebook URL not yet set
+      pendingDetail: string;
+    };
+    audio: {
+      label: string;
+      titlePre: string;
+      titleEm: string;
+      body: string;
+      download: string;
+      duration: string;      // "5h 10m"
+    };
+    footNote: string;
   };
 };
 
@@ -638,6 +684,21 @@ export const dict: Record<Lang, Dict> = {
           },
         ],
         foot: "Dentro del libro físico encontrarás el QR para reclamarlos.",
+      },
+      digital: {
+        tag: "Oferta digital · 12€",
+        h: "Pack ebook + audiolibro · acceso inmediato.",
+        detail:
+          "El libro completo en PDF y la versión narrada en MP3 (5h 10m). Para descargar al instante tras pagar.",
+        bullets: [
+          "Pago seguro por Stripe — Apple Pay y Google Pay disponibles.",
+          "Biblioteca privada accesible desde cualquier dispositivo.",
+          "Sin DRM. Sin caducidad. Sin reproductor obligado.",
+        ],
+        cta: "Comprar pack digital · 12€",
+        ctaPending: "Abriendo pago…",
+        ctaUnavailable: "Próximamente disponible",
+        orSep: "o si prefieres papel:",
       },
     },
     depth: {
@@ -999,6 +1060,49 @@ export const dict: Record<Lang, Dict> = {
           "Guarda esta página. El enlace deja de funcionar en 24 horas; los archivos se quedan en tu dispositivo.",
       },
     },
+    biblioteca: {
+      eyebrow: "Tu biblioteca",
+      h1Pre: "Tu copia digital, ",
+      h1Em: "lista para descargar.",
+      welcomeWithName: "Bienvenida, {name}.",
+      welcomeAnon: "Bienvenida.",
+      intro:
+        "Tu compra está confirmada. Descarga el ebook y el audiolibro tantas veces como necesites — cada archivo admite hasta 5 descargas con este enlace.",
+      bookmark:
+        "Guarda esta URL en favoritos: vuelve cuando quieras desde cualquier dispositivo.",
+      pendingTitle: "Estamos confirmando tu pago…",
+      pendingBody:
+        "Stripe nos avisa por webhook en cuestión de segundos. Si esta página se queda esperando más de un minuto, revisa el correo: el recibo automático lleva el enlace.",
+      pendingHint: "Reintentando…",
+      notFoundTitle: "Enlace no válido",
+      notFoundBody:
+        "No encontramos una compra asociada a este enlace. Si acabas de pagar, espera un minuto y recarga. Si el problema persiste, escríbenos.",
+      refundedTitle: "Esta compra fue reembolsada",
+      refundedBody:
+        "El acceso digital se canceló al procesar el reembolso. Si crees que es un error, escríbenos.",
+      ebook: {
+        label: "Ebook · The Arkwright Method",
+        titlePre: "El libro completo, ",
+        titleEm: "para leer en cualquier dispositivo.",
+        body:
+          "PDF optimizado para Kindle, iPad y lectura en pantalla. Formato fijo, igual al físico.",
+        download: "Descargar ebook",
+        pending: "Próximamente disponible",
+        pendingDetail:
+          "Estamos preparando la versión digital. Cuando esté lista podrás descargarla desde aquí — el acceso es vitalicio.",
+      },
+      audio: {
+        label: "Audiolibro · The Arkwright Method",
+        titlePre: "Cinco horas de ",
+        titleEm: "el método narrado.",
+        body:
+          "MP3 navegable. Voz en español, mismo texto íntegro del libro. Reproducible en cualquier app de podcast o reproductor.",
+        download: "Descargar audiolibro",
+        duration: "5h 10m · MP3",
+      },
+      footNote:
+        "Las descargas se cuentan por archivo (máx. 5 por copia). Si tienes problemas, contacta con nosotros respondiendo al recibo de Stripe.",
+    },
   },
   en: {
     nav: {
@@ -1294,6 +1398,21 @@ export const dict: Record<Lang, Dict> = {
           },
         ],
         foot: "Inside the physical book you'll find the QR to redeem both.",
+      },
+      digital: {
+        tag: "Digital offer · €12",
+        h: "Ebook + audiobook bundle · instant access.",
+        detail:
+          "The full book as a PDF and the narrated version as MP3 (5h 10m). Downloadable the moment you pay.",
+        bullets: [
+          "Secure checkout via Stripe — Apple Pay and Google Pay supported.",
+          "Private library, accessible from any device.",
+          "No DRM. No expiry. No mandatory player.",
+        ],
+        cta: "Buy digital bundle · €12",
+        ctaPending: "Opening checkout…",
+        ctaUnavailable: "Coming soon",
+        orSep: "or if you prefer paper:",
       },
     },
     depth: {
@@ -1649,6 +1768,49 @@ export const dict: Record<Lang, Dict> = {
         footNote:
           "Bookmark this page. The link expires in 24 hours; the files stay on your device.",
       },
+    },
+    biblioteca: {
+      eyebrow: "Your library",
+      h1Pre: "Your digital copy, ",
+      h1Em: "ready to download.",
+      welcomeWithName: "Welcome, {name}.",
+      welcomeAnon: "Welcome.",
+      intro:
+        "Your purchase is confirmed. Download the ebook and the audiobook as many times as you need — each file allows up to 5 downloads with this link.",
+      bookmark:
+        "Bookmark this URL: come back any time, from any device.",
+      pendingTitle: "Confirming your payment…",
+      pendingBody:
+        "Stripe pings us via webhook within seconds. If this page hangs longer than a minute, check your inbox — the receipt has the link.",
+      pendingHint: "Retrying…",
+      notFoundTitle: "Invalid link",
+      notFoundBody:
+        "We couldn't find a purchase tied to this link. If you just paid, wait a minute and reload. If it persists, write to us.",
+      refundedTitle: "This purchase was refunded",
+      refundedBody:
+        "Digital access was revoked when the refund went through. If this is a mistake, write to us.",
+      ebook: {
+        label: "Ebook · The Arkwright Method",
+        titlePre: "The full book, ",
+        titleEm: "ready for any device.",
+        body:
+          "PDF optimised for Kindle, iPad and on-screen reading. Fixed-format, identical to print.",
+        download: "Download ebook",
+        pending: "Coming soon",
+        pendingDetail:
+          "We're finalising the digital edition. Once it's ready you'll download it here — access is for life.",
+      },
+      audio: {
+        label: "Audiobook · The Arkwright Method",
+        titlePre: "Five hours of ",
+        titleEm: "the method, narrated.",
+        body:
+          "Navigable MP3. Spanish narration, the full book read aloud. Plays in any podcast app or media player.",
+        download: "Download audiobook",
+        duration: "5h 10m · MP3",
+      },
+      footNote:
+        "Downloads are counted per file (max 5 per copy). If you have trouble, reply to your Stripe receipt and we'll help.",
     },
   },
 };
