@@ -37,7 +37,15 @@ above 100 MB. Use a **GitHub Release asset** instead:
    authorised reader to the asset URL — Railway egress stays at zero
    for the file body.
 
-The current Spanish audiobook lives at:
-`rewards-audio-es-v1` → `the-arkwright-method-audiolibro-es.mp3` (142 MB,
-MP3 64 kbps mono, 5h 10m). Re-encode at higher bitrate by replacing the
-asset with a new upload — the URL stays stable as long as the tag does.
+Current Release assets and their URLs:
+
+| Reward kind  | Tag                       | Filename                                      | Size   | Notes                                |
+|--------------|---------------------------|-----------------------------------------------|--------|--------------------------------------|
+| `/resena` ebook | `rewards-ebook-es-v1`  | `no-eres-tu-es-tu-subconsciente.pdf`          | 4.7 MB | First book by Lara (PDF)             |
+| `/resena` audio | (pending)              | —                                             | —      | RSB audio, not yet uploaded          |
+| Arkwright audiobook | `rewards-audio-es-v1` | `the-arkwright-method-audiolibro-es.mp3` | 142 MB | 5h 10m · MP3 64 kbps mono            |
+| Arkwright ebook | (pending)              | —                                             | —      | The Arkwright Method (PRODUCT_EBOOK_URL) |
+
+Re-encode at higher bitrate / replace the file by uploading a new
+asset to the same tag with `--clobber`. The URL stays stable as long
+as the tag does.
