@@ -67,11 +67,17 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     consentMarketing: true,
   });
 
-  // 303 (See Other) is the canonical "POST/GET → GET this resource"
-  // redirect, but a plain 302 works in every browser and avoids the
-  // edge case where a 303 is interpreted as a HEAD-eligible response
-  // by intermediate proxies.
-  const target = new URL("/workbook", req.url);
+  // Build the absolute redirect URL from the public host. We can't
+  // trust `req.url` here because Railway's internal proxy rewrites it
+  // to localhost:8080 — the user's browser would refuse to follow
+  // such a Location. Prefer x-forwarded-host (set by the edge proxy)
+  // and fall back to NEXT_PUBLIC_SITE_URL.
+  const fwdHost = req.headers.get("x-forwarded-host") || req.headers.get("host");
+  const fwdProto = req.headers.get("x-forwarded-proto") || "https";
+  const baseUrl = fwdHost
+    ? `${fwdProto}://${fwdHost}`
+    : (process.env["NEXT_PUBLIC_SITE_URL"] ?? "https://arkwright.laralawn.com").replace(/\/$/, "");
+  const target = new URL("/workbook", baseUrl);
   return NextResponse.redirect(target, {
     status: 302,
     headers: { "Cache-Control": "private, no-store" },
