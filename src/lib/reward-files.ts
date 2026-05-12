@@ -47,10 +47,15 @@ const ACCEPTED: Record<RewardKind, { exts: string[]; mime: Record<string, string
     },
   },
   audio: {
-    exts: ["mp3", "m4a", "wav"],
+    // m4b is the standard audiobook container (AAC inside MP4, with
+    // chapter markers). Apple Books, VLC and every modern phone treat
+    // it like an audio file. Adding it lets us serve real audiobook
+    // files without re-muxing them into a chapterless .m4a/.mp3.
+    exts: ["mp3", "m4a", "m4b", "wav"],
     mime: {
       mp3: "audio/mpeg",
       m4a: "audio/mp4",
+      m4b: "audio/mp4",
       wav: "audio/wav",
     },
   },
