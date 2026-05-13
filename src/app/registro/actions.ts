@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { claimBonus } from "@/lib/claim";
 import { upsertContact, detectLang, type ContactLang } from "@/lib/contact";
+import { sendWorkbookWelcomeEmail } from "@/lib/emails/workbook-welcome";
 import { rateLimit, hashIp } from "@/lib/rate-limit";
 import { issueSession } from "@/lib/session";
 
@@ -59,6 +60,12 @@ export async function claimAction(
         lang,
         consentMarketing: true, // workbook form requires consent checkbox
       });
+      // Welcome email with the permanent /workbook link — best-effort.
+      try {
+        await sendWorkbookWelcomeEmail({ email, name: name || null });
+      } catch (err) {
+        console.error("[registro] sendWorkbookWelcomeEmail failed", { email, err });
+      }
     } else if (result.reason === "email_exists") {
       // Even if the User row already existed, refresh the contact row so
       // lastSeenAt advances and the source set stays accurate.

@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { upsertContact, detectLang, type ContactLang } from "@/lib/contact";
+import { sendReviewRewardEmail } from "@/lib/emails/review-reward";
 import { createReview, type UploadReason } from "@/lib/review";
 import { signClaim } from "@/lib/signed-token";
 
@@ -50,5 +51,13 @@ export async function uploadScreenshotAction(
   });
 
   const token = signClaim({ submissionId: result.submissionId });
+
+  // Email con el link permanente a /resena/recompensa — por si cierra la pestaña.
+  try {
+    await sendReviewRewardEmail({ email: emailRaw, claimSignedToken: token });
+  } catch (err) {
+    console.error("[resena] sendReviewRewardEmail failed", { email: emailRaw, err });
+  }
+
   redirect(`/resena/recompensa?t=${encodeURIComponent(token)}`);
 }
