@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import type Stripe from "stripe";
 import { upsertContact } from "@/lib/contact";
+import { sendPurchaseEmail } from "@/lib/emails/purchase-email";
 import { prisma } from "@/lib/prisma";
 import { recordCheckoutCompleted, recordRefund } from "@/lib/purchase";
 import { getStripe, getWebhookSecret } from "@/lib/stripe";
@@ -125,7 +126,7 @@ async function handleCheckoutCompleted(
       ? session.payment_intent
       : session.payment_intent?.id ?? null;
 
-  await recordCheckoutCompleted({
+  const { accessToken, isNew } = await recordCheckoutCompleted({
     stripeSessionId: session.id,
     stripePaymentIntentId: paymentIntentId,
     email,
@@ -140,6 +141,26 @@ async function handleCheckoutCompleted(
         typeof session.customer === "string" ? session.customer : null,
     },
   });
+
+  // Email transaccional: solo si es un Purchase nuevo (idempotente
+  // ante retries del webhook). Si el envío falla, lo loggeamos pero no
+  // dejamos caer el webhook — el comprador siempre tiene el link al
+  // bookmark URL desde la pantalla de éxito de Stripe.
+  if (isNew) {
+    try {
+      await sendPurchaseEmail({
+        email,
+        name,
+        accessToken,
+        lang,
+      });
+    } catch (err) {
+      console.error("[stripe-webhook] sendPurchaseEmail failed (non-fatal)", {
+        email,
+        err,
+      });
+    }
+  }
 
   // Mirror into the marketing contacts table — buyers join the same
   // index as workbook signups but tagged with source="purchase" via
