@@ -2,13 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import type Stripe from "stripe";
 import { upsertContact } from "@/lib/contact";
 import { sendPurchaseEmail } from "@/lib/emails/purchase-email";
-import { sendRefundEmail } from "@/lib/emails/refund";
 import { prisma } from "@/lib/prisma";
-import {
-  getPurchaseBySessionId,
-  recordCheckoutCompleted,
-  recordRefund,
-} from "@/lib/purchase";
+import { recordCheckoutCompleted, recordRefund } from "@/lib/purchase";
 import { getStripe, getWebhookSecret } from "@/lib/stripe";
 
 /**
@@ -221,25 +216,5 @@ async function handleChargeRefunded(
   const session = sessions.data[0];
   if (!session) return;
 
-  // Lookup la Purchase ANTES de marcarla refunded — necesitamos email
-  // y nombre para el email de confirmación. Idempotente: si ya está
-  // refunded, no enviamos un segundo email.
-  const purchase = await getPurchaseBySessionId(session.id);
-  const wasRefunded = await recordRefund(session.id);
-
-  if (purchase && wasRefunded) {
-    try {
-      await sendRefundEmail({
-        email: purchase.email,
-        name: purchase.name,
-        amount: charge.amount_refunded ?? charge.amount,
-        currency: charge.currency,
-      });
-    } catch (err) {
-      console.error("[stripe-webhook] sendRefundEmail failed (non-fatal)", {
-        email: purchase.email,
-        err,
-      });
-    }
-  }
+  await recordRefund(session.id);
 }

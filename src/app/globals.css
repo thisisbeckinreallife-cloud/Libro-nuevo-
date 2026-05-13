@@ -2845,6 +2845,77 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   padding: 32px 28px;
   margin-bottom: 32px;
 }
+
+/* Sección de reseña — secundaria, tono más ligero que el workbook */
+.biblioteca-resena {
+  position: relative;
+  background: var(--paper-warm);
+  border: 1px solid var(--rule-soft);
+  border-radius: 10px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+.biblioteca-resena-badge {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.biblioteca-resena-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 26px);
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 8px 0 10px;
+}
+.biblioteca-resena-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+.biblioteca-resena-body {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0 0 20px;
+  max-width: 600px;
+}
+.biblioteca-resena-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: all 150ms var(--ease);
+}
+.biblioteca-resena-cta:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+.biblioteca-resena-cta .arrow {
+  display: inline-block;
+  transition: transform 150ms var(--ease);
+}
+.biblioteca-resena-cta:hover .arrow {
+  transform: translateX(3px);
+}
 .biblioteca-workbook-badge {
   position: absolute;
   top: -12px;
