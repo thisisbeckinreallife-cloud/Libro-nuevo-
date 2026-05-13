@@ -49,6 +49,25 @@ export function AudioPlayer({ accessToken }: { accessToken: string }) {
 
   const storageKey = `arkwright-audio-progress-${accessToken}`;
 
+  // Fire-and-forget tracking — los errores no rompen el reproductor.
+  function trackEvent(type: string, extra?: Record<string, unknown>) {
+    try {
+      fetch("/api/biblioteca/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        keepalive: true, // permite enviar incluso al cerrar la pestaña
+        body: JSON.stringify({
+          token: accessToken,
+          type,
+          chapter: manifest?.chapters[chapterId]?.prefix,
+          metadata: extra,
+        }),
+      }).catch(() => {});
+    } catch {
+      // ignore
+    }
+  }
+
   // Carga el manifest público.
   useEffect(() => {
     let cancelled = false;
@@ -155,6 +174,7 @@ export function AudioPlayer({ accessToken }: { accessToken: string }) {
   // Auto-avance al siguiente capítulo cuando termina el actual.
   function handleEnded() {
     if (!manifest) return;
+    trackEvent("chapter_completed");
     if (chapterId < manifest.chapters.length - 1) {
       setChapterId(chapterId + 1);
       setCurrentTime(0);
@@ -169,8 +189,18 @@ export function AudioPlayer({ accessToken }: { accessToken: string }) {
     if (playing) {
       audio.pause();
       setPlaying(false);
+      trackEvent("play_paused");
     } else {
-      audio.play().then(() => setPlaying(true)).catch((e) => setError(e.message));
+      audio
+        .play()
+        .then(() => {
+          setPlaying(true);
+          trackEvent("play_started");
+        })
+        .catch((e) => {
+          setError(e.message);
+          trackEvent("error", { message: e.message });
+        });
     }
   }
 
@@ -202,6 +232,7 @@ export function AudioPlayer({ accessToken }: { accessToken: string }) {
     setCurrentTime(0);
     setChapterListOpen(false);
     setPlaying(true); // intentamos reproducir al elegir
+    trackEvent("chapter_changed", { newChapterId: id });
   }
 
   if (error) {
