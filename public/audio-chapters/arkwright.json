@@ -1,0 +1,26 @@
+{
+  "title": "El método Arkwright",
+  "voice": "Despina",
+  "language": "es-ES",
+  "narrator": "TTS Gemini 2.5 Flash (voz Despina, castellano de España)",
+  "totalDurationSeconds": 20065,
+  "chapters": [
+    { "id": 0,  "prefix": "00", "title": "Título y dedicatoria",                      "durationSeconds": 37.9   },
+    { "id": 1,  "prefix": "01", "title": "Prólogo. Déjame adivinar",                  "durationSeconds": 582.6  },
+    { "id": 2,  "prefix": "02", "title": "Capítulo 1. Mientras dormías",              "durationSeconds": 1741.7 },
+    { "id": 3,  "prefix": "03", "title": "Capítulo 2. El diseño",                     "durationSeconds": 1644.3 },
+    { "id": 4,  "prefix": "04", "title": "Capítulo 3. No te vas a morir tan pronto",  "durationSeconds": 2055.7 },
+    { "id": 5,  "prefix": "05", "title": "Capítulo 4. El piloto automático",          "durationSeconds": 1204.8 },
+    { "id": 6,  "prefix": "06", "title": "Capítulo 5. La conversación",               "durationSeconds": 1268.4 },
+    { "id": 7,  "prefix": "07", "title": "Capítulo 6. El funeral",                    "durationSeconds": 1800.9 },
+    { "id": 8,  "prefix": "08", "title": "Capítulo 7. Tu cuerpo sabe que estás mintiendo", "durationSeconds": 1145.2 },
+    { "id": 9,  "prefix": "09", "title": "Capítulo 8. La bifurcación",                "durationSeconds": 1548.7 },
+    { "id": 10, "prefix": "10", "title": "Capítulo 9. La tribu",                      "durationSeconds": 1365.0 },
+    { "id": 11, "prefix": "11", "title": "Capítulo 10. El mundo no es una línea",     "durationSeconds": 1426.6 },
+    { "id": 12, "prefix": "12", "title": "Capítulo 11. Aprende a pescar",             "durationSeconds": 1463.1 },
+    { "id": 13, "prefix": "13", "title": "Capítulo 12. Tu próxima vida",              "durationSeconds": 1338.3 },
+    { "id": 14, "prefix": "14", "title": "Capítulo 13. El lunes por la mañana",       "durationSeconds": 877.1  },
+    { "id": 15, "prefix": "15", "title": "Epílogo. La hormiga",                       "durationSeconds": 465.3  },
+    { "id": 16, "prefix": "16", "title": "Una última cosa",                           "durationSeconds": 96.2   }
+  ]
+}

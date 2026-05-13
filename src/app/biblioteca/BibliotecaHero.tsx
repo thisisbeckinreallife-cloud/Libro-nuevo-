@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useLang } from "@/components/LangProvider";
+import { AudioPlayer } from "@/components/AudioPlayer";
 
 type Access =
   | {
@@ -109,6 +110,13 @@ export function BibliotecaHero({
         <p className="biblioteca-welcome">{welcome}</p>
         <p className="biblioteca-intro">{b.intro}</p>
       </header>
+
+      {/* WEB AUDIO PLAYER — universal, sin descargar nada */}
+      {audioAvailable ? (
+        <section className="biblioteca-audio-player">
+          <AudioPlayer accessToken={access.accessToken} />
+        </section>
+      ) : null}
 
       <section className="biblioteca-products">
         {/* AUDIOBOOK */}
