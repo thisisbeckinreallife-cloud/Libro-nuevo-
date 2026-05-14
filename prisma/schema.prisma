@@ -165,6 +165,28 @@ model Purchase {
   @@map("purchases")
 }
 
+// Waitlist for the not-yet-shipping editions of the book (signed paperback,
+// numbered collector). Submitted from /oferta when someone clicks an
+// "Reserve my spot" CTA. We never charge for these — just collect the
+// email so we can email the buyer the moment that edition opens. Also
+// upserts into `Contact` so marketing can segment from the same table.
+model WaitlistEntry {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String
+  // "paperback" | "collector" — keeps the two editions countable separately.
+  tier      String
+  lang      String   @default("es")
+  // The page or campaign source — useful if we ever run paid waitlist ads.
+  source    String?
+  ipHash    String?  @map("ip_hash")
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([email, tier])
+  @@index([tier, createdAt])
+  @@map("waitlist_entries")
+}
+
 // Unified marketing contacts table.
 // Filled automatically every time someone leaves their email (workbook
 // signup, review submission, future CTAs). Idempotent by email — repeat

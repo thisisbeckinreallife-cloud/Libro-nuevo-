@@ -3,27 +3,27 @@
 import Image from "next/image";
 import { Book3D } from "@/components/Book3D";
 import { useLang } from "@/components/LangProvider";
-import { OfertaCta } from "./OfertaCta";
+import { OfertaPricingCards } from "./OfertaPricingCards";
 import { OfertaStickyCta } from "./OfertaStickyCta";
 
 /**
- * Landing /oferta — diseñada para máxima conversión.
+ * /oferta — Hormozi shop.acquisition.com layout, adapted for a single
+ * product with three editions.
  *
- * Estructura siguiendo Hormozi (Value Equation, Grand Slam Offer, MAGIC)
- * y Suby (Godfather Offer, Halo Strategy):
- *   01. Hero magnético
- *   02. Problema (PAS)
- *   03. Solución (PAS)
- *   04. Stack de valor (Godfather paso 2: Build Value)
- *   05. Rationale (Godfather paso 1: por qué a este precio)
- *   06. Garantía (Godfather paso 6: Power Guarantee)
- *   07. Autoridad
- *   08. Social proof
- *   09. FAQ
- *   10. CTA final + sticky mobile
+ *   01 — Hero (book3D + headline + trust line)
+ *   02 — Pricing cards (3 tiers, central featured)
+ *   03 — Trust band navy (4 stats with copper numbers)
+ *   04 — Reviews grid (6 cards, paper background)
+ *   05 — Meet Lara (paper-warm, portrait + bio + quote)
+ *   06 — What's inside (3-col grid, bonuses with navy/copper accent)
+ *   07 — Pricing cards REPEATED (after value built)
+ *   08 — Guarantee band navy (shield + 30-day text)
+ *   09 — FAQ
+ *   10 — Final CTA (paper-warm)
+ *   11 — Sticky mobile bottom CTA
  *
- * Todos los CTAs disparan el mismo POST /api/checkout (Stripe live).
- * Solo 1 click → Stripe → /biblioteca tras pagar.
+ * Only the digital tier fires Stripe. Paperback and collector are
+ * waitlist captures via OfertaWaitlistModal.
  */
 export function OfertaLanding() {
   const { t } = useLang();
@@ -35,11 +35,13 @@ export function OfertaLanding() {
       <section className="oferta-hero">
         <div className="oferta-hero-grid">
           <div className="oferta-hero-text">
+            <p className="oferta-hero-stars">
+              <span className="oferta-hero-stars-icons">★★★★★</span>
+              <span>{o.hero.trustMicrocopy}</span>
+            </p>
             <p className="oferta-eyebrow">{o.hero.eyebrow}</p>
             <h1 className="oferta-hero-h1">{o.hero.headline}</h1>
             <p className="oferta-hero-sub">{o.hero.subheadline}</p>
-            <OfertaCta label={o.hero.ctaPrimary} variant="primary-large" />
-            <p className="oferta-hero-trust">{o.hero.trustMicrocopy}</p>
           </div>
           <div className="oferta-hero-visual">
             <div className="book-hero">
@@ -49,127 +51,146 @@ export function OfertaLanding() {
         </div>
       </section>
 
-      {/* 02 — PROBLEMA (PAS) */}
-      <section className="oferta-block oferta-problem">
-        <p className="oferta-eyebrow">{o.problem.eyebrow}</p>
-        <h2 className="oferta-h2">{o.problem.headline}</h2>
-        <p className="oferta-intro">{o.problem.intro}</p>
-        <ul className="oferta-pains">
-          {o.problem.pains.map((p) => (
-            <li key={p} className="oferta-pain">
-              <span className="oferta-pain-mark" aria-hidden="true">
-                ✕
-              </span>
-              <span>{p}</span>
-            </li>
+      {/* 02 — PRICING CARDS */}
+      <OfertaPricingCards />
+
+      {/* 03 — TRUST BAND NAVY */}
+      <section className="oferta-trust" aria-label={o.trust.eyebrow}>
+        <div className="oferta-trust-inner">
+          {o.trust.stats.map((s) => (
+            <div key={s.label} className="oferta-trust-stat">
+              <p className="oferta-trust-num">{s.num}</p>
+              <p className="oferta-trust-label">{s.label}</p>
+              {s.hasStars ? (
+                <p className="oferta-trust-stars" aria-hidden="true">
+                  ★★★★★
+                </p>
+              ) : null}
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
-      {/* 03 — SOLUCIÓN */}
-      <section className="oferta-block oferta-solution">
-        <p className="oferta-eyebrow">{o.solution.eyebrow}</p>
-        <h2 className="oferta-h2">{o.solution.headline}</h2>
-        <p className="oferta-intro">{o.solution.intro}</p>
-        <ul className="oferta-pillars">
-          {o.solution.pillars.map((pl) => (
-            <li key={pl.title} className="oferta-pillar">
-              <h3 className="oferta-pillar-title">{pl.title}</h3>
-              <p className="oferta-pillar-body">{pl.body}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* 04 — STACK DE VALOR */}
-      <section className="oferta-block oferta-stack">
-        <p className="oferta-eyebrow">{o.stack.eyebrow}</p>
-        <h2 className="oferta-h2">{o.stack.headline}</h2>
-        <ul className="oferta-stack-list">
-          {o.stack.items.map((it) => (
-            <li key={it.title} className="oferta-stack-item">
-              <div className="oferta-stack-item-main">
-                <span className="oferta-stack-check" aria-hidden="true">
-                  ✓
+      {/* 04 — REVIEWS GRID */}
+      <section className="oferta-reviews">
+        <header className="oferta-reviews-header">
+          <p className="oferta-eyebrow">{o.reviews.eyebrow}</p>
+          <h2 className="oferta-h2">{o.reviews.headline}</h2>
+        </header>
+        <div className="oferta-reviews-grid">
+          {o.reviews.items.map((r) => (
+            <article key={r.name} className="oferta-review">
+              <p className="oferta-review-stars" aria-hidden="true">
+                ★★★★★
+              </p>
+              <p className="oferta-review-text">“{r.text}”</p>
+              <div className="oferta-review-meta">
+                <span className="oferta-review-avatar" aria-hidden="true">
+                  {r.initial}
                 </span>
-                <div>
-                  <h3 className="oferta-stack-item-title">{it.title}</h3>
-                  <p className="oferta-stack-item-detail">{it.detail}</p>
-                </div>
+                <span>
+                  <strong>{r.name}</strong>
+                  {r.role}
+                </span>
+                <span className="oferta-review-verified">
+                  ✓ {r.verifiedLabel}
+                </span>
               </div>
-              <span className="oferta-stack-item-valor">{it.valor}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="oferta-stack-totals">
-          <p className="oferta-stack-total-anclado">{o.stack.totalAnclado}</p>
-          <p className="oferta-stack-precio">{o.stack.precioFinal}</p>
-        </div>
-        <OfertaCta label={o.stack.cta} variant="primary-large" />
-      </section>
-
-      {/* 05 — RATIONALE */}
-      <section className="oferta-block oferta-rationale">
-        <p className="oferta-eyebrow">{o.rationale.eyebrow}</p>
-        <h2 className="oferta-h2">{o.rationale.headline}</h2>
-        <div className="oferta-rationale-body">
-          {o.rationale.body.map((p, i) => (
-            <p key={i}>{p}</p>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* 06 — GARANTÍA */}
-      <section className="oferta-block oferta-guarantee">
-        <p className="oferta-eyebrow">{o.guarantee.eyebrow}</p>
-        <h2 className="oferta-h2">{o.guarantee.headline}</h2>
-        <p className="oferta-guarantee-body">{o.guarantee.body}</p>
-        <p className="oferta-guarantee-micro">{o.guarantee.microcopy}</p>
-      </section>
-
-      {/* 07 — AUTORIDAD */}
-      <section className="oferta-block oferta-authority">
-        <p className="oferta-eyebrow">{o.authority.eyebrow}</p>
-        <h2 className="oferta-h2">{o.authority.headline}</h2>
-        <div className="oferta-authority-grid">
-          <div className="oferta-authority-portrait">
+      {/* 05 — MEET LARA */}
+      <section className="oferta-lara">
+        <div className="oferta-lara-grid">
+          <div className="oferta-lara-portrait">
             <Image
               src="/lara-portrait.png"
-              alt="Lara Lawn"
+              alt={o.lara.imageAlt}
               width={420}
               height={520}
               sizes="(max-width: 900px) 60vw, 320px"
             />
           </div>
-          <div className="oferta-authority-text">
-            <p className="oferta-authority-bio">{o.authority.bio}</p>
-            <blockquote className="oferta-authority-quote">
-              {o.authority.quote}
+          <div className="oferta-lara-text">
+            <p className="oferta-eyebrow">{o.lara.eyebrow}</p>
+            <h2 className="oferta-h2">{o.lara.headline}</h2>
+            <p className="oferta-lara-bio">{o.lara.bio}</p>
+            <ul className="oferta-lara-bullets">
+              {o.lara.bullets.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+            <blockquote className="oferta-lara-quote">
+              {o.lara.quote}
             </blockquote>
           </div>
         </div>
       </section>
 
-      {/* 08 — SOCIAL PROOF */}
-      <section className="oferta-block oferta-testimonials">
-        <p className="oferta-eyebrow">{o.testimonials.eyebrow}</p>
-        <h2 className="oferta-h2">{o.testimonials.headline}</h2>
-        <ul className="oferta-testimonials-list">
-          {o.testimonials.items.map((it) => (
-            <li key={it.name} className="oferta-testimonial">
-              <p className="oferta-testimonial-text">“{it.text}”</p>
-              <p className="oferta-testimonial-meta">
-                <strong>{it.name}</strong> · {it.role}
-              </p>
-            </li>
+      {/* 06 — WHAT'S INSIDE */}
+      <section className="oferta-inside">
+        <header className="oferta-inside-header">
+          <p className="oferta-eyebrow">{o.inside.eyebrow}</p>
+          <h2 className="oferta-h2">{o.inside.headline}</h2>
+          <p className="oferta-intro" style={{ margin: "0 auto" }}>
+            {o.inside.intro}
+          </p>
+        </header>
+        <div className="oferta-inside-grid">
+          {o.inside.items.map((it) => (
+            <article
+              key={it.title}
+              className={`oferta-inside-item ${
+                it.bonus ? "oferta-inside-item--bonus" : ""
+              }`}
+            >
+              <span className="oferta-inside-item-icon" aria-hidden="true">
+                {it.bonus ? "✦" : "✓"}
+              </span>
+              <h3 className="oferta-inside-item-title">{it.title}</h3>
+              <p className="oferta-inside-item-detail">{it.detail}</p>
+            </article>
           ))}
-        </ul>
+        </div>
+      </section>
+
+      {/* 07 — PRICING REPEATED */}
+      <OfertaPricingCards />
+
+      {/* 08 — GUARANTEE BAND NAVY */}
+      <section className="oferta-guarantee" aria-label={o.guarantee.main}>
+        <div className="oferta-guarantee-inner">
+          <div className="oferta-guarantee-row">
+            <svg
+              className="oferta-guarantee-shield"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <path d="m9 12 2 2 4-4" />
+            </svg>
+            <p className="oferta-guarantee-text">
+              {o.guarantee.main}
+              <span className="oferta-guarantee-sep">{o.guarantee.sep}</span>
+            </p>
+          </div>
+          <p className="oferta-guarantee-fine">{o.guarantee.fineprint}</p>
+        </div>
       </section>
 
       {/* 09 — FAQ */}
-      <section className="oferta-block oferta-faq">
-        <p className="oferta-eyebrow">{o.faq.eyebrow}</p>
-        <h2 className="oferta-h2">{o.faq.headline}</h2>
+      <section className="oferta-faq">
+        <header className="oferta-faq-header">
+          <p className="oferta-eyebrow">{o.faq.eyebrow}</p>
+          <h2 className="oferta-h2">{o.faq.headline}</h2>
+        </header>
         <div className="oferta-faq-list">
           {o.faq.items.map((f) => (
             <details key={f.question} className="oferta-faq-item">
@@ -180,14 +201,17 @@ export function OfertaLanding() {
         </div>
       </section>
 
-      {/* 10 — CTA FINAL */}
-      <section className="oferta-block oferta-final">
+      {/* 10 — FINAL CTA */}
+      <section className="oferta-final">
         <h2 className="oferta-final-h">{o.finalCta.headline}</h2>
         <p className="oferta-final-sub">{o.finalCta.subheadline}</p>
-        <OfertaCta label={o.finalCta.cta} variant="primary-large" />
+        <a href="#pricing" className="oferta-final-cta">
+          {o.finalCta.cta}
+          <span aria-hidden="true">→</span>
+        </a>
       </section>
 
-      {/* Sticky bottom CTA — mobile only */}
+      {/* 11 — STICKY MOBILE */}
       <OfertaStickyCta />
     </main>
   );

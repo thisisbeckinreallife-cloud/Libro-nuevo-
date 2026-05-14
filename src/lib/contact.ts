@@ -19,7 +19,12 @@ import { prisma } from "./prisma";
  * contacts table is a marketing convenience, not a critical path.
  */
 
-export type ContactSource = "workbook" | "resena" | "purchase";
+export type ContactSource =
+  | "workbook"
+  | "resena"
+  | "purchase"
+  | "waitlist-paperback"
+  | "waitlist-collector";
 export type ContactLang = "es" | "en";
 
 export type UpsertContactInput = {

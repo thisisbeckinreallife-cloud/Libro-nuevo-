@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useLang } from "@/components/LangProvider";
-import { OfertaCta } from "./OfertaCta";
 
 /**
- * Botón fijo en la parte inferior del viewport (solo móvil) que
- * aparece tras hacer scroll fuera del Hero. Garantiza que el CTA
- * siempre esté a un dedo de distancia, sin importar dónde está el
- * usuario en la landing. En desktop queda oculto por CSS.
+ * Fixed bottom CTA on mobile only. Appears after the hero scrolls
+ * out of view. Clicking it scrolls to the pricing grid so the buyer
+ * sees the three editions instead of firing Stripe blind. Hidden by
+ * CSS on desktop.
  */
 export function OfertaStickyCta() {
   const { t } = useLang();
@@ -17,7 +16,6 @@ export function OfertaStickyCta() {
 
   useEffect(() => {
     const onScroll = () => {
-      // Mostrar tras los primeros 600 px (~ después del Hero).
       setVisible(window.scrollY > 600);
     };
     onScroll();
@@ -25,16 +23,19 @@ export function OfertaStickyCta() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const onClick = () => {
+    const el = document.getElementById("pricing");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div
       className={`oferta-sticky ${visible ? "is-visible" : ""}`}
       aria-hidden={!visible}
     >
-      <OfertaCta
-        label={o.stickyMobileCta}
-        variant="primary"
-        ariaLabel={o.cta}
-      />
+      <button type="button" onClick={onClick} aria-label={o.cta}>
+        {o.stickyMobileCta}
+      </button>
     </div>
   );
 }
