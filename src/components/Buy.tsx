@@ -4,10 +4,12 @@ import { BookStatic } from "./BookStatic";
 import { BuyDigitalCta } from "./BuyDigitalCta";
 import { useLang } from "./LangProvider";
 import { Reveal } from "./Reveal";
-import { SlotsCounter } from "./SlotsCounter";
 import type { SlotsPayload } from "@/lib/slots";
 
-export function Buy({ initialSlots }: { initialSlots: SlotsPayload }) {
+// Mantiene la prop por compatibilidad con la home, aunque ya no
+// renderizamos el SlotsCounter (era exclusivo de la edición física).
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function Buy({ initialSlots: _initialSlots }: { initialSlots: SlotsPayload }) {
   const { t } = useLang();
   return (
     <section className="buy" id="buy">
@@ -29,18 +31,8 @@ export function Buy({ initialSlots }: { initialSlots: SlotsPayload }) {
             </h2>
             <p>{t.buy.p}</p>
 
-            <div className="buy-options">
-              <div className="buy-option featured">
-                <span className="tag">{t.buy.featuredTag}</span>
-                <div className="buy-option-left">
-                  <div className="format">{t.buy.featuredFormat}</div>
-                  <div className="detail">{t.buy.featuredDetail}</div>
-                </div>
-                <div className="buy-option-right">
-                  <span className="price">27&nbsp;€</span>
-                </div>
-              </div>
-            </div>
+            {/* Oferta principal: pack digital €12 — Stripe checkout. */}
+            <BuyDigitalCta />
 
             <div className="buy-bonus">
               <div className="buy-bonus-head">
@@ -64,14 +56,7 @@ export function Buy({ initialSlots }: { initialSlots: SlotsPayload }) {
               <span className="buy-bonus-foot">{t.buy.bonusStack.foot}</span>
             </div>
 
-            <SlotsCounter initial={initialSlots} variant="light" showSubcopy />
-
-            {/* Digital bundle — Stripe checkout. Stub-safe: the CTA
-                gracefully shows "Próximamente disponible" until the
-                STRIPE_* env vars are set on Railway. */}
-            <BuyDigitalCta />
-
-            {/* Visual separator between digital + physical */}
+            {/* Separador antes de la edición física que llegará más adelante. */}
             <div className="buy-cta-sep" aria-hidden="true">
               <span className="rule" />
               <span className="buy-cta-sep-label">{t.buy.digital.orSep}</span>
@@ -79,15 +64,9 @@ export function Buy({ initialSlots }: { initialSlots: SlotsPayload }) {
             </div>
 
             <div className="buy-cta">
-              <a
-                href="https://amazon.com"
-                className="btn-secondary"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <span className="btn-secondary is-disabled" aria-disabled="true">
                 <span>{t.buy.cta}</span>
-                <span className="arrow" />
-              </a>
+              </span>
             </div>
             <div className="buy-note">
               <span className="dot" />

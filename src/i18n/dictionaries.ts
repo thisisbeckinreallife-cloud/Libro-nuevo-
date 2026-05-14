@@ -661,20 +661,20 @@ export const dict: Record<Lang, Dict> = {
     },
     buy: {
       secNum: "06 / Adquirir",
-      h2Line1Pre: "El libro ",
-      h2Line1Em: "físico",
-      h2Line2: "que no vas a prestar.",
-      p: "Primera edición en tapa dura. Encuadernación cosida, papel crema, marcador de tela. Pensado para subrayarse entero y volverse a abrir en dos años.",
+      h2Line1Pre: "El método entero, ",
+      h2Line1Em: "digital",
+      h2Line2: "y accesible al instante.",
+      p: "Pack ebook + audiolibro descargable nada más pagar. El libro completo en PDF y la versión narrada con 17 capítulos marcados (5h 34m). Sin esperas, sin envíos.",
       featuredTag: "Más elegido",
       featuredFormat: "Tapa dura + eBook",
       featuredDetail: "Primera edición · Envío internacional",
       ebookFormat: "eBook",
       ebookDetail: "Kindle + ePub · Lectura inmediata",
-      cta: "Comprar en Amazon",
-      note: "Edición limitada · Lanzamiento 2026",
+      cta: "Edición en papel · Próximamente",
+      note: "Edición digital disponible ahora · papel en preparación",
       priceFlag: "precio",
       bonusStack: {
-        label: "Incluido con tu pre-orden",
+        label: "Incluido con tu compra",
         intro: "Comprando ahora también te llevas:",
         items: [
           {
@@ -690,13 +690,13 @@ export const dict: Record<Lang, Dict> = {
               "La versión narrada del primer libro de Lara · desbloqueado al dejar tu reseña.",
           },
         ],
-        foot: "Dentro del libro físico encontrarás el QR para reclamarlos.",
+        foot: "Tras comprar, recibirás un enlace para reclamarlos en tu biblioteca.",
       },
       digital: {
         tag: "Oferta digital · 12€",
         h: "Pack ebook + audiolibro · acceso inmediato.",
         detail:
-          "El libro completo en PDF y la versión narrada en MP3 (5h 10m). Para descargar al instante tras pagar.",
+          "El libro completo en PDF/EPUB y la versión narrada con 17 capítulos marcados (5h 34m). Para descargar al instante tras pagar.",
         bullets: [
           "Pago seguro por Stripe — Apple Pay y Google Pay disponibles.",
           "Biblioteca privada accesible desde cualquier dispositivo.",
@@ -705,7 +705,7 @@ export const dict: Record<Lang, Dict> = {
         cta: "Comprar pack digital · 12€",
         ctaPending: "Abriendo pago…",
         ctaUnavailable: "Próximamente disponible",
-        orSep: "o si prefieres papel:",
+        orSep: "Y la edición en papel:",
       },
     },
     depth: {
@@ -1383,20 +1383,20 @@ export const dict: Record<Lang, Dict> = {
     },
     buy: {
       secNum: "06 / Order",
-      h2Line1Pre: "The ",
-      h2Line1Em: "physical",
-      h2Line2: "book you won't lend.",
-      p: "First hardcover edition. Sewn binding, cream paper, fabric marker. Designed to be underlined whole and reopened two years later.",
+      h2Line1Pre: "The full method, ",
+      h2Line1Em: "digital",
+      h2Line2: "and instantly accessible.",
+      p: "Ebook + audiobook bundle, downloadable the second you pay. The full book as a PDF and the narrated version with 17 marked chapters (5h 34m). No waits, no shipping.",
       featuredTag: "Most chosen",
       featuredFormat: "Hardcover + eBook",
       featuredDetail: "First edition · International shipping",
       ebookFormat: "eBook",
       ebookDetail: "Kindle + ePub · Instant read",
-      cta: "Order on Amazon",
-      note: "Limited edition · 2026 release",
+      cta: "Paper edition · Coming soon",
+      note: "Digital edition available now · paper edition in the works",
       priceFlag: "price",
       bonusStack: {
-        label: "Included with your pre-order",
+        label: "Included with your purchase",
         intro: "Order now and you also get:",
         items: [
           {
@@ -1412,13 +1412,13 @@ export const dict: Record<Lang, Dict> = {
               "The narrated version of Lara's first book · unlocked when you leave your review.",
           },
         ],
-        foot: "Inside the physical book you'll find the QR to redeem both.",
+        foot: "After paying you'll receive a link to redeem them from your library.",
       },
       digital: {
         tag: "Digital offer · €12",
         h: "Ebook + audiobook bundle · instant access.",
         detail:
-          "The full book as a PDF and the narrated version as MP3 (5h 10m). Downloadable the moment you pay.",
+          "The full book as a PDF/EPUB and the narrated version with 17 marked chapters (5h 34m). Downloadable the moment you pay.",
         bullets: [
           "Secure checkout via Stripe — Apple Pay and Google Pay supported.",
           "Private library, accessible from any device.",
@@ -1427,7 +1427,7 @@ export const dict: Record<Lang, Dict> = {
         cta: "Buy digital bundle · €12",
         ctaPending: "Opening checkout…",
         ctaUnavailable: "Coming soon",
-        orSep: "or if you prefer paper:",
+        orSep: "And the paper edition:",
       },
     },
     depth: {
