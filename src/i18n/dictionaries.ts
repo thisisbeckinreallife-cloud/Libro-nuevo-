@@ -478,7 +478,7 @@ export const dict: Record<Lang, Dict> = {
         eyebrow: "El método Arkwright · Lara Lawn",
         headline: "Reescribe el techo de tu cuenta. No la motivación.",
         subheadline:
-          "Manual completo para mujeres que ya lo hicieron todo bien y siguen ganando lo mismo. Tres ediciones. Una sola misión: que abras el archivo hoy.",
+          "Manual completo para mujeres que ya lo hicieron todo bien y siguen ganando lo mismo. Ebook + audiolibro + workbook online. Acceso en 60 segundos.",
         trustMicrocopy:
           "+10.000 mujeres aplicando el método · 10 años de investigación",
         imageAlt:
@@ -1393,7 +1393,7 @@ export const dict: Record<Lang, Dict> = {
         eyebrow: "The Arkwright Method · Lara Lawn",
         headline: "Rewrite your income ceiling. Not your motivation.",
         subheadline:
-          "A full manual for women who already did everything right and still earn the same. Three editions. One mission: open the file today.",
+          "A full manual for women who already did everything right and still earn the same. Ebook + audiobook + online workbook. Access in 60 seconds.",
         trustMicrocopy:
           "+10,000 women applying the method · 10 years of research",
         imageAlt: "Cover of The Arkwright Method by Lara Lawn",
