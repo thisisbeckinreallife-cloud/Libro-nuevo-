@@ -221,3 +221,59 @@ model Contact {
   @@index([lang])
   @@map("contacts")
 }
+
+// Error log — captura de errores 5xx y excepciones inesperadas en el
+// servidor, escritas por `src/lib/logError.ts` y mostradas en
+// `/admin/errors`. Reemplazo interno de Sentry: el operador entra a
+// admin y ve si hay algo nuevo, sin depender de un servicio externo.
+model ErrorLog {
+  id           String   @id @default(uuid()) @db.Uuid
+  // "checkout" | "webhook" | "biblioteca" | "contacto" | ...
+  source       String
+  message      String
+  stack        String?
+  // Path donde ocurrió, si está disponible.
+  path         String?
+  userAgent    String?  @map("user_agent")
+  ipHash       String?  @map("ip_hash")
+  // Datos extra (request body resumido, sin secretos, sin PII completa).
+  meta         Json?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@index([source, createdAt])
+  @@map("error_logs")
+}
+
+// Conversion tracking interno — alternativa a Plausible/GA. Cada fila
+// es un evento del funnel: page_load, cta_click, checkout_start,
+// purchase_completed, refund_requested. Solo se registra si el
+// usuario aceptó la categoría "analytics" del banner de cookies.
+// El dashboard interno `/admin/analytics` consulta esta tabla.
+model Event {
+  id           String   @id @default(uuid()) @db.Uuid
+  // Tipo del evento. Mantener estable: nuevos tipos = nueva versión.
+  kind         String
+  // Path de la página donde ocurrió.
+  path         String?
+  // Sesión anónima (UUID rotatorio guardado en localStorage si hay
+  // consent — usa para calcular usuarios únicos sin cookies de
+  // tracking persistentes).
+  sessionId    String?  @map("session_id")
+  // Fuente de tráfico — utm_source, utm_medium, utm_campaign.
+  utmSource    String?  @map("utm_source")
+  utmMedium    String?  @map("utm_medium")
+  utmCampaign  String?  @map("utm_campaign")
+  // Referrer document.referrer (host only).
+  referrerHost String?  @map("referrer_host")
+  // Bucket A/B opcional, para iteración de copy en producción.
+  abVariant    String?  @map("ab_variant")
+  // Datos extra del evento (amount, sku, etc.).
+  meta         Json?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([kind, createdAt])
+  @@index([sessionId])
+  @@index([createdAt])
+  @@map("events")
+}

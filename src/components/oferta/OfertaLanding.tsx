@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Book3D } from "@/components/Book3D";
 import { useLang } from "@/components/LangProvider";
 import { HomeBridge } from "@/components/HomeBridge";
+import { JsonLdLanding } from "@/components/JsonLd";
 import { OfertaPricingCards } from "./OfertaPricingCards";
 import { OfertaStickyCta } from "./OfertaStickyCta";
 
@@ -40,6 +41,7 @@ export function OfertaLanding({
 
   return (
     <main className="oferta-shell">
+      <JsonLdLanding />
       {/* 01 — HERO */}
       <section className="oferta-hero">
         <div className="oferta-hero-grid">

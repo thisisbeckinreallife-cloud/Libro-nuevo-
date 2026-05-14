@@ -1,6 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import type { Metadata } from "next";
 import { LegalLayout } from "@/components/LegalLayout";
 import { useLang } from "@/components/LangProvider";
 

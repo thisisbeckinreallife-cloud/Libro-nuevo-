@@ -5,6 +5,7 @@ import { LangProvider } from "@/components/LangProvider";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
+import { JsonLdGlobal } from "@/components/JsonLd";
 
 const PRE_HYDRATION_LANG_SCRIPT = `
 try {
@@ -62,6 +63,7 @@ export default function RootLayout({
         <Script id="lang-bootstrap" strategy="beforeInteractive">
           {PRE_HYDRATION_LANG_SCRIPT}
         </Script>
+        <JsonLdGlobal />
       </head>
       <body>
         <LangProvider>
