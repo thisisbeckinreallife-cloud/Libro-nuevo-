@@ -49,7 +49,11 @@ export function OfertaLanding({
               <span>{o.hero.trustMicrocopy}</span>
             </p>
             <p className="oferta-eyebrow">{o.hero.eyebrow}</p>
-            <h1 className="oferta-hero-h1">{o.hero.headline}</h1>
+            <h1 className="oferta-hero-h1">
+              {o.hero.headlinePre}
+              <em>{o.hero.headlineEm}</em>
+              {o.hero.headlinePost}
+            </h1>
             <p className="oferta-hero-sub">{o.hero.subheadline}</p>
           </div>
           <div className="oferta-hero-visual">

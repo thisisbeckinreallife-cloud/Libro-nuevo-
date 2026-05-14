@@ -16,7 +16,13 @@ export type OfertaPricingOffer = {
 export type OfertaDict = {
   hero: {
     eyebrow: string;
-    headline: string;
+    /**
+     * Split into three parts so the middle word renders inside an
+     * `<em>` (italic + magenta). Reads as a single sentence.
+     */
+    headlinePre: string;
+    headlineEm: string;
+    headlinePost: string;
     subheadline: string;
     trustMicrocopy: string;
     imageAlt: string;
@@ -476,8 +482,9 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "El método Arkwright · Lara Lawn",
-        headline:
-          "El número al que vuelve tu cuenta no es tu techo. Es tu termostato.",
+        headlinePre: "No tienes un problema de dinero. Tienes un problema de ",
+        headlineEm: "identidad",
+        headlinePost: ".",
         subheadline:
           "Manual operativo para mujeres que ya hicieron terapia, ya leyeron a Brené Brown y siguen ganando lo mismo. Ebook, audiolibro y workbook. Acceso en 60 segundos por 12 €.",
         trustMicrocopy:
@@ -1392,8 +1399,9 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "The Arkwright Method · Lara Lawn",
-        headline:
-          "The number your account returns to isn't your ceiling. It's your thermostat.",
+        headlinePre: "You don't have a money problem. You have an ",
+        headlineEm: "identity",
+        headlinePost: " problem.",
         subheadline:
           "An operating manual for women who already did therapy, already read Brené Brown, and still earn the same number. Ebook, audiobook and workbook. Access in 60 seconds for 12 €.",
         trustMicrocopy:
