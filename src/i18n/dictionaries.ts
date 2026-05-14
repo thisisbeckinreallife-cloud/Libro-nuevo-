@@ -486,7 +486,7 @@ export const dict: Record<Lang, Dict> = {
         headlineEm: "identidad",
         headlinePost: ".",
         subheadline:
-          "Doce años haciendo el doble por el mismo número. Hiciste la terapia, leíste a Brené Brown, subiste tarifa una vez y volviste a la anterior en dos meses. Hay un termostato interno que decide tu techo antes de que abras el ordenador. El manual de Lara Lawn, en 60 segundos, por 12 €.",
+          "Subiste tarifa una vez y volviste a la anterior en dos meses. El manual que reescribe ese techo en un fin de semana — por 12 €.",
         trustMicrocopy:
           "+10.000 mujeres aplicando el método · 10 años de investigación · 4,9 / 5",
         imageAlt: "Portada de El método Arkwright de Lara Lawn",
@@ -513,7 +513,7 @@ export const dict: Record<Lang, Dict> = {
             "Te quedas con todo aunque pidas la devolución a los 30 días",
             "Pago único de 12 € — sin suscripción, sin upsells, sin letra pequeña",
           ],
-          cta: "Quiero acceder ahora — 12 €",
+          cta: "Acceder — 12 €",
         },
       },
       trust: {
@@ -671,7 +671,7 @@ export const dict: Record<Lang, Dict> = {
           "Doce euros, o doce meses más cobrando el mismo número. Tú decides cuál sale más caro.",
         subheadline:
           "12 € es menos que una cena pedida por Glovo. Menos que una entrada de cine para dos. Menos que un mes de Spotify Family. Si dejas pasar la oferta y dentro de un año sigues en la misma tarifa, el coste no son 12 € — son los miles que no facturaste por no haber tocado el termostato. Pago único · acceso inmediato · 30 días de garantía · te quedas con lo descargado.",
-        cta: "Empezar ahora por 12 €",
+        cta: "Empezar ya — 12 €",
         stickyMobileCta: "Acceder al pack · 12 €",
       },
     },
@@ -1404,7 +1404,7 @@ export const dict: Record<Lang, Dict> = {
         headlineEm: "identity",
         headlinePost: ".",
         subheadline:
-          "Twelve years working twice as hard for the same number. You did the therapy, you read Brené Brown, you raised your rate once and were back to the old one within two months. There is an internal thermostat deciding your ceiling before you open your laptop. Lara Lawn's manual, in 60 seconds, for 12 €.",
+          "You raised your rate once and went back to the old one within two months. The manual that rewrites that ceiling over one weekend — for 12 €.",
         trustMicrocopy:
           "+10,000 women applying the method · 10 years of research · 4.9 / 5",
         imageAlt: "Cover of The Arkwright Method by Lara Lawn",
@@ -1431,7 +1431,7 @@ export const dict: Record<Lang, Dict> = {
             "Keep everything even if you request the refund within 30 days",
             "One-time 12 € — no subscription, no upsells, no fine print",
           ],
-          cta: "Get instant access — 12 €",
+          cta: "Get access — 12 €",
         },
       },
       trust: {
@@ -1589,7 +1589,7 @@ export const dict: Record<Lang, Dict> = {
           "Twelve euros, or twelve more months charging the same number. You decide which one costs more.",
         subheadline:
           "12 € is less than a Deliveroo dinner. Less than two cinema tickets. Less than one month of Spotify Family. If you skip the offer and a year from now you're still at the same rate, the cost isn't 12 € — it's the thousands you didn't invoice because you never touched the thermostat. One-time payment · instant access · 30-day guarantee · you keep what you downloaded.",
-        cta: "Start now for 12 €",
+        cta: "Start now — 12 €",
         stickyMobileCta: "Get the pack · 12 €",
       },
     },
