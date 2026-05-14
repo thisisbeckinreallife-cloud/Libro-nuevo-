@@ -7,23 +7,22 @@ import { OfertaPricingCards } from "./OfertaPricingCards";
 import { OfertaStickyCta } from "./OfertaStickyCta";
 
 /**
- * /oferta — Hormozi shop.acquisition.com layout, adapted for a single
- * product with three editions.
+ * /oferta — Hormozi shop.acquisition.com layout, adapted to a single
+ * product (1 SKU: ebook + audio + workbook @ €12).
  *
  *   01 — Hero (book3D + headline + trust line)
- *   02 — Pricing cards (3 tiers, central featured)
+ *   02 — Pricing card (single centred offer, anchors 165 € → 12 €)
  *   03 — Trust band navy (4 stats with copper numbers)
  *   04 — Reviews grid (6 cards, paper background)
  *   05 — Meet Lara (paper-warm, portrait + bio + quote)
  *   06 — What's inside (3-col grid, bonuses with navy/copper accent)
- *   07 — Pricing cards REPEATED (after value built)
+ *   07 — Pricing card REPEATED (after value built)
  *   08 — Guarantee band navy (shield + 30-day text)
  *   09 — FAQ
  *   10 — Final CTA (paper-warm)
  *   11 — Sticky mobile bottom CTA
  *
- * Only the digital tier fires Stripe. Paperback and collector are
- * waitlist captures via OfertaWaitlistModal.
+ * The card fires the existing /api/checkout endpoint (Stripe live).
  */
 export function OfertaLanding() {
   const { t } = useLang();
@@ -51,8 +50,8 @@ export function OfertaLanding() {
         </div>
       </section>
 
-      {/* 02 — PRICING CARDS */}
-      <OfertaPricingCards />
+      {/* 02 — PRICING CARD */}
+      <OfertaPricingCards id="pricing" />
 
       {/* 03 — TRUST BAND NAVY */}
       <section className="oferta-trust" aria-label={o.trust.eyebrow}>
@@ -157,7 +156,7 @@ export function OfertaLanding() {
       </section>
 
       {/* 07 — PRICING REPEATED */}
-      <OfertaPricingCards />
+      <OfertaPricingCards id="pricing-2" />
 
       {/* 08 — GUARANTEE BAND NAVY */}
       <section className="oferta-guarantee" aria-label={o.guarantee.main}>

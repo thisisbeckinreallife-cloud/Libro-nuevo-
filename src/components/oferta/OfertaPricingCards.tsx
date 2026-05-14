@@ -2,80 +2,29 @@
 
 import { useState, useTransition } from "react";
 import { useLang } from "@/components/LangProvider";
-import type { OfertaPricingTier } from "@/i18n/dictionaries";
-import { OfertaWaitlistModal } from "./OfertaWaitlistModal";
 
 /**
- * 3-tier pricing block — Hormozi shop.acquisition.com layout adapted
- * for a single product.
+ * Single-offer pricing block — one product, one price.
  *
- *  - Tier "digital" (€12)        → live, fires Stripe Checkout
- *  - Tier "paperback" (€29)      → waitlist (email capture)
- *  - Tier "collector" (€120)     → waitlist (email capture)
+ * The earlier 3-tier layout (digital / paperback / collector) was
+ * removed: we only sell the €12 digital pack today. Showing imagined
+ * future editions broke user trust ("don't offer what we're not
+ * selling").
  *
- * The Stripe call mirrors `OfertaCta`. We keep it inline here so each
- * card owns its own pending / error state without prop drilling.
+ * The card now anchors the value (165 € itemised → 12 €) and is the
+ * only checkout button on the page. Rendered twice in the landing:
+ * once above the fold and once after the value-stack section.
  */
-export function OfertaPricingCards() {
+export function OfertaPricingCards({ id }: { id?: string } = {}) {
   const { lang, t } = useLang();
   const o = t.oferta.pricing;
+  const offer = o.offer;
 
-  const [openTier, setOpenTier] = useState<"paperback" | "collector" | null>(
-    null,
-  );
-
-  return (
-    <>
-      <section className="oferta-pricing" id="pricing">
-        <header className="oferta-pricing-header">
-          <p className="oferta-eyebrow">{o.eyebrow}</p>
-          <h2 className="oferta-h2">{o.headline}</h2>
-          <p>{o.subheadline}</p>
-        </header>
-        <div className="oferta-pricing-grid">
-          {o.tiers.map((tier) => (
-            <PricingCard
-              key={tier.id}
-              tier={tier}
-              lang={lang}
-              onWaitlist={(id) => setOpenTier(id)}
-            />
-          ))}
-        </div>
-      </section>
-
-      {openTier ? (
-        <OfertaWaitlistModal
-          tier={openTier}
-          onClose={() => setOpenTier(null)}
-        />
-      ) : null}
-    </>
-  );
-}
-
-function PricingCard({
-  tier,
-  lang,
-  onWaitlist,
-}: {
-  tier: OfertaPricingTier;
-  lang: string;
-  onWaitlist: (id: "paperback" | "collector") => void;
-}) {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
 
-  const isLive = tier.status === "live";
-
   const onClick = () => {
-    if (!isLive) {
-      if (tier.id === "paperback" || tier.id === "collector") {
-        onWaitlist(tier.id);
-      }
-      return;
-    }
     setError(false);
     startTransition(async () => {
       try {
@@ -105,50 +54,51 @@ function PricingCard({
   };
 
   return (
-    <article
-      className={`oferta-pcard ${tier.featured ? "oferta-pcard--featured" : ""}`}
-    >
-      {tier.featured ? (
-        <span className="oferta-pcard-ribbon">Más elegido</span>
-      ) : null}
-      <span
-        className={`oferta-pcard-status oferta-pcard-status--${tier.status}`}
-      >
-        {tier.statusLabel}
-      </span>
-      <h3 className="oferta-pcard-name">{tier.name}</h3>
-      <p className="oferta-pcard-subtitle">{tier.subtitle}</p>
-      <p className="oferta-pcard-price">
-        {tier.priceAmount}
-        <span className="oferta-pcard-price-currency">
-          {tier.priceCurrency}
-        </span>
-      </p>
-      <p className="oferta-pcard-price-caption">{tier.priceCaption}</p>
-      <ul className="oferta-pcard-features">
-        {tier.features.map((f) => (
-          <li key={f}>{f}</li>
-        ))}
-      </ul>
-      <button
-        type="button"
-        className={`oferta-pcard-cta ${
-          isLive ? "oferta-pcard-cta--primary" : "oferta-pcard-cta--outline"
-        }`}
-        onClick={onClick}
-        disabled={isPending || unavailable}
-      >
-        {unavailable
-          ? "Próximamente"
-          : isPending
-            ? "Abriendo Stripe…"
-            : tier.cta}
-      </button>
-      {error ? (
-        <p className="oferta-pcard-cta-error" role="alert">
-          Error al abrir el pago. Reintenta en un momento.
-        </p>
-      ) : null}
-    </article>
+    <section className="oferta-pricing" id={id ?? "pricing"}>
+      <header className="oferta-pricing-header">
+        <p className="oferta-eyebrow">{o.eyebrow}</p>
+        <h2 className="oferta-h2">{o.headline}</h2>
+        <p>{o.subheadline}</p>
+      </header>
+      <div className="oferta-pricing-single">
+        <article className="oferta-pcard oferta-pcard--solo">
+          <span className="oferta-pcard-status oferta-pcard-status--live">
+            {offer.statusLabel}
+          </span>
+          <h3 className="oferta-pcard-name">{offer.name}</h3>
+          <p className="oferta-pcard-subtitle">{offer.subtitle}</p>
+          <p className="oferta-pcard-anchor">{offer.priceAnchor}</p>
+          <p className="oferta-pcard-price">
+            {offer.priceAmount}
+            <span className="oferta-pcard-price-currency">
+              {offer.priceCurrency}
+            </span>
+          </p>
+          <p className="oferta-pcard-price-caption">{offer.priceCaption}</p>
+          <ul className="oferta-pcard-features">
+            {offer.features.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
+          <button
+            type="button"
+            className="oferta-pcard-cta oferta-pcard-cta--primary"
+            onClick={onClick}
+            disabled={isPending || unavailable}
+          >
+            {unavailable
+              ? "Próximamente"
+              : isPending
+                ? "Abriendo Stripe…"
+                : offer.cta}
+          </button>
+          {error ? (
+            <p className="oferta-pcard-cta-error" role="alert">
+              Error al abrir el pago. Reintenta en un momento.
+            </p>
+          ) : null}
+        </article>
+      </div>
+    </section>
   );
 }

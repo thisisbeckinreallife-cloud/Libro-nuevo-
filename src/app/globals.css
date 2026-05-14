@@ -3885,61 +3885,34 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   color: var(--ink-soft);
   margin: 0;
 }
-.oferta-pricing-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.08fr 1fr;
-  gap: 20px;
-  max-width: 1080px;
+.oferta-pricing-single {
+  max-width: 520px;
   margin: 0 auto;
-  align-items: stretch;
 }
 .oferta-pcard {
   position: relative;
-  border-radius: 8px;
-  padding: 36px 28px 32px;
+  border-radius: 12px;
+  padding: 36px 32px 32px;
   display: flex;
   flex-direction: column;
-  background: var(--paper-warm);
-  border: 1px solid var(--rule-soft);
-  box-shadow: 0 4px 16px rgba(10, 18, 48, 0.06);
-  transition: transform 240ms var(--ease), box-shadow 240ms var(--ease);
-  overflow: visible;
-}
-.oferta-pcard:hover {
-  transform: translateY(-4px);
-}
-.oferta-pcard--featured {
   background: var(--paper);
   border: 2px solid var(--accent);
   box-shadow:
-    0 16px 48px rgba(233, 30, 99, 0.18),
-    0 4px 12px rgba(10, 18, 48, 0.08);
-  padding: 40px 28px 36px;
+    0 18px 48px rgba(233, 30, 99, 0.16),
+    0 4px 14px rgba(10, 18, 48, 0.08);
+  overflow: visible;
 }
-.oferta-pcard-ribbon {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--accent);
-  color: white;
+.oferta-pcard--solo {
+  text-align: left;
+}
+.oferta-pcard-anchor {
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 7px 16px;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.32);
-  white-space: nowrap;
-  animation: ribbonPulse 3.2s ease-in-out infinite;
-}
-@keyframes ribbonPulse {
-  0%, 100% { box-shadow: 0 4px 12px rgba(233, 30, 99, 0.32); }
-  50% { box-shadow: 0 4px 18px rgba(233, 30, 99, 0.48); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .oferta-pcard-ribbon { animation: none; }
+  color: var(--muted);
+  text-decoration: line-through;
+  margin: 6px 0 0;
 }
 
 .oferta-pcard-status {
@@ -4541,134 +4514,9 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 }
 @media (max-width: 768px) { .oferta-sticky { display: block; } }
 
-/* 11 — WAITLIST MODAL ──────────────────────────────────────── */
-.waitlist-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 18, 48, 0.72);
-  backdrop-filter: blur(4px);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  animation: fadeIn 200ms var(--ease);
-}
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.waitlist-modal {
-  background: var(--paper);
-  border-radius: 12px;
-  max-width: 460px;
-  width: 100%;
-  padding: 36px 32px;
-  position: relative;
-  box-shadow: 0 24px 60px rgba(10, 18, 48, 0.32);
-}
-.waitlist-modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: var(--muted);
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.waitlist-modal-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 10px;
-}
-.waitlist-modal-h {
-  font-family: var(--serif);
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--ink);
-  margin: 0 0 12px;
-  line-height: 1.2;
-}
-.waitlist-modal-body {
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  margin: 0 0 24px;
-}
-.waitlist-modal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.waitlist-modal-input {
-  padding: 14px 16px;
-  border: 1px solid var(--rule-soft);
-  border-radius: 6px;
-  font-family: var(--sans);
-  font-size: 15px;
-  background: var(--paper);
-  color: var(--ink);
-  outline: none;
-  transition: border-color 150ms var(--ease);
-}
-.waitlist-modal-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.12);
-}
-.waitlist-modal-submit {
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 14px 20px;
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 6px;
-  transition: background 180ms var(--ease), transform 180ms var(--ease);
-}
-.waitlist-modal-submit:hover:not(:disabled) {
-  background: var(--ink);
-  transform: translateY(-1px);
-}
-.waitlist-modal-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.waitlist-modal-success {
-  text-align: center;
-  padding: 16px 0;
-}
-.waitlist-modal-success-title {
-  font-family: var(--serif);
-  font-size: 22px;
-  color: var(--ink);
-  margin: 0 0 8px;
-}
-.waitlist-modal-success-body {
-  font-size: 14px;
-  color: var(--ink-soft);
-  line-height: 1.5;
-  margin: 0;
-}
-.waitlist-modal-error {
-  font-size: 12px;
-  color: var(--accent);
-  margin: 4px 0 0;
-}
-
 /* Responsive ───────────────────────────────────────────────── */
 @media (max-width: 1023px) {
-  .oferta-pricing-grid {
-    grid-template-columns: 1fr 1.05fr 1fr;
-    gap: 14px;
-  }
-  .oferta-pcard { padding: 28px 20px 24px; }
-  .oferta-pcard--featured { padding: 32px 20px 28px; }
+  .oferta-pcard { padding: 28px 24px 24px; }
   .oferta-pcard-price { font-size: 48px; }
 }
 
@@ -4690,13 +4538,10 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 }
 
 @media (max-width: 767px) {
-  .oferta-pricing { padding: 56px 20px 80px; }
-  .oferta-pricing-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .oferta-pcard--featured { order: -1; }
-  .oferta-pcard-ribbon { animation: none; }
+  .oferta-pricing { padding: 56px 16px 72px; }
+  .oferta-pcard { padding: 28px 22px 24px; border-radius: 10px; }
+  .oferta-pcard-price { font-size: 44px; }
+  .oferta-pcard-name { font-size: 22px; }
 
   .oferta-trust { padding: 40px 20px; }
   .oferta-trust-inner {

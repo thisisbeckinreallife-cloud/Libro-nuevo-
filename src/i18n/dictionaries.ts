@@ -1,17 +1,16 @@
 export type Lang = "es" | "en";
 
-export type OfertaPricingTier = {
-  id: "digital" | "paperback" | "collector";
-  status: "live" | "soon";
+export type OfertaPricingOffer = {
+  status: "live";
   statusLabel: string;
   name: string;
   subtitle: string;
   priceAmount: string;
   priceCurrency: string;
   priceCaption: string;
+  priceAnchor: string;
   features: string[];
   cta: string;
-  featured?: boolean;
 };
 
 export type OfertaDict = {
@@ -26,7 +25,7 @@ export type OfertaDict = {
     eyebrow: string;
     headline: string;
     subheadline: string;
-    tiers: OfertaPricingTier[];
+    offer: OfertaPricingOffer;
   };
   trust: {
     eyebrow: string;
@@ -72,19 +71,6 @@ export type OfertaDict = {
     subheadline: string;
     cta: string;
     stickyMobileCta: string;
-  };
-  waitlist: {
-    title: string;
-    subtitle: string;
-    emailLabel: string;
-    emailPlaceholder: string;
-    submit: string;
-    submitting: string;
-    success: string;
-    successDetail: string;
-    error: string;
-    close: string;
-    privacy: string;
   };
 };
 
@@ -499,67 +485,28 @@ export const dict: Record<Lang, Dict> = {
           "Portada de El método Arkwright de Lara Lawn",
       },
       pricing: {
-        eyebrow: "Elige tu edición",
-        headline: "Tres formas de entrar. Una sola decisión.",
+        eyebrow: "Tu acceso al método",
+        headline: "Todo el sistema. Un pago. Acceso para siempre.",
         subheadline:
-          "La digital se desbloquea en 60 segundos. La tapa blanda firmada y la edición de coleccionista se abren por orden de lista.",
-        tiers: [
-          {
-            id: "digital",
-            status: "live",
-            statusLabel: "Disponible hoy",
-            name: "Edición Digital",
-            subtitle: "Ebook + audiolibro + workbook",
-            priceAmount: "12",
-            priceCurrency: "€",
-            priceCaption: "Pago único · acceso inmediato",
-            features: [
-              "Ebook completo (PDF + EPUB) — 25 capítulos",
-              "Audiolibro 5h 34min — voz Despina, castellano España",
-              "Workbook online — 4 dinámicas guiadas con progreso guardado",
-              "BONUS · Primer libro de Lara (ebook + audio) al dejar reseña",
-              "Acceso permanente · 30 días de garantía",
-            ],
-            cta: "Quiero la edición digital",
-          },
-          {
-            id: "paperback",
-            status: "soon",
-            statusLabel: "Próximamente · lista de espera",
-            name: "Edición Tapa Blanda Firmada",
-            subtitle: "Libro físico firmado + todo lo digital",
-            priceAmount: "29",
-            priceCurrency: "€",
-            priceCaption: "Pre-reserva con email · sin pagar todavía",
-            features: [
-              "Tapa blanda 25 capítulos, papel verjurado, lomo cosido",
-              "Firma manuscrita de Lara Lawn en la primera página",
-              "Todo lo digital incluido (ebook + audio + workbook)",
-              "Envío peninsular incluido · LATAM/UE con coste real",
-              "Primera tirada limitada — acceso por orden de inscripción",
-            ],
-            cta: "Reservar mi sitio",
-            featured: true,
-          },
-          {
-            id: "collector",
-            status: "soon",
-            statusLabel: "Próximamente · plazas contadas",
-            name: "Edición Coleccionista",
-            subtitle: "Numerada + sesión privada de bienvenida",
-            priceAmount: "120",
-            priceCurrency: "€",
-            priceCaption: "Lista de espera · cierre por número",
-            features: [
-              "Tapa dura numerada del 1 al 300, firmada y dedicada",
-              "Estuche de tela con grabado en cobre",
-              "Sesión privada de 45 min con Lara para abrir el método",
-              "Acceso vitalicio a futuras actualizaciones digitales",
-              "Todo lo de las ediciones anteriores",
-            ],
-            cta: "Apuntarme a la lista",
-          },
-        ],
+          "Sin suscripción. Sin envíos físicos. Abres tu biblioteca privada en cuanto Stripe confirma el pago.",
+        offer: {
+          status: "live",
+          statusLabel: "Disponible hoy",
+          name: "El método Arkwright · Acceso completo",
+          subtitle: "Ebook + audiolibro + workbook online",
+          priceAmount: "12",
+          priceCurrency: "€",
+          priceCaption: "Pago único · acceso inmediato",
+          priceAnchor: "Valor desglosado: 165 €",
+          features: [
+            "Ebook completo (PDF + EPUB) — 25 capítulos",
+            "Audiolibro 5h 34min — voz Despina, castellano España",
+            "Workbook online — 4 dinámicas guiadas con progreso guardado",
+            "BONUS · Primer libro de Lara (ebook + audio) al dejar reseña",
+            "Acceso permanente · 30 días de garantía sin preguntas",
+          ],
+          cta: "Quiero acceder ahora — 12 €",
+        },
       },
       trust: {
         eyebrow: "Lo que hay detrás de este libro",
@@ -717,21 +664,6 @@ export const dict: Record<Lang, Dict> = {
           "Acceso inmediato · 30 días de garantía · Te quedas con lo descargado",
         cta: "Empezar por 12 €",
         stickyMobileCta: "Quiero el pack · 12 €",
-      },
-      waitlist: {
-        title: "Reserva tu sitio en la lista",
-        subtitle:
-          "Sin pago todavía. Te avisamos por email cuando abramos esta edición.",
-        emailLabel: "Tu email",
-        emailPlaceholder: "tu@email.com",
-        submit: "Apuntarme",
-        submitting: "Apuntando…",
-        success: "Estás dentro.",
-        successDetail:
-          "Recibirás un email cuando esta edición esté lista. Mientras tanto, puedes empezar por la edición digital.",
-        error: "No hemos podido apuntarte. Reintenta en un momento.",
-        close: "Cerrar",
-        privacy: "Sin spam · solo te escribimos cuando abrimos esta edición.",
       },
     },
     nav: {
@@ -1467,67 +1399,28 @@ export const dict: Record<Lang, Dict> = {
         imageAlt: "Cover of The Arkwright Method by Lara Lawn",
       },
       pricing: {
-        eyebrow: "Pick your edition",
-        headline: "Three ways in. One decision.",
+        eyebrow: "Your access to the method",
+        headline: "The full system. One payment. Lifetime access.",
         subheadline:
-          "The digital edition unlocks in 60 seconds. Signed paperback and collector's edition open by waitlist order.",
-        tiers: [
-          {
-            id: "digital",
-            status: "live",
-            statusLabel: "Available today",
-            name: "Digital Edition",
-            subtitle: "Ebook + audiobook + workbook",
-            priceAmount: "12",
-            priceCurrency: "€",
-            priceCaption: "One-time payment · instant access",
-            features: [
-              "Complete ebook (PDF + EPUB) — 25 chapters",
-              "Audiobook 5h 34min — Despina voice, Castilian Spanish",
-              "Online workbook — 4 guided exercises with saved progress",
-              "BONUS · Lara's first book (ebook + audio) when you leave a review",
-              "Permanent access · 30-day money-back guarantee",
-            ],
-            cta: "Get the digital edition",
-          },
-          {
-            id: "paperback",
-            status: "soon",
-            statusLabel: "Coming soon · waitlist",
-            name: "Signed Paperback",
-            subtitle: "Physical signed book + everything digital",
-            priceAmount: "29",
-            priceCurrency: "€",
-            priceCaption: "Reserve with email · no payment yet",
-            features: [
-              "Paperback, 25 chapters, laid paper, sewn spine",
-              "Handwritten signature by Lara Lawn on the first page",
-              "Everything digital included (ebook + audio + workbook)",
-              "Peninsular Spain shipping included · LATAM/EU at cost",
-              "Limited first print run — access by waitlist order",
-            ],
-            cta: "Reserve my spot",
-            featured: true,
-          },
-          {
-            id: "collector",
-            status: "soon",
-            statusLabel: "Coming soon · limited seats",
-            name: "Collector's Edition",
-            subtitle: "Numbered + private welcome session",
-            priceAmount: "120",
-            priceCurrency: "€",
-            priceCaption: "Waitlist · closes by number",
-            features: [
-              "Hardcover numbered 1–300, signed and dedicated",
-              "Cloth slipcase with copper engraving",
-              "Private 45-min session with Lara to open the method",
-              "Lifetime access to future digital updates",
-              "Everything from the previous editions",
-            ],
-            cta: "Join the waitlist",
-          },
-        ],
+          "No subscription. No shipping. Your private library opens the moment Stripe confirms the payment.",
+        offer: {
+          status: "live",
+          statusLabel: "Available today",
+          name: "The Arkwright Method · Full access",
+          subtitle: "Ebook + audiobook + online workbook",
+          priceAmount: "12",
+          priceCurrency: "€",
+          priceCaption: "One-time payment · instant access",
+          priceAnchor: "Itemised value: 165 €",
+          features: [
+            "Complete ebook (PDF + EPUB) — 25 chapters",
+            "Audiobook 5h 34min — Despina voice, Castilian Spanish",
+            "Online workbook — 4 guided exercises with saved progress",
+            "BONUS · Lara's first book (ebook + audio) when you leave a review",
+            "Permanent access · 30-day money-back guarantee",
+          ],
+          cta: "Get instant access — 12 €",
+        },
       },
       trust: {
         eyebrow: "What sits behind this book",
@@ -1686,21 +1579,6 @@ export const dict: Record<Lang, Dict> = {
           "Instant access · 30-day guarantee · You keep what you downloaded",
         cta: "Start for 12 €",
         stickyMobileCta: "Get the pack · 12 €",
-      },
-      waitlist: {
-        title: "Reserve your spot",
-        subtitle:
-          "No payment yet. We'll email you when this edition opens.",
-        emailLabel: "Your email",
-        emailPlaceholder: "you@email.com",
-        submit: "Join the list",
-        submitting: "Adding you…",
-        success: "You're in.",
-        successDetail:
-          "You'll get an email when this edition is ready. In the meantime, you can start with the digital edition.",
-        error: "We couldn't add you. Try again in a moment.",
-        close: "Close",
-        privacy: "No spam · we only write when we open this edition.",
       },
     },
     nav: {
