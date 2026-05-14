@@ -506,14 +506,14 @@ export const dict: Record<Lang, Dict> = {
           subtitle: "Ebook + audiolibro + workbook online",
           priceAmount: "12",
           priceCurrency: "€",
-          priceCaption: "Pago único · acceso inmediato · 30 días de garantía",
+          priceCaption: "Pago único · acceso inmediato · descarga directa",
           priceAnchor: "Valor desglosado: 165 €",
           features: [
             "Reescribes el termostato al que vuelve tu cuenta — manual de 25 capítulos",
             "Aplicas las 9 operaciones del método en un fin de semana — workbook guiado",
             "Escuchas a Lara mientras conduces o paseas — 5h 34min de audiolibro",
             "Desbloqueas su primer libro entero (ebook + audio 6h 15min) al dejar reseña",
-            "Te quedas con todo aunque pidas la devolución a los 30 días",
+            "Descarga directa · iPhone, Kindle, Mac, Sonos, CarPlay y Android Auto",
             "Pago único de 12 € — sin suscripción, sin upsells, sin letra pequeña",
           ],
           cta: "Acceder — 12 €",
@@ -628,10 +628,10 @@ export const dict: Record<Lang, Dict> = {
         ],
       },
       guarantee: {
-        main: "30 días de garantía sin preguntas · te devolvemos los 12 € si decides que no",
+        main: "Acceso inmediato · pago seguro vía Stripe · sin envíos físicos",
         sep: "·",
         fineprint:
-          "Si pides la devolución, te quedas con el ebook, con el audiolibro y con el progreso del workbook. Yo me quedo sin los 12 €. El riesgo es entero mío — el tuyo es abrirlo. Y el riesgo real no es perder 12 €: es seguir cobrando el mismo número doce meses más. — Lara",
+          "Por tratarse de contenido digital con acceso inmediato, no se admiten devoluciones (Art. 103 RD-Ley 1/2007 de Consumidores y Usuarios). Lee esta página con calma antes de comprar — está deliberadamente diseñada para que tomes la decisión con todos los datos.",
       },
       faq: {
         eyebrow: "Antes de comprar",
@@ -643,9 +643,9 @@ export const dict: Record<Lang, Dict> = {
               "Esa no es la pregunta importante — la pregunta importante es por qué llevas meses sin pulsar el botón en otras páginas. Aquí no hay fricción: en cuanto Stripe confirma el pago se abre tu biblioteca privada con el ebook, el audiolibro y el workbook listos para usar. Recibes además un email con todos los enlaces para entrar desde otro dispositivo. Sin esperas, sin códigos, sin envíos físicos. El proceso entero, desde que pulsas el botón hasta que abres el primer capítulo, tarda menos de 60 segundos.",
           },
           {
-            question: "¿Y si lo abro y siento que no es para mí?",
+            question: "¿Se admiten devoluciones?",
             answer:
-              "Entonces yo pierdo y tú ganas. Escribes una línea al email de soporte dentro de los 30 días y te devolvemos los 12 € enteros. No pedimos motivo, no hay encuesta, no hay fricción. Y te quedas con lo descargado: ebook, audio y el progreso del workbook. La devolución no anula el material que ya bajaste. Yo prefiero perder 12 € antes que tener una lectora que no debería estar aquí — y prefiero perderlos antes que dejarte fuera por miedo a equivocarte.",
+              "No. Al tratarse de contenido digital con descarga inmediata, una vez accedes a tu biblioteca privada no hay derecho de desistimiento (artículo 103 del RD-Ley 1/2007 de Consumidores y Usuarios). Por eso esta página es larga: contiene la información completa del método, la autora, las lectoras que ya lo aplicaron y exactamente qué recibes. Léelo todo antes de pulsar. Si después de leer tienes dudas, no compres — preferimos lectoras seguras a compradoras dudosas.",
           },
           {
             question: "¿En qué dispositivos puedo leer y escuchar?",
@@ -665,7 +665,7 @@ export const dict: Record<Lang, Dict> = {
           {
             question: "¿Por qué solo edición digital y no tapa blanda ni edición coleccionista?",
             answer:
-              "Porque la mujer que necesita este método no necesita esperar a un envío — necesita abrirlo hoy. Una edición física obligaría a triplicar el precio, sumar envíos y romper la promesa de 12 € y de garantía total. Hoy solo existe el pack digital — y esta es la única página donde se vende. Si en algún momento hubiera una edición física, las lectoras de este pack lo sabrán primero, sin tener que apuntarse a nada.",
+              "Porque la mujer que necesita este método no necesita esperar a un envío — necesita abrirlo hoy. Una edición física obligaría a triplicar el precio, sumar envíos y romper la promesa de 12 € y de acceso inmediato. Hoy solo existe el pack digital — y esta es la única página donde se vende. Si en algún momento hubiera una edición física, las lectoras de este pack lo sabrán primero, sin tener que apuntarse a nada.",
           },
         ],
       },
@@ -673,7 +673,7 @@ export const dict: Record<Lang, Dict> = {
         headline:
           "Doce euros, o doce meses más cobrando el mismo número. Tú decides cuál sale más caro.",
         subheadline:
-          "12 € es menos que una cena pedida por Glovo. Menos que una entrada de cine para dos. Menos que un mes de Spotify Family. Si dejas pasar la oferta y dentro de un año sigues en la misma tarifa, el coste no son 12 € — son los miles que no facturaste por no haber tocado el termostato. Pago único · acceso inmediato · 30 días de garantía · te quedas con lo descargado.",
+          "12 € es menos que una cena pedida por Glovo. Menos que una entrada de cine para dos. Menos que un mes de Spotify Family. Si dejas pasar la oferta y dentro de un año sigues en la misma tarifa, el coste no son 12 € — son los miles que no facturaste por no haber tocado el termostato. Pago único · acceso inmediato · descarga directa · acceso permanente desde cualquier dispositivo.",
         cta: "Empezar ya — 12 €",
         stickyMobileCta: "Acceder al pack · 12 €",
       },
@@ -1425,14 +1425,14 @@ export const dict: Record<Lang, Dict> = {
           subtitle: "Ebook + audiobook + online workbook",
           priceAmount: "12",
           priceCurrency: "€",
-          priceCaption: "One-time payment · instant access · 30-day guarantee",
+          priceCaption: "One-time payment · instant access · direct download",
           priceAnchor: "Itemised value: 165 €",
           features: [
             "Rewrite the thermostat your account returns to — 25-chapter manual",
             "Run the 9 operations of the method in one weekend — guided workbook",
             "Listen while you drive or walk — 5h 34min audiobook",
             "Unlock her entire first book (ebook + 6h 15min audio) when you leave a review",
-            "Keep everything even if you request the refund within 30 days",
+            "Direct download · iPhone, Kindle, Mac, Sonos, CarPlay and Android Auto",
             "One-time 12 € — no subscription, no upsells, no fine print",
           ],
           cta: "Get access — 12 €",
@@ -1547,10 +1547,10 @@ export const dict: Record<Lang, Dict> = {
         ],
       },
       guarantee: {
-        main: "30-day no-questions guarantee · we refund the 12 € if you decide it isn't for you",
+        main: "Instant access · secure payment via Stripe · no physical shipping",
         sep: "·",
         fineprint:
-          "If you ask for the refund, you keep the ebook, the audiobook and the workbook progress. I lose the 12 €. The risk is entirely mine — yours is opening it. And the real risk isn't losing 12 €: it's spending another twelve months charging the same number. — Lara",
+          "As digital content with immediate access, refunds are not available (Article 103 of Spanish Royal Decree-Law 1/2007 on Consumer Rights). Read this page carefully before buying — it is deliberately long so you can make the decision with full information.",
       },
       faq: {
         eyebrow: "Before you buy",
@@ -1562,9 +1562,9 @@ export const dict: Record<Lang, Dict> = {
               "That isn't the real question — the real question is why you've gone months without pressing the button on other pages. Here there's no friction: the moment Stripe confirms the payment your private library opens with the ebook, the audiobook and the workbook ready to use. You also receive an email with every link so you can come in from another device. No waiting, no codes, no physical shipping. The whole process, from pressing the button to opening the first chapter, takes under 60 seconds.",
           },
           {
-            question: "And if I open it and feel it's not for me?",
+            question: "Are refunds available?",
             answer:
-              "Then I lose and you win. You send one line to the support email within 30 days and we refund the entire 12 €. We don't ask why, there's no survey, no friction. And you keep everything you downloaded: ebook, audio and workbook progress. The refund does not erase what you already pulled down. I'd rather lose 12 € than have a reader who shouldn't be here — and I'd rather lose them than keep you outside out of fear of getting it wrong.",
+              "No. As digital content with immediate download, once you access your private library there is no withdrawal right (Article 103 of Spanish Royal Decree-Law 1/2007 on Consumer Rights). That is why this page is long: it contains the full information about the method, the author, the readers who already applied it and exactly what you receive. Read it all before clicking. If after reading you still have doubts, do not buy — we prefer confident readers to doubtful buyers.",
           },
           {
             question: "Which devices can I read and listen on?",
@@ -1584,7 +1584,7 @@ export const dict: Record<Lang, Dict> = {
           {
             question: "Why digital-only and no paperback or collector's edition?",
             answer:
-              "Because the woman who needs this method doesn't need to wait for a parcel — she needs to open it today. A physical edition would force us to triple the price, add shipping and break the promise of 12 € plus a full guarantee. Today the digital pack is the only thing that exists — and this is the only page where it sells. If a physical edition ever launches, the readers of this pack will hear first, without signing up for anything.",
+              "Because the woman who needs this method doesn't need to wait for a parcel — she needs to open it today. A physical edition would force us to triple the price, add shipping and break the promise of 12 € plus instant access. Today the digital pack is the only thing that exists — and this is the only page where it sells. If a physical edition ever launches, the readers of this pack will hear first, without signing up for anything.",
           },
         ],
       },
@@ -1592,7 +1592,7 @@ export const dict: Record<Lang, Dict> = {
         headline:
           "Twelve euros, or twelve more months charging the same number. You decide which one costs more.",
         subheadline:
-          "12 € is less than a Deliveroo dinner. Less than two cinema tickets. Less than one month of Spotify Family. If you skip the offer and a year from now you're still at the same rate, the cost isn't 12 € — it's the thousands you didn't invoice because you never touched the thermostat. One-time payment · instant access · 30-day guarantee · you keep what you downloaded.",
+          "12 € is less than a Deliveroo dinner. Less than two cinema tickets. Less than one month of Spotify Family. If you skip the offer and a year from now you're still at the same rate, the cost isn't 12 € — it's the thousands you didn't invoice because you never touched the thermostat. One-time payment · instant access · direct download · permanent access from any device.",
         cta: "Start now — 12 €",
         stickyMobileCta: "Get the pack · 12 €",
       },

@@ -21,7 +21,7 @@ import { OfertaStickyCta } from "./OfertaStickyCta";
  *   06 — What's inside (3 core + 3 bonus items)
  *   07a — Editorial bridge (home only: Before / After block)
  *   07 — Pricing card REPEATED (after value built)
- *   08 — Guarantee band navy (shield + 30-day text)
+ *   08 — Trust band (shield + instant-access / secure-payment text)
  *   09 — FAQ
  *   10 — Final CTA (paper-warm)
  *   11 — Sticky mobile bottom CTA
