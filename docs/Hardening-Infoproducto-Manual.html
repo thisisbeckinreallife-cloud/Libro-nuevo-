@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Hardening funcional de una landing de infoproducto · Manual de replicación</title>
+<style>
+  /* =========================================================
+     PRINT-OPTIMISED STYLES
+     Diseñado para Chrome --print-to-pdf · A4 · márgenes 18mm
+     ========================================================= */
+  @page {
+    size: A4;
+    margin: 18mm 16mm 20mm 16mm;
+  }
+  @page :first {
+    margin: 0;
+  }
+  :root {
+    --ink: #1E1515;
+    --ink-soft: #420C14;
+    --paper: #FAF9F7;
+    --paper-warm: #F2E9DD;
+    --accent: #E91E63;
+    --muted: #722F37;
+    --rule: #E5DCC9;
+    --navy: #0A1230;
+    --copper: #E05808;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: white;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ---- COVER ---- */
+  .cover {
+    width: 100%;
+    height: 297mm;
+    background: var(--navy);
+    color: white;
+    padding: 28mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    page-break-after: always;
+    position: relative;
+  }
+  .cover-corner {
+    font-family: "Courier New", monospace;
+    font-size: 10pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .cover-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: 44pt;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 22pt;
+  }
+  .cover-title em {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .cover-sub {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16pt;
+    line-height: 1.45;
+    color: #D0CCDA;
+    max-width: 460pt;
+    font-weight: 300;
+    margin: 0;
+  }
+  .cover-meta {
+    font-family: "Courier New", monospace;
+    font-size: 10pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #B8B4C7;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14pt 30pt;
+    max-width: 380pt;
+  }
+  .cover-meta strong {
+    display: block;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 4pt;
+    letter-spacing: 0.14em;
+  }
+  .cover-band {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 60mm;
+    height: 6pt;
+    background: var(--copper);
+  }
+  .cover-rule {
+    width: 80pt;
+    height: 2pt;
+    background: var(--accent);
+    margin: 0 0 14pt;
+  }
+
+  /* ---- LAYOUT ---- */
+  h1, h2, h3, h4 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    margin: 0;
+  }
+  h1 {
+    font-size: 22pt;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 8pt;
+    padding-top: 6pt;
+  }
+  h2 {
+    font-size: 15pt;
+    font-weight: 600;
+    margin: 22pt 0 8pt;
+    padding-bottom: 4pt;
+    border-bottom: 0.5pt solid var(--rule);
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 12pt;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin: 14pt 0 4pt;
+    page-break-after: avoid;
+  }
+  h4 {
+    font-size: 11pt;
+    font-weight: 700;
+    margin: 10pt 0 4pt;
+    color: var(--ink);
+  }
+  p { margin: 0 0 8pt; }
+  ul, ol { margin: 0 0 8pt 18pt; padding: 0; }
+  li { margin: 0 0 4pt; }
+  code, .mono {
+    font-family: "Courier New", "Menlo", monospace;
+    font-size: 9pt;
+    background: var(--paper-warm);
+    padding: 1pt 4pt;
+    border-radius: 2pt;
+    color: var(--ink);
+  }
+  pre {
+    font-family: "Courier New", "Menlo", monospace;
+    font-size: 8.5pt;
+    line-height: 1.45;
+    background: var(--navy);
+    color: #E0E6F5;
+    padding: 10pt 12pt;
+    border-radius: 4pt;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 8pt 0 12pt;
+    page-break-inside: avoid;
+  }
+  pre .c { color: #7E84A0; }
+  pre .k { color: #FF8C70; }
+  a { color: var(--accent); text-decoration: none; }
+
+  .eyebrow {
+    font-family: "Courier New", monospace;
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 6pt;
+    display: block;
+  }
+
+  /* ---- TABLE OF CONTENTS ---- */
+  .toc {
+    page-break-after: always;
+    padding-top: 6pt;
+  }
+  .toc h1 { margin-bottom: 18pt; }
+  .toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: toc;
+  }
+  .toc li {
+    counter-increment: toc;
+    display: flex;
+    align-items: baseline;
+    gap: 8pt;
+    padding: 6pt 0;
+    border-bottom: 0.4pt dotted var(--rule);
+    font-size: 11pt;
+  }
+  .toc li::before {
+    content: counter(toc, decimal-leading-zero) ".";
+    font-family: "Courier New", monospace;
+    color: var(--accent);
+    min-width: 28pt;
+    font-weight: 600;
+  }
+  .toc-title { flex: 1; }
+  .toc-page {
+    font-family: "Courier New", monospace;
+    font-size: 9pt;
+    color: var(--muted);
+  }
+
+  /* ---- SECTIONS ---- */
+  section.chapter {
+    page-break-before: always;
+    padding-top: 6pt;
+  }
+  section.chapter:first-of-type { page-break-before: auto; }
+
+  /* ---- CARDS ---- */
+  .card {
+    background: var(--paper-warm);
+    border: 0.5pt solid var(--rule);
+    border-radius: 4pt;
+    padding: 10pt 12pt;
+    margin: 8pt 0 10pt;
+    page-break-inside: avoid;
+  }
+  .card.accent {
+    background: white;
+    border-left: 3pt solid var(--accent);
+  }
+  .card.warn {
+    background: #FFF4E5;
+    border-left: 3pt solid var(--copper);
+  }
+  .card.ok {
+    background: #E8F5E9;
+    border-left: 3pt solid #2E7D32;
+  }
+  .card.dark {
+    background: var(--navy);
+    color: white;
+    border: none;
+  }
+  .card.dark code {
+    background: rgba(255,255,255,0.1);
+    color: #FFE4B5;
+  }
+
+  /* ---- KEY-VALUE TABLE ---- */
+  .kv {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    margin: 8pt 0 14pt;
+    page-break-inside: auto;
+  }
+  .kv th, .kv td {
+    text-align: left;
+    padding: 6pt 8pt;
+    border-bottom: 0.4pt solid var(--rule);
+    vertical-align: top;
+  }
+  .kv th {
+    background: var(--paper-warm);
+    font-weight: 700;
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+  }
+  .kv td:first-child { width: 28%; }
+  .kv td code, .kv th code {
+    background: white;
+    border: 0.4pt solid var(--rule);
+  }
+
+  /* ---- CHECKLIST ---- */
+  .checklist {
+    list-style: none;
+    margin: 0 0 12pt;
+    padding: 0;
+  }
+  .checklist li {
+    padding: 5pt 0 5pt 22pt;
+    position: relative;
+    border-bottom: 0.4pt dotted var(--rule);
+    font-size: 10pt;
+  }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7pt;
+    width: 12pt;
+    height: 12pt;
+    border: 1pt solid var(--ink);
+    border-radius: 2pt;
+  }
+  .checklist li.done::before {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .checklist li.done::after {
+    content: "";
+    position: absolute;
+    left: 3pt;
+    top: 9pt;
+    width: 7pt;
+    height: 3pt;
+    border-left: 1.5pt solid white;
+    border-bottom: 1.5pt solid white;
+    transform: rotate(-45deg);
+  }
+
+  .legend {
+    font-family: "Courier New", monospace;
+    font-size: 8pt;
+    color: var(--muted);
+    margin: -4pt 0 12pt;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---- KPI ROW ---- */
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10pt;
+    margin: 10pt 0 14pt;
+    page-break-inside: avoid;
+  }
+  .kpi {
+    background: var(--paper-warm);
+    border-radius: 4pt;
+    padding: 10pt 12pt;
+  }
+  .kpi-label {
+    font-family: "Courier New", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .kpi-value {
+    font-family: Georgia, serif;
+    font-size: 22pt;
+    color: var(--accent);
+    line-height: 1.1;
+    font-weight: 600;
+  }
+  .kpi small {
+    font-size: 9pt;
+    color: var(--ink-soft);
+    display: block;
+    margin-top: 2pt;
+  }
+
+  /* ---- FOOTER NOTES ---- */
+  .footnote {
+    font-size: 9pt;
+    color: var(--muted);
+    border-top: 0.4pt solid var(--rule);
+    padding-top: 6pt;
+    margin-top: 14pt;
+  }
+
+  /* ---- FINAL PAGE ---- */
+  .end {
+    page-break-before: always;
+    padding-top: 80pt;
+    text-align: center;
+  }
+  .end-mark {
+    font-family: Georgia, serif;
+    font-size: 36pt;
+    color: var(--accent);
+    font-style: italic;
+    margin: 0 0 14pt;
+  }
+  .end-text {
+    font-family: Georgia, serif;
+    font-size: 13pt;
+    color: var(--ink-soft);
+    max-width: 360pt;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<div class="cover">
+  <div>
+    <div class="cover-corner">INNERAXIS S.L. · MANUAL INTERNO</div>
+    <div class="cover-band"></div>
+  </div>
+  <div>
+    <div class="cover-rule"></div>
+    <h1 class="cover-title">Hardening funcional de una landing de <em>infoproducto</em>.</h1>
+    <p class="cover-sub">
+      Cómo dejar lista para vivir una landing de venta digital — legal, técnicamente
+      y comercialmente — replicando lo aplicado en
+      <strong>arkwright.laralawn.com</strong> sin contratar Sentry, Plausible, GA4
+      ni UptimeRobot.
+    </p>
+  </div>
+  <div class="cover-meta">
+    <div><strong>Versión</strong>1.0</div>
+    <div><strong>Fecha</strong>14 mayo 2026</div>
+    <div><strong>Stack</strong>Next 14 · Prisma · Stripe · Resend · Railway</div>
+    <div><strong>Tiempo total</strong>≈ 3.5 días sobre un proyecto base</div>
+  </div>
+</div>
+
+<!-- ===================== TOC ===================== -->
+<div class="toc">
+  <h1>Índice</h1>
+  <ol>
+    <li><span class="toc-title">Resumen ejecutivo</span><span class="toc-page">3</span></li>
+    <li><span class="toc-title">Decisiones de diseño y filtros aplicados</span><span class="toc-page">4</span></li>
+    <li><span class="toc-title">Stack asumido y variables de entorno</span><span class="toc-page">5</span></li>
+    <li><span class="toc-title">Modelo de datos añadido (Prisma)</span><span class="toc-page">7</span></li>
+    <li><span class="toc-title">Sprint 1 · Legal y consentimiento</span><span class="toc-page">8</span></li>
+    <li><span class="toc-title">Sprint 2 · Operativo y SEO</span><span class="toc-page">10</span></li>
+    <li><span class="toc-title">Sprint 3 · Conversión y self-service</span><span class="toc-page">12</span></li>
+    <li><span class="toc-title">Mantenimiento día a día</span><span class="toc-page">14</span></li>
+    <li><span class="toc-title">Checklist de replicación paso a paso</span><span class="toc-page">15</span></li>
+    <li><span class="toc-title">Plantillas reutilizables</span><span class="toc-page">17</span></li>
+    <li><span class="toc-title">Anexos · enlaces de verificación</span><span class="toc-page">20</span></li>
+  </ol>
+</div>
+
+<!-- ===================== 1. RESUMEN ===================== -->
+<section class="chapter">
+  <span class="eyebrow">01 · Resumen ejecutivo</span>
+  <h1>Qué cubre este manual y qué no.</h1>
+
+  <p>
+    Este documento sirve para llevar cualquier landing de un infoproducto digital
+    al mismo nivel de hardening que <code>arkwright.laralawn.com</code>: legal
+    al día con normativa española y europea, telemetría interna funcionando,
+    self-service de recibo, y observabilidad del propio servidor — todo sin
+    contratar servicios externos nuevos.
+  </p>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-label">Archivos creados</div>
+      <div class="kpi-value">18</div>
+      <small>de Sprint 1 a Sprint 3</small>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Archivos modificados</div>
+      <div class="kpi-value">7</div>
+      <small>layout, footer, webhook…</small>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Servicios externos nuevos</div>
+      <div class="kpi-value">0</div>
+      <small>filtro explícito del cliente</small>
+    </div>
+  </div>
+
+  <h3>Lo que SÍ incluye</h3>
+  <ul>
+    <li><strong>Sprint 1</strong> · 4 páginas legales (aviso legal, privacidad, términos, cookies) y banner de consentimiento sin librerías externas.</li>
+    <li><strong>Sprint 2</strong> · Página de contacto + endpoint de salud + tracking de errores en BD + sitemap + robots + JSON-LD + OG image dinámica.</li>
+    <li><strong>Sprint 3</strong> · Stripe Customer Portal (recibo / método de pago / refund si decides activarlo) + tracking de conversión propio + dashboard <code>/admin/analytics</code>.</li>
+  </ul>
+
+  <h3>Lo que NO incluye (descartado por filtro)</h3>
+  <ul>
+    <li><strong>Sentry / Rollbar / Bugsnag</strong> → sustituido por tabla <code>ErrorLog</code> + <code>/admin/errors</code>.</li>
+    <li><strong>Plausible / Google Analytics / Mixpanel</strong> → sustituido por tabla <code>Event</code> + <code>/admin/analytics</code>.</li>
+    <li><strong>UptimeRobot / Better Stack</strong> → sustituido por <code>/api/health</code> + curl/cron manual.</li>
+    <li><strong>Hotjar / Microsoft Clarity</strong> → sin equivalente interno sencillo, queda fuera.</li>
+    <li><strong>ConvertKit / Mailchimp para sequences</strong> → fuera; Resend ya envía transaccionales pero sin automation built-in.</li>
+  </ul>
+
+  <div class="card warn">
+    <strong>Filtro central del cliente:</strong> nada que requiera abrir una cuenta nueva en otro SaaS. Todo lo que se decide aquí cabe en Postgres y se administra desde <code>/admin</code>.
+  </div>
+</section>
+
+<!-- ===================== 2. DECISIONES ===================== -->
+<section class="chapter">
+  <span class="eyebrow">02 · Decisiones de diseño</span>
+  <h1>Por qué este manual mete todo dentro del propio Next.</h1>
+
+  <h3>Telemetría 100 % en Postgres</h3>
+  <p>
+    Cada visita y cada error vive en la misma base de datos que las compras.
+    Ventaja: nunca pagas un plan por exportar tus datos, y los joins entre
+    "evento" y "compra" son SQL directo. Desventaja: no hay UI de tableau-style
+    out of the box — pero <code>/admin/analytics</code> ya cubre el 90 % del
+    uso real (visits / día, embudo, top UTMs, top paths).
+  </p>
+
+  <h3>Cookie banner sin librería externa</h3>
+  <p>
+    El componente <code>CookieBanner.tsx</code> son ≈140 líneas, persiste el
+    consentimiento en <code>localStorage.cookieConsent</code> versionado y con
+    caducidad de 6 meses (cumple la guía de la AEPD). Expone
+    <code>window.__cookieConsent</code> para que cualquier script de tracking
+    lea el flag <em>analytics</em> antes de disparar.
+  </p>
+
+  <h3>Política española estricta por defecto</h3>
+  <ul>
+    <li>Aviso legal con datos LSSI-CE obligatorios (razón social, NIF, domicilio, registro mercantil).</li>
+    <li>Privacidad con tabla finalidad / base jurídica / conservación (RGPD UE 2016/679 + LOPDGDD 3/2018).</li>
+    <li>Términos con <strong>waiver explícito</strong> del derecho de desistimiento (Art. 103.m RD-Ley 1/2007) — necesario para "no refunds" en producto digital con acceso inmediato.</li>
+    <li>Política de cookies cumpliendo Art. 22.2 LSSI-CE.</li>
+  </ul>
+
+  <h3>JSON-LD Schema.org para AI search</h3>
+  <p>
+    Un solo componente <code>JsonLd.tsx</code> con dos exports:
+    <code>JsonLdGlobal</code> (Organization + WebSite, inyectado en
+    <code>layout.tsx</code>) y <code>JsonLdLanding</code> (Person + Book +
+    Product con aggregateRating). Hoy ya posiciona en Rich Results.
+    Mañana — cuando los LLMs sigan citando — sigue siendo la mejor inversión
+    de 1 hora del proyecto.
+  </p>
+
+  <div class="card accent">
+    <strong>Regla de oro:</strong> si una funcionalidad se puede resolver con
+    Postgres + Next, vale más que un SaaS, aunque el SaaS tenga mejor UI. El
+    coste no es la subscripción mensual — es la fragilidad de un dato que ya
+    no controlas.
+  </div>
+</section>
+
+<!-- ===================== 3. STACK ===================== -->
+<section class="chapter">
+  <span class="eyebrow">03 · Stack y env vars</span>
+  <h1>Lo mínimo para que esto se sostenga en producción.</h1>
+
+  <h3>Componentes obligatorios</h3>
+  <table class="kv">
+    <tr><th>Capa</th><th>Tecnología</th><th>Por qué</th></tr>
+    <tr><td>Framework</td><td>Next.js 14 App Router</td><td>RSC + edge + sitemap/robots/og nativos.</td></tr>
+    <tr><td>Lenguaje</td><td>TypeScript estricto</td><td>Evita 90 % de los bugs en runtime.</td></tr>
+    <tr><td>BD</td><td>PostgreSQL (Railway)</td><td>Backups automáticos diarios. JSON soportado.</td></tr>
+    <tr><td>ORM</td><td>Prisma 5+</td><td><code>groupBy</code> y <code>$queryRaw</code> resuelven el dashboard analytics.</td></tr>
+    <tr><td>Pagos</td><td>Stripe Checkout + Customer Portal</td><td>Cumplimiento PCI delegado. Portal sustituye al panel de soporte.</td></tr>
+    <tr><td>Email</td><td>Resend</td><td>Transaccional + dominio verificado. Sin pricing escalonado.</td></tr>
+    <tr><td>Hosting</td><td>Railway</td><td>Postgres incluido + auto-deploy desde GitHub + backups.</td></tr>
+  </table>
+
+  <h3>Variables de entorno</h3>
+
+  <h4>Generales</h4>
+  <table class="kv">
+    <tr><th>Variable</th><th>Para qué</th></tr>
+    <tr><td><code>DATABASE_URL</code></td><td>Conexión Prisma → Postgres (Railway la inyecta automática).</td></tr>
+    <tr><td><code>NEXT_PUBLIC_SITE_URL</code></td><td>Dominio canónico sin barra final. Ej: <code>https://arkwright.laralawn.com</code>.</td></tr>
+    <tr><td><code>ADMIN_EXPORT_TOKEN</code></td><td>Token largo aleatorio. Da acceso a <code>/admin</code>, <code>/admin/errors</code>, <code>/admin/analytics</code> y CSV export.</td></tr>
+  </table>
+
+  <h4>Stripe</h4>
+  <table class="kv">
+    <tr><th>Variable</th><th>Para qué</th></tr>
+    <tr><td><code>STRIPE_SECRET_KEY</code></td><td>Clave secreta live (<code>sk_live_…</code>).</td></tr>
+    <tr><td><code>STRIPE_PRICE_ID</code></td><td>Precio del producto digital. Crear en Stripe → Products.</td></tr>
+    <tr><td><code>STRIPE_WEBHOOK_SECRET</code></td><td>Firma del webhook (<code>whsec_…</code>) — Stripe la da al crear el endpoint.</td></tr>
+  </table>
+
+  <h4>Resend</h4>
+  <table class="kv">
+    <tr><th>Variable</th><th>Para qué</th></tr>
+    <tr><td><code>RESEND_API_KEY</code></td><td>API key (<code>re_…</code>) tras verificar dominio.</td></tr>
+    <tr><td><code>RESEND_FROM</code></td><td>Remitente. Ej: <code>"INNERAXIS &lt;info@inneraxisinstitute.com&gt;"</code>.</td></tr>
+    <tr><td><code>RESEND_CONTACT_TO</code></td><td>Buzón al que llegan los mensajes de <code>/contacto</code>.</td></tr>
+  </table>
+
+  <div class="card warn">
+    <strong>Producción ≠ <code>.env.local</code>.</strong> Railway tiene su propio panel de variables.
+    Comprueba siempre con <code>railway variables</code> o desde el dashboard antes
+    de desplegar.
+  </div>
+</section>
+
+<!-- ===================== 4. MODELO DATOS ===================== -->
+<section class="chapter">
+  <span class="eyebrow">04 · Modelo de datos</span>
+  <h1>Dos tablas nuevas en Prisma. Nada más.</h1>
+
+  <p>
+    Estas dos tablas se añaden al <code>schema.prisma</code> existente. La migración se
+    genera con <code>npx prisma migrate dev --name add_error_log_and_event</code>.
+  </p>
+
+  <h3>Tabla <code>ErrorLog</code></h3>
+  <pre>model ErrorLog {
+  id        String   @id @default(uuid()) @db.Uuid
+  source    String   // "checkout" | "webhook" | "biblioteca" | ...
+  message   String
+  stack     String?
+  path      String?
+  userAgent String?  @map("user_agent")
+  ipHash    String?  @map("ip_hash")
+  meta      Json?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@index([source, createdAt])
+  @@map("error_logs")
+}</pre>
+
+  <h3>Tabla <code>Event</code></h3>
+  <pre>model Event {
+  id           String   @id @default(uuid()) @db.Uuid
+  kind         String
+  path         String?
+  sessionId    String?  @map("session_id")
+  utmSource    String?  @map("utm_source")
+  utmMedium    String?  @map("utm_medium")
+  utmCampaign  String?  @map("utm_campaign")
+  referrerHost String?  @map("referrer_host")
+  abVariant    String?  @map("ab_variant")
+  meta         Json?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@index([kind, createdAt])
+  @@map("events")
+}</pre>
+
+  <h3>Helpers asociados</h3>
+  <ul>
+    <li><code>src/lib/logError.ts</code> → <code>logError({ source, error, path, userAgent, ip, meta })</code> persiste en <code>error_logs</code>. Best-effort: si falla la escritura, hace <code>console.error</code> y traga la excepción.</li>
+    <li><code>src/lib/events.ts</code> → <code>recordEvent({ kind, path, sessionId, utm*, meta })</code> persiste en <code>events</code>. Mismo patrón best-effort.</li>
+  </ul>
+
+  <div class="card ok">
+    Ambas tablas son <strong>append-only</strong>. Para purgar, <code>DELETE FROM error_logs WHERE created_at &lt; NOW() - INTERVAL '90 days'</code> mensual, o un cron en Railway.
+  </div>
+</section>
+
+<!-- ===================== 5. SPRINT 1 ===================== -->
+<section class="chapter">
+  <span class="eyebrow">05 · Sprint 1 · 1-2 días</span>
+  <h1>Legal y consentimiento.</h1>
+
+  <h3>Archivos a crear</h3>
+  <table class="kv">
+    <tr><th>Path</th><th>Qué hace</th></tr>
+    <tr><td><code>src/app/legal/aviso-legal/page.tsx</code></td><td>Datos LSSI-CE obligatorios.</td></tr>
+    <tr><td><code>src/app/legal/privacidad/page.tsx</code></td><td>Política RGPD con tabla finalidades.</td></tr>
+    <tr><td><code>src/app/legal/terminos/page.tsx</code></td><td>Términos + waiver Art. 103 RDL 1/2007.</td></tr>
+    <tr><td><code>src/app/legal/cookies/page.tsx</code></td><td>Tabla de cookies + botón reabrir banner.</td></tr>
+    <tr><td><code>src/components/LegalLayout.tsx</code></td><td>Wrapper con tipografía editorial y "Volver al inicio".</td></tr>
+    <tr><td><code>src/components/CookieBanner.tsx</code></td><td>Banner GDPR self-contained.</td></tr>
+  </table>
+
+  <h3>Datos a recolectar antes de empezar</h3>
+  <ul>
+    <li>Denominación social (S.L. / S.A. / persona física).</li>
+    <li>NIF / CIF.</li>
+    <li>Dirección fiscal completa.</li>
+    <li>Email legal de contacto.</li>
+    <li>Tomo / folio / hoja del Registro Mercantil (si ya están inscritos — si no, dejar placeholder explícito).</li>
+    <li>Política de devoluciones: ¿hay garantía o no? Esto decide cómo se redactan términos y FAQ.</li>
+  </ul>
+
+  <h3>Contrato del banner</h3>
+  <p>Cuatro reglas que el código asume:</p>
+  <ul>
+    <li>El banner está <strong>oculto</strong> en <code>/admin/*</code> y <code>/legal/*</code> (no obstruye lo que el usuario está leyendo).</li>
+    <li>Se persiste con versión (<code>CONSENT_VERSION</code>). Si cambias categorías, súbela y todos vuelven a ver el banner.</li>
+    <li>Caducidad 6 meses. Cumple el plazo orientativo de la AEPD.</li>
+    <li>Expone <code>window.__cookieConsent</code> globalmente para tracking client-side.</li>
+  </ul>
+
+  <h3>Modificaciones</h3>
+  <ul>
+    <li><code>src/components/Footer.tsx</code> · añadir 4 links legales + link a <code>/contacto</code> + copyright con razón social.</li>
+    <li><code>src/app/layout.tsx</code> · insertar <code>&lt;CookieBanner /&gt;</code> antes de cerrar <code>&lt;LangProvider&gt;</code>.</li>
+    <li><code>src/app/globals.css</code> · ≈180 líneas para clases <code>.legal-*</code>, <code>.cookie-banner-*</code>, <code>.footer-legal</code>.</li>
+  </ul>
+
+  <div class="card warn">
+    <strong>Si tu política dice "no refunds":</strong> el waiver del Art. 103.m
+    debe estar <em>antes</em> de la pasarela de pago, y la FAQ debe responder
+    honestamente que no se admiten devoluciones. Esconderlo invalida el waiver
+    y te expone a reclamaciones del consumidor.
+  </div>
+</section>
+
+<!-- ===================== 6. SPRINT 2 ===================== -->
+<section class="chapter">
+  <span class="eyebrow">06 · Sprint 2 · 1 día</span>
+  <h1>Operativo y SEO sin servicios externos.</h1>
+
+  <h3>Archivos a crear</h3>
+  <table class="kv">
+    <tr><th>Path</th><th>Qué hace</th></tr>
+    <tr><td><code>src/app/contacto/page.tsx</code></td><td>Formulario name + email + mensaje.</td></tr>
+    <tr><td><code>src/app/api/contacto/route.ts</code></td><td>POST → envía vía Resend, rate-limit 5/hora IP.</td></tr>
+    <tr><td><code>src/app/api/health/route.ts</code></td><td>GET 200/503 según Prisma, Stripe, Resend.</td></tr>
+    <tr><td><code>src/app/admin/errors/page.tsx</code></td><td>Lista últimos 200 errores, pills por source.</td></tr>
+    <tr><td><code>src/app/sitemap.ts</code></td><td>Genera <code>sitemap.xml</code> nativo.</td></tr>
+    <tr><td><code>src/app/robots.ts</code></td><td>Permite landing + legales, bloquea <code>/admin</code> <code>/biblioteca</code>.</td></tr>
+    <tr><td><code>src/components/JsonLd.tsx</code></td><td>Organization + WebSite + Person + Book + Product.</td></tr>
+    <tr><td><code>src/app/opengraph-image.tsx</code></td><td>1200×630 generada con <code>next/og</code>.</td></tr>
+    <tr><td><code>src/app/twitter-image.tsx</code></td><td>Igual que la anterior, expuesta como Twitter Card.</td></tr>
+  </table>
+
+  <h3>Salud del sistema</h3>
+  <p>
+    <code>/api/health</code> devuelve <code>200</code> con un objeto si Prisma
+    responde a <code>SELECT 1</code>, Stripe tiene secret key configurada y
+    Resend tiene API key. Devuelve <code>503</code> con el detalle del fallo
+    en cualquier otro caso. Para chequear desde fuera:
+  </p>
+  <pre>curl -s https://arkwright.laralawn.com/api/health | jq</pre>
+  <p>
+    Si quieres notificación, programa un cron en Railway o un workflow de GitHub
+    Actions que llame al endpoint cada 5 min y abra issue al fallar.
+  </p>
+
+  <h3>OG image dinámica</h3>
+  <p>
+    Generada con <code>next/og</code> + <code>ImageResponse</code>. Sin
+    dependencias adicionales. Se sirve en
+    <code>/opengraph-image</code> y se enlaza automáticamente por Next al
+    declarar el archivo <code>opengraph-image.tsx</code> en App Router.
+  </p>
+
+  <h3>JSON-LD inyectado</h3>
+  <ul>
+    <li><code>JsonLdGlobal</code> en <code>layout.tsx</code> · Organization + WebSite. Cubre cualquier URL.</li>
+    <li><code>JsonLdLanding</code> en el componente de la landing · Person (autor) + Book + Product + aggregateRating.</li>
+  </ul>
+
+  <div class="card accent">
+    <strong>Verifica antes de publicar:</strong> Google Rich Results Test
+    (<code>search.google.com/test/rich-results</code>) acepta la URL de
+    desarrollo o producción y te dice qué tipos detecta. Si te marca un fallo
+    en <em>Product</em>, suele ser porque falta <code>offers.priceCurrency</code> o
+    <code>offers.availability</code>.
+  </div>
+</section>
+
+<!-- ===================== 7. SPRINT 3 ===================== -->
+<section class="chapter">
+  <span class="eyebrow">07 · Sprint 3 · 1 día</span>
+  <h1>Conversión y self-service.</h1>
+
+  <h3>Stripe Customer Portal</h3>
+  <p>
+    El endpoint <code>POST /api/stripe/portal</code> recibe <code>{ token }</code> con el
+    accessToken del Purchase (el mismo de <code>/biblioteca</code>), obtiene la
+    sesión de Stripe, recupera (o crea si fue invitado) el Customer, abre una
+    sesión temporal del portal y devuelve <code>{ url }</code>. El front en
+    <code>BibliotecaHero.tsx</code> tiene un botón "Ver mi recibo" que llama
+    al endpoint y redirige.
+  </p>
+
+  <div class="card warn">
+    <strong>Toggle a revisar:</strong> Stripe Dashboard → Settings → Customer Portal →
+    <em>"Allow customers to request refunds"</em>. Si tu política es "no refunds",
+    desmárcalo. Si decides activarlo, el webhook ya escucha
+    <code>charge.refunded</code> y marca <code>Purchase.status = "refunded"</code>.
+  </div>
+
+  <h3>Tracking de conversión interno</h3>
+  <p>Cinco kinds de evento, validados server-side en <code>/api/track</code>:</p>
+  <table class="kv">
+    <tr><th>Kind</th><th>Cuándo se dispara</th><th>Subjeto a consent</th></tr>
+    <tr><td><code>page_load</code></td><td>Cada cambio de pathname client-side.</td><td>Sí</td></tr>
+    <tr><td><code>cta_click</code></td><td>Click en <code>[data-track-cta]</code> que NO sea <em>checkout</em>.</td><td>Sí</td></tr>
+    <tr><td><code>checkout_start</code></td><td>Click en <code>[data-track-cta="checkout"]</code>.</td><td>Sí</td></tr>
+    <tr><td><code>purchase_completed</code></td><td>Webhook <code>checkout.session.completed</code>.</td><td><strong>No</strong> (legítimo interés)</td></tr>
+    <tr><td><code>refund_requested</code></td><td>Webhook <code>charge.refunded</code>.</td><td><strong>No</strong></td></tr>
+  </table>
+
+  <h3>Garantías del tracker</h3>
+  <ul>
+    <li>El componente <code>Tracker</code> NUNCA registra si <code>window.__cookieConsent.analytics !== true</code>.</li>
+    <li>Usa <code>navigator.sendBeacon</code> con fallback a <code>fetch keepalive</code>. Best-effort: nunca espera respuesta.</li>
+    <li>Genera <code>sessionId</code> con <code>crypto.randomUUID()</code> en <code>sessionStorage</code>. Caduca al cerrar pestaña — no identifica personas.</li>
+    <li>UTM y referrer host se sniffean una vez por sesión y persisten.</li>
+    <li>Rate-limit silencioso en el servidor: 60 eventos/min por IP. Por encima, devuelve <code>200</code> sin grabar.</li>
+  </ul>
+
+  <h3>Cómo etiquetar tus CTAs</h3>
+  <p>
+    En cualquier botón / link de conversión, añade <code>data-track-cta="label"</code>.
+    El tracker hace event delegation con <code>closest()</code>, no hace falta
+    pasar callbacks.
+  </p>
+  <pre>&lt;button data-track-cta="checkout"&gt; Comprar &lt;/button&gt;
+&lt;a href="/oferta" data-track-cta="hero-link"&gt; Más info &lt;/a&gt;</pre>
+
+  <h3>Dashboard <code>/admin/analytics</code></h3>
+  <p>Las métricas que ya devuelve sin tocar nada:</p>
+  <ul>
+    <li>Big numbers · page_load · cta_click · checkout_start · purchase_completed (+ refund_requested si hay).</li>
+    <li>Embudo · ratio visit → checkout y checkout → purchase.</li>
+    <li>Serie diaria de visitas (últimos 30 días) como bar chart CSS.</li>
+    <li>Top paths, top utm_source / medium / campaign, top referrer hosts.</li>
+    <li>Breakdown por <code>abVariant</code> si lo usas para A/B test.</li>
+  </ul>
+</section>
+
+<!-- ===================== 8. MANTENIMIENTO ===================== -->
+<section class="chapter">
+  <span class="eyebrow">08 · Mantenimiento</span>
+  <h1>Lo que hay que mirar cada cuanto.</h1>
+
+  <table class="kv">
+    <tr><th>Frecuencia</th><th>Acción</th><th>URL / Comando</th></tr>
+    <tr><td>Diario (1 min)</td><td>Revisar <code>/admin/errors</code></td><td><code>/admin/errors?token=...</code></td></tr>
+    <tr><td>Diario (30 s)</td><td>Health check</td><td><code>curl /api/health</code></td></tr>
+    <tr><td>Semanal (5 min)</td><td>Revisar <code>/admin/analytics</code> · rango 7d</td><td><code>/admin/analytics?token=...&range=7d</code></td></tr>
+    <tr><td>Semanal</td><td>Verificar último backup Postgres en Railway</td><td>Railway → Postgres → Backups</td></tr>
+    <tr><td>Mensual</td><td>Purgar errores antiguos</td><td><code>DELETE FROM error_logs WHERE created_at &lt; NOW() - INTERVAL '90 days'</code></td></tr>
+    <tr><td>Mensual</td><td>Revisar Stripe Disputes</td><td>Stripe Dashboard → Disputes</td></tr>
+    <tr><td>Trimestral</td><td>Releer páginas legales — actualizar si cambia algo (cobro, contacto, finalidades)</td><td><code>/legal/*</code></td></tr>
+    <tr><td>Anual</td><td>Validar Schema.org y OG con Rich Results Test</td><td><code>search.google.com/test/rich-results</code></td></tr>
+  </table>
+
+  <div class="card accent">
+    <strong>Buen hábito:</strong> guardar el token de admin en un password manager.
+    Marca los bookmarks de <code>/admin/errors</code> y <code>/admin/analytics</code> con
+    el token incluido en la URL. Así no tienes fricción para abrirlos cada
+    mañana.
+  </div>
+</section>
+
+<!-- ===================== 9. CHECKLIST ===================== -->
+<section class="chapter">
+  <span class="eyebrow">09 · Checklist de replicación</span>
+  <h1>Aplicar este manual a otra landing en orden.</h1>
+
+  <p class="legend">☐ Por hacer · ☑ Hecho. Imprime esta página y tachalo manualmente.</p>
+
+  <h3>Fase 0 · Preparación</h3>
+  <ul class="checklist">
+    <li>Recoger denominación social, NIF/CIF, domicilio, email legal.</li>
+    <li>Decidir política de devoluciones (con / sin garantía).</li>
+    <li>Verificar dominio en Resend.</li>
+    <li>Crear Stripe Live keys y producto + precio.</li>
+    <li>Crear webhook endpoint <code>/api/stripe/webhook</code> en Stripe → guardar <code>STRIPE_WEBHOOK_SECRET</code>.</li>
+    <li>Generar <code>ADMIN_EXPORT_TOKEN</code> aleatorio largo (32+ chars).</li>
+  </ul>
+
+  <h3>Fase 1 · Schema y env</h3>
+  <ul class="checklist">
+    <li>Añadir modelos <code>ErrorLog</code> y <code>Event</code> a <code>schema.prisma</code>.</li>
+    <li><code>npx prisma migrate dev --name add_error_log_and_event</code>.</li>
+    <li>Crear <code>src/lib/logError.ts</code> y <code>src/lib/events.ts</code>.</li>
+    <li>Subir env vars al panel del hosting (Railway / Vercel / etc.).</li>
+  </ul>
+
+  <h3>Fase 2 · Legal + consent (Sprint 1)</h3>
+  <ul class="checklist">
+    <li>Crear 4 páginas <code>/legal/*</code> con datos del cliente.</li>
+    <li>Crear <code>LegalLayout</code> + <code>CookieBanner</code>.</li>
+    <li>Añadir links legales al Footer + actualizar copyright.</li>
+    <li>Pegar <code>&lt;CookieBanner /&gt;</code> al final del <code>layout.tsx</code>.</li>
+    <li>Verificar caducidad 6 meses y categorías necesarias/analytics/marketing.</li>
+  </ul>
+
+  <h3>Fase 3 · Operativo + SEO (Sprint 2)</h3>
+  <ul class="checklist">
+    <li><code>/contacto</code> + <code>/api/contacto</code> con Resend.</li>
+    <li><code>/api/health</code> probado con <code>curl</code> y devuelve 200.</li>
+    <li><code>/admin/errors</code> gated por <code>ADMIN_EXPORT_TOKEN</code>.</li>
+    <li><code>sitemap.ts</code> + <code>robots.ts</code> publicados.</li>
+    <li><code>JsonLdGlobal</code> en layout, <code>JsonLdLanding</code> en la landing.</li>
+    <li><code>opengraph-image.tsx</code> + <code>twitter-image.tsx</code>.</li>
+    <li>Validar con Rich Results Test → 0 errores.</li>
+  </ul>
+
+  <h3>Fase 4 · Conversión + portal (Sprint 3)</h3>
+  <ul class="checklist">
+    <li>Activar Stripe Customer Portal en el dashboard.</li>
+    <li>Configurar el toggle de refund según política.</li>
+    <li><code>/api/stripe/portal</code> en producción.</li>
+    <li>Botón "Ver mi recibo" en la página post-compra.</li>
+    <li><code>/api/track</code> con rate-limit y whitelist de kinds.</li>
+    <li>Insertar <code>&lt;Tracker /&gt;</code> en <code>layout.tsx</code>.</li>
+    <li>Etiquetar todos los CTA con <code>data-track-cta="..."</code>.</li>
+    <li>Modificar webhook para registrar <code>purchase_completed</code> y <code>refund_requested</code>.</li>
+    <li><code>/admin/analytics</code> renderiza correctamente con datos reales.</li>
+  </ul>
+
+  <h3>Fase 5 · Verificación end-to-end</h3>
+  <ul class="checklist">
+    <li>Compra de prueba con tarjeta Stripe <code>4242 4242 4242 4242</code>.</li>
+    <li>Email transaccional recibido vía Resend.</li>
+    <li>Acceso a <code>/biblioteca?token=…</code>.</li>
+    <li>Botón "Ver mi recibo" abre Stripe Portal y vuelve.</li>
+    <li>Evento <code>purchase_completed</code> aparece en <code>/admin/analytics</code>.</li>
+    <li>Banner cookies: aceptar todo → POST <code>/api/track</code> registra <code>page_load</code>.</li>
+    <li>Banner cookies: solo necesarias → 0 POST a <code>/api/track</code>.</li>
+  </ul>
+</section>
+
+<!-- ===================== 10. PLANTILLAS ===================== -->
+<section class="chapter">
+  <span class="eyebrow">10 · Plantillas reutilizables</span>
+  <h1>Copy y JSON que puedes pegar tal cual.</h1>
+
+  <h3>Datos fiscales (rellenar antes de cualquier cosa)</h3>
+  <pre>Denominación social:  ____________________________________
+NIF / CIF:            ____________________________________
+Domicilio:            ____________________________________
+Email legal:          ____________________________________
+Inscripción RM:       Tomo ____  Folio ____  Hoja ____</pre>
+
+  <h3>Cookie banner · copy ES</h3>
+  <pre>Usamos cookies necesarias para que el pago y el workbook
+funcionen. Las analíticas/marketing solo se activan si las
+aceptas. Más info en la política de cookies.
+
+[Solo necesarias]  [Aceptar todo]</pre>
+
+  <h3>Cookie banner · copy EN</h3>
+  <pre>We use necessary cookies to make checkout and the workbook
+work. Analytics/marketing only run if you accept them.
+More info in our cookie policy.
+
+[Only necessary]  [Accept all]</pre>
+
+  <h3>Cláusula waiver Art. 103 RDL 1/2007 (sin garantía de devolución)</h3>
+  <pre>Al iniciar la descarga / acceso inmediato al contenido digital,
+el usuario consiente expresamente la ejecución del contrato y
+RENUNCIA al derecho de desistimiento conforme al artículo 103.m)
+del Real Decreto Legislativo 1/2007, de 16 de noviembre, por el
+que se aprueba el texto refundido de la Ley General para la
+Defensa de los Consumidores y Usuarios.</pre>
+
+  <h3>JSON-LD · Organization (en <code>layout.tsx</code>)</h3>
+  <pre>{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "INNERAXIS S.L.",
+  "url": "https://arkwright.laralawn.com",
+  "logo": "https://arkwright.laralawn.com/lara-lawn-logo.png",
+  "email": "info@inneraxisinstitute.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Ruiseñor 22",
+    "addressLocality": "Olías del Rey",
+    "addressRegion": "Toledo",
+    "postalCode": "45280",
+    "addressCountry": "ES"
+  }
+}</pre>
+
+  <h3>JSON-LD · Product con rating (en la landing)</h3>
+  <pre>{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "El método Arkwright",
+  "description": "...",
+  "image": "https://.../og-image.jpg",
+  "brand": { "@type": "Brand", "name": "Lara Lawn" },
+  "offers": {
+    "@type": "Offer",
+    "price": "12.00",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://arkwright.laralawn.com/oferta"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "10000"
+  }
+}</pre>
+
+  <h3>robots.txt mínimo</h3>
+  <pre>User-agent: *
+Allow: /
+Allow: /oferta
+Allow: /legal/
+Disallow: /admin
+Disallow: /biblioteca
+Disallow: /workbook
+Disallow: /registro
+Disallow: /api/
+
+Sitemap: https://arkwright.laralawn.com/sitemap.xml</pre>
+
+  <h3>sitemap.ts skeleton</h3>
+  <pre>import type { MetadataRoute } from "next";
+
+const BASE = (process.env.NEXT_PUBLIC_SITE_URL ?? "")
+  .replace(/\/$/, "");
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+  const urls = [
+    "", "/oferta", "/contacto",
+    "/legal/aviso-legal", "/legal/privacidad",
+    "/legal/terminos", "/legal/cookies",
+  ];
+  return urls.map((u) =&gt; ({
+    url: `${BASE}${u}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: u === "" ? 1.0 : 0.7,
+  }));
+}</pre>
+
+  <h3>SQL útiles · purga y debug</h3>
+  <pre>-- Purgar errores de más de 90 días
+DELETE FROM error_logs WHERE created_at &lt; NOW() - INTERVAL '90 days';
+
+-- Conversion rate últimos 30 días
+SELECT
+  COUNT(*) FILTER (WHERE kind = 'page_load')         AS visits,
+  COUNT(*) FILTER (WHERE kind = 'checkout_start')    AS checkouts,
+  COUNT(*) FILTER (WHERE kind = 'purchase_completed') AS purchases
+FROM events
+WHERE created_at &gt;= NOW() - INTERVAL '30 days';
+
+-- Top UTM source / campaign
+SELECT utm_source, utm_campaign, COUNT(*) AS total
+FROM events
+WHERE created_at &gt;= NOW() - INTERVAL '30 days'
+  AND utm_source IS NOT NULL
+GROUP BY 1, 2
+ORDER BY total DESC
+LIMIT 20;</pre>
+</section>
+
+<!-- ===================== 11. ANEXOS ===================== -->
+<section class="chapter">
+  <span class="eyebrow">11 · Anexos</span>
+  <h1>Enlaces y referencias regulatorias.</h1>
+
+  <h3>Verificación técnica</h3>
+  <ul>
+    <li><strong>Google Rich Results Test</strong> · search.google.com/test/rich-results</li>
+    <li><strong>Stripe webhook simulator</strong> · Stripe Dashboard → Developers → Webhooks → tu endpoint → "Send test webhook"</li>
+    <li><strong>Resend logs</strong> · resend.com → Logs (ver delivery de transaccionales)</li>
+    <li><strong>Railway backups</strong> · Railway → Postgres service → Backups (verificar daily)</li>
+  </ul>
+
+  <h3>Normativa española / europea</h3>
+  <ul>
+    <li><strong>LSSI-CE</strong> · Ley 34/2002 de Servicios de la Sociedad de la Información y Comercio Electrónico. Art. 10 (información obligatoria) y Art. 22.2 (cookies).</li>
+    <li><strong>RGPD UE 2016/679</strong> · derechos del interesado, principio de minimización, base jurídica.</li>
+    <li><strong>LOPDGDD 3/2018</strong> · adaptación española del RGPD.</li>
+    <li><strong>RDL 1/2007</strong> · Ley General de Consumidores y Usuarios. Art. 103.m (waiver de desistimiento en contenido digital).</li>
+    <li><strong>AEPD</strong> · agencia española de protección de datos → guía cookies, plantillas de privacidad, mecanismos de reclamación.</li>
+  </ul>
+
+  <h3>Stripe</h3>
+  <ul>
+    <li><strong>Customer Portal config</strong> · Settings → Customer Portal → ajustar branding, return URL y toggles (refunds, cancel subscription, etc.).</li>
+    <li><strong>Test cards</strong> · <code>4242 4242 4242 4242</code> aprobada, <code>4000 0000 0000 0002</code> rechazada.</li>
+    <li><strong>Webhook signing secret</strong> · única forma segura de verificar que el evento viene de Stripe. NUNCA hardcodear; debe vivir en env.</li>
+  </ul>
+
+  <div class="footnote">
+    Este manual es interno de INNERAXIS S.L. y refleja el estado de
+    <code>arkwright.laralawn.com</code> el 14 de mayo de 2026. Cuando
+    cambies algo del stack (nueva tabla, nuevo servicio, nueva normativa),
+    actualízalo aquí antes de replicarlo a otra landing — la
+    consistencia entre proyectos vale más que un manual perfecto en uno
+    solo.
+  </div>
+</section>
+
+<div class="end">
+  <p class="end-mark">·</p>
+  <p class="end-text">
+    Cualquier landing que pase este manual completo es legal,
+    medible y mantenible. Sin más SaaS, sin más dashboards perdidos,
+    sin más facturas mensuales de servicios que casi no usas.
+  </p>
+</div>
+
+</body>
+</html>
