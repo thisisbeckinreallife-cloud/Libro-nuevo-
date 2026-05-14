@@ -484,11 +484,12 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "El método Arkwright · Lara Lawn",
-        headlinePre: "No es disciplina. Es ",
-        headlineEm: "identidad",
+        headlinePre:
+          "En 1760 una máquina decidió quién sería rico durante 200 años. Hoy está pasando ",
+        headlineEm: "otra vez",
         headlinePost: ".",
         subheadline:
-          "Subiste tarifa una vez y volviste a la anterior en dos meses. El manual que reescribe ese techo en un fin de semana.",
+          "En 1760 fue una máquina. Hoy es tu identidad. El manual que reescribe ese código en un fin de semana — y casi nadie lo está viendo.",
         heroCta: "Ver el método",
         trustMicrocopy:
           "+10.000 mujeres aplicando el método · 10 años de investigación · 4,9 / 5",
@@ -1403,11 +1404,12 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "The Arkwright Method · Lara Lawn",
-        headlinePre: "It isn't discipline. It's ",
-        headlineEm: "identity",
+        headlinePre:
+          "In 1760 a machine decided who would be rich for 200 years. Today it's happening ",
+        headlineEm: "again",
         headlinePost: ".",
         subheadline:
-          "You raised your rate once and went back to the old one within two months. The manual that rewrites that ceiling over one weekend.",
+          "In 1760 it was a machine. Today it's your identity. The manual that rewrites that code over one weekend — and almost no one is seeing it.",
         heroCta: "See the method",
         trustMicrocopy:
           "+10,000 women applying the method · 10 years of research · 4.9 / 5",
