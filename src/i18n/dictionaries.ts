@@ -482,11 +482,11 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "El método Arkwright · Lara Lawn",
-        headlinePre: "Doce años haciendo el doble por el mismo número. No es disciplina. Es ",
+        headlinePre: "No es disciplina. Es ",
         headlineEm: "identidad",
         headlinePost: ".",
         subheadline:
-          "Hiciste la terapia. Leíste a Brené Brown. Subiste tarifa una vez y volviste a la anterior en dos meses. Hay un termostato interno que decide tu techo antes de que abras el ordenador — y nadie te enseñó a tocarlo. El manual de Lara Lawn, en 60 segundos, por 12 €.",
+          "Doce años haciendo el doble por el mismo número. Hiciste la terapia, leíste a Brené Brown, subiste tarifa una vez y volviste a la anterior en dos meses. Hay un termostato interno que decide tu techo antes de que abras el ordenador. El manual de Lara Lawn, en 60 segundos, por 12 €.",
         trustMicrocopy:
           "+10.000 mujeres aplicando el método · 10 años de investigación · 4,9 / 5",
         imageAlt: "Portada de El método Arkwright de Lara Lawn",
@@ -1400,11 +1400,11 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "The Arkwright Method · Lara Lawn",
-        headlinePre: "Twelve years working twice as hard for the same number. It isn't discipline. It's ",
+        headlinePre: "It isn't discipline. It's ",
         headlineEm: "identity",
         headlinePost: ".",
         subheadline:
-          "You did the therapy. You read Brené Brown. You raised your rate once and were back to the old one within two months. There is an internal thermostat deciding your ceiling before you open your laptop — and no one taught you how to touch it. Lara Lawn's manual, in 60 seconds, for 12 €.",
+          "Twelve years working twice as hard for the same number. You did the therapy, you read Brené Brown, you raised your rate once and were back to the old one within two months. There is an internal thermostat deciding your ceiling before you open your laptop. Lara Lawn's manual, in 60 seconds, for 12 €.",
         trustMicrocopy:
           "+10,000 women applying the method · 10 years of research · 4.9 / 5",
         imageAlt: "Cover of The Arkwright Method by Lara Lawn",
