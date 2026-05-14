@@ -55,6 +55,10 @@ export function OfertaLanding({
               {o.hero.headlinePost}
             </h1>
             <p className="oferta-hero-sub">{o.hero.subheadline}</p>
+            <a href="#pricing" className="oferta-hero-cta">
+              {o.hero.heroCta}
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
           <div className="oferta-hero-visual">
             <div className="book-hero">

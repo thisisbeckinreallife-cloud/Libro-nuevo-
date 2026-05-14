@@ -24,6 +24,8 @@ export type OfertaDict = {
     headlineEm: string;
     headlinePost: string;
     subheadline: string;
+    /** Label of the in-hero pill CTA. Anchors to #pricing. */
+    heroCta: string;
     trustMicrocopy: string;
     imageAlt: string;
   };
@@ -482,11 +484,12 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "El método Arkwright · Lara Lawn",
-        headlinePre: "No es disciplina. Es ",
+        headlinePre: "No es disciplina. Es ",
         headlineEm: "identidad",
         headlinePost: ".",
         subheadline:
-          "Subiste tarifa una vez y volviste a la anterior en dos meses. El manual que reescribe ese techo en un fin de semana — por 12 €.",
+          "Subiste tarifa una vez y volviste a la anterior en dos meses. El manual que reescribe ese techo en un fin de semana.",
+        heroCta: "Ver el método",
         trustMicrocopy:
           "+10.000 mujeres aplicando el método · 10 años de investigación · 4,9 / 5",
         imageAlt: "Portada de El método Arkwright de Lara Lawn",
@@ -1400,11 +1403,12 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "The Arkwright Method · Lara Lawn",
-        headlinePre: "It isn't discipline. It's ",
+        headlinePre: "It isn't discipline. It's ",
         headlineEm: "identity",
         headlinePost: ".",
         subheadline:
-          "You raised your rate once and went back to the old one within two months. The manual that rewrites that ceiling over one weekend — for 12 €.",
+          "You raised your rate once and went back to the old one within two months. The manual that rewrites that ceiling over one weekend.",
+        heroCta: "See the method",
         trustMicrocopy:
           "+10,000 women applying the method · 10 years of research · 4.9 / 5",
         imageAlt: "Cover of The Arkwright Method by Lara Lawn",
