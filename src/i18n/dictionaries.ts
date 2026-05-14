@@ -482,20 +482,20 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "El método Arkwright · Lara Lawn",
-        headlinePre: "No tienes un problema de dinero. Tienes un problema de ",
+        headlinePre: "Doce años haciendo el doble por el mismo número. No es disciplina. Es ",
         headlineEm: "identidad",
         headlinePost: ".",
         subheadline:
-          "Manual operativo para mujeres que ya hicieron terapia, ya leyeron a Brené Brown y siguen ganando lo mismo. Ebook, audiolibro y workbook. Acceso en 60 segundos por 12 €.",
+          "Hiciste la terapia. Leíste a Brené Brown. Subiste tarifa una vez y volviste a la anterior en dos meses. Hay un termostato interno que decide tu techo antes de que abras el ordenador — y nadie te enseñó a tocarlo. El manual de Lara Lawn, en 60 segundos, por 12 €.",
         trustMicrocopy:
           "+10.000 mujeres aplicando el método · 10 años de investigación · 4,9 / 5",
         imageAlt: "Portada de El método Arkwright de Lara Lawn",
       },
       pricing: {
-        eyebrow: "Tu acceso al método",
+        eyebrow: "El precio absurdo",
         headline: "Todo el sistema. Un pago. Acceso para siempre.",
         subheadline:
-          "Sin suscripción. Sin envíos. Sin pasos intermedios. Tu biblioteca privada se abre en cuanto Stripe confirma el pago. La razón del precio de 12 €: queremos que entre la mujer correcta, no la mujer que puede pagar.",
+          "El audiolibro suelto en Audible: 24,95 €. El workbook suelto en la web de Lara: 49 €. La consultoría privada de Lara: 4.800 € por programa, lista de espera. Hoy, los tres formatos juntos, por menos que el audiolibro a solas. La razón del precio: queremos que entre la mujer correcta, no la mujer que puede pagar.",
         offer: {
           status: "live",
           statusLabel: "Disponible hoy",
@@ -506,10 +506,10 @@ export const dict: Record<Lang, Dict> = {
           priceCaption: "Pago único · acceso inmediato · 30 días de garantía",
           priceAnchor: "Valor desglosado: 165 €",
           features: [
-            "Reescribes el techo al que vuelve tu cuenta — manual de 25 capítulos",
+            "Reescribes el termostato al que vuelve tu cuenta — manual de 25 capítulos",
             "Aplicas las 9 operaciones del método en un fin de semana — workbook guiado",
-            "Escuchas a Lara mientras conduces o paseas — 5h 34min de audiolibro",
-            "Desbloqueas su primer libro entero (ebook + audio 6h 15min) al dejar reseña",
+            "Escuchas a Lara mientras conduces o paseas — 5h 34min de audiolibro",
+            "Desbloqueas su primer libro entero (ebook + audio 6h 15min) al dejar reseña",
             "Te quedas con todo aunque pidas la devolución a los 30 días",
             "Pago único de 12 € — sin suscripción, sin upsells, sin letra pequeña",
           ],
@@ -517,7 +517,7 @@ export const dict: Record<Lang, Dict> = {
         },
       },
       trust: {
-        eyebrow: "Lo que hay detrás de este libro",
+        eyebrow: "Por qué este método ya no es una hipótesis",
         stats: [
           { num: "10.000+", label: "Mujeres aplicando el método" },
           { num: "10 años", label: "De investigación clínica y de campo" },
@@ -576,12 +576,13 @@ export const dict: Record<Lang, Dict> = {
       lara: {
         eyebrow: "La autora",
         headline:
-          "Diez años haciendo una sola pregunta: ¿quién firmó tu techo?",
-        bio: "Lara Lawn es Identity Architect. Diez años investigando por qué mujeres altamente capaces ganan, se permiten y reciben siempre por debajo de su nivel real. Más de 10.000 mujeres han pasado por sus programas y cartas privadas. Su primer libro lleva más de 38.000 copias vendidas en España y LATAM. Su consultoría privada cuesta 4.800 € por programa y tiene lista de espera. El método Arkwright es la consolidación operativa de todo ese trabajo — el manual que faltaba para mujeres que ya hicieron terapia, ya leyeron a Brené Brown y siguen chocando contra el mismo número.",
+          "Doce años, más de 25.000 € en formación, y una sola pregunta.",
+        bio:
+          "18 años. Más de 25.000 €. Cientos de libros. Una sola pregunta: ¿por qué personas inteligentes que saben exactamente qué hacer no lo hacen? ¿Por qué volvemos a los mismos patrones? ¿Por qué nos saboteamos justo cuando estamos a punto de conseguirlo? ¿Por qué el cambio nunca se sostiene? Estudié en Harvard. En Duke. Devoré todo lo que encontré sobre neurociencia, epigenética, psicología del comportamiento. Y finalmente lo entendí. El problema no era la estrategia. No era la disciplina. No era la fuerza de voluntad. El problema era la identidad. Tu subconsciente tiene una imagen de quién eres. Un termostato interno. Y cada vez que intentas ser alguien que no coincide con esa imagen, te devuelve al punto de partida. Por eso las afirmaciones no funcionan. Por eso el coaching no dura. Por eso sigues en el mismo sitio aunque sabes perfectamente qué deberías hacer. Cuando entendí esto, dejé de intentar cambiar mi vida. Y empecé a cambiar quién era.",
         quote:
           "No tienes un problema de dinero. Tienes un problema de identidad. Y la identidad sí se reescribe.",
         bullets: [
-          "Identity Architect · 10 años de investigación clínica y de campo",
+          "Arquitecta de identidades · 10 años de investigación clínica y de campo",
           "+10.000 mujeres en programas y cartas privadas",
           "38.000+ copias vendidas del primer libro en España y LATAM",
           "Consultora privada con lista de espera a 4.800 € por programa",
@@ -589,22 +590,22 @@ export const dict: Record<Lang, Dict> = {
         imageAlt: "Retrato de Lara Lawn",
       },
       inside: {
-        eyebrow: "Lo que recibes el día 1",
-        headline: "Todo el método. Tres formatos. Cero esperas.",
+        eyebrow: "Lo que reescribe el termostato",
+        headline: "Tres formatos. Una sola pieza. Cero esperas.",
         intro:
-          "La edición digital se abre en cuanto Stripe confirma el pago. Sin códigos, sin envíos, sin lista de espera. Esto es exactamente lo que entra en tu biblioteca privada en cuanto entras.",
+          "El método Arkwright no se lee — se aplica. Por eso entra en tres formatos coordinados: el ebook para entender el marco, el audiolibro para que tu subconsciente lo oiga mientras conduces, y el workbook para que la mano firme decisiones nuevas. El audiolibro suelto en Audible: ~25 €. El workbook suelto en la consultoría: 49 €. Los tres, hoy, por 12 €. Esto es lo que entra en tu biblioteca privada en cuanto Stripe confirma el pago.",
         items: [
           {
             title: "Ebook completo · 25 capítulos",
             detail: "PDF + EPUB. Las 9 operaciones, los protocolos, los marcos. Listo para Kindle, iPad, móvil o impresión casera. Valor: 39 €.",
           },
           {
-            title: "Audiolibro · 5h 34min",
-            detail: "17 capítulos marcados. Voz Despina, castellano España. Reproducible en web, Sonos, CarPlay y Android Auto. Valor: 39 €.",
+            title: "Audiolibro · 5h 34min",
+            detail: "17 capítulos marcados. Voz Despina, castellano España. Reproducible en web, Sonos, CarPlay y Android Auto. Suelto en Audible: ~25 €. Valor: 39 €.",
           },
           {
             title: "Workbook online · 4 dinámicas",
-            detail: "Diagnóstico, Funeral, Próxima vida y Lunes. Tu progreso queda guardado entre dispositivos. Valor: 49 €.",
+            detail: "Diagnóstico, Funeral, Próxima vida y Lunes. Tu progreso queda guardado entre dispositivos. Idéntico al que entrega Lara en consultoría privada de 4.800 €. Valor: 49 €.",
           },
           {
             title: "BONUS · Primer libro en ebook",
@@ -613,7 +614,7 @@ export const dict: Record<Lang, Dict> = {
           },
           {
             title: "BONUS · Audiolibro del primer libro",
-            detail: "6h 15min. Versión íntegra. Se desbloquea junto con el ebook bonus en cuanto subes tu reseña. Valor: 20 €.",
+            detail: "6h 15min. Versión íntegra. Se desbloquea junto con el ebook bonus en cuanto subes tu reseña. Valor: 20 €.",
             bonus: true,
           },
           {
@@ -627,7 +628,7 @@ export const dict: Record<Lang, Dict> = {
         main: "30 días de garantía sin preguntas · te devolvemos los 12 € si decides que no",
         sep: "·",
         fineprint:
-          "Te quedas con el ebook, el audio y el progreso del workbook descargado. Yo asumo el riesgo entero — tú solo tienes que abrirlo. — Lara",
+          "Si pides la devolución, te quedas con el ebook, con el audiolibro y con el progreso del workbook. Yo me quedo sin los 12 €. El riesgo es entero mío — el tuyo es abrirlo. Y el riesgo real no es perder 12 €: es seguir cobrando el mismo número doce meses más. — Lara",
       },
       faq: {
         eyebrow: "Antes de comprar",
@@ -636,40 +637,40 @@ export const dict: Record<Lang, Dict> = {
           {
             question: "¿Cómo accedo después de pagar?",
             answer:
-              "Acceso inmediato. En cuanto Stripe confirma el pago se abre tu biblioteca personal con el ebook, el audiolibro y el workbook listos para usar. Recibes además un email con todos los enlaces por si quieres entrar desde otro dispositivo. Sin esperas, sin códigos, sin envíos físicos. El proceso entero, desde que pulsas el botón hasta que abres el primer capítulo, tarda menos de 60 segundos.",
+              "Esa no es la pregunta importante — la pregunta importante es por qué llevas meses sin pulsar el botón en otras páginas. Aquí no hay fricción: en cuanto Stripe confirma el pago se abre tu biblioteca privada con el ebook, el audiolibro y el workbook listos para usar. Recibes además un email con todos los enlaces para entrar desde otro dispositivo. Sin esperas, sin códigos, sin envíos físicos. El proceso entero, desde que pulsas el botón hasta que abres el primer capítulo, tarda menos de 60 segundos.",
           },
           {
             question: "¿Y si lo abro y siento que no es para mí?",
             answer:
-              "Escribes una línea al email de soporte dentro de los 30 días y te devolvemos los 12 € enteros. No pedimos motivo, no hay encuesta, no hay fricción. Y te quedas con lo descargado: ebook, audio y el progreso del workbook. La devolución no anula el material que ya bajaste. Yo prefiero perder 12 € antes que tener una lectora que no debería estar aquí.",
+              "Entonces yo pierdo y tú ganas. Escribes una línea al email de soporte dentro de los 30 días y te devolvemos los 12 € enteros. No pedimos motivo, no hay encuesta, no hay fricción. Y te quedas con lo descargado: ebook, audio y el progreso del workbook. La devolución no anula el material que ya bajaste. Yo prefiero perder 12 € antes que tener una lectora que no debería estar aquí — y prefiero perderlos antes que dejarte fuera por miedo a equivocarte.",
           },
           {
             question: "¿En qué dispositivos puedo leer y escuchar?",
             answer:
-              "Todo. El ebook funciona en iPhone, Android, iPad, Kindle, Mac y Windows en PDF y EPUB. El audiolibro se reproduce desde el navegador, en Sonos, en CarPlay, en Android Auto y en cualquier app que acepte streaming web. El workbook es online, responsive y guarda tu progreso entre sesiones. Empezar en el móvil, terminar en el portátil. Sin sincronizar nada.",
+              "En todos los que ya tienes. El ebook funciona en iPhone, Android, iPad, Kindle, Mac y Windows en PDF y EPUB. El audiolibro se reproduce desde el navegador, en Sonos, en CarPlay, en Android Auto y en cualquier app que acepte streaming web. El workbook es online, responsive y guarda tu progreso entre sesiones. Empezar en el móvil, terminar en el portátil. Sin sincronizar nada, sin descargar nada extra.",
           },
           {
             question: "Soy nueva en estos temas, ¿voy a entender el libro?",
             answer:
-              "Sí. El método Arkwright no asume que vengas de nada previo. No es neurociencia académica y no es espiritualidad: es un manual operativo escrito para mujeres ocupadas. Los primeros tres capítulos te dan el marco completo del termostato y de las 9 operaciones. El workbook te lleva paso a paso por el diagnóstico antes de cualquier ejercicio profundo. Si sabes leer un email, sabes leer este libro.",
+              "La pregunta real es otra: no es si vas a entenderlo — es si vas a aplicarlo. El método Arkwright no asume que vengas de nada previo. No es neurociencia académica y no es espiritualidad: es un manual operativo escrito para mujeres ocupadas. Los primeros tres capítulos te dan el marco completo del termostato y de las 9 operaciones. El workbook te lleva paso a paso por el diagnóstico antes de cualquier ejercicio profundo. Si sabes leer un email, sabes leer este libro. Lo que decide el resultado no es tu base previa — es que abras el workbook el lunes.",
           },
           {
             question: "Ya leí “No eres tú, es tu subconsciente”. ¿Esto repite lo mismo?",
             answer:
-              "No. El primer libro abrió la pregunta — por qué tu subconsciente lleva años decidiendo por ti. El método Arkwright es el manual técnico para reescribirlo: las 9 operaciones, los protocolos exactos, el workbook con las cuatro dinámicas. Si leíste el primero, este es exactamente el paso que estabas esperando. El bonus, además, te devuelve el primer libro entero en ebook y audio cuando dejes la reseña.",
+              "Si volver a leer lo mismo hubiera bastado, ya estarías cobrando otro número. El primer libro abrió la pregunta — por qué tu subconsciente lleva años decidiendo por ti. El método Arkwright es el manual técnico para reescribirlo: las 9 operaciones, los protocolos exactos, el workbook con las cuatro dinámicas. Si leíste el primero, este es exactamente el paso que estabas esperando. El bonus, además, te devuelve el primer libro entero en ebook y audio cuando dejes la reseña — así tienes los dos marcos uno al lado del otro.",
           },
           {
             question: "¿Por qué solo edición digital y no tapa blanda ni edición coleccionista?",
             answer:
-              "Porque queremos acceso inmediato, un único precio justo de 12 € y la garantía total de 30 días sin fricciones. Una edición física obligaría a triplicar el precio, sumar envíos y romper la promesa de que abres el método hoy. Hoy solo existe el pack digital — y esta es la única página donde se vende. Si en algún momento hubiera una edición física, las lectoras de este pack lo sabrán primero, sin tener que apuntarse a nada.",
+              "Porque la mujer que necesita este método no necesita esperar a un envío — necesita abrirlo hoy. Una edición física obligaría a triplicar el precio, sumar envíos y romper la promesa de 12 € y de garantía total. Hoy solo existe el pack digital — y esta es la única página donde se vende. Si en algún momento hubiera una edición física, las lectoras de este pack lo sabrán primero, sin tener que apuntarse a nada.",
           },
         ],
       },
       finalCta: {
         headline:
-          "El número al que vuelve tu cuenta no es tu destino. Es tu termostato. Y se reescribe.",
+          "Doce euros, o doce meses más cobrando el mismo número. Tú decides cuál sale más caro.",
         subheadline:
-          "Pago único de 12 € · acceso inmediato · 30 días de garantía · te quedas con lo descargado",
+          "12 € es menos que una cena pedida por Glovo. Menos que una entrada de cine para dos. Menos que un mes de Spotify Family. Si dejas pasar la oferta y dentro de un año sigues en la misma tarifa, el coste no son 12 € — son los miles que no facturaste por no haber tocado el termostato. Pago único · acceso inmediato · 30 días de garantía · te quedas con lo descargado.",
         cta: "Empezar ahora por 12 €",
         stickyMobileCta: "Acceder al pack · 12 €",
       },
@@ -1399,20 +1400,20 @@ export const dict: Record<Lang, Dict> = {
     oferta: {
       hero: {
         eyebrow: "The Arkwright Method · Lara Lawn",
-        headlinePre: "You don't have a money problem. You have an ",
+        headlinePre: "Twelve years working twice as hard for the same number. It isn't discipline. It's ",
         headlineEm: "identity",
-        headlinePost: " problem.",
+        headlinePost: ".",
         subheadline:
-          "An operating manual for women who already did therapy, already read Brené Brown, and still earn the same number. Ebook, audiobook and workbook. Access in 60 seconds for 12 €.",
+          "You did the therapy. You read Brené Brown. You raised your rate once and were back to the old one within two months. There is an internal thermostat deciding your ceiling before you open your laptop — and no one taught you how to touch it. Lara Lawn's manual, in 60 seconds, for 12 €.",
         trustMicrocopy:
           "+10,000 women applying the method · 10 years of research · 4.9 / 5",
         imageAlt: "Cover of The Arkwright Method by Lara Lawn",
       },
       pricing: {
-        eyebrow: "Your access to the method",
+        eyebrow: "The absurd price",
         headline: "The full system. One payment. Lifetime access.",
         subheadline:
-          "No subscription. No shipping. No middle steps. Your private library opens the moment Stripe confirms the payment. The reason for the 12 € price: we want the right woman to walk in, not just the one who can afford it.",
+          "The audiobook alone on Audible: 24.95 €. The workbook alone on Lara's site: 49 €. Her private consultancy: 4,800 € per program, waitlist. Today, all three formats together, for less than the audiobook on its own. The reason for the price: we want the right woman to walk in, not just the one who can afford it.",
         offer: {
           status: "live",
           statusLabel: "Available today",
@@ -1423,7 +1424,7 @@ export const dict: Record<Lang, Dict> = {
           priceCaption: "One-time payment · instant access · 30-day guarantee",
           priceAnchor: "Itemised value: 165 €",
           features: [
-            "Rewrite the ceiling your account returns to — 25-chapter manual",
+            "Rewrite the thermostat your account returns to — 25-chapter manual",
             "Run the 9 operations of the method in one weekend — guided workbook",
             "Listen while you drive or walk — 5h 34min audiobook",
             "Unlock her entire first book (ebook + 6h 15min audio) when you leave a review",
@@ -1434,7 +1435,7 @@ export const dict: Record<Lang, Dict> = {
         },
       },
       trust: {
-        eyebrow: "What sits behind this book",
+        eyebrow: "Why this method is no longer a hypothesis",
         stats: [
           { num: "10,000+", label: "Women applying the method" },
           { num: "10 years", label: "Of clinical and field research" },
@@ -1482,7 +1483,7 @@ export const dict: Record<Lang, Dict> = {
             verifiedLabel: "Verified reader",
           },
           {
-            text: "Listened on audio while walking the dog. Three chapters. Got home, opened the proposal I'd been stalling for two months, sent it 40% higher. They said yes in 48 hours.",
+            text: "Listened to it walking the dog. Three chapters. Got home, opened a proposal that had been parked for two months, and sent it with 40% more. They accepted in 48 hours.",
             name: "Elena G.",
             role: "Software architect · Bilbao",
             initial: "E",
@@ -1493,44 +1494,45 @@ export const dict: Record<Lang, Dict> = {
       lara: {
         eyebrow: "The author",
         headline:
-          "Ten years asking one question: who signed your ceiling?",
-        bio: "Lara Lawn is an Identity Architect. Ten years researching why highly capable women earn, allow and receive consistently below their real level. Over 10,000 women have gone through her programs and private letters. Her first book has sold more than 38,000 copies across Spain and Latin America. Her private consultancy runs at 4,800 € per program with a waiting list. The Arkwright Method is the operational consolidation of all that work — the missing manual for women who already did therapy, already read Brené Brown, and still keep hitting the same number.",
+          "Twelve years, more than 25,000 € in training, and one single question.",
+        bio:
+          "Eighteen years. More than 25,000 €. Hundreds of books. One single question: why do intelligent people who know exactly what to do not do it? Why do we return to the same patterns? Why do we sabotage ourselves right when we're about to make it? Why does change never hold? I studied at Harvard. At Duke. I devoured everything I could find on neuroscience, epigenetics, behavioural psychology. And eventually I understood. The problem wasn't strategy. It wasn't discipline. It wasn't willpower. The problem was identity. Your subconscious holds an image of who you are. An internal thermostat. And every time you try to be someone who doesn't match that image, it sends you back to the starting point. That's why affirmations don't work. That's why coaching doesn't last. That's why you stay in the same place even though you know perfectly well what you should do. When I understood this, I stopped trying to change my life. And I started changing who I was.",
         quote:
           "You don't have a money problem. You have an identity problem. And identity can be rewritten.",
         bullets: [
           "Identity Architect · 10 years of clinical and field research",
           "+10,000 women in programs and private letters",
-          "38,000+ copies sold of the first book in Spain and Latin America",
-          "Private consultancy with a waiting list at 4,800 € per program",
+          "38,000+ copies sold of her first book in Spain and LATAM",
+          "Private consultant with a waitlist at 4,800 € per program",
         ],
         imageAlt: "Portrait of Lara Lawn",
       },
       inside: {
-        eyebrow: "What you get on day 1",
-        headline: "The full method. Three formats. Zero waiting.",
+        eyebrow: "What rewrites the thermostat",
+        headline: "Three formats. One single piece. Zero waiting.",
         intro:
-          "The digital edition opens the moment Stripe confirms the payment. No codes, no shipping, no waitlist. This is exactly what enters your private library when you log in.",
+          "The Arkwright Method is not read — it's applied. That's why it ships in three coordinated formats: the ebook so your mind grasps the framework, the audiobook so your subconscious hears it while you drive, and the workbook so your hand signs new decisions. The audiobook alone on Audible: ~25 €. The workbook alone in the consultancy: 49 €. All three, today, for 12 €. Here is what enters your private library the moment Stripe confirms the payment.",
         items: [
           {
-            title: "Complete ebook · 25 chapters",
-            detail: "PDF + EPUB. The 9 operations, the protocols, the frames. Ready for Kindle, iPad, phone or home printing. Value: 39 €.",
+            title: "Full ebook · 25 chapters",
+            detail: "PDF + EPUB. The 9 operations, the protocols, the frameworks. Ready for Kindle, iPad, mobile or home printing. Value: 39 €.",
           },
           {
             title: "Audiobook · 5h 34min",
-            detail: "17 marked chapters. Despina voice, Castilian Spanish. Plays on web, Sonos, CarPlay and Android Auto. Value: 39 €.",
+            detail: "17 bookmarked chapters. Despina voice, Castilian Spanish. Plays on web, Sonos, CarPlay and Android Auto. Standalone on Audible: ~25 €. Value: 39 €.",
           },
           {
             title: "Online workbook · 4 exercises",
-            detail: "Diagnosis, Funeral, Next Life and Monday. Your progress is saved across devices. Value: 49 €.",
+            detail: "Diagnosis, Funeral, Next Life and Monday. Your progress is saved across devices. Identical to the one Lara delivers in her 4,800 € private consultancy. Value: 49 €.",
           },
           {
-            title: "BONUS · First book ebook",
-            detail: "“It's not you, it's your subconscious”. 38,000 copies sold. Unlocks when you leave your Amazon review. Value: 18 €.",
+            title: "BONUS · First book as ebook",
+            detail: "“It's not you, it's your subconscious.” 38,000 copies sold. Unlocked when you leave your Amazon review. Value: 18 €.",
             bonus: true,
           },
           {
             title: "BONUS · Audiobook of the first book",
-            detail: "6h 15min. Full version. Unlocks alongside the bonus ebook the moment you submit your review. Value: 20 €.",
+            detail: "6h 15min. Full version. Unlocked together with the bonus ebook as soon as you upload your review. Value: 20 €.",
             bonus: true,
           },
           {
@@ -1541,10 +1543,10 @@ export const dict: Record<Lang, Dict> = {
         ],
       },
       guarantee: {
-        main: "30-day no-questions guarantee · we refund the 12 € if you decide it's not for you",
+        main: "30-day no-questions guarantee · we refund the 12 € if you decide it isn't for you",
         sep: "·",
         fineprint:
-          "You keep the ebook, the audio and your saved workbook progress. I carry the entire risk — you just have to open it. — Lara",
+          "If you ask for the refund, you keep the ebook, the audiobook and the workbook progress. I lose the 12 €. The risk is entirely mine — yours is opening it. And the real risk isn't losing 12 €: it's spending another twelve months charging the same number. — Lara",
       },
       faq: {
         eyebrow: "Before you buy",
@@ -1553,42 +1555,42 @@ export const dict: Record<Lang, Dict> = {
           {
             question: "How do I get access after paying?",
             answer:
-              "Instant access. The moment Stripe confirms the payment, your personal library opens with the ebook, the audiobook and the workbook ready to use. You also receive an email with every link so you can log in from any other device. No waiting, no codes, no shipping. The whole flow, from clicking the button to opening the first chapter, takes under 60 seconds.",
+              "That isn't the real question — the real question is why you've gone months without pressing the button on other pages. Here there's no friction: the moment Stripe confirms the payment your private library opens with the ebook, the audiobook and the workbook ready to use. You also receive an email with every link so you can come in from another device. No waiting, no codes, no physical shipping. The whole process, from pressing the button to opening the first chapter, takes under 60 seconds.",
           },
           {
-            question: "What if I open it and feel it's not for me?",
+            question: "And if I open it and feel it's not for me?",
             answer:
-              "Send one line to support within 30 days and we refund the full 12 €. We don't ask why, there is no exit survey, no friction. And you keep what you downloaded: ebook, audio and your saved workbook progress. The refund does not delete what you've already stored. I'd rather lose 12 € than keep a reader who shouldn't be here.",
+              "Then I lose and you win. You send one line to the support email within 30 days and we refund the entire 12 €. We don't ask why, there's no survey, no friction. And you keep everything you downloaded: ebook, audio and workbook progress. The refund does not erase what you already pulled down. I'd rather lose 12 € than have a reader who shouldn't be here — and I'd rather lose them than keep you outside out of fear of getting it wrong.",
           },
           {
-            question: "Which devices does it work on?",
+            question: "Which devices can I read and listen on?",
             answer:
-              "All of them. The ebook works on iPhone, Android, iPad, Kindle, Mac and Windows in PDF and EPUB. The audiobook plays from the browser, on Sonos, on CarPlay, on Android Auto and on any app that supports web streaming. The workbook is online, responsive and saves your progress between sessions. Start on your phone, finish on your laptop. Nothing to sync.",
+              "All of the ones you already own. The ebook works on iPhone, Android, iPad, Kindle, Mac and Windows in PDF and EPUB. The audiobook plays in the browser, on Sonos, on CarPlay, on Android Auto and in any app that accepts web streaming. The workbook is online, responsive and saves your progress across sessions. Start on the phone, finish on the laptop. Nothing to sync, nothing extra to download.",
           },
           {
-            question: "I'm new to this kind of work. Will I understand the book?",
+            question: "I'm new to these topics — will I follow the book?",
             answer:
-              "Yes. The Arkwright Method assumes no previous reading. It isn't academic neuroscience and it isn't spirituality: it's an operating manual written for busy women. The first three chapters give you the full thermostat frame and the 9 operations. The workbook walks you through the diagnosis step by step before any deeper exercise. If you can read an email, you can read this book.",
+              "The real question is the other one: not whether you'll follow it — but whether you'll apply it. The Arkwright Method assumes no prior background. It isn't academic neuroscience and it isn't spirituality: it's an operating manual written for busy women. The first three chapters give you the full thermostat framework and the 9 operations. The workbook walks you step by step through the diagnosis before any deeper exercise. If you can read an email, you can read this book. What decides the outcome isn't your starting point — it's whether you open the workbook on Monday.",
           },
           {
-            question: "I already read “It's not you, it's your subconscious”. Is this a repeat?",
+            question: "I already read “It's not you, it's your subconscious.” Does this repeat?",
             answer:
-              "No. The first book opened the question — why your subconscious has been deciding for you for years. The Arkwright Method is the technical manual to rewrite it: the 9 operations, the exact protocols, the workbook with the four exercises. If you read the first one, this is exactly the step you were waiting for. And the bonus hands you the entire first book back in ebook and audio when you leave the review.",
+              "If re-reading the same thing had been enough, you'd already be charging another number. The first book opened the question — why your subconscious has been deciding for you for years. The Arkwright Method is the technical manual to rewrite it: the 9 operations, the exact protocols, the workbook with the four exercises. If you read the first one, this is exactly the step you were waiting for. The bonus, on top, gives you the whole first book back in ebook and audio when you leave the review — so you have both frameworks side by side.",
           },
           {
-            question: "Why only the digital edition — no paperback or collector edition?",
+            question: "Why digital-only and no paperback or collector's edition?",
             answer:
-              "Because we want instant access, one fair price of 12 € and a frictionless 30-day guarantee. A physical edition would triple the price, add shipping and break the promise that you open the method today. Today only the digital pack exists — and this is the only page where it's sold. If a physical edition ever exists, readers of this pack will be the first to know, with no list to sign up to.",
+              "Because the woman who needs this method doesn't need to wait for a parcel — she needs to open it today. A physical edition would force us to triple the price, add shipping and break the promise of 12 € plus a full guarantee. Today the digital pack is the only thing that exists — and this is the only page where it sells. If a physical edition ever launches, the readers of this pack will hear first, without signing up for anything.",
           },
         ],
       },
       finalCta: {
         headline:
-          "The number your account returns to isn't your destiny. It's your thermostat. And it can be rewritten.",
+          "Twelve euros, or twelve more months charging the same number. You decide which one costs more.",
         subheadline:
-          "One-time 12 € · instant access · 30-day guarantee · you keep what you downloaded",
+          "12 € is less than a Deliveroo dinner. Less than two cinema tickets. Less than one month of Spotify Family. If you skip the offer and a year from now you're still at the same rate, the cost isn't 12 € — it's the thousands you didn't invoice because you never touched the thermostat. One-time payment · instant access · 30-day guarantee · you keep what you downloaded.",
         cta: "Start now for 12 €",
-        stickyMobileCta: "Open the pack · 12 €",
+        stickyMobileCta: "Get the pack · 12 €",
       },
     },
     nav: {
