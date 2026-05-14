@@ -19,6 +19,11 @@
      Nunca mezclar con magenta en la misma pieza. */
   --book-navy: #0A1230;
   --book-copper: #E05808;
+  /* Yellow used for the review/rating stars across the landing —
+     Trustpilot-style warm amber that reads as "rating" on cream
+     backgrounds. Used by .oferta-hero-stars-icons,
+     .oferta-trust-stars, .oferta-review-stars. */
+  --star-yellow: #FFB829;
   --serif: "Playfair Display", Georgia, serif;
   --sans: "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
@@ -3825,9 +3830,10 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 .oferta-hero-stars-icons {
   display: inline-flex;
   gap: 2px;
-  color: var(--accent);
-  font-size: 14px;
+  color: var(--star-yellow);
+  font-size: 18px;
   line-height: 1;
+  letter-spacing: 1px;
 }
 .oferta-hero-h1 {
   font-family: var(--serif);
@@ -4111,9 +4117,11 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   display: flex;
   justify-content: center;
   gap: 3px;
-  margin-top: 6px;
-  color: var(--accent);
-  font-size: 12px;
+  margin-top: 8px;
+  color: var(--star-yellow);
+  font-size: 20px;
+  letter-spacing: 2px;
+  line-height: 1;
 }
 
 /* 04 — REVIEWS GRID ─────────────────────────────────────────── */
@@ -4140,9 +4148,10 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   gap: 14px;
 }
 .oferta-review-stars {
-  color: var(--accent);
-  font-size: 13px;
-  letter-spacing: 1px;
+  color: var(--star-yellow);
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 1;
 }
 .oferta-review-text {
   font-family: var(--serif);
