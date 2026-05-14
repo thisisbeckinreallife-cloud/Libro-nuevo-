@@ -3749,3 +3749,574 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   .como-escuchar-device-title { font-size: 24px; }
   .como-escuchar-step { padding: 12px; }
 }
+
+/* ============================================================
+   /oferta — Landing direct response
+   Hormozi value equation + Suby Godfather offer
+   ============================================================ */
+.oferta-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 24px 160px;
+  font-family: var(--sans);
+  color: var(--ink);
+}
+
+.oferta-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+
+.oferta-h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 4.5vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+
+.oferta-intro {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 28px;
+  max-width: 720px;
+}
+
+.oferta-block {
+  padding: 64px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.oferta-block:first-of-type { border-top: none; }
+
+/* 01 — HERO */
+.oferta-hero {
+  padding: 56px 0 32px;
+}
+.oferta-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.oferta-hero-text {
+  display: flex;
+  flex-direction: column;
+}
+.oferta-hero-h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+.oferta-hero-sub {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 32px;
+  max-width: 540px;
+}
+.oferta-hero-trust {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 18px 0 0;
+}
+.oferta-hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  container-type: inline-size;
+  min-height: 480px;
+}
+/* El componente Book3D vive dentro de .book-hero, que ocupa 62% del padre.
+   Para que el libro tenga el tamaño correcto en la landing, le damos al
+   contenedor visual un ancho generoso. */
+.oferta-hero-visual .book-hero {
+  width: 100%;
+  max-width: 460px;
+}
+
+/* CTA — el botón se usa en todas las secciones */
+.oferta-cta-wrap {
+  margin: 0;
+}
+.oferta-cta-wrap--primary-large {
+  margin: 8px 0 0;
+}
+.oferta-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--accent);
+  color: var(--paper);
+  border: none;
+  border-radius: 999px;
+  padding: 18px 32px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition:
+    transform 0.15s var(--ease),
+    background 0.2s var(--ease),
+    box-shadow 0.2s var(--ease);
+  box-shadow: 0 6px 18px rgba(233, 30, 99, 0.22);
+}
+.oferta-cta:hover:not(:disabled) {
+  background: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(30, 21, 21, 0.25);
+}
+.oferta-cta:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.oferta-cta--primary-large {
+  padding: 22px 38px;
+  font-size: 17px;
+}
+.oferta-cta-arrow {
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.2s var(--ease);
+}
+.oferta-cta:hover:not(:disabled) .oferta-cta-arrow {
+  transform: translateX(4px);
+}
+.oferta-cta-error {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* 02 — PROBLEMA */
+.oferta-pains {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 24px;
+}
+.oferta-pain {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.oferta-pain-mark {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+/* 03 — SOLUCIÓN */
+.oferta-pillars {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.oferta-pillar {
+  padding: 24px;
+  background: var(--paper-warm);
+  border: 1px solid var(--rule-soft);
+  border-radius: 12px;
+}
+.oferta-pillar-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+.oferta-pillar-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* 04 — STACK DE VALOR */
+.oferta-stack {
+  background: linear-gradient(180deg, var(--bone) 0%, var(--paper) 100%);
+  padding: 56px 32px;
+  border-radius: 16px;
+  border: 1px solid var(--rule-soft);
+  margin: 32px 0;
+}
+.oferta-stack-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.oferta-stack-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 16px 20px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 10px;
+}
+.oferta-stack-item-main {
+  display: flex;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+.oferta-stack-check {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.oferta-stack-item-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.oferta-stack-item-detail {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+}
+.oferta-stack-item-valor {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: line-through;
+  white-space: nowrap;
+}
+.oferta-stack-totals {
+  text-align: center;
+  margin: 32px 0 28px;
+  padding: 24px 0 20px;
+  border-top: 2px solid var(--ink);
+}
+.oferta-stack-total-anclado {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: line-through;
+  margin: 0 0 6px;
+  letter-spacing: 0.04em;
+}
+.oferta-stack-precio {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 38px;
+  color: var(--accent);
+  margin: 0;
+}
+.oferta-stack .oferta-cta-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+/* 05 — RATIONALE */
+.oferta-rationale-body {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.oferta-rationale-body p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* 06 — GARANTÍA */
+.oferta-guarantee {
+  background: var(--accent-soft);
+  padding: 56px 32px;
+  border-radius: 16px;
+  border: 1px solid var(--rule-soft);
+}
+.oferta-guarantee .oferta-h2 {
+  color: var(--ink-soft);
+  max-width: 720px;
+}
+.oferta-guarantee-body {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 720px;
+  margin: 0 0 20px;
+}
+.oferta-guarantee-micro {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* 07 — AUTORIDAD */
+.oferta-authority-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.oferta-authority-portrait img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+}
+.oferta-authority-bio {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+}
+.oferta-authority-quote {
+  margin: 0;
+  padding: 20px 24px;
+  border-left: 3px solid var(--accent);
+  background: var(--paper-warm);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+  border-radius: 0 8px 8px 0;
+}
+
+/* 08 — TESTIMONIOS */
+.oferta-testimonials-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.oferta-testimonial {
+  padding: 24px;
+  background: var(--paper-warm);
+  border: 1px solid var(--rule-soft);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.oferta-testimonial-text {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+  flex: 1;
+}
+.oferta-testimonial-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin: 0;
+}
+.oferta-testimonial-meta strong {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* 09 — FAQ */
+.oferta-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 760px;
+}
+.oferta-faq-item {
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 10px;
+  padding: 0;
+  transition: background 0.2s var(--ease);
+}
+.oferta-faq-item[open] {
+  background: var(--paper-warm);
+}
+.oferta-faq-q {
+  cursor: pointer;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--ink);
+  padding: 18px 22px;
+  list-style: none;
+  position: relative;
+  padding-right: 50px;
+}
+.oferta-faq-q::-webkit-details-marker { display: none; }
+.oferta-faq-q::after {
+  content: "+";
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: var(--accent);
+  transition: transform 0.2s var(--ease);
+}
+.oferta-faq-item[open] .oferta-faq-q::after {
+  content: "−";
+}
+.oferta-faq-a {
+  margin: 0;
+  padding: 0 22px 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* 10 — CTA FINAL */
+.oferta-final {
+  text-align: center;
+  padding: 80px 0 40px;
+}
+.oferta-final-h {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 4.5vw, 40px);
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 16px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.oferta-final-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 32px;
+}
+.oferta-final .oferta-cta-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+/* Sticky mobile CTA */
+.oferta-sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: rgba(250, 249, 247, 0.96);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--rule-soft);
+  z-index: 80;
+  display: none;
+  transform: translateY(100%);
+  transition: transform 0.25s var(--ease);
+}
+.oferta-sticky.is-visible {
+  transform: translateY(0);
+}
+.oferta-sticky .oferta-cta {
+  width: 100%;
+  justify-content: center;
+  padding: 16px 24px;
+}
+@media (max-width: 768px) {
+  .oferta-sticky {
+    display: block;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 900px) {
+  .oferta-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .oferta-hero-visual {
+    order: -1;
+  }
+  .oferta-hero-visual img {
+    max-width: 260px;
+  }
+  .oferta-pains {
+    grid-template-columns: 1fr;
+  }
+  .oferta-pillars {
+    grid-template-columns: 1fr;
+  }
+  .oferta-testimonials-list {
+    grid-template-columns: 1fr;
+  }
+  .oferta-authority-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .oferta-authority-portrait img {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 600px) {
+  .oferta-shell { padding: 16px 16px 120px; }
+  .oferta-block { padding: 48px 0; }
+  .oferta-stack { padding: 32px 18px; }
+  .oferta-guarantee { padding: 36px 22px; }
+  .oferta-stack-item {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+  .oferta-stack-item-valor {
+    margin-left: 40px;
+  }
+}

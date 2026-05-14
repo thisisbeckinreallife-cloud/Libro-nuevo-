@@ -1,6 +1,71 @@
 export type Lang = "es" | "en";
 
+export type OfertaDict = {
+  hero: {
+    eyebrow: string;
+    headline: string;
+    subheadline: string;
+    ctaPrimary: string;
+    trustMicrocopy: string;
+    imageAlt: string;
+  };
+  problem: {
+    eyebrow: string;
+    headline: string;
+    intro: string;
+    pains: string[];
+  };
+  solution: {
+    eyebrow: string;
+    headline: string;
+    intro: string;
+    pillars: { title: string; body: string }[];
+  };
+  stack: {
+    eyebrow: string;
+    headline: string;
+    items: { title: string; detail: string; valor: string }[];
+    totalAnclado: string;
+    precioFinal: string;
+    cta: string;
+  };
+  rationale: {
+    eyebrow: string;
+    headline: string;
+    body: string[];
+  };
+  guarantee: {
+    eyebrow: string;
+    headline: string;
+    body: string;
+    microcopy: string;
+  };
+  authority: {
+    eyebrow: string;
+    headline: string;
+    bio: string;
+    quote: string;
+  };
+  testimonials: {
+    eyebrow: string;
+    headline: string;
+    items: { text: string; name: string; role: string }[];
+  };
+  faq: {
+    eyebrow: string;
+    headline: string;
+    items: { question: string; answer: string }[];
+  };
+  finalCta: {
+    headline: string;
+    subheadline: string;
+    cta: string;
+    stickyMobileCta: string;
+  };
+};
+
 export type Dict = {
+  oferta: OfertaDict;
   nav: {
     tagline: string;
     book: string;
@@ -398,6 +463,178 @@ export type Dict = {
 
 export const dict: Record<Lang, Dict> = {
   es: {
+    oferta: {
+      hero: {
+        eyebrow: "Edición digital de lanzamiento · 2026",
+        headline: "El techo no está en el mercado. Está en ti.",
+        subheadline:
+          "Manual completo para mujeres que ya lo hicieron todo bien y siguen ganando lo mismo. Lectura, audio y workbook. Acceso en 60 segundos.",
+        ctaPrimary: "Quiero el pack por 12 €",
+        trustMicrocopy:
+          "+10.000 mujeres aplicando el método · 10 años de investigación",
+        imageAlt:
+          "Mockup del libro El método Arkwright de Lara Lawn junto al reproductor del audiolibro y el workbook digital",
+      },
+      problem: {
+        eyebrow: "02 / El diagnóstico",
+        headline:
+          "Hiciste todo bien. Y aun así, tu vida no se sostiene a la altura de tu capacidad.",
+        intro:
+          "No es falta de trabajo. No es falta de talento. No es que necesites otro curso, otra terapia, otro libro motivacional. Hay algo debajo que decide por ti antes de que tú decidas. Y ese algo tiene un nombre.",
+        pains: [
+          "Tu cuenta sube y baja siempre al mismo número, sin importar cuánto trabajes.",
+          "Cobras menos de lo que vales y lo justificas con frases que ni tú te crees.",
+          "Toleras relaciones, mesas y conversaciones que en privado te dan vergüenza.",
+          "Sientes un techo invisible cuando estás a punto de pedir lo que mereces.",
+        ],
+      },
+      solution: {
+        eyebrow: "03 / La llave",
+        headline:
+          "El método Arkwright reescribe el sistema operativo mental que decidió tu ingreso.",
+        intro:
+          "No es autoayuda. Es arquitectura de identidad. Nueve operaciones precisas para reprogramar el termostato subconsciente que regula cuánto te permites ganar, cobrar, ocupar y recibir. Lo que cambia primero es quién eres. Lo demás viene detrás.",
+        pillars: [
+          {
+            title: "Termostato económico",
+            body: "Identificas el setpoint subconsciente que devuelve tu ingreso al mismo número, y lo reescribes.",
+          },
+          {
+            title: "Identidad heredada",
+            body: "Localizas la escena fundadora que firmó tu techo y la sustituyes por una decisión limpia.",
+          },
+          {
+            title: "Entorno como código",
+            body: "Cambias la mesa, el cuerpo y el precio que sostienes, y el ingreso se ajusta solo a la nueva identidad.",
+          },
+        ],
+      },
+      stack: {
+        eyebrow: "Lo que recibes hoy",
+        headline:
+          "Todo el método. En tres formatos. Para que no haya excusa de “no tuve tiempo”.",
+        items: [
+          {
+            title: "Ebook completo (PDF + EPUB)",
+            detail:
+              "Libro entero, 25 capítulos en español, listo para Kindle, iPad, móvil o impresión.",
+            valor: "39 €",
+          },
+          {
+            title: "Audiolibro 5h 34min",
+            detail:
+              "17 capítulos marcados, voz Despina, castellano de España. Para coche, Sonos, paseos y cocina.",
+            valor: "34 €",
+          },
+          {
+            title: "Workbook online (4 dinámicas guiadas)",
+            detail:
+              "Diagnóstico, Funeral, Próxima vida y Lunes. Progreso guardado en tu cuenta.",
+            valor: "49 €",
+          },
+          {
+            title: "BONUS · Ebook “No eres tú, es tu subconsciente”",
+            detail:
+              "El primer libro de Lara, completo. Se desbloquea al dejar tu reseña tras la compra.",
+            valor: "19 €",
+          },
+          {
+            title: "BONUS · Audiolibro del primer libro (6h 15min)",
+            detail:
+              "Versión audio íntegra. Se desbloquea junto con el ebook bonus al dejar reseña.",
+            valor: "24 €",
+          },
+        ],
+        totalAnclado: "Valor total: 165 €",
+        precioFinal: "Hoy: 12 €",
+        cta: "Desbloquear el pack por 12 €",
+      },
+      rationale: {
+        eyebrow: "05 / La razón",
+        headline: "Por qué este pack cuesta 12 € y no 120 €.",
+        body: [
+          "Lara podría cobrar diez veces esto. Lo sabe. Su consultora privada cobra 4.800 € por programa y tiene lista de espera. No es una decisión comercial. Es una decisión de misión.",
+          "Lara escribió este libro porque la mayoría de las mujeres que necesitan el método nunca van a pagar 4.800 €. Y sin embargo, son exactamente las que llevan veinte años trabajando el doble por la mitad. El precio bajo no es un truco: es la única manera de que el libro entre en la casa de la mujer que más lo necesita, antes de que vuelva a posponerlo “para cuando esté mejor”.",
+          "La segunda razón es más incómoda. El método solo funciona si lo aplicas. Y se aplica más cuando duele un poco pagarlo, pero no tanto como para tener que pensarlo una semana. 12 € es ese punto exacto: suficiente para que abras el archivo el mismo día, insignificante comparado con lo que vas a dejar de tolerar a partir de la página 40.",
+        ],
+      },
+      guarantee: {
+        eyebrow: "06 / Riesgo cero",
+        headline:
+          "30 días. Sin formularios. Sin preguntas. Y te quedas con lo descargado.",
+        body: "Si en 30 días sientes que esto no te ha movido nada — no te ha cambiado una conversación, una decisión, un precio que sostienes — escribes una línea al email de soporte y te devolvemos los 12 € íntegros. No pedimos justificación. No pedimos pruebas. Y aunque te devolvamos el dinero, te quedas con lo descargado: el ebook, el audiolibro y el workbook que hayas trabajado. La única persona que asume riesgo en esta transacción es Lara.",
+        microcopy:
+          "Pago seguro vía Stripe · Sin suscripción · Sin renovaciones automáticas",
+      },
+      authority: {
+        eyebrow: "07 / La autora",
+        headline:
+          "Lara Lawn lleva 10 años haciendo una sola pregunta: ¿quién firmó tu techo?",
+        bio: "Identity Architect. Diez años investigando por qué mujeres altamente capaces ganan, se permiten y reciben siempre por debajo de su nivel real. Más de 10.000 mujeres han pasado por sus programas y cartas privadas. Su primer libro, “No eres tú, es tu subconsciente”, lleva más de 38.000 copias entre España y LATAM y aparece de forma recurrente en las listas de no ficción independiente. “El método Arkwright” es la consolidación de su trabajo clínico y de campo: el manual que faltaba para mujeres que ya hicieron terapia, ya leyeron a Brené Brown, y siguen chocando contra el mismo número.",
+        quote:
+          "No tienes un problema de dinero. Tienes un problema de identidad. Y la identidad sí se reescribe.",
+      },
+      testimonials: {
+        eyebrow: "08 / Las que ya lo aplicaron",
+        headline: "Lo que cambió de verdad cuando subieron el termostato.",
+        items: [
+          {
+            text: "Subí mis tarifas un 60% el lunes después de terminar el workbook. Tres clientes dijeron que sí sin parpadear. El cuarto no me importó.",
+            name: "Marta",
+            role: "38 · diseñadora UX · Madrid",
+          },
+          {
+            text: "Llevaba seis años cobrando lo mismo. Leí el capítulo del termostato un sábado. Reescribí mi propuesta el domingo. Cerré 4.200 € el martes.",
+            name: "Inés",
+            role: "41 · consultora freelance · Valencia",
+          },
+          {
+            text: "No es un libro para subrayar. Es un libro para decidir. Salí de una mesa que llevaba diez años aguantando. No he vuelto.",
+            name: "Carolina",
+            role: "36 · arquitecta · Bogotá",
+          },
+        ],
+      },
+      faq: {
+        eyebrow: "09 / Antes de comprar",
+        headline: "Lo que te estás preguntando ahora mismo.",
+        items: [
+          {
+            question: "¿Cómo accedo después de pagar?",
+            answer:
+              "Acceso inmediato. En cuanto el pago se confirma en Stripe, se abre tu biblioteca personal con el ebook, el audiolibro y el workbook listos. Recibes además un email con todos los links por si quieres entrar desde otro dispositivo. Sin esperas, sin códigos, sin envíos físicos.",
+          },
+          {
+            question: "¿Y si lo abro y siento que no es para mí?",
+            answer:
+              "Escribes una línea al email de soporte dentro de los 30 días y te devolvemos los 12 € enteros. No pedimos motivo. Y te quedas con lo descargado: ebook, audio y el progreso del workbook. La devolución no anula el material que ya bajaste.",
+          },
+          {
+            question: "¿En qué dispositivos puedo leer y escuchar?",
+            answer:
+              "Todo. El ebook funciona en iPhone, Android, iPad, Kindle, Mac y Windows (PDF + EPUB). El audiolibro se reproduce desde el navegador, en Sonos, en CarPlay, en Android Auto y en cualquier app que acepte streaming web. El workbook es online y guarda tu progreso entre sesiones.",
+          },
+          {
+            question: "Soy nueva en estos temas, ¿voy a entender el libro?",
+            answer:
+              "Sí. El método Arkwright no asume que vengas de nada previo. No es un libro de neurociencia ni de espiritualidad: es un manual operativo. Los primeros tres capítulos te dan el marco completo, y el workbook te lleva paso a paso por el diagnóstico antes de cualquier ejercicio profundo.",
+          },
+          {
+            question: "Ya leí “No eres tú, es tu subconsciente”. ¿Esto repite lo mismo?",
+            answer:
+              "No. El primer libro abrió la pregunta: por qué tu subconsciente está decidiendo por ti. “El método Arkwright” es el manual técnico para reescribirlo: las 9 operaciones, los protocolos y el workbook. Si leíste el primero, este es exactamente el paso que faltaba.",
+          },
+        ],
+      },
+      finalCta: {
+        headline:
+          "El número al que vuelve tu cuenta no es tu destino. Es tu termostato. Y se reescribe.",
+        subheadline:
+          "Acceso inmediato · 30 días de garantía · Te quedas con lo descargado",
+        cta: "Empezar por 12 €",
+        stickyMobileCta: "Quiero el pack · 12 €",
+      },
+    },
     nav: {
       tagline: "Arquitecta de identidades",
       book: "El libro",
@@ -1120,6 +1357,179 @@ export const dict: Record<Lang, Dict> = {
     },
   },
   en: {
+    oferta: {
+      hero: {
+        eyebrow: "Digital launch edition · 2026",
+        headline: "The ceiling isn't in the market. It's in you.",
+        subheadline:
+          "A full manual for women who already did everything right and still earn the same. Book, audio and workbook. Access in 60 seconds.",
+        ctaPrimary: "Get the pack for 12 €",
+        trustMicrocopy:
+          "+10,000 women applying the method · 10 years of research",
+        imageAlt:
+          "Mockup of The Arkwright Method by Lara Lawn beside the audiobook player and digital workbook",
+      },
+      problem: {
+        eyebrow: "02 / The diagnosis",
+        headline:
+          "You did everything right. And still, your life doesn't match your capacity.",
+        intro:
+          "It's not lack of work. It's not lack of talent. It's not another course, another therapist, another self-help book. Something underneath is deciding for you before you decide. And it has a name.",
+        pains: [
+          "Your account always returns to the same number, no matter how hard you work.",
+          "You charge less than you're worth and justify it with lines you don't even believe.",
+          "You tolerate relationships, tables and conversations you're privately ashamed of.",
+          "You feel an invisible ceiling right when you're about to ask for what you deserve.",
+        ],
+      },
+      solution: {
+        eyebrow: "03 / The key",
+        headline:
+          "The Arkwright Method rewrites the mental operating system that decided your income.",
+        intro:
+          "Not self-help. Identity architecture. Nine precise operations to reprogram the subconscious thermostat that regulates how much you allow yourself to earn, charge, occupy and receive. Who you are changes first. Everything else follows.",
+        pillars: [
+          {
+            title: "Economic thermostat",
+            body: "You name the subconscious setpoint that pulls your income back to the same number, and rewrite it.",
+          },
+          {
+            title: "Inherited identity",
+            body: "You locate the founding scene that signed your ceiling and replace it with a clean decision.",
+          },
+          {
+            title: "Environment as code",
+            body: "You change the table, the body and the price you hold, and your income adjusts to the new identity.",
+          },
+        ],
+      },
+      stack: {
+        eyebrow: "What you get today",
+        headline:
+          "The full method. In three formats. So “I didn't have time” stops being an excuse.",
+        items: [
+          {
+            title: "Complete ebook (PDF + EPUB)",
+            detail:
+              "Full book, 25 chapters in Spanish, ready for Kindle, iPad, phone or print.",
+            valor: "39 €",
+          },
+          {
+            title: "Audiobook 5h 34min",
+            detail:
+              "17 marked chapters, Despina voice, Castilian Spanish. For the car, Sonos, walks and the kitchen.",
+            valor: "34 €",
+          },
+          {
+            title: "Online workbook (4 guided exercises)",
+            detail:
+              "Diagnosis, Funeral, Next life and Monday. Progress saved to your account.",
+            valor: "49 €",
+          },
+          {
+            title: "BONUS · Ebook “It's not you, it's your subconscious”",
+            detail:
+              "Lara's first book, complete. Unlocked when you leave your review after purchase.",
+            valor: "19 €",
+          },
+          {
+            title: "BONUS · Audiobook of the first book (6h 15min)",
+            detail:
+              "Full audio version. Unlocked together with the bonus ebook when you leave a review.",
+            valor: "24 €",
+          },
+        ],
+        totalAnclado: "Total value: 165 €",
+        precioFinal: "Today: 12 €",
+        cta: "Unlock the pack for 12 €",
+      },
+      rationale: {
+        eyebrow: "05 / The reason",
+        headline: "Why this pack costs 12 € and not 120 €.",
+        body: [
+          "Lara could charge ten times this. She knows. Her private consultancy charges 4,800 € per program and runs a waiting list. This isn't a commercial decision. It's a mission decision.",
+          "Lara wrote this book because most of the women who need the method will never pay 4,800 €. And yet they're the exact ones who've spent twenty years working twice as hard for half the money. The low price isn't a trick: it's the only way the book actually enters the house of the woman who needs it most, before she postpones it again “for when I'm in a better place”.",
+          "The second reason is less comfortable. The method only works if you apply it. And people apply it more when paying for it stings a little, but not enough to require a week of thinking. 12 € is that exact point: enough to make you open the file the same day, irrelevant compared to what you'll stop tolerating from page 40 onward.",
+        ],
+      },
+      guarantee: {
+        eyebrow: "06 / Zero risk",
+        headline:
+          "30 days. No forms. No questions. And you keep what you downloaded.",
+        body: "If 30 days in you feel this hasn't moved anything — not a conversation, not a decision, not a price you now hold — you send one line to support and we refund the full 12 €. No justification asked. No proof asked. And even after the refund, you keep what you downloaded: the ebook, the audiobook and any workbook progress. The only person carrying risk in this transaction is Lara.",
+        microcopy:
+          "Secure payment via Stripe · No subscription · No auto-renewals",
+      },
+      authority: {
+        eyebrow: "07 / The author",
+        headline:
+          "For 10 years, Lara Lawn has asked one question: who signed your ceiling?",
+        bio: "Identity Architect. Ten years researching why highly capable women earn, allow and receive consistently below their real level. Over 10,000 women have gone through her programs and private letters. Her first book, “It's not you, it's your subconscious”, has sold more than 38,000 copies across Spain and Latin America and shows up recurrently in independent non-fiction lists. “The Arkwright Method” is the consolidation of her clinical and field work: the missing manual for women who already did therapy, already read Brené Brown, and still keep hitting the same number.",
+        quote:
+          "You don't have a money problem. You have an identity problem. And identity can be rewritten.",
+      },
+      testimonials: {
+        eyebrow: "08 / The ones who already applied it",
+        headline: "What actually changed once they turned up the thermostat.",
+        items: [
+          {
+            text: "Raised my rates 60% the Monday after finishing the workbook. Three clients said yes without blinking. The fourth one I no longer needed.",
+            name: "Marta",
+            role: "38 · UX designer · Madrid",
+          },
+          {
+            text: "Six years charging the same. Read the thermostat chapter on a Saturday. Rewrote my proposal on Sunday. Closed 4,200 € on Tuesday.",
+            name: "Inés",
+            role: "41 · freelance consultant · Valencia",
+          },
+          {
+            text: "Not a book to underline. A book to decide. Got up from a table I'd been sitting at for ten years. Haven't been back.",
+            name: "Carolina",
+            role: "36 · architect · Bogotá",
+          },
+        ],
+      },
+      faq: {
+        eyebrow: "09 / Before you buy",
+        headline: "What you're asking yourself right now.",
+        items: [
+          {
+            question: "How do I get access after paying?",
+            answer:
+              "Instant access. The moment Stripe confirms the payment, your personal library opens with the ebook, the audiobook and the workbook ready. You also get an email with every link, so you can log in from any other device. No waiting, no codes, no shipping.",
+          },
+          {
+            question: "What if I open it and feel it's not for me?",
+            answer:
+              "Send one line to support within 30 days and we refund the full 12 €. No reason needed. And you keep what you downloaded: ebook, audio and your workbook progress. The refund does not delete what you've already saved.",
+          },
+          {
+            question: "Which devices does it work on?",
+            answer:
+              "All of them. The ebook works on iPhone, Android, iPad, Kindle, Mac and Windows (PDF + EPUB). The audiobook plays from the browser, on Sonos, on CarPlay, on Android Auto and any app that supports web streaming. The workbook is online and saves your progress between sessions.",
+          },
+          {
+            question: "I'm new to this kind of work. Will I understand the book?",
+            answer:
+              "Yes. The Arkwright Method assumes no previous reading. It isn't neuroscience and it isn't spirituality: it's an operating manual. The first three chapters give you the full frame, and the workbook walks you through the diagnosis step by step before any deeper exercise.",
+          },
+          {
+            question:
+              "I already read “It's not you, it's your subconscious”. Is this a repeat?",
+            answer:
+              "No. The first book opened the question: why your subconscious is deciding for you. “The Arkwright Method” is the technical manual to rewrite it: the 9 operations, the protocols and the workbook. If you read the first one, this is the exact next step you were missing.",
+          },
+        ],
+      },
+      finalCta: {
+        headline:
+          "The number your account keeps returning to isn't your destiny. It's your thermostat. And it can be rewritten.",
+        subheadline:
+          "Instant access · 30-day guarantee · You keep what you downloaded",
+        cta: "Start for 12 €",
+        stickyMobileCta: "Get the pack · 12 €",
+      },
+    },
     nav: {
       tagline: "Identity architect",
       book: "The book",
