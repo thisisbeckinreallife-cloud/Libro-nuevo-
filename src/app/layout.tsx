@@ -4,6 +4,7 @@ import "./globals.css";
 import { LangProvider } from "@/components/LangProvider";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { CookieBanner } from "@/components/CookieBanner";
 
 const PRE_HYDRATION_LANG_SCRIPT = `
 try {
@@ -67,6 +68,7 @@ export default function RootLayout({
           <Nav />
           {children}
           <Footer />
+          <CookieBanner />
         </LangProvider>
       </body>
     </html>
