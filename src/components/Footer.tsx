@@ -7,7 +7,9 @@ export function Footer() {
   return (
     <footer>
       <div className="footer-grid">
-        <div className="footer-logo">Lara Lawn</div>
+        <div className="footer-logo">
+          <img src="/lara-lawn-logo.png" alt="Lara Lawn — Identity Architect" />
+        </div>
         <div className="footer-links">
           <a href="#book">{t.footer.book}</a>
           <a href="#lara">{t.footer.author}</a>

@@ -16,9 +16,8 @@ export function Nav() {
 
   return (
     <nav className={`nav${scrolled ? " scrolled" : ""}`} id="nav">
-      <a href="#" className="nav-logo">
-        Lara Lawn
-        <small>{t.nav.tagline}</small>
+      <a href="#" className="nav-logo" aria-label="Lara Lawn — Identity Architect">
+        <img src="/lara-lawn-logo.png" alt="Lara Lawn — Identity Architect" />
       </a>
       <div className="nav-links">
         <a href="#book">{t.nav.book}</a>

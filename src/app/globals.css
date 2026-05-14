@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --ink: #0E0B0B;
-  --ink-soft: #1a1515;
-  --paper: #F6F1EA;
-  --paper-warm: #EFE7DB;
-  --bone: #E8DFD1;
-  --rule: #2a2222;
-  --rule-soft: #d9cfbf;
-  --accent: #B4123F;
-  --accent-soft: #F3D7DE;
-  --muted: #6b6360;
-  --serif: "Cormorant Garamond", "Times New Roman", serif;
-  --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --ink: #1E1515;
+  --ink-soft: #420C14;
+  --paper: #FAF9F7;
+  --paper-warm: #F2E9DD;
+  --bone: #FCE4EC;
+  --rule: #420C14;
+  --rule-soft: #F8BBD9;
+  --accent: #E91E63;
+  --accent-soft: #FCE4EC;
+  --muted: #722F37;
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
   --max: 1320px;
   --ease: cubic-bezier(.2,.7,.2,1);
@@ -60,21 +60,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .nav.scrolled { border-bottom-color: rgba(14,11,11,.08); }
 .nav-logo {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 22px;
-  letter-spacing: .01em;
+  display: inline-flex;
+  align-items: center;
   line-height: 1;
 }
-.nav-logo small {
-  font-family: var(--sans);
-  font-style: normal;
-  font-size: 9px;
-  letter-spacing: .28em;
-  text-transform: uppercase;
+.nav-logo img {
+  height: 44px;
+  width: auto;
   display: block;
-  margin-top: 4px;
-  color: var(--muted);
 }
 .nav-links { display: flex; gap: 36px; align-items: center; }
 .nav-links a { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink); opacity: .75; transition: opacity .2s; }
@@ -1439,7 +1432,8 @@ section { position: relative; padding: 130px 0; }
 /* ============ FOOTER ============ */
 footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); border-top: 1px solid rgba(246,241,234,.1); }
 .footer-grid { display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; padding: 0 32px; max-width: var(--max); margin: 0 auto; }
-.footer-logo { font-family: var(--serif); font-style: italic; font-size: 20px; }
+.footer-logo { display: flex; align-items: center; }
+.footer-logo img { height: 56px; width: auto; display: block; }
 .footer-links { display: flex; gap: 30px; }
 .footer-links a { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; opacity: .6; transition: opacity .2s; }
 .footer-links a:hover { opacity: 1; }
