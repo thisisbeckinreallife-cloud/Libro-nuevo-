@@ -81,7 +81,7 @@ export function OfertaLanding({
       </section>
 
       {/* 04 — REVIEWS GRID */}
-      <section className="oferta-reviews">
+      <section className="oferta-reviews" id="reviews">
         <header className="oferta-reviews-header">
           <p className="oferta-eyebrow">{o.reviews.eyebrow}</p>
           <h2 className="oferta-h2">{o.reviews.headline}</h2>
@@ -111,7 +111,7 @@ export function OfertaLanding({
       </section>
 
       {/* 05 — MEET LARA */}
-      <section className="oferta-lara">
+      <section className="oferta-lara" id="lara">
         <div className="oferta-lara-grid">
           <div className="oferta-lara-portrait">
             <Image
@@ -139,7 +139,7 @@ export function OfertaLanding({
       </section>
 
       {/* 06 — WHAT'S INSIDE */}
-      <section className="oferta-inside">
+      <section className="oferta-inside" id="inside">
         <header className="oferta-inside-header">
           <p className="oferta-eyebrow">{o.inside.eyebrow}</p>
           <h2 className="oferta-h2">{o.inside.headline}</h2>
@@ -198,7 +198,7 @@ export function OfertaLanding({
       </section>
 
       {/* 09 — FAQ */}
-      <section className="oferta-faq">
+      <section className="oferta-faq" id="faq">
         <header className="oferta-faq-header">
           <p className="oferta-eyebrow">{o.faq.eyebrow}</p>
           <h2 className="oferta-h2">{o.faq.headline}</h2>

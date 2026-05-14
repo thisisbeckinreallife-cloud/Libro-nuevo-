@@ -24,10 +24,10 @@ export function Nav() {
         <img src="/lara-lawn-logo.png" alt="Lara Lawn — Identity Architect" />
       </a>
       <div className="nav-links">
-        <a href="/#book">{t.nav.book}</a>
-        <a href="/#method">{t.nav.method}</a>
+        <a href="/#pricing">{t.nav.book}</a>
+        <a href="/#inside">{t.nav.method}</a>
         <a href="/#lara">{t.nav.lara}</a>
-        <a href="/#extracts">{t.nav.extracts}</a>
+        <a href="/#reviews">{t.nav.extracts}</a>
         <a href="/#faq">{t.nav.faq}</a>
       </div>
       <div className="nav-right">
