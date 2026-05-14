@@ -76,6 +76,7 @@ export function BuyDigitalCta() {
         className={`btn-primary buy-digital-cta ${unavailable ? "is-disabled" : ""}`}
         onClick={onClick}
         disabled={isPending || unavailable}
+        data-track-cta="checkout"
       >
         <span>{label}</span>
         <span className="arrow" />

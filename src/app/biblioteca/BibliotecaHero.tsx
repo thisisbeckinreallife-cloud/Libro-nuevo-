@@ -221,6 +221,10 @@ export function BibliotecaHero({
         </a>
       </section>
 
+      <section className="biblioteca-receipt">
+        <BibliotecaReceiptCta accessToken={access.accessToken} />
+      </section>
+
       <section className="biblioteca-bookmark">
         <p className="biblioteca-bookmark-label">{b.bookmark}</p>
         <code className="biblioteca-bookmark-url">{bookmarkUrl}</code>
@@ -230,5 +234,82 @@ export function BibliotecaHero({
         <p>{b.footNote}</p>
       </footer>
     </main>
+  );
+}
+
+/**
+ * Botón "Ver mi recibo" — abre el Stripe Customer Portal.
+ * Bajo la política de "no refunds", el portal en Stripe debe estar
+ * configurado SIN el toggle de refund requests. El portal sigue
+ * sirviendo para: ver facturas, descargar PDF, actualizar el método
+ * de pago para futuras compras.
+ */
+function BibliotecaReceiptCta({ accessToken }: { accessToken: string }) {
+  const { lang } = useLang();
+  const isES = lang === "es";
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState(false);
+
+  const onClick = async () => {
+    if (pending) return;
+    setError(false);
+    setPending(true);
+    try {
+      const res = await fetch("/api/stripe/portal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: accessToken }),
+      });
+      if (!res.ok) {
+        setError(true);
+        setPending(false);
+        return;
+      }
+      const data = (await res.json()) as { url?: string };
+      if (!data.url) {
+        setError(true);
+        setPending(false);
+        return;
+      }
+      window.location.assign(data.url);
+    } catch {
+      setError(true);
+      setPending(false);
+    }
+  };
+
+  return (
+    <>
+      <h3 className="biblioteca-receipt-title">
+        {isES ? "Tu recibo y factura" : "Your receipt and invoice"}
+      </h3>
+      <p className="biblioteca-receipt-body">
+        {isES
+          ? "Accede al portal seguro de Stripe para descargar tu factura, ver el detalle del pago o actualizar tu método de pago para futuras compras."
+          : "Access the secure Stripe portal to download your invoice, see payment details or update your payment method for future purchases."}
+      </p>
+      <button
+        type="button"
+        className="biblioteca-receipt-cta"
+        onClick={onClick}
+        disabled={pending}
+      >
+        {pending
+          ? isES
+            ? "Abriendo…"
+            : "Opening…"
+          : isES
+            ? "Ver mi recibo"
+            : "View my receipt"}
+        <span aria-hidden="true">→</span>
+      </button>
+      {error ? (
+        <p className="biblioteca-receipt-error" role="alert">
+          {isES
+            ? "No hemos podido abrir el portal. Reintenta en un momento o escríbenos a info@inneraxisinstitute.com."
+            : "We couldn't open the portal. Try again in a moment or email info@inneraxisinstitute.com."}
+        </p>
+      ) : null}
+    </>
   );
 }

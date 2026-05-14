@@ -6,6 +6,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
 import { JsonLdGlobal } from "@/components/JsonLd";
+import { Tracker } from "@/components/Tracker";
 
 const PRE_HYDRATION_LANG_SCRIPT = `
 try {
@@ -71,6 +72,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <CookieBanner />
+          <Tracker />
         </LangProvider>
       </body>
     </html>

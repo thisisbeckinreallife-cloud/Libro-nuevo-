@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import type Stripe from "stripe";
 import { upsertContact } from "@/lib/contact";
 import { sendPurchaseEmail } from "@/lib/emails/purchase-email";
+import { recordEvent } from "@/lib/events";
 import { prisma } from "@/lib/prisma";
 import { recordCheckoutCompleted, recordRefund } from "@/lib/purchase";
 import { getStripe, getWebhookSecret } from "@/lib/stripe";
@@ -190,6 +191,23 @@ async function handleCheckoutCompleted(
     // Non-fatal — workbook-enter has its own upsert as a safety net.
     console.error("[stripe-webhook] user upsert failed (non-fatal)", { email, err });
   }
+
+  // Conversion event — only for genuinely new purchases (idempotent
+  // against webhook retries). Server-side write: not subject to
+  // cookie consent (this is legitimate interest under GDPR — needed
+  // to operate the offer + measure refund rate for fraud detection).
+  if (isNew) {
+    await recordEvent({
+      kind: "purchase_completed",
+      path: "/api/stripe/webhook",
+      meta: {
+        amount: session.amount_total ?? 0,
+        currency: (session.currency ?? "eur").toLowerCase(),
+        lang,
+        sessionId: session.id,
+      },
+    });
+  }
 }
 
 async function handleChargeRefunded(
@@ -217,4 +235,16 @@ async function handleChargeRefunded(
   if (!session) return;
 
   await recordRefund(session.id);
+
+  // Conversion event — registra el refund para que /admin/analytics
+  // muestre el ratio buy → refund. Server-side, no consent gate.
+  await recordEvent({
+    kind: "refund_requested",
+    path: "/api/stripe/webhook",
+    meta: {
+      amount: charge.amount_refunded ?? charge.amount ?? 0,
+      currency: (charge.currency ?? "eur").toLowerCase(),
+      sessionId: session.id,
+    },
+  });
 }
