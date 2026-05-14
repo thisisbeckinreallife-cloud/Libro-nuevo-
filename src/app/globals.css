@@ -3829,11 +3829,13 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 }
 .oferta-hero-stars-icons {
   display: inline-flex;
-  gap: 2px;
+  gap: 4px;
   color: var(--star-yellow);
-  font-size: 18px;
+  font-size: 26px;
   line-height: 1;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
+  margin-right: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
 }
 .oferta-hero-h1 {
   font-family: var(--serif);
@@ -4116,12 +4118,13 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 .oferta-trust-stars {
   display: flex;
   justify-content: center;
-  gap: 3px;
-  margin-top: 8px;
+  gap: 6px;
+  margin-top: 14px;
   color: var(--star-yellow);
-  font-size: 20px;
-  letter-spacing: 2px;
+  font-size: 36px;
+  letter-spacing: 6px;
   line-height: 1;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
 }
 
 /* 04 — REVIEWS GRID ─────────────────────────────────────────── */
@@ -4149,9 +4152,10 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 }
 .oferta-review-stars {
   color: var(--star-yellow);
-  font-size: 18px;
-  letter-spacing: 2px;
+  font-size: 24px;
+  letter-spacing: 3px;
   line-height: 1;
+  margin-bottom: 4px;
 }
 .oferta-review-text {
   font-family: var(--serif);
