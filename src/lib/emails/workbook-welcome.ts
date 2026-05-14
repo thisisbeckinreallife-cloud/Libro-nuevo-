@@ -49,8 +49,8 @@ export function renderWorkbookWelcomeHTML(opts: {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E8DFD1;">
           <tr>
             <td style="padding:32px 32px 24px;">
-              <p style="margin:0 0 4px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#B4123F;">Workbook gratis</p>
-              <h1 style="margin:0 0 16px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#0E0B0B;">Bienvenido al workbook.</h1>
+              <p style="margin:0 0 4px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#E91E63;">Workbook gratis</p>
+              <h1 style="margin:0 0 16px;font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#0E0B0B;">Bienvenido al workbook.</h1>
               <p style="margin:0 0 24px;font-size:15px;color:#1a1515;">
                 ${greeting} ya tienes acceso a las 4 dinámicas guiadas. Empieza por la que quieras — son independientes y guardan tu progreso.
               </p>
@@ -58,7 +58,7 @@ export function renderWorkbookWelcomeHTML(opts: {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">
                 <tr>
                   <td>
-                    <a href="${workbookUrl}" style="display:block;background:#B4123F;color:#FFFFFF;text-decoration:none;text-align:center;padding:16px 24px;border-radius:8px;font-weight:600;font-size:16px;">
+                    <a href="${workbookUrl}" style="display:block;background:#E91E63;color:#FFFFFF;text-decoration:none;text-align:center;padding:16px 24px;border-radius:8px;font-weight:600;font-size:16px;">
                       Entrar al workbook →
                     </a>
                   </td>

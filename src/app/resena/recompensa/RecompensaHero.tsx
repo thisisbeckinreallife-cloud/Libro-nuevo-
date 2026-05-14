@@ -57,7 +57,7 @@ export function RecompensaHero({
       const cd = res.headers.get("content-disposition") ?? "";
       const match = cd.match(/filename="([^"]+)"/);
       const filename =
-        match?.[1] ?? (kind === "ebook" ? "ebook" : "audio-rsb");
+        match?.[1] ?? (kind === "ebook" ? "ebook" : "audiobook");
 
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");

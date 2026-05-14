@@ -500,7 +500,7 @@ export const dict: Record<Lang, Dict> = {
           priceAnchor: "Valor desglosado: 165 €",
           features: [
             "Ebook completo (PDF + EPUB) — 25 capítulos",
-            "Audiolibro 5h 34min — voz Despina, castellano España",
+            "Audiolibro 5h 34min — voz Despina, castellano España",
             "Workbook online — 4 dinámicas guiadas con progreso guardado",
             "BONUS · Primer libro de Lara (ebook + audio) al dejar reseña",
             "Acceso permanente · 30 días de garantía sin preguntas",
@@ -591,7 +591,7 @@ export const dict: Record<Lang, Dict> = {
             detail: "PDF + EPUB. Listo para Kindle, iPad, móvil o impresión casera.",
           },
           {
-            title: "Audiolibro 5h 34min",
+            title: "Audiolibro 5h 34min",
             detail: "17 capítulos marcados, voz Despina, castellano España. Web, Sonos, CarPlay, Android Auto.",
           },
           {
@@ -605,7 +605,7 @@ export const dict: Record<Lang, Dict> = {
           },
           {
             title: "BONUS · Audiolibro del primer libro",
-            detail: "6h 15min. Versión íntegra. Se desbloquea junto con el ebook bonus.",
+            detail: "6h 15min. Versión íntegra. Se desbloquea junto con el ebook bonus.",
             bonus: true,
           },
           {
@@ -631,9 +631,9 @@ export const dict: Record<Lang, Dict> = {
               "Acceso inmediato. En cuanto el pago se confirma en Stripe, se abre tu biblioteca personal con el ebook, el audiolibro y el workbook listos. Recibes además un email con todos los links por si quieres entrar desde otro dispositivo. Sin esperas, sin códigos, sin envíos físicos.",
           },
           {
-            question: "¿Cuándo llega la tapa blanda firmada y la edición coleccionista?",
+            question: "¿Por qué solo edición digital y no tapa blanda?",
             answer:
-              "La tapa blanda firmada entra en imprenta cuando se cierre la primera tirada (primer trimestre 2026 estimado). La edición coleccionista numerada se abre por orden de lista hasta agotar las 300 unidades. En ambos casos, te avisamos por email antes de cobrar nada — la inscripción es libre y no implica pago.",
+              "Hoy vendemos exclusivamente el pack digital (ebook + audiolibro + workbook) porque permite acceso inmediato, un único precio justo de 12 € y la garantía total de 30 días sin preguntas. Si en el futuro abrimos una edición física, las lectoras del pack digital serán las primeras en saberlo — sin tener que apuntarse a ninguna lista.",
           },
           {
             question: "¿Y si lo abro y siento que no es para mí?",
@@ -1414,7 +1414,7 @@ export const dict: Record<Lang, Dict> = {
           priceAnchor: "Itemised value: 165 €",
           features: [
             "Complete ebook (PDF + EPUB) — 25 chapters",
-            "Audiobook 5h 34min — Despina voice, Castilian Spanish",
+            "Audiobook 5h 34min — Despina voice, Castilian Spanish",
             "Online workbook — 4 guided exercises with saved progress",
             "BONUS · Lara's first book (ebook + audio) when you leave a review",
             "Permanent access · 30-day money-back guarantee",
@@ -1505,7 +1505,7 @@ export const dict: Record<Lang, Dict> = {
             detail: "PDF + EPUB. Ready for Kindle, iPad, phone or home printing.",
           },
           {
-            title: "Audiobook 5h 34min",
+            title: "Audiobook 5h 34min",
             detail: "17 marked chapters, Despina voice, Castilian Spanish. Web, Sonos, CarPlay, Android Auto.",
           },
           {
@@ -1519,7 +1519,7 @@ export const dict: Record<Lang, Dict> = {
           },
           {
             title: "BONUS · Audiobook of the first book",
-            detail: "6h 15min. Full version. Unlocks alongside the bonus ebook.",
+            detail: "6h 15min. Full version. Unlocks alongside the bonus ebook.",
             bonus: true,
           },
           {
@@ -1545,9 +1545,9 @@ export const dict: Record<Lang, Dict> = {
               "Instant access. The moment Stripe confirms the payment, your personal library opens with the ebook, the audiobook and the workbook ready. You also get an email with every link, so you can log in from any other device. No waiting, no codes, no shipping.",
           },
           {
-            question: "When do the signed paperback and collector's edition ship?",
+            question: "Why only the digital edition, no paperback?",
             answer:
-              "The signed paperback enters print once the first run closes (Q1 2026 estimated). The numbered collector's edition opens by waitlist order until all 300 copies are spoken for. In both cases, we email you before charging anything — signing up is free and doesn't commit you to a payment.",
+              "Today we sell exclusively the digital pack (ebook + audiobook + workbook) because it allows instant access, one fair price of 12 €, and the full 30-day no-questions guarantee. If we open a physical edition in the future, digital pack readers will be the first to know — no waitlist required.",
           },
           {
             question: "What if I open it and feel it's not for me?",

@@ -3,19 +3,23 @@
 import Image from "next/image";
 import { Book3D } from "@/components/Book3D";
 import { useLang } from "@/components/LangProvider";
+import { HomeBridge } from "@/components/HomeBridge";
 import { OfertaPricingCards } from "./OfertaPricingCards";
 import { OfertaStickyCta } from "./OfertaStickyCta";
 
 /**
- * /oferta — Hormozi shop.acquisition.com layout, adapted to a single
- * product (1 SKU: ebook + audio + workbook @ €12).
+ * Conversion landing in the Hormozi shop.acquisition.com layout. Used
+ * both at `/oferta` (paid traffic) and `/` (organic) so the buyer
+ * experience is identical regardless of how they land.
  *
- *   01 — Hero (book3D + headline + trust line)
- *   02 — Pricing card (single centred offer, anchors 165 € → 12 €)
+ * Sections:
+ *   01 — Hero (5-star line + headline + book3D + sub)
+ *   02 — Pricing card (single centred offer, 165 € → 12 €)
  *   03 — Trust band navy (4 stats with copper numbers)
  *   04 — Reviews grid (6 cards, paper background)
- *   05 — Meet Lara (paper-warm, portrait + bio + quote)
- *   06 — What's inside (3-col grid, bonuses with navy/copper accent)
+ *   05 — Meet Lara (portrait + bio + bullets + pull-quote)
+ *   06 — What's inside (3 core + 3 bonus items)
+ *   07a — Editorial bridge (home only: Before / After block)
  *   07 — Pricing card REPEATED (after value built)
  *   08 — Guarantee band navy (shield + 30-day text)
  *   09 — FAQ
@@ -23,8 +27,14 @@ import { OfertaStickyCta } from "./OfertaStickyCta";
  *   11 — Sticky mobile bottom CTA
  *
  * The card fires the existing /api/checkout endpoint (Stripe live).
+ *
+ * `variant`:
+ *   - "oferta" (default): canonical paid landing
+ *   - "home":              renders the Editorial bridge between #06 and #07
  */
-export function OfertaLanding() {
+export function OfertaLanding({
+  variant = "oferta",
+}: { variant?: "oferta" | "home" } = {}) {
   const { t } = useLang();
   const o = t.oferta;
 
@@ -154,6 +164,9 @@ export function OfertaLanding() {
           ))}
         </div>
       </section>
+
+      {/* 07a — EDITORIAL BRIDGE (home only) */}
+      {variant === "home" ? <HomeBridge /> : null}
 
       {/* 07 — PRICING REPEATED */}
       <OfertaPricingCards id="pricing-2" />

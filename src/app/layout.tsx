@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { LangProvider } from "@/components/LangProvider";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 
 const PRE_HYDRATION_LANG_SCRIPT = `
 try {
@@ -61,7 +63,11 @@ export default function RootLayout({
         </Script>
       </head>
       <body>
-        <LangProvider>{children}</LangProvider>
+        <LangProvider>
+          <Nav />
+          {children}
+          <Footer />
+        </LangProvider>
       </body>
     </html>
   );

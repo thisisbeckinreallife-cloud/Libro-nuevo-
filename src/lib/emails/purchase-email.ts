@@ -70,8 +70,8 @@ export function renderPurchaseEmailHTML(purchase: PurchaseLite): string {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E8DFD1;">
           <tr>
             <td style="padding:32px 32px 24px;">
-              <p style="margin:0 0 4px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#B4123F;">Compra confirmada</p>
-              <h1 style="margin:0 0 16px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#0E0B0B;">Tu audiolibro y ebook ya están listos.</h1>
+              <p style="margin:0 0 4px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#E91E63;">Compra confirmada</p>
+              <h1 style="margin:0 0 16px;font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#0E0B0B;">Tu audiolibro y ebook ya están listos.</h1>
               <p style="margin:0 0 24px;font-size:15px;color:#1a1515;">
                 ${greeting} gracias por comprar <em>El método Arkwright</em>. Aquí tienes todo lo necesario para empezar.
               </p>
@@ -79,7 +79,7 @@ export function renderPurchaseEmailHTML(purchase: PurchaseLite): string {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">
                 <tr>
                   <td>
-                    <a href="${bibliotecaUrl}" style="display:block;background:#B4123F;color:#FFFFFF;text-decoration:none;text-align:center;padding:16px 24px;border-radius:8px;font-weight:600;font-size:16px;">
+                    <a href="${bibliotecaUrl}" style="display:block;background:#E91E63;color:#FFFFFF;text-decoration:none;text-align:center;padding:16px 24px;border-radius:8px;font-weight:600;font-size:16px;">
                       Acceder a la biblioteca →
                     </a>
                   </td>
@@ -121,7 +121,7 @@ export function renderPurchaseEmailHTML(purchase: PurchaseLite): string {
               <p style="margin:0 0 8px;font-size:13px;color:#6b6360;">
                 <strong style="color:#0E0B0B;">¿Cómo escucharlo en tu dispositivo?</strong><br>
                 Pasos paso a paso para iPhone, Android, Mac, Windows y coche:
-                <a href="${comoEscucharUrl}" style="color:#B4123F;">${comoEscucharUrl}</a>
+                <a href="${comoEscucharUrl}" style="color:#E91E63;">${comoEscucharUrl}</a>
               </p>
             </td>
           </tr>
@@ -130,7 +130,7 @@ export function renderPurchaseEmailHTML(purchase: PurchaseLite): string {
             <td style="padding:16px 32px 24px;border-top:1px solid #E8DFD1;background:#EFE7DB;">
               <p style="margin:0 0 4px;font-size:12px;color:#6b6360;">
                 Guarda este email — es tu acceso permanente. Si lo pierdes:
-                <a href="${recoveryUrl}" style="color:#B4123F;">${recoveryUrl}</a>
+                <a href="${recoveryUrl}" style="color:#E91E63;">${recoveryUrl}</a>
               </p>
               <p style="margin:8px 0 0;font-size:11px;color:#6b6360;">
                 ¿Problemas? Responde a este correo y te ayudo personalmente.

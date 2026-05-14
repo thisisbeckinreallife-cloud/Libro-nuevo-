@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useLang } from "./LangProvider";
 
 export function Nav() {
   const { t, lang, setLang } = useLang();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -14,17 +16,19 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <nav className={`nav${scrolled ? " scrolled" : ""}`} id="nav">
-      <a href="#" className="nav-logo" aria-label="Lara Lawn — Identity Architect">
+      <a href="/" className="nav-logo" aria-label="Lara Lawn — Identity Architect">
         <img src="/lara-lawn-logo.png" alt="Lara Lawn — Identity Architect" />
       </a>
       <div className="nav-links">
-        <a href="#book">{t.nav.book}</a>
-        <a href="#method">{t.nav.method}</a>
-        <a href="#lara">{t.nav.lara}</a>
-        <a href="#extracts">{t.nav.extracts}</a>
-        <a href="#faq">{t.nav.faq}</a>
+        <a href="/#book">{t.nav.book}</a>
+        <a href="/#method">{t.nav.method}</a>
+        <a href="/#lara">{t.nav.lara}</a>
+        <a href="/#extracts">{t.nav.extracts}</a>
+        <a href="/#faq">{t.nav.faq}</a>
       </div>
       <div className="nav-right">
         <div className="lang-toggle" role="group" aria-label="Language">
@@ -45,7 +49,7 @@ export function Nav() {
             EN
           </button>
         </div>
-        <a href="#buy" className="nav-cta">
+        <a href="/#pricing" className="nav-cta">
           {t.nav.cta}
         </a>
       </div>

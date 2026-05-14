@@ -1093,7 +1093,7 @@ section { position: relative; padding: 130px 0; }
 .extract--ink::after { background: var(--accent); opacity: .7; }
 
 .extract--warm {
-  background: #F1E9DC;
+  background: var(--paper-warm);
 }
 .extract--warm::before { opacity: .06; }
 .extract--warm .quote-mark { opacity: .28; }
@@ -1172,7 +1172,7 @@ section { position: relative; padding: 130px 0; }
 .testimonial .who { display: flex; align-items: center; gap: 14px; padding-top: 24px; border-top: 1px solid var(--rule-soft); }
 .testimonial .avatar {
   width: 44px; height: 44px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), #7a0a29);
+  background: linear-gradient(135deg, var(--accent), var(--muted));
   font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--paper);
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
@@ -2418,11 +2418,11 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   transition: border-color .18s ease;
 }
 .resena-field input:focus { outline: none; border-color: var(--accent); }
-.resena-field input[aria-invalid="true"] { border-color: #a02030; }
+.resena-field input[aria-invalid="true"] { border-color: var(--accent); }
 
 .resena-error {
-  font-family: var(--sans); font-size: 14px; color: #8a1d2a;
-  padding: 10px 14px; background: rgba(180, 18, 63, 0.08);
+  font-family: var(--sans); font-size: 14px; color: var(--accent);
+  padding: 10px 14px; background: var(--accent-soft);
   border-left: 2px solid var(--accent);
 }
 
@@ -2510,12 +2510,12 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   font-family: var(--sans); font-size: 13px; line-height: 1.5;
 }
 .recompensa-status--info {
-  background: rgba(180, 18, 63, 0.06); color: var(--ink);
+  background: var(--accent-soft); color: var(--ink);
   border-left: 2px solid var(--accent);
 }
 .recompensa-status--error {
-  background: rgba(138, 29, 42, 0.08); color: #8a1d2a;
-  border-left: 2px solid #8a1d2a;
+  background: var(--accent-soft); color: var(--accent);
+  border-left: 2px solid var(--accent);
 }
 
 /* ─────────────────────────────────────────────────────────────────
@@ -2534,7 +2534,7 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 .buy-digital-head .label {
   display: inline-block;
   color: var(--accent);
-  background: rgba(180, 18, 63, 0.16);
+  background: rgba(233, 30, 99, 0.16);
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 10px;
@@ -2597,7 +2597,7 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 .buy-digital-error {
   margin: 12px 0 0;
   font-size: 12px;
-  color: #ffb3b3;
+  color: var(--rule-soft);
 }
 
 .buy-cta-sep {
@@ -2849,7 +2849,7 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
    border + "Incluido" badge). */
 .biblioteca-workbook {
   position: relative;
-  background: linear-gradient(180deg, rgba(180, 18, 63, 0.05), var(--paper));
+  background: linear-gradient(180deg, rgba(233, 30, 99, 0.05), var(--paper));
   border: 2px solid var(--accent);
   border-radius: 10px;
   padding: 32px 28px;
@@ -2984,7 +2984,7 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgba(180, 18, 63, 0.1);
+  background: rgba(233, 30, 99, 0.1);
   color: var(--accent);
   display: flex;
   align-items: center;
@@ -3312,7 +3312,7 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   vertical-align: middle;
 }
 .admin-table tr:last-child td { border-bottom: none; }
-.admin-table tr:hover td { background: rgba(180, 18, 63, 0.02); }
+.admin-table tr:hover td { background: rgba(233, 30, 99, 0.04); }
 
 .admin-email a {
   color: var(--ink);
@@ -3335,7 +3335,7 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   background: var(--paper-warm);
   color: var(--ink);
 }
-.admin-tag-workbook { background: rgba(180, 18, 63, 0.1); color: var(--accent); }
+.admin-tag-workbook { background: rgba(233, 30, 99, 0.1); color: var(--accent); }
 .admin-tag-resena { background: rgba(14, 11, 11, 0.08); color: var(--ink); }
 .admin-tag-lang { background: var(--paper-warm); color: var(--muted); }
 
@@ -3578,7 +3578,7 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
 }
 .recover-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(180, 18, 63, 0.12);
+  box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.18);
 }
 .recover-submit {
   background: var(--accent);
@@ -4038,7 +4038,7 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   box-shadow: 0 4px 12px rgba(233, 30, 99, 0.28);
 }
 .oferta-pcard-cta--primary:hover {
-  background: #d81557;
+  background: var(--ink);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(233, 30, 99, 0.36);
 }
@@ -4581,3 +4581,162 @@ footer { padding: 50px 0 40px; background: var(--ink); color: var(--paper); bord
   .oferta-inside-grid { grid-template-columns: 1fr; }
   .oferta-hero-h1 { font-size: 38px; }
 }
+
+/* ============================================================
+   Brand-audit pass — consistency fixes across the app
+   ============================================================ */
+
+/* Eyebrow letter-spacing standardised at ≥ 0.18em */
+.biblioteca-card-meta,
+.biblioteca-cta,
+.biblioteca-workbook-cta,
+.recover-label,
+.como-escuchar-device-badge { letter-spacing: 0.18em; }
+
+/* Workbook card mobile readability + touch target */
+@media (max-width: 640px) {
+  .workbook-card-desc { font-size: 14px; }
+  .workbook-card-action {
+    min-height: 44px;
+    padding: 14px 0;
+    display: inline-flex;
+    align-items: center;
+  }
+  .workbook-card-num { font-size: 11px; }
+  .como-escuchar-nav-pill { padding: 12px 18px; }
+}
+
+/* ============================================================
+   /  (home) — Editorial bridge between value-stack and pricing
+   ============================================================ */
+
+.home-bridge {
+  background: var(--paper);
+  padding: 64px 20px;
+}
+.home-bridge-h2 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 7vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+.home-bridge-h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.home-bridge-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.home-bridge-col {
+  background: #fff;
+  border: 1px solid var(--rule-soft);
+  border-radius: 14px;
+  padding: 24px 22px;
+}
+.home-bridge-col--after {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--rule-soft));
+  background: linear-gradient(180deg, #fff, var(--accent-soft));
+}
+.home-bridge-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.home-bridge-col--after .home-bridge-label { color: var(--accent); }
+.home-bridge-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 10px 0 18px;
+}
+.home-bridge-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+.home-bridge-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.home-bridge-list li {
+  position: relative;
+  padding-left: 22px;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.home-bridge-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 12px;
+  height: 1px;
+  background: var(--rule-soft);
+}
+.home-bridge-col--after .home-bridge-list li::before {
+  background: var(--accent);
+  height: 2px;
+  top: 10px;
+}
+
+@media (min-width: 900px) {
+  .home-bridge { padding: 96px 64px; }
+  .home-bridge-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+/* ============================================================
+   Mobile sanity — hero, FAQ, sticky safe-area
+   ============================================================ */
+
+@media (max-width: 720px) {
+  .oferta-hero { padding: 80px 20px 32px; }
+  .oferta-hero-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .oferta-hero-visual {
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 3 / 4;
+    margin: 4px auto;
+  }
+  .oferta-hero-visual .book-hero {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .oferta-pcard-cta--primary { min-height: 56px; font-size: 16px; }
+  .oferta-faq-q { min-height: 56px; }
+}
+
+.oferta-sticky {
+  bottom: 0;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Brand-audit small fixes */
+.biblioteca-header--compact { margin-bottom: 32px; }
+.accent-link { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.accent-link:hover { color: var(--ink); }

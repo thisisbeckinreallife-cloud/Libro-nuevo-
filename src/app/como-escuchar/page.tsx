@@ -108,7 +108,7 @@ const DEVICES = [
 export default function ComoEscucharPage() {
   return (
     <main className="como-escuchar-shell">
-      <header className="biblioteca-header" style={{ marginBottom: "32px" }}>
+      <header className="biblioteca-header biblioteca-header--compact">
         <p className="biblioteca-eyebrow">Guía multi-dispositivo</p>
         <h1 className="biblioteca-h1">
           Cómo escuchar el<em> audiolibro</em>
@@ -116,7 +116,7 @@ export default function ComoEscucharPage() {
         <p className="biblioteca-intro">
           Pasos paso a paso para cualquier dispositivo. Si nada de esto funciona,
           tienes el reproductor web embebido en{" "}
-          <a href="/biblioteca" style={{ color: "var(--accent)" }}>
+          <a href="/biblioteca" className="accent-link">
             /biblioteca
           </a>{" "}
           que funciona en cualquier navegador sin instalar nada.
