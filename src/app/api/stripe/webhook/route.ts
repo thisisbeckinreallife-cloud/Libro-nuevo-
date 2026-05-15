@@ -5,7 +5,7 @@ import { sendPurchaseEmail } from "@/lib/emails/purchase-email";
 import { recordEvent } from "@/lib/events";
 import { prisma } from "@/lib/prisma";
 import { recordCheckoutCompleted, recordRefund } from "@/lib/purchase";
-import { getStripe, getWebhookSecret } from "@/lib/stripe";
+import { getOfferPriceId, getStripe, getWebhookSecret } from "@/lib/stripe";
 
 /**
  * POST /api/stripe/webhook
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     switch (event.type) {
       case "checkout.session.completed":
-        await handleCheckoutCompleted(event.data.object);
+        await handleCheckoutCompleted(stripe, event.data.object);
         break;
 
       case "charge.refunded":
@@ -84,8 +84,48 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 }
 
 async function handleCheckoutCompleted(
+  stripe: Stripe,
   session: Stripe.Checkout.Session,
 ): Promise<void> {
+  // GUARD — solo cumplimos la oferta digital de 12 € (libro Arkwright).
+  // La MISMA cuenta de Stripe vende otros productos (p.ej. el
+  // diagnóstico de 1 € en reprogramaciónsubconsciente.es). Esos
+  // también disparan `checkout.session.completed` aquí. Sin este
+  // filtro, quien compra el diagnóstico recibiría el email del libro
+  // Y un accessToken válido a /biblioteca. Fail-safe: si no podemos
+  // CONFIRMAR que la sesión es la oferta de 12 €, no hacemos nada
+  // (devolvemos 200, Stripe queda contento, pero no entregamos).
+  const offerPriceId = getOfferPriceId();
+  if (!offerPriceId) {
+    console.error(
+      "[stripe-webhook] STRIPE_PRICE_ID_OFFER_12EUR ausente — ignoro la sesión para no entregar de más",
+      { sessionId: session.id },
+    );
+    return;
+  }
+  let isOffer = false;
+  try {
+    const items = await stripe.checkout.sessions.listLineItems(session.id, {
+      limit: 100,
+    });
+    isOffer = items.data.some((li) => li.price?.id === offerPriceId);
+  } catch (err) {
+    console.error(
+      "[stripe-webhook] no pude listar line items — ignoro la sesión (fail-safe)",
+      { sessionId: session.id, err },
+    );
+    return;
+  }
+  if (!isOffer) {
+    // No es nuestro producto (p.ej. el diagnóstico de 1 €).
+    // Acuse silencioso: ni email del libro ni acceso a /biblioteca.
+    console.info(
+      "[stripe-webhook] checkout.session.completed de un producto que no es la oferta — sin entrega",
+      { sessionId: session.id },
+    );
+    return;
+  }
+
   // Pull buyer info — Checkout always collects email; name is
   // optional and depends on the price configuration.
   // (`session.customer` may be a DeletedCustomer object when the
