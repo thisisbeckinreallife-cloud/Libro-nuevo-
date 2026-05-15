@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>No eres tú, es tu subconsciente · Cuaderno de toma de conciencia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     CUADERNO 01 · "No eres tú, es tu subconsciente"
+     Print-optimised · Chrome --print-to-pdf · A4
+     Branding editorial cálido — Lara Lawn
+     ========================================================= */
+  @page {
+    size: A4;
+    margin: 17mm 16mm 18mm 16mm;
+  }
+  @page :first { margin: 0; }
+
+  :root {
+    --paper:        #FAF9F7;
+    --paper-warm:   #F2E9DD;
+    --pink-soft:    #FCE4EC;
+    --ink:          #1E1515;
+    --ink-soft:     #420C14;
+    --accent:       #E91E63;
+    --garnet:       #722F37;
+    --rule:         #E0D5C4;
+    --rule-soft:    #EBE3D5;
+    --write-line:   #C9BBA6;
+  }
+
+  * { box-sizing: border-box; }
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 10.5pt;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+
+  em {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  h1, h2, h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .eyebrow-muted {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--garnet);
+    font-weight: 500;
+  }
+
+  /* ---------- COVER ---------- */
+  .cover {
+    width: 210mm;
+    height: 297mm;
+    background:
+      radial-gradient(circle at 78% 16%, rgba(252,228,236,0.55) 0%, rgba(252,228,236,0) 42%),
+      linear-gradient(180deg, #FBFAF8 0%, #F7F3EC 100%);
+    padding: 30mm 24mm 26mm;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    position: relative;
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: 14mm; left: 14mm; right: 14mm; bottom: 14mm;
+    border: 0.6pt solid var(--rule);
+  }
+  .cover-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-mark {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--garnet);
+  }
+  .cover-ornament {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 13pt;
+    color: var(--accent);
+  }
+  .cover-center { margin-top: auto; margin-bottom: auto; }
+  .cover-kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9pt;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14mm;
+  }
+  .cover-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 50pt;
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .cover-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .cover-rule {
+    width: 54mm;
+    height: 1.4pt;
+    background: var(--accent);
+    margin: 16mm 0 12mm;
+  }
+  .cover-sub {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 17pt;
+    color: var(--garnet);
+    font-weight: 400;
+    max-width: 130mm;
+    line-height: 1.4;
+  }
+  .cover-bottom { margin-top: auto; }
+  .cover-belongs {
+    border-top: 0.6pt solid var(--rule);
+    padding-top: 9mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 14mm;
+  }
+  .cover-belongs .field { flex: 1; }
+  .cover-belongs .lbl {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--garnet);
+    display: block;
+    margin-bottom: 11mm;
+  }
+  .cover-belongs .line {
+    border-bottom: 0.8pt solid var(--ink-soft);
+    height: 0;
+  }
+  .cover-belongs .author {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  /* ---------- SECTION / MODULE ---------- */
+  .module { page-break-before: always; }
+
+  .module-head {
+    margin-bottom: 7mm;
+    page-break-after: avoid;
+  }
+  .module-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .module-title {
+    font-family: "Playfair Display", serif;
+    font-size: 26pt;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 3.5mm 0 0;
+    letter-spacing: -0.01em;
+  }
+  .module-title em { font-size: inherit; }
+  .module-divider {
+    width: 38mm;
+    height: 1.2pt;
+    background: var(--accent);
+    margin: 5.5mm 0 0;
+  }
+  .module-lead {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 12pt;
+    color: var(--garnet);
+    line-height: 1.46;
+    margin: 5.5mm 0 0;
+    max-width: 158mm;
+  }
+
+  p { margin: 0 0 4mm; }
+  .body-text { font-size: 10.5pt; color: var(--ink); }
+  .small-note {
+    font-size: 9pt;
+    color: var(--garnet);
+    line-height: 1.55;
+  }
+
+  /* ---------- THESIS QUOTE ---------- */
+  .thesis {
+    border-left: 2.4pt solid var(--accent);
+    padding: 2mm 0 2mm 9mm;
+    margin: 9mm 0;
+    page-break-inside: avoid;
+  }
+  .thesis p {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 14pt;
+    color: var(--ink-soft);
+    line-height: 1.46;
+    margin: 0;
+  }
+  .thesis .src {
+    display: block;
+    margin-top: 5mm;
+    font-family: "JetBrains Mono", monospace;
+    font-style: normal;
+    font-size: 7.5pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--garnet);
+  }
+
+  /* ---------- RULES LIST (cómo usar) ---------- */
+  .rules { margin: 8mm 0 0; }
+  .rule-item {
+    display: flex;
+    gap: 7mm;
+    padding: 5.5mm 0;
+    border-bottom: 0.5pt solid var(--rule-soft);
+    page-break-inside: avoid;
+  }
+  .rule-item:last-child { border-bottom: 0; }
+  .rule-no {
+    font-family: "Playfair Display", serif;
+    font-size: 19pt;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+    min-width: 12mm;
+  }
+  .rule-body h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 1.5mm;
+  }
+  .rule-body p {
+    font-size: 9.5pt;
+    color: var(--garnet);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ---------- WRITING LINES ---------- */
+  .write {
+    margin: 6mm 0 0;
+    page-break-inside: avoid;
+  }
+  .write-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--garnet);
+    font-weight: 600;
+    margin-bottom: 5mm;
+    display: block;
+  }
+  .lines .ln {
+    border-bottom: 0.8pt solid var(--write-line);
+    height: 11mm;
+  }
+  .lines.tight .ln { height: 10mm; }
+
+  /* ---------- BOX ---------- */
+  .box {
+    background: var(--paper-warm);
+    border: 0.6pt solid var(--rule);
+    border-radius: 2pt;
+    padding: 7mm 8mm 8mm;
+    margin: 7mm 0 0;
+    page-break-inside: avoid;
+  }
+  .box.pink {
+    background: var(--pink-soft);
+    border-color: #F4C9D9;
+  }
+  .box-title {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 5mm;
+  }
+  .box .lines .ln {
+    border-bottom: 0.8pt solid #C7B8A0;
+  }
+  .box.pink .lines .ln {
+    border-bottom: 0.8pt solid #E5A9C0;
+  }
+
+  /* ---------- TABLE ---------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 7mm 0 0;
+    page-break-inside: avoid;
+  }
+  thead th {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--garnet);
+    font-weight: 600;
+    padding: 4mm 4mm;
+    text-align: left;
+    border: 0.5pt solid var(--garnet);
+  }
+  tbody td {
+    border: 0.5pt solid var(--rule);
+    padding: 4mm;
+    vertical-align: top;
+    height: 19mm;
+    font-size: 9.5pt;
+  }
+  tbody td.prefill {
+    background: var(--paper-warm);
+    font-weight: 600;
+    color: var(--ink-soft);
+    width: 24%;
+    vertical-align: middle;
+  }
+  tbody tr:nth-child(even) td:not(.prefill) {
+    background: #FCFBF9;
+  }
+  .cell-hint {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #B8A88E;
+    font-weight: 500;
+  }
+
+  /* ---------- EXCAVATION BLOCK (escenas) ---------- */
+  .exc {
+    border: 0.6pt solid var(--rule);
+    border-radius: 2pt;
+    padding: 5.5mm 7mm 6mm;
+    margin: 6mm 0 0;
+    page-break-inside: avoid;
+    background: #FCFBF9;
+  }
+  .exc-head {
+    display: flex;
+    align-items: baseline;
+    gap: 5mm;
+    border-bottom: 0.6pt solid var(--rule);
+    padding-bottom: 3mm;
+    margin-bottom: 4.5mm;
+  }
+  .exc-head .n {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 20pt;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .exc-head .t {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--garnet);
+    font-weight: 600;
+  }
+  .exc-field { margin-bottom: 4mm; }
+  .exc-field:last-child { margin-bottom: 0; }
+  .exc-field .q {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3mm;
+    display: block;
+  }
+  .exc-field .q .hint {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: 7.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--garnet);
+  }
+  .exc-field .ln {
+    border-bottom: 0.8pt solid var(--write-line);
+    height: 9mm;
+  }
+  .exc-field .ln.law {
+    border-bottom: 1pt solid var(--accent);
+  }
+
+  /* ---------- NUMBERED SABOTAGE ENTRIES ---------- */
+  .sab {
+    border-left: 2pt solid var(--accent);
+    padding: 1mm 0 1mm 8mm;
+    margin: 5.5mm 0 0;
+    page-break-inside: avoid;
+  }
+  .sab-no {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 17pt;
+    color: var(--accent);
+    margin-bottom: 3mm;
+  }
+  .sab-row {
+    display: grid;
+    grid-template-columns: 32mm 1fr;
+    align-items: end;
+    gap: 6mm;
+    margin-bottom: 3.5mm;
+  }
+  .sab-row .k {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--garnet);
+    font-weight: 600;
+    padding-bottom: 1.5mm;
+  }
+  .sab-row .ln {
+    border-bottom: 0.8pt solid var(--write-line);
+    height: 9mm;
+  }
+
+  /* ---------- BODY SVG (cuerpo no miente) ---------- */
+  .soma {
+    display: flex;
+    gap: 12mm;
+    margin: 7mm 0 0;
+    page-break-inside: avoid;
+    align-items: flex-start;
+  }
+  .soma-fig {
+    flex: 0 0 62mm;
+    text-align: center;
+  }
+  .soma-fig svg { width: 56mm; height: auto; }
+  .soma-fig .cap {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--garnet);
+    margin-top: 4mm;
+  }
+  .soma-q { flex: 1; }
+  .soma-q .qitem { margin-bottom: 6mm; }
+  .soma-q .qitem .q {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4mm;
+    display: block;
+  }
+  .soma-q .ln {
+    border-bottom: 0.8pt solid var(--write-line);
+    height: 9.5mm;
+  }
+
+  /* ---------- DIALOGUE REWRITE ---------- */
+  .dlg {
+    border: 0.6pt solid var(--rule);
+    border-radius: 2pt;
+    margin: 5.5mm 0 0;
+    page-break-inside: avoid;
+    overflow: hidden;
+  }
+  .dlg-from, .dlg-to { padding: 5mm 7mm 5.5mm; }
+  .dlg-from { background: #FCFBF9; }
+  .dlg-to   { background: var(--pink-soft); }
+  .dlg-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 3mm;
+    display: block;
+  }
+  .dlg-from .dlg-tag { color: var(--garnet); }
+  .dlg-to .dlg-tag   { color: var(--accent); }
+  .dlg .ln { height: 9mm; }
+  .dlg-from .ln { border-bottom: 0.8pt solid var(--write-line); }
+  .dlg-to .ln   { border-bottom: 0.8pt solid #E5A9C0; }
+  .dlg-arrow {
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 11pt;
+    color: var(--accent);
+    padding: 2mm 0;
+    background: #fff;
+    border-top: 0.5pt solid var(--rule);
+    border-bottom: 0.5pt solid var(--rule);
+  }
+
+  /* ---------- SYNTHESIS / CLOSE ---------- */
+  .synth-name {
+    font-family: "Playfair Display", serif;
+    font-size: 17pt;
+    color: var(--ink);
+    margin: 6mm 0 0;
+    line-height: 1.6;
+  }
+  .synth-name .blank {
+    display: inline-block;
+    min-width: 80mm;
+    border-bottom: 1pt solid var(--accent);
+  }
+  .signature {
+    display: flex;
+    gap: 14mm;
+    margin-top: 9mm;
+    page-break-inside: avoid;
+  }
+  .signature .sig { flex: 1; }
+  .signature .sig.date { flex: 0 0 52mm; }
+  .signature .sig .ln {
+    border-bottom: 0.9pt solid var(--ink-soft);
+    height: 12mm;
+  }
+  .signature .sig .lbl {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--garnet);
+    margin-top: 3mm;
+  }
+
+  .closing-mark {
+    text-align: center;
+    margin-top: 9mm;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 12pt;
+    color: var(--accent);
+  }
+
+  /* ---------- RUNNING FOOTER ---------- */
+  .page-foot {
+    position: running(foot);
+  }
+  @page {
+    @bottom-left {
+      content: "No eres tú, es tu subconsciente";
+      font-family: "JetBrains Mono", monospace;
+      font-size: 7pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9C8D78;
+    }
+    @bottom-center {
+      content: "Lara Lawn";
+      font-family: "JetBrains Mono", monospace;
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9C8D78;
+    }
+    @bottom-right {
+      content: counter(page);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 7.5pt;
+      color: #9C8D78;
+    }
+  }
+  @page :first {
+    @bottom-left { content: ""; }
+    @bottom-center { content: ""; }
+    @bottom-right { content: ""; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<section class="cover">
+  <div class="cover-inner">
+    <div class="cover-top">
+      <span class="cover-mark">Lara Lawn</span>
+      <span class="cover-ornament">&#10086;</span>
+    </div>
+
+    <div class="cover-center">
+      <div class="cover-kicker">Cuaderno de toma de conciencia</div>
+      <h1 class="cover-title">No eres tú,<br>es tu <em>subconsciente</em></h1>
+      <div class="cover-rule"></div>
+      <p class="cover-sub">Un cuaderno para ver, por fin, quién ha estado decidiendo por ti.</p>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-belongs">
+        <div class="field">
+          <span class="lbl">Este cuaderno pertenece a</span>
+          <div class="line"></div>
+        </div>
+        <span class="author">Trabajo personal &middot; Edición de autor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CÓMO USAR ===================== -->
+<section class="module">
+  <div class="module-head">
+    <span class="module-num">Antes de empezar</span>
+    <h2 class="module-title">Cómo usar este cuaderno</h2>
+    <div class="module-divider"></div>
+  </div>
+
+  <p class="body-text">Esto no es lectura. Es excavación. Vas a sacar a la superficie la imagen que tu subconsciente tiene de ti &mdash; ese <em>termostato</em> interno que te devuelve al punto de partida cada vez que intentas ser alguien que no coincide con él. No vas a encontrar respuestas correctas aquí. Solo las tuyas, si te atreves a escribirlas sin maquillar.</p>
+
+  <div class="thesis">
+    <p>Personas inteligentes que saben exactamente qué hacer&hellip; y aun así no lo hacen. No es falta de información. Es un setpoint que no recuerdas haber instalado.</p>
+    <span class="src">La tesis &middot; No eres tú, es tu subconsciente</span>
+  </div>
+
+  <div class="rules">
+    <div class="rule-item">
+      <span class="rule-no">01</span>
+      <div class="rule-body">
+        <h3>A mano. Siempre.</h3>
+        <p>Escribir a mano baja la guardia del subconsciente. El teclado edita; el bolígrafo confiesa. Usa estas líneas, no tu cabeza.</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">02</span>
+      <div class="rule-body">
+        <h3>Sin editar.</h3>
+        <p>La primera frase que aparece es la verdadera. La segunda ya es la versión presentable. Quédate con la primera, aunque te incomode.</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">03</span>
+      <div class="rule-body">
+        <h3>Una sesión por módulo.</h3>
+        <p>No hagas dos seguidos. Cada módulo abre algo. Dale tiempo de asentarse antes de abrir lo siguiente.</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">04</span>
+      <div class="rule-body">
+        <h3>Honestidad brutal.</h3>
+        <p>Nadie va a leer esto. Si suavizas la respuesta para ti mismo, el ejercicio no sirve. La incomodidad es la señal de que vas bien.</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">05</span>
+      <div class="rule-body">
+        <h3>No hay respuestas correctas.</h3>
+        <p>Esto no se corrige. Se observa. El objetivo no es aprobar &mdash; es ver el patrón que llevas años obedeciendo sin saberlo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MÓDULO 1 · EL TERMOSTATO ===================== -->
+<section class="module">
+  <div class="module-head">
+    <span class="module-num">Módulo 1</span>
+    <h2 class="module-title">El termostato</h2>
+    <div class="module-divider"></div>
+    <p class="module-lead">Tienes un punto de regulación interno. Llegas a cierto nivel &mdash; de dinero, de visibilidad, de bienestar &mdash; y algo te devuelve abajo. No es mala suerte. Es un setpoint haciendo su trabajo.</p>
+  </div>
+
+  <p class="body-text">Completa la frase para cada dominio. Sé concreto: cifras, situaciones reales, el momento exacto en que algo empezó a ir hacia atrás justo cuando iba bien.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:24%">Dominio</th>
+        <th>Cada vez que llego a&hellip;</th>
+        <th>&hellip;vuelvo a&hellip;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="prefill">Dinero</td>
+        <td><span class="cell-hint">la cifra / el nivel</span></td>
+        <td><span class="cell-hint">qué pasa después</span></td>
+      </tr>
+      <tr>
+        <td class="prefill">Visibilidad</td>
+        <td><span class="cell-hint">exponerme / que me vean</span></td>
+        <td><span class="cell-hint">cómo me retiro</span></td>
+      </tr>
+      <tr>
+        <td class="prefill">Cuerpo</td>
+        <td><span class="cell-hint">el estado al que llego</span></td>
+        <td><span class="cell-hint">cómo lo pierdo</span></td>
+      </tr>
+      <tr>
+        <td class="prefill">Relación</td>
+        <td><span class="cell-hint">la cercanía / el vínculo</span></td>
+        <td><span class="cell-hint">cómo lo saboteo</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box">
+    <div class="box-title">¿Qué número se repite en tu vida?</div>
+    <p class="small-note" style="margin:0 0 5mm;">Una cifra de ingresos, un peso, un número de seguidores, una cantidad de intentos antes de rendirte. Escribe el número y dónde aparece una y otra vez.</p>
+    <div class="lines tight">
+      <div class="ln"></div>
+      <div class="ln"></div>
+      <div class="ln"></div>
+      <div class="ln"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MÓDULO 2 · ESCENAS FUNDADORAS ===================== -->
+<section class="module">
+  <div class="module-head">
+    <span class="module-num">Módulo 2</span>
+    <h2 class="module-title">Las escenas fundadoras</h2>
+    <div class="module-divider"></div>
+    <p class="module-lead">Entre los 5 y los 11 años, alguien dijo una frase. Tu cerebro la codificó como ley. No la recuerdas. La estás obedeciendo ahora.</p>
+  </div>
+
+  <p class="body-text">No fuerces el recuerdo &ldquo;importante&rdquo;. Empieza por la sensación: ¿cuándo aprendiste que pedir era peligroso, que destacar costaba caro, que no era para ti? Reconstruye tres escenas. La frase exacta importa más que el contexto.</p>
+
+  <div class="exc">
+    <div class="exc-head"><span class="n">1</span><span class="t">Escena fundadora</span></div>
+    <div class="exc-field">
+      <span class="q">¿Qué pasó? <span class="hint">— la situación, dónde, con quién</span></span>
+      <div class="ln"></div><div class="ln"></div>
+    </div>
+    <div class="exc-field">
+      <span class="q">¿Quién lo dijo?</span>
+      <div class="ln"></div>
+    </div>
+    <div class="exc-field">
+      <span class="q">La frase exacta <span class="hint">— palabras textuales, entre comillas</span></span>
+      <div class="ln"></div>
+    </div>
+    <div class="exc-field">
+      <span class="q">La ley que tu cerebro codificó <span class="hint">— en una línea, en presente</span></span>
+      <div class="ln law"></div>
+    </div>
+  </div>
+
+  <div class="exc">
+    <div class="exc-head"><span class="n">2</span><span class="t">Escena fundadora</span></div>
+    <div class="exc-field">
+      <span class="q">¿Qué pasó? <span class="hint">— la situación, dónde, con quién</span></span>
+      <div class="ln"></div><div class="ln"></div>
+    </div>
+    <div class="exc-field">
+      <span class="q">¿Quién lo dijo?</span>
+      <div class="ln"></div>
+    </div>
+    <div class="exc-field">
+      <span class="q">La frase exacta <span class="hint">— palabras textuales, entre comillas</span></span>
+      <div class="ln"></div>
+    </div>
+    <div class="exc-field">
+      <span class="q">La ley que tu cerebro codificó <span class="hint">— en una línea, en presente</span></span>
+      <div class="ln law"></div>
+    </div>
+  </div>
+
+  <div class="exc">
+    <div class="exc-head"><span class="n">3</span><span class="t">Escena fundadora</span></div>
+    <div class="exc-field">
+      <span class="q">¿Qué pasó? <span class="hint">— la situación, dónde, con quién</span></span>
+      <div class="ln"></div><div class="ln"></div>
+    </div>
+    <div class="exc-field">
+      <span class="q">¿Quién lo dijo?</span>
+      <div class="ln"></div>
+    </div>
+    <div class="exc-field">
+      <span class="q">La frase exacta <span class="hint">— palabras textuales, entre comillas</span></span>
+      <div class="ln"></div>
+    </div>
+    <div class="exc-field">
+      <span class="q">La ley que tu cerebro codificó <span class="hint">— en una línea, en presente</span></span>
+      <div class="ln law"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MÓDULO 3 · INVENTARIO DE SABOTAJES ===================== -->
+<section class="module">
+  <div class="module-head">
+    <span class="module-num">Módulo 3</span>
+    <h2 class="module-title">El inventario de sabotajes</h2>
+    <div class="module-divider"></div>
+    <p class="module-lead">El sabotaje no es debilidad. Es protección. Cada vez que te frenas justo antes de conseguirlo, algo en ti cree que te está salvando de algo peor.</p>
+  </div>
+
+  <p class="body-text">Cinco patrones donde te detienes solo. Por cada uno: el disparador (qué lo activa), qué haces exactamente, y qué crees que estás protegiendo al hacerlo.</p>
+
+  <div class="sab">
+    <div class="sab-no">01</div>
+    <div class="sab-row"><span class="k">Disparador</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué haces</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué protege</span><span class="ln"></span></div>
+  </div>
+  <div class="sab">
+    <div class="sab-no">02</div>
+    <div class="sab-row"><span class="k">Disparador</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué haces</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué protege</span><span class="ln"></span></div>
+  </div>
+  <div class="sab">
+    <div class="sab-no">03</div>
+    <div class="sab-row"><span class="k">Disparador</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué haces</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué protege</span><span class="ln"></span></div>
+  </div>
+  <div class="sab">
+    <div class="sab-no">04</div>
+    <div class="sab-row"><span class="k">Disparador</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué haces</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué protege</span><span class="ln"></span></div>
+  </div>
+  <div class="sab">
+    <div class="sab-no">05</div>
+    <div class="sab-row"><span class="k">Disparador</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué haces</span><span class="ln"></span></div>
+    <div class="sab-row"><span class="k">Qué protege</span><span class="ln"></span></div>
+  </div>
+</section>
+
+<!-- ===================== MÓDULO 4 · IDENTIDADES PRESTADAS ===================== -->
+<section class="module">
+  <div class="module-head">
+    <span class="module-num">Módulo 4</span>
+    <h2 class="module-title">Las identidades prestadas</h2>
+    <div class="module-divider"></div>
+    <p class="module-lead">&ldquo;Yo soy así&rdquo; casi nunca es tuyo. Es una etiqueta que alguien te puso y que llevas tanto tiempo cargando que la confundiste con tu carácter.</p>
+  </div>
+
+  <p class="body-text">Mapea las etiquetas heredadas: la tímida, el que no es de números, la responsable, el que no tiene suerte. Por cada una, quién la instaló y si todavía está dirigiendo tus decisiones hoy.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">Etiqueta heredada</th>
+        <th style="width:36%">¿Quién la instaló?</th>
+        <th>¿Sigue activa hoy?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td><td><span class="cell-hint">sí / no — ¿dónde?</span></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="box pink">
+    <div class="box-title">La que más pesa</div>
+    <p class="small-note" style="margin:0 0 5mm;">De todas, ¿cuál te ha costado más caro creer? ¿Qué habrías hecho distinto si nunca te la hubieran puesto?</p>
+    <div class="lines tight">
+      <div class="ln"></div>
+      <div class="ln"></div>
+      <div class="ln"></div>
+      <div class="ln"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MÓDULO 5 · EL CUERPO NO MIENTE ===================== -->
+<section class="module">
+  <div class="module-head">
+    <span class="module-num">Módulo 5</span>
+    <h2 class="module-title">El cuerpo no miente</h2>
+    <div class="module-divider"></div>
+    <p class="module-lead">Tu mente sabe disimular. Tu cuerpo no. Cuando piensas en pedir el doble, algo se contrae &mdash; y ese punto exacto lleva años hablándote.</p>
+  </div>
+
+  <p class="body-text">Cierra los ojos treinta segundos. Imagina que dices tu tarifa multiplicada por dos, en voz alta, sin disculparte. Nota dónde se tensa el cuerpo. Marca ese punto en la silueta.</p>
+
+  <div class="soma">
+    <div class="soma-fig">
+      <svg viewBox="0 0 120 280" xmlns="http://www.w3.org/2000/svg" aria-label="Silueta corporal">
+        <g fill="none" stroke="#722F37" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+          <!-- head -->
+          <circle cx="60" cy="26" r="17"/>
+          <!-- neck -->
+          <path d="M52 42 L52 52 M68 42 L68 52"/>
+          <!-- torso -->
+          <path d="M52 52 C40 56 33 62 31 78 L27 132 C26 140 32 144 38 142 L42 110
+                   L44 168 C44 178 47 196 48 214 L50 262 C50 270 62 270 62 262
+                   L62 200 L58 200 L58 262 C58 270 70 270 70 262 L72 214
+                   C73 196 76 178 76 168 L78 110 L82 142 C88 144 94 140 93 132
+                   L89 78 C87 62 80 56 68 52 Z"/>
+          <!-- arm left -->
+          <path d="M31 78 L20 128 L17 168"/>
+          <!-- arm right -->
+          <path d="M89 78 L100 128 L103 168"/>
+          <!-- chest line -->
+          <path d="M44 90 Q60 96 76 90" stroke-width="1" opacity="0.45"/>
+          <!-- waist line -->
+          <path d="M40 130 Q60 136 80 130" stroke-width="1" opacity="0.45"/>
+        </g>
+      </svg>
+      <div class="cap">Marca aquí dónde se contrae</div>
+    </div>
+    <div class="soma-q">
+      <div class="qitem">
+        <span class="q">¿Dónde exactamente lo sientes? Descríbelo con tus palabras.</span>
+        <div class="ln"></div><div class="ln"></div>
+      </div>
+      <div class="qitem">
+        <span class="q">¿Qué te dirías para que ese punto se relajara&hellip; y por qué no te lo dices?</span>
+        <div class="ln"></div><div class="ln"></div>
+      </div>
+      <div class="qitem">
+        <span class="q">¿Cuándo más aparece esa misma contracción en tu vida diaria?</span>
+        <div class="ln"></div><div class="ln"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MÓDULO 6 · EL DIÁLOGO INTERNO ===================== -->
+<section class="module">
+  <div class="module-head">
+    <span class="module-num">Módulo 6</span>
+    <h2 class="module-title">El diálogo interno</h2>
+    <div class="module-divider"></div>
+    <p class="module-lead">Hay una voz que corrige antes de que termines la frase. No es tuya del todo &mdash; es el termostato hablando. Vamos a transcribirla y a darle una respuesta.</p>
+  </div>
+
+  <p class="body-text">Escribe la frase tal cual suena en tu cabeza, sin suavizarla. Luego reescríbela desde quien eliges ser &mdash; no la versión optimista de manual, sino una verdad que sí te puedas creer.</p>
+
+  <div class="dlg">
+    <div class="dlg-from">
+      <span class="dlg-tag">Lo que tu voz interna te dice</span>
+      <div class="ln"></div>
+    </div>
+    <div class="dlg-arrow">se reescribe en&hellip;</div>
+    <div class="dlg-to">
+      <span class="dlg-tag">Desde quien eliges ser</span>
+      <div class="ln"></div><div class="ln"></div>
+    </div>
+  </div>
+
+  <div class="dlg">
+    <div class="dlg-from">
+      <span class="dlg-tag">Lo que tu voz interna te dice</span>
+      <div class="ln"></div>
+    </div>
+    <div class="dlg-arrow">se reescribe en&hellip;</div>
+    <div class="dlg-to">
+      <span class="dlg-tag">Desde quien eliges ser</span>
+      <div class="ln"></div><div class="ln"></div>
+    </div>
+  </div>
+
+  <div class="dlg">
+    <div class="dlg-from">
+      <span class="dlg-tag">Lo que tu voz interna te dice</span>
+      <div class="ln"></div>
+    </div>
+    <div class="dlg-arrow">se reescribe en&hellip;</div>
+    <div class="dlg-to">
+      <span class="dlg-tag">Desde quien eliges ser</span>
+      <div class="ln"></div><div class="ln"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MÓDULO 7 · SÍNTESIS ===================== -->
+<section class="module">
+  <div class="module-head">
+    <span class="module-num">Módulo 7 &middot; Síntesis</span>
+    <h2 class="module-title">Tu termostato hoy</h2>
+    <div class="module-divider"></div>
+    <p class="module-lead">No se trata de haberlo resuelto. Se trata de poder verlo. Lo que se ve, deja de decidir a oscuras.</p>
+  </div>
+
+  <p class="body-text">Releé lo que escribiste en los seis módulos. No para juzgarte &mdash; para reconocer el patrón. Ahora ponle nombre a la imagen que tu subconsciente ha tenido de ti hasta hoy.</p>
+
+  <p class="synth-name">Mi imagen subconsciente hoy se llama:</p>
+  <p class="synth-name" style="margin-top:6mm;"><span class="blank">&nbsp;</span></p>
+
+  <div class="box" style="margin-top:7mm;">
+    <div class="box-title">Lo que ahora puedo ver</div>
+    <p class="small-note" style="margin:0 0 5mm;">Completa con tus palabras: &ldquo;Durante años creí que ___. Hoy veo que lo que en realidad ocurría era ___. El número / la escena / la etiqueta que más se repetía era ___. La primera cosa que cambia solo por haberlo visto es ___.&rdquo;</p>
+    <div class="lines">
+      <div class="ln"></div>
+      <div class="ln"></div>
+      <div class="ln"></div>
+      <div class="ln"></div>
+      <div class="ln"></div>
+    </div>
+  </div>
+
+  <div class="signature">
+    <div class="sig">
+      <div class="ln"></div>
+      <div class="lbl">Firma</div>
+    </div>
+    <div class="sig date">
+      <div class="ln"></div>
+      <div class="lbl">Fecha</div>
+    </div>
+  </div>
+
+  <div class="closing-mark">&mdash;&nbsp; Lo viste. Eso ya no se puede deshacer. &nbsp;&mdash;</div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>El método Arkwright · Manual de aplicación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     MANUAL 02 · "El método Arkwright" (Lara Lawn, 2026)
+     Print-optimised · Chrome --print-to-pdf · A4
+     Branding estructural — navy / cobre / magenta
+     Interior claro para imprimir y escribir
+     ========================================================= */
+  @page {
+    size: A4;
+    margin: 17mm 16mm 18mm 16mm;
+  }
+  @page :first { margin: 0; }
+
+  :root {
+    --navy:        #0A1230;
+    --navy-soft:   #141E45;
+    --copper:      #E05808;
+    --copper-deep: #B8470A;
+    --accent:      #E91E63;
+    --paper:       #FAF9F7;
+    --paper-cool:  #F1F0EE;
+    --ink:         #1B1B22;
+    --ink-soft:    #3A3A48;
+    --rule:        #D8D6D2;
+    --rule-soft:   #E6E5E2;
+    --write-line:  #B9B7B3;
+    --copper-tint: #FBEDE2;
+  }
+
+  * { box-sizing: border-box; }
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 10.5pt;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+
+  em {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  h1, h2, h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  p { margin: 0 0 4mm; }
+  .body-text { font-size: 10.5pt; color: var(--ink); }
+  .small-note { font-size: 9pt; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ---------- COVER ---------- */
+  .cover {
+    width: 210mm;
+    height: 297mm;
+    background:
+      radial-gradient(circle at 82% 12%, rgba(224,88,8,0.16) 0%, rgba(224,88,8,0) 46%),
+      linear-gradient(180deg, #0A1230 0%, #0C1538 60%, #0A1230 100%);
+    color: #fff;
+    padding: 30mm 24mm 26mm;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    position: relative;
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: 14mm; left: 14mm; right: 14mm; bottom: 14mm;
+    border: 0.6pt solid rgba(255,255,255,0.18);
+  }
+  .cover-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-mark {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .cover-mark.copper { color: var(--copper); }
+  .cover-center { margin-top: auto; margin-bottom: auto; }
+  .cover-pretitle {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11pt;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 6mm;
+  }
+  .cover-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 66pt;
+    line-height: 0.98;
+    letter-spacing: 0.005em;
+    color: var(--copper);
+    margin: 0;
+  }
+  .cover-band {
+    width: 60mm;
+    height: 2.4pt;
+    background: var(--accent);
+    margin: 14mm 0 12mm;
+  }
+  .cover-sub {
+    font-family: "Playfair Display", serif;
+    font-size: 18pt;
+    color: #E8E8EF;
+    font-weight: 400;
+    margin: 0 0 4mm;
+  }
+  .cover-claim {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5pt;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .cover-bottom { margin-top: auto; }
+  .cover-belongs {
+    border-top: 0.6pt solid rgba(255,255,255,0.2);
+    padding-top: 9mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 14mm;
+  }
+  .cover-belongs .field { flex: 1; }
+  .cover-belongs .lbl {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    display: block;
+    margin-bottom: 11mm;
+  }
+  .cover-belongs .line {
+    border-bottom: 0.8pt solid var(--copper);
+    height: 0;
+  }
+  .cover-belongs .author {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  /* ---------- CHAPTER ---------- */
+  .chapter { page-break-before: always; }
+
+  .ch-head {
+    background: var(--navy);
+    color: #fff;
+    margin: 0 0 8mm;
+    padding: 11mm 12mm 10mm;
+    border-radius: 2pt;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    position: relative;
+    overflow: hidden;
+  }
+  .ch-head::after {
+    content: "";
+    position: absolute;
+    left: 13mm; bottom: 0;
+    width: 34mm; height: 2.4pt;
+    background: var(--copper);
+  }
+  .ch-head::before {
+    content: "";
+    position: absolute;
+    top: -30mm; right: -20mm;
+    width: 70mm; height: 70mm;
+    background: radial-gradient(circle, rgba(224,88,8,0.20) 0%, rgba(224,88,8,0) 70%);
+  }
+  .ch-head > * { position: relative; z-index: 1; }
+  .ch-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 600;
+  }
+  .ch-title {
+    font-family: "Playfair Display", serif;
+    font-size: 27pt;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 3.5mm 0 0;
+    color: #fff;
+    letter-spacing: -0.005em;
+  }
+  .ch-title em { color: #fff; font-style: italic; }
+  .ch-lead {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 11.5pt;
+    color: #C8CADA;
+    line-height: 1.42;
+    margin: 5mm 0 0;
+    max-width: 150mm;
+  }
+  .ch-op {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 6mm 0 0;
+  }
+
+  /* simple head for non-chapter sections */
+  .sec-head { margin-bottom: 8mm; page-break-after: avoid; }
+  .sec-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 600;
+  }
+  .sec-title {
+    font-family: "Playfair Display", serif;
+    font-size: 27pt;
+    font-weight: 600;
+    margin: 4mm 0 0;
+    color: var(--ink);
+  }
+  .sec-divider {
+    width: 36mm; height: 1.6pt;
+    background: var(--copper);
+    margin: 6mm 0 0;
+  }
+
+  /* ---------- THESIS QUOTE ---------- */
+  .thesis {
+    border-left: 2.6pt solid var(--copper);
+    padding: 2mm 0 2mm 9mm;
+    margin: 9mm 0;
+    page-break-inside: avoid;
+  }
+  .thesis p {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 14pt;
+    color: var(--navy);
+    line-height: 1.46;
+    margin: 0;
+  }
+  .thesis .src {
+    display: block;
+    margin-top: 5mm;
+    font-family: "JetBrains Mono", monospace;
+    font-style: normal;
+    font-size: 7.5pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--copper-deep);
+  }
+
+  /* ---------- RULES (cómo usar) ---------- */
+  .rules { margin: 8mm 0 0; }
+  .rule-item {
+    display: flex;
+    gap: 7mm;
+    padding: 5.5mm 0;
+    border-bottom: 0.5pt solid var(--rule-soft);
+    page-break-inside: avoid;
+  }
+  .rule-item:last-child { border-bottom: 0; }
+  .rule-no {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 14pt;
+    color: var(--copper);
+    line-height: 1;
+    min-width: 13mm;
+  }
+  .rule-body h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 1.5mm;
+  }
+  .rule-body p {
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ---------- WRITING LINES / BOX ---------- */
+  .lines { margin-top: 1mm; }
+  .lines .ln {
+    border-bottom: 0.8pt solid var(--write-line);
+    height: 10mm;
+  }
+  .lines.tight .ln { height: 9mm; }
+
+  .box {
+    background: var(--paper-cool);
+    border: 0.6pt solid var(--rule);
+    border-radius: 2pt;
+    padding: 6mm 8mm 7mm;
+    margin: 6mm 0 0;
+    page-break-inside: avoid;
+  }
+  .box.copper {
+    background: var(--copper-tint);
+    border-color: #F0CDB0;
+  }
+  .box-title {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--copper-deep);
+    font-weight: 600;
+    margin-bottom: 5mm;
+  }
+  .box .lines .ln { border-bottom: 0.8pt solid #BDBBB7; }
+  .box.copper .lines .ln { border-bottom: 0.8pt solid #D8AE8A; }
+
+  /* ---------- TABLE ---------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6mm 0 0;
+  }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  thead th {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--navy);
+    font-weight: 600;
+    padding: 4mm;
+    text-align: left;
+    border: 0.5pt solid var(--navy);
+  }
+  tbody td {
+    border: 0.5pt solid var(--rule);
+    padding: 3.5mm 4mm;
+    vertical-align: top;
+    height: 16mm;
+    font-size: 9.5pt;
+  }
+  tbody td.prefill {
+    background: var(--paper-cool);
+    font-weight: 600;
+    color: var(--ink);
+    vertical-align: middle;
+  }
+  tbody tr:nth-child(even) td:not(.prefill) { background: #FCFCFB; }
+  .cell-hint {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ABA99F;
+    font-weight: 500;
+  }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper-deep);
+    font-weight: 600;
+    margin-bottom: 4mm;
+  }
+
+  /* ---------- DIAGNOSTIC (hormiga) ---------- */
+  .diag-q {
+    border-bottom: 0.6pt solid var(--rule-soft);
+    padding: 6mm 0;
+    page-break-inside: avoid;
+  }
+  .diag-q:last-child { border-bottom: 0; }
+  .diag-top {
+    display: flex;
+    gap: 6mm;
+    align-items: baseline;
+    margin-bottom: 5mm;
+  }
+  .diag-letter {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 18pt;
+    color: var(--copper);
+    line-height: 1;
+    min-width: 9mm;
+  }
+  .diag-text {
+    font-size: 10pt;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .scale {
+    display: flex;
+    gap: 0;
+    margin-left: 15mm;
+    border: 0.7pt solid var(--navy);
+    width: max-content;
+  }
+  .scale .cell {
+    width: 11mm;
+    height: 11mm;
+    border-right: 0.6pt solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    color: #9B9990;
+  }
+  .scale .cell:last-child { border-right: 0; }
+  .scale .cell.lo { background: var(--paper-cool); }
+  .scale .cell.hi { background: var(--copper-tint); }
+  .scale-ends {
+    display: flex;
+    justify-content: space-between;
+    width: 121mm;
+    margin: 2mm 0 0 15mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #A7A59C;
+  }
+  .yesno {
+    display: flex;
+    gap: 6mm;
+    margin-left: 15mm;
+  }
+  .yesno .opt {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .yesno .chk {
+    width: 7mm;
+    height: 7mm;
+    border: 1pt solid var(--navy);
+    display: inline-block;
+  }
+
+  /* ---------- ACTA DE DEFUNCIÓN ---------- */
+  .acta {
+    border: 1pt solid var(--navy);
+    padding: 0;
+    margin: 8mm 0 0;
+    page-break-inside: avoid;
+  }
+  .acta-head {
+    background: var(--navy);
+    color: #fff;
+    padding: 6mm 9mm;
+    text-align: center;
+  }
+  .acta-head .deco {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 3mm;
+  }
+  .acta-head h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 21pt;
+    color: #fff;
+    font-weight: 600;
+  }
+  .acta-body { padding: 7mm 9mm 8mm; }
+  .acta-line {
+    margin-bottom: 5mm;
+  }
+  .acta-line .lbl {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper-deep);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 3.5mm;
+  }
+  .acta-line .ln {
+    border-bottom: 0.9pt solid var(--write-line);
+    height: 9mm;
+  }
+  .acta-sign {
+    display: flex;
+    gap: 12mm;
+    margin-top: 7mm;
+    border-top: 0.6pt solid var(--rule);
+    padding-top: 7mm;
+  }
+  .acta-sign .s { flex: 1; }
+  .acta-sign .s.date { flex: 0 0 48mm; }
+  .acta-sign .s .ln {
+    border-bottom: 0.9pt solid var(--navy);
+    height: 13mm;
+  }
+  .acta-sign .s .lbl {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 3mm;
+  }
+
+  /* ---------- STEP PROTOCOL ---------- */
+  .steps { margin: 7mm 0 0; }
+  .step {
+    display: flex;
+    gap: 7mm;
+    padding: 5mm 0;
+    border-bottom: 0.5pt solid var(--rule-soft);
+    page-break-inside: avoid;
+  }
+  .step:last-child { border-bottom: 0; }
+  .step-n {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 13pt;
+    color: #fff;
+    background: var(--copper);
+    width: 10mm; height: 10mm;
+    min-width: 10mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .step-body { flex: 1; }
+  .step-body h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 1mm 0 2mm;
+  }
+  .step-body p {
+    font-size: 9pt;
+    color: var(--ink-soft);
+    margin: 0 0 4mm;
+    line-height: 1.5;
+  }
+  .step-body .ln {
+    border-bottom: 0.8pt solid var(--write-line);
+    height: 9mm;
+  }
+
+  /* ---------- BIFURCATION MATRIX ---------- */
+  .bifur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 0.6pt solid var(--rule);
+    margin: 6mm 0 0;
+    page-break-inside: avoid;
+  }
+  .bifur-col { padding: 0; }
+  .bifur-col + .bifur-col { border-left: 0.6pt solid var(--rule); }
+  .bifur-col h3 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 4.5mm 6mm;
+    margin: 0;
+    color: #fff;
+  }
+  .bifur-col.known h3 { background: var(--ink-soft); }
+  .bifur-col.avoided h3 { background: var(--copper); }
+  .bifur-q {
+    padding: 4mm 6mm;
+    border-top: 0.5pt solid var(--rule-soft);
+  }
+  .bifur-q .qq {
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3.5mm;
+    display: block;
+  }
+  .bifur-q .ln {
+    border-bottom: 0.8pt solid var(--write-line);
+    height: 8.5mm;
+  }
+
+  /* ---------- 7 LUNES TRACKER ---------- */
+  .lunes thead th { background: var(--copper); border-color: var(--copper); }
+  .lunes td { height: 19mm; }
+  .lunes td.act {
+    background: var(--paper-cool);
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 9pt;
+    width: 42%;
+    vertical-align: middle;
+    line-height: 1.45;
+  }
+  .lunes td.done {
+    width: 16mm;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .lunes td.fecha { width: 24mm; }
+  .lunes .chk {
+    width: 8mm; height: 8mm;
+    border: 1pt solid var(--navy);
+    display: inline-block;
+  }
+  .lunes td .num {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    color: var(--copper);
+    font-size: 10pt;
+    margin-right: 3mm;
+  }
+
+  /* ---------- 12 MONTHS GRID ---------- */
+  .year-block {
+    margin: 6mm 0 0;
+    page-break-inside: avoid;
+  }
+  .year-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper-deep);
+    font-weight: 600;
+    margin-bottom: 4mm;
+    padding-bottom: 3mm;
+    border-bottom: 0.6pt solid var(--rule-soft);
+  }
+  .year {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5mm;
+  }
+  .month {
+    border: 0.6pt solid var(--rule);
+    border-radius: 2pt;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .month .m-name {
+    background: var(--navy);
+    color: #fff;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 2.5mm 5mm;
+    display: flex;
+    justify-content: space-between;
+  }
+  .month .m-name .mi {
+    color: var(--copper);
+    font-weight: 700;
+  }
+  .month .m-body { padding: 3mm 5mm 4mm; }
+  .month .m-body .ln {
+    border-bottom: 0.7pt solid var(--write-line);
+    height: 9mm;
+  }
+
+  /* ---------- COMMITMENT (epílogo) ---------- */
+  .commit-quote {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 13pt;
+    color: var(--navy);
+    line-height: 1.5;
+    margin: 6mm 0 0;
+    text-align: center;
+    max-width: 150mm;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .commit-box {
+    border: 1pt solid var(--navy);
+    padding: 7mm 10mm 8mm;
+    margin: 7mm 0 0;
+    page-break-inside: avoid;
+    background: var(--paper-cool);
+  }
+  .commit-box .box-title {
+    text-align: center;
+    margin-bottom: 5mm;
+  }
+  .commit-box .lines .ln {
+    border-bottom: 0.8pt solid #BDBBB7;
+    height: 9mm;
+  }
+  .signature {
+    display: flex;
+    gap: 14mm;
+    margin-top: 8mm;
+  }
+  .signature .sig { flex: 1; }
+  .signature .sig.date { flex: 0 0 52mm; }
+  .signature .sig .ln {
+    border-bottom: 0.9pt solid var(--navy);
+    height: 12mm;
+  }
+  .signature .sig .lbl {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 3mm;
+  }
+  .closing-mark {
+    text-align: center;
+    margin-top: 9mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+
+  /* ---------- RUNNING FOOTER ---------- */
+  @page {
+    @bottom-left {
+      content: "El método Arkwright";
+      font-family: "JetBrains Mono", monospace;
+      font-size: 7pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9A98A4;
+    }
+    @bottom-center {
+      content: "Lara Lawn";
+      font-family: "JetBrains Mono", monospace;
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9A98A4;
+    }
+    @bottom-right {
+      content: counter(page);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 7.5pt;
+      color: #9A98A4;
+    }
+  }
+  @page :first {
+    @bottom-left { content: ""; }
+    @bottom-center { content: ""; }
+    @bottom-right { content: ""; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<section class="cover">
+  <div class="cover-inner">
+    <div class="cover-top">
+      <span class="cover-mark copper">Lara Lawn &middot; 2026</span>
+      <span class="cover-mark">Manual</span>
+    </div>
+
+    <div class="cover-center">
+      <div class="cover-pretitle">El método</div>
+      <h1 class="cover-title">ARKWRIGHT</h1>
+      <div class="cover-band"></div>
+      <p class="cover-sub">Manual de aplicación</p>
+      <p class="cover-claim">No se lee. Se aplica.</p>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-belongs">
+        <div class="field">
+          <span class="lbl">Este manual pertenece a</span>
+          <div class="line"></div>
+        </div>
+        <span class="author">Edición de trabajo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CÓMO USAR ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Antes de operar</span>
+    <h2 class="ch-title">Cómo usar este manual</h2>
+    <p class="ch-lead">Un libro se entiende. Un manual se ejecuta. La diferencia entre los dos es la única razón por la que esto existe.</p>
+  </div>
+
+  <p class="body-text">La Revolución Industrial no hizo ricos a los que trabajaron más. Hizo ricos a los que entendieron la máquina antes que los demás. Esa escena se vuelve a repetir ahora. Este manual no te explica la máquina &mdash; te pone a refactorizar la tuya, capítulo a capítulo, antes de que la transición la cierre.</p>
+
+  <div class="thesis">
+    <p>Quien refactoriza su identidad ahora, entra. Quien no, queda fuera para el siglo. No es una metáfora. Es un calendario.</p>
+    <span class="src">La tesis &middot; El método Arkwright</span>
+  </div>
+
+  <div class="rules">
+    <div class="rule-item">
+      <span class="rule-no">01</span>
+      <div class="rule-body">
+        <h3>Cada capítulo termina en una operación.</h3>
+        <p>No en una reflexión bonita. En algo que haces, escribes, decides o firmas. Si terminas un capítulo sin haber operado, no lo terminaste.</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">02</span>
+      <div class="rule-body">
+        <h3>Orden cerrado.</h3>
+        <p>Los capítulos están en este orden por una razón. El diagnóstico va antes que el funeral; el funeral antes que los lunes. No saltes.</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">03</span>
+      <div class="rule-body">
+        <h3>Números reales, no aproximados.</h3>
+        <p>Donde se pide una cifra, pon la cifra exacta. El subconsciente se esconde en los &ldquo;más o menos&rdquo;.</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">04</span>
+      <div class="rule-body">
+        <h3>Sin anestesia.</h3>
+        <p>Esto no está diseñado para que te sientas bien al rellenarlo. Está diseñado para que algo cambie el lunes. Incomodidad esperada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CAP 1-2 · EL DISEÑO ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulos 1 &amp; 2</span>
+    <h2 class="ch-title">El diseño</h2>
+    <p class="ch-lead">Mientras dormías, alguien diseñó la versión de ti que opera por defecto. Antes de reescribirla hay que medirla.</p>
+    <div class="ch-op">Operación &middot; Diagnóstico: ¿qué hormiga eres hoy?</div>
+  </div>
+
+  <p class="body-text">Seis preguntas. Sin pensarlo demasiado &mdash; la primera reacción es el dato. Marca la casilla en la regleta 0&ndash;10 o el sí/no. Esto no se aprueba: es tu línea de partida.</p>
+
+  <div class="diag-q">
+    <div class="diag-top"><span class="diag-letter">a</span><span class="diag-text">¿Cuántas horas vendes por cada euro que te llega?</span></div>
+    <div class="scale">
+      <span class="cell lo">0</span><span class="cell">1</span><span class="cell">2</span><span class="cell">3</span><span class="cell">4</span><span class="cell">5</span><span class="cell">6</span><span class="cell">7</span><span class="cell">8</span><span class="cell">9</span><span class="cell hi">10</span>
+    </div>
+    <div class="scale-ends"><span>Casi ninguna</span><span>Todas, siempre</span></div>
+  </div>
+
+  <div class="diag-q">
+    <div class="diag-top"><span class="diag-letter">b</span><span class="diag-text">Si dejaras de facturar mañana, ¿cuántos meses aguantas?</span></div>
+    <div class="scale">
+      <span class="cell lo">0</span><span class="cell">1</span><span class="cell">2</span><span class="cell">3</span><span class="cell">4</span><span class="cell">5</span><span class="cell">6</span><span class="cell">7</span><span class="cell">8</span><span class="cell">9</span><span class="cell hi">10</span>
+    </div>
+    <div class="scale-ends"><span>Cero meses</span><span>10+ meses</span></div>
+  </div>
+
+  <div class="diag-q">
+    <div class="diag-top"><span class="diag-letter">c</span><span class="diag-text">¿Arrastras la etiqueta que un profesor o tu familia te puso antes de los 14?</span></div>
+    <div class="yesno">
+      <span class="opt"><span class="chk"></span> Sí</span>
+      <span class="opt"><span class="chk"></span> No</span>
+    </div>
+  </div>
+
+  <div class="diag-q">
+    <div class="diag-top"><span class="diag-letter">d</span><span class="diag-text">¿Tu cuerpo se contrae al pensar en pedir el doble?</span></div>
+    <div class="yesno">
+      <span class="opt"><span class="chk"></span> Sí</span>
+      <span class="opt"><span class="chk"></span> No</span>
+    </div>
+  </div>
+
+  <div class="diag-q">
+    <div class="diag-top"><span class="diag-letter">e</span><span class="diag-text">¿Cuánto te empuja arriba o abajo el círculo con el que más tiempo pasas?</span></div>
+    <div class="scale">
+      <span class="cell lo">0</span><span class="cell">1</span><span class="cell">2</span><span class="cell">3</span><span class="cell">4</span><span class="cell">5</span><span class="cell">6</span><span class="cell">7</span><span class="cell">8</span><span class="cell">9</span><span class="cell hi">10</span>
+    </div>
+    <div class="scale-ends"><span>Me hunde</span><span>Me eleva</span></div>
+  </div>
+
+  <div class="diag-q">
+    <div class="diag-top"><span class="diag-letter">f</span><span class="diag-text">¿Sabes ya qué acción pequeña y poco glamurosa harías este lunes?</span></div>
+    <div class="yesno">
+      <span class="opt"><span class="chk"></span> Sí</span>
+      <span class="opt"><span class="chk"></span> No</span>
+    </div>
+  </div>
+
+  <div class="box copper">
+    <div class="box-title">Lectura del diagnóstico &mdash; en una frase</div>
+    <p class="small-note" style="margin:0 0 5mm;">Sin justificarte: ¿qué hormiga eres hoy? La que vende todas sus horas y no tiene colchón, o la que ya construye sistema. Nombra tu punto de partida tal como ha salido.</p>
+    <div class="lines tight"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+  </div>
+</section>
+
+<!-- ===================== CAP 3 · NO TE VAS A MORIR TAN PRONTO ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulo 3</span>
+    <h2 class="ch-title">No te vas a morir tan pronto</h2>
+    <p class="ch-lead">Operas como si el tiempo se acabara mañana y a la vez como si fuera infinito. Las dos cosas son falsas. Hagamos las cuentas reales.</p>
+    <div class="ch-op">Operación &middot; El libro mayor del tiempo</div>
+  </div>
+
+  <p class="body-text">Sin redondear hacia lo cómodo. Esto es contabilidad de tu vida, no una estimación optimista.</p>
+
+  <table>
+    <caption>Libro mayor &mdash; horas, dinero, colchón</caption>
+    <thead>
+      <tr>
+        <th style="width:46%">Concepto</th>
+        <th>Cifra real hoy</th>
+        <th>Cifra a 12 meses</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="prefill">Horas que vendo por semana</td><td></td><td></td></tr>
+      <tr><td class="prefill">Euros por hora real (ingreso ÷ horas)</td><td></td><td></td></tr>
+      <tr><td class="prefill">Meses de colchón si paro hoy</td><td></td><td></td></tr>
+      <tr><td class="prefill">Ingreso que NO depende de mis horas</td><td></td><td></td></tr>
+      <tr><td class="prefill">Horas/semana en algo que escala</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="box">
+    <div class="box-title">La cuenta que llevabas evitando</div>
+    <p class="small-note" style="margin:0 0 5mm;">Mira la columna de hoy. ¿Qué número te ha incomodado más al escribirlo &mdash; y por qué llevabas tiempo sin mirarlo de frente? ¿Qué cambia en tu semana si en doce meses ese número fuera el de la columna derecha?</p>
+    <div class="lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+  </div>
+</section>
+
+<!-- ===================== CAP 4 · EL PILOTO AUTOMÁTICO ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulo 4</span>
+    <h2 class="ch-title">El piloto automático</h2>
+    <p class="ch-lead">No decides tu vida. La repites. El 90% de hoy es una copia de ayer ejecutada sin que lo notes.</p>
+    <div class="ch-op">Operación &middot; Mapa de 7 días de decisiones automáticas</div>
+  </div>
+
+  <p class="body-text">Durante una semana, al final de cada día, anota la decisión que tomaste en piloto automático (la que no decidiste de verdad) y con qué la reemplazarías si estuvieras al mando.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:16%">Día</th>
+        <th style="width:42%">Decisión en automático</th>
+        <th>Qué haría si estuviera al mando</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="prefill">Lunes</td><td></td><td></td></tr>
+      <tr><td class="prefill">Martes</td><td></td><td></td></tr>
+      <tr><td class="prefill">Miércoles</td><td></td><td></td></tr>
+      <tr><td class="prefill">Jueves</td><td></td><td></td></tr>
+      <tr><td class="prefill">Viernes</td><td></td><td></td></tr>
+      <tr><td class="prefill">Sábado</td><td></td><td></td></tr>
+      <tr><td class="prefill">Domingo</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="box copper">
+    <div class="box-title">El patrón de la semana</div>
+    <p class="small-note" style="margin:0 0 5mm;">¿Qué decisión automática se repitió más? Esa es la que el termostato está protegiendo. Nómbrala &mdash; y escribe la decisión consciente que la sustituye a partir de mañana, en una frase que puedas cumplir.</p>
+    <div class="lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+  </div>
+</section>
+
+<!-- ===================== CAP 5 · LA CONVERSACIÓN ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulo 5</span>
+    <h2 class="ch-title">La conversación</h2>
+    <p class="ch-lead">Tienes un guion fijo que corres cada vez que aparece el dinero y lo que vales. Lo recitas sin oírlo. Vamos a transcribirlo y a cambiarlo.</p>
+    <div class="ch-op">Operación &middot; Transcripción y reescritura del guion</div>
+  </div>
+
+  <p class="body-text">Reconstruye, palabra por palabra, lo que te dices cuando tienes que poner un precio, pedir un aumento o defender tu tarifa. Sin pulirlo. Luego reescríbelo como lo diría quien ya cobra lo que vale.</p>
+
+  <div class="box">
+    <div class="box-title">El guion que corro hoy &mdash; textual</div>
+    <div class="lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+  </div>
+
+  <div class="box copper">
+    <div class="box-title">El guion reescrito &mdash; desde quien cobra lo que vale</div>
+    <div class="lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+  </div>
+
+  <div class="box">
+    <div class="box-title">La frase exacta que voy a decir la próxima vez</div>
+    <p class="small-note" style="margin:0 0 5mm;">Una sola frase, escrita literal, lista para decirla sin improvisar. Debajo, la situación concreta y la fecha en que sabes que vas a tener que usarla.</p>
+    <div class="lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+  </div>
+</section>
+
+<!-- ===================== CAP 6 · EL FUNERAL ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulo 6</span>
+    <h2 class="ch-title">El funeral</h2>
+    <p class="ch-lead">No se reforma una creencia heredada. Se entierra. Hoy firmas su acta de defunción.</p>
+    <div class="ch-op">Operación &middot; Acta de defunción formal</div>
+  </div>
+
+  <p class="body-text">Elige una creencia heredada, una identidad prestada o un acuerdo viejo que ya sabes que no es tuyo. No lo discutas. Decláralo muerto, con fecha y firma.</p>
+
+  <div class="acta">
+    <div class="acta-head">
+      <div class="deco">&mdash;&nbsp; Certificado &nbsp;&mdash;</div>
+      <h3>Acta de defunción</h3>
+    </div>
+    <div class="acta-body">
+      <div class="acta-line">
+        <span class="lbl">Aquí yace &mdash; la creencia / identidad / acuerdo que entierro</span>
+        <div class="ln"></div><div class="ln"></div>
+      </div>
+      <div class="acta-line">
+        <span class="lbl">Quién me la instaló y cuándo</span>
+        <div class="ln"></div>
+      </div>
+      <div class="acta-line">
+        <span class="lbl">Lo que me costó mientras la creí</span>
+        <div class="ln"></div>
+      </div>
+      <div class="acta-line">
+        <span class="lbl">Causa de la muerte &mdash; la decido yo, en una frase</span>
+        <div class="ln"></div>
+      </div>
+      <div class="acta-sign">
+        <div class="s">
+          <div class="ln"></div>
+          <div class="lbl">Firma &mdash; quien la deja morir</div>
+        </div>
+        <div class="s date">
+          <div class="ln"></div>
+          <div class="lbl">Fecha de defunción</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CAP 7 · TU CUERPO SABE QUE ESTÁS MINTIENDO ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulo 7</span>
+    <h2 class="ch-title">Tu cuerpo sabe que estás mintiendo</h2>
+    <p class="ch-lead">La mente negocia. El cuerpo no. Cuando dices una cifra que no te crees, algo se tensa &mdash; y ese dato es más fiable que tu opinión.</p>
+    <div class="ch-op">Operación &middot; Protocolo somático de 4 pasos</div>
+  </div>
+
+  <p class="body-text">Hazlo de pie, en voz alta, sin público. No lo leas y ya está &mdash; ejecútalo y anota lo que el cuerpo hizo en cada paso.</p>
+
+  <div class="steps">
+    <div class="step">
+      <span class="step-n">1</span>
+      <div class="step-body">
+        <h3>Di tu tarifa actual en voz alta.</h3>
+        <p>Nota el cuerpo: ¿neutro, encogido, sostenido? Anótalo exactamente.</p>
+        <div class="ln"></div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-n">2</span>
+      <div class="step-body">
+        <h3>Ahora di esa cifra multiplicada por dos.</h3>
+        <p>¿Qué se contrajo y dónde? Garganta, pecho, estómago, mandíbula. Sé preciso.</p>
+        <div class="ln"></div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-n">3</span>
+      <div class="step-body">
+        <h3>Mantén la cifra alta y respira tres veces sin bajarla.</h3>
+        <p>¿Qué frase aparece en tu cabeza para hacerte bajar el número?</p>
+        <div class="ln"></div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-n">4</span>
+      <div class="step-body">
+        <h3>Dilo una vez más, mirando al frente, sin disculparte.</h3>
+        <p>¿Qué cambió entre la primera vez y esta? Eso es el dato que te llevas.</p>
+        <div class="ln"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CAP 8 · LA BIFURCACIÓN ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulo 8</span>
+    <h2 class="ch-title">La bifurcación</h2>
+    <p class="ch-lead">Siempre hay dos caminos: el que conoces de memoria y el que llevas años evitando. No es un dilema. Es una elección que ya estás posponiendo.</p>
+    <div class="ch-op">Operación &middot; Matriz de decisión de los dos caminos</div>
+  </div>
+
+  <p class="body-text">Una decisión concreta que tienes pendiente ahora mismo. Rellena las dos columnas con honestidad &mdash; sobre todo la segunda.</p>
+
+  <div class="box" style="margin-bottom:0;">
+    <div class="box-title">La decisión que estoy posponiendo</div>
+    <div class="lines tight"><div class="ln"></div></div>
+  </div>
+
+  <div class="bifur">
+    <div class="bifur-col known">
+      <h3>El camino que conozco</h3>
+      <div class="bifur-q"><span class="qq">¿En qué consiste?</span><div class="ln"></div><div class="ln"></div></div>
+      <div class="bifur-q"><span class="qq">¿Qué me da a corto plazo?</span><div class="ln"></div><div class="ln"></div></div>
+      <div class="bifur-q"><span class="qq">¿Dónde estoy en 12 meses si lo sigo?</span><div class="ln"></div><div class="ln"></div></div>
+    </div>
+    <div class="bifur-col avoided">
+      <h3>El camino que evito</h3>
+      <div class="bifur-q"><span class="qq">¿En qué consiste?</span><div class="ln"></div><div class="ln"></div></div>
+      <div class="bifur-q"><span class="qq">¿Qué me cuesta hoy &mdash; y qué temo de verdad?</span><div class="ln"></div><div class="ln"></div></div>
+      <div class="bifur-q"><span class="qq">¿Dónde estoy en 12 meses si lo tomo?</span><div class="ln"></div><div class="ln"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CAP 9 · LA TRIBU ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulo 9</span>
+    <h2 class="ch-title">La tribu</h2>
+    <p class="ch-lead">Eres el promedio del círculo con el que más tiempo pasas. No es motivación de póster: es física social. Audítala.</p>
+    <div class="ch-op">Operación &middot; Auditoría de tribu + 3 nombres futuros</div>
+  </div>
+
+  <p class="body-text">Las personas con las que pasas más horas reales a la semana. Sin diplomacia: cada una te empuja arriba o abajo. Y una acción concreta para cada vínculo.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">Persona</th>
+        <th style="width:30%">¿Me empuja arriba o abajo?</th>
+        <th>Acción que tomo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td><span class="cell-hint">arriba / abajo / neutro</span></td><td><span class="cell-hint">más / menos / límite</span></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="box copper">
+    <div class="box-title">Los 3 nombres de mi tribu futura</div>
+    <p class="small-note" style="margin:0 0 5mm;">Personas reales (las conozcas o no todavía) que operan donde tú quieres operar. Escribe los tres nombres.</p>
+    <div class="lines tight"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+  </div>
+</section>
+
+<!-- ===================== CAP 10-11 · NO ES UNA LÍNEA / APRENDE A PESCAR ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulos 10 &amp; 11</span>
+    <h2 class="ch-title">El mundo no es una línea</h2>
+    <p class="ch-lead">Cambiar horas por dinero es una línea recta: se acaba cuando tú te paras. Un sistema sigue trabajando cuando duermes. Te enseñaron a pescar para hoy; toca construir la red.</p>
+    <div class="ch-op">Operación &middot; 1 activo frente a tu ingreso hora-por-hora</div>
+  </div>
+
+  <p class="body-text">Identifica tu ingreso lineal principal (el que muere si paras) y un activo/sistema que podrías construir para que deje de depender de tus horas. Compáralos de frente.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:30%">&nbsp;</th>
+        <th style="width:35%">Mi ingreso hora-por-hora</th>
+        <th>El activo / sistema que construyo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="prefill">Qué es</td><td></td><td></td></tr>
+      <tr><td class="prefill">Qué pasa si paro 1 mes</td><td></td><td></td></tr>
+      <tr><td class="prefill">Qué necesita para existir</td><td></td><td></td></tr>
+      <tr><td class="prefill">Primer paso concreto esta semana</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="box">
+    <div class="box-title">El activo que empiezo &mdash; y por qué este</div>
+    <p class="small-note" style="margin:0 0 5mm;">Uno solo. El más pequeño que de verdad puedas empezar sin permiso de nadie. Nómbralo y di por qué este antes que cualquier otro.</p>
+    <div class="lines tight"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+  </div>
+</section>
+
+<!-- ===================== CAP 12 · TU PRÓXIMA VIDA ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulo 12</span>
+    <h2 class="ch-title">Tu próxima vida</h2>
+    <p class="ch-lead">No un sueño. Un calendario. Doce meses, doce casillas. Lo que no entra en la rejilla, no va a pasar.</p>
+    <div class="ch-op">Operación &middot; Línea de tiempo de 12 meses</div>
+  </div>
+
+  <p class="body-text">Escribe el hito concreto de cada mes &mdash; algo verificable, no una intención. Empieza por el mes 12 (dónde quieres estar) y trabaja hacia atrás.</p>
+
+  <div class="year-block">
+    <div class="year-label">Primer semestre &mdash; los cimientos</div>
+    <div class="year">
+      <div class="month"><div class="m-name"><span>Enero</span><span class="mi">01</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Febrero</span><span class="mi">02</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Marzo</span><span class="mi">03</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Abril</span><span class="mi">04</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Mayo</span><span class="mi">05</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Junio</span><span class="mi">06</span></div><div class="m-body"><div class="ln"></div></div></div>
+    </div>
+  </div>
+
+  <div class="year-block second">
+    <div class="year-label">Segundo semestre &mdash; la nueva vida operando</div>
+    <div class="year">
+      <div class="month"><div class="m-name"><span>Julio</span><span class="mi">07</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Agosto</span><span class="mi">08</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Septiembre</span><span class="mi">09</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Octubre</span><span class="mi">10</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Noviembre</span><span class="mi">11</span></div><div class="m-body"><div class="ln"></div></div></div>
+      <div class="month"><div class="m-name"><span>Diciembre</span><span class="mi">12</span></div><div class="m-body"><div class="ln"></div></div></div>
+    </div>
+  </div>
+
+  <div class="box copper">
+    <div class="box-title">El mes 12 &mdash; dónde estoy cuando esto termina</div>
+    <p class="small-note" style="margin:0 0 5mm;">Descríbelo en presente, como si ya hubiera pasado: qué facturas, qué ya no haces, quién está cerca, qué activo trabaja por ti mientras duermes.</p>
+    <div class="lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+  </div>
+</section>
+
+<!-- ===================== CAP 13 · EL LUNES POR LA MAÑANA ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Capítulo 13</span>
+    <h2 class="ch-title">El lunes por la mañana</h2>
+    <p class="ch-lead">Aquí muere la teoría. Siete acciones, ninguna glamurosa, todas concretas. Una por lunes. Hechas, no entendidas.</p>
+    <div class="ch-op">Operación &middot; Tracker de los 7 lunes</div>
+  </div>
+
+  <p class="body-text">Marca la casilla solo cuando esté hecho de verdad. Pon la fecha. Y una línea de qué pasó &mdash; el resultado real, no cómo te sentiste.</p>
+
+  <table class="lunes">
+    <thead>
+      <tr>
+        <th>Acción</th>
+        <th>Hecho</th>
+        <th>Fecha</th>
+        <th>¿Qué pasó?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="act"><span class="num">1</span>Configurar una transferencia automática pequeña y fija.</td>
+        <td class="done"><span class="chk"></span></td>
+        <td class="fecha"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="act"><span class="num">2</span>Subir tu tarifa donde antes callabas.</td>
+        <td class="done"><span class="chk"></span></td>
+        <td class="fecha"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="act"><span class="num">3</span>Mandar el email que llevas semanas evitando.</td>
+        <td class="done"><span class="chk"></span></td>
+        <td class="fecha"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="act"><span class="num">4</span>Decir un número en voz alta sin disculparte.</td>
+        <td class="done"><span class="chk"></span></td>
+        <td class="fecha"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="act"><span class="num">5</span>Soltar al cliente / amistad / suscripción que te drena.</td>
+        <td class="done"><span class="chk"></span></td>
+        <td class="fecha"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="act"><span class="num">6</span>30 minutos a una sola cosa, sin móvil, con cronómetro.</td>
+        <td class="done"><span class="chk"></span></td>
+        <td class="fecha"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="act"><span class="num">7</span>Escribir el nombre de 3 personas de tu tribu futura.</td>
+        <td class="done"><span class="chk"></span></td>
+        <td class="fecha"></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== EPÍLOGO · LA HORMIGA ===================== -->
+<section class="chapter">
+  <div class="ch-head">
+    <span class="ch-num">Epílogo</span>
+    <h2 class="ch-title">La hormiga</h2>
+    <p class="ch-lead">La Cephalotes atratus se deja caer al vacío desde lo alto del árbol. No cae: planea. Y sabe volver a casa.</p>
+    <div class="ch-op">Operación &middot; Página de compromiso</div>
+  </div>
+
+  <p class="body-text">Ese salto no es suicidio &mdash; es diseño. La hormiga refactorizó su forma de caer hasta convertir el vacío en una ruta de vuelta. Tú acabas de hacer las cuentas, enterrar lo viejo y poner fecha a lo nuevo. Lo que queda es saltar sabiendo volver a casa.</p>
+
+  <p class="commit-quote">&ldquo;No salté para caer. Salté porque ya sabía planear &mdash; y conozco el camino de vuelta.&rdquo;</p>
+
+  <div class="commit-box">
+    <div class="box-title">Mi compromiso &mdash; en mis palabras</div>
+    <p class="small-note" style="margin:0 0 5mm; text-align:center;">Completa: &ldquo;El lunes ___ doy el primer paso: ___. El activo que construyo es ___. Lo que enterré y no vuelvo a recoger es ___. Sé volver a casa porque ___.&rdquo;</p>
+    <div class="lines">
+      <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+    </div>
+    <div class="signature">
+      <div class="sig">
+        <div class="ln"></div>
+        <div class="lbl">Firma</div>
+      </div>
+      <div class="sig date">
+        <div class="ln"></div>
+        <div class="lbl">Fecha del salto</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="closing-mark">&mdash;&nbsp; No se leyó. Se aplicó. &nbsp;&mdash;</div>
+</section>
+
+</body>
+</html>
