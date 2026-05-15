@@ -499,7 +499,7 @@
     flex: 0 0 62mm;
     text-align: center;
   }
-  .soma-fig svg { width: 56mm; height: auto; }
+  .soma-fig svg { width: 46mm; height: auto; }
   .soma-fig .cap {
     font-family: "JetBrains Mono", monospace;
     font-size: 7pt;
@@ -635,6 +635,84 @@
     @bottom-center { content: ""; }
     @bottom-right { content: ""; }
   }
+
+  /* ---------- PÁGINA FINAL · THE SHIFT (branding reprogramaciónsubconsciente.es) ---------- */
+  @page shift { size: A4; margin: 0;
+    @bottom-left { content: ""; } @bottom-center { content: ""; } @bottom-right { content: ""; }
+  }
+  .shift-page {
+    page: shift;
+    page-break-before: always;
+    width: 210mm;
+    min-height: 297mm;
+    background:
+      radial-gradient(circle at 80% 12%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 46%),
+      linear-gradient(180deg, #0C0F16 0%, #090B11 100%);
+    color: #F4F4F6;
+    padding: 30mm 26mm 26mm;
+    position: relative;
+    display: flex;
+  }
+  .shift-page::before {
+    content: "";
+    position: absolute;
+    top: 14mm; left: 14mm; right: 14mm; bottom: 14mm;
+    border: 0.6pt solid rgba(255,255,255,0.14);
+  }
+  .shift-inner { position: relative; z-index: 1; display: flex; flex-direction: column; width: 100%; }
+  .shift-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-family: "JetBrains Mono", monospace; font-size: 7.5pt;
+    letter-spacing: 0.24em; text-transform: uppercase; color: #8A8FA0;
+  }
+  .shift-center { margin-top: auto; margin-bottom: auto; padding: 14mm 0; }
+  .shift-kicker {
+    font-family: "JetBrains Mono", monospace; font-size: 8pt;
+    letter-spacing: 0.32em; text-transform: uppercase; color: #B9728A;
+    margin: 0 0 9mm;
+  }
+  .shift-h {
+    font-family: "Playfair Display", Georgia, serif; font-weight: 600;
+    font-size: 33pt; line-height: 1.12; color: #FFFFFF; margin: 0 0 8mm;
+    letter-spacing: -0.01em;
+  }
+  .shift-h em { font-family: "Playfair Display", serif; font-style: italic; color: #FFFFFF; font-weight: 500; }
+  .shift-lead {
+    font-family: "Montserrat", sans-serif; font-size: 11pt; line-height: 1.7;
+    color: #C7CAD3; max-width: 130mm; margin: 0 0 11mm;
+  }
+  .shift-list { list-style: none; padding: 0; margin: 0 0 13mm; }
+  .shift-list li {
+    font-family: "Montserrat", sans-serif; font-size: 10pt; color: #DCDEE5;
+    padding: 4mm 0; border-top: 0.5pt solid rgba(255,255,255,0.12);
+    display: flex; gap: 7mm; align-items: baseline;
+  }
+  .shift-list li:last-child { border-bottom: 0.5pt solid rgba(255,255,255,0.12); }
+  .shift-list .n {
+    font-family: "JetBrains Mono", monospace; font-size: 8pt; color: #8A8FA0;
+    letter-spacing: 0.1em; flex: 0 0 8mm;
+  }
+  .shift-cta {
+    border: 0.8pt solid rgba(255,255,255,0.55); border-radius: 2mm;
+    padding: 7mm 9mm; display: flex; flex-direction: column; gap: 2.5mm;
+  }
+  .shift-cta .cta-lbl {
+    font-family: "JetBrains Mono", monospace; font-size: 7.5pt;
+    letter-spacing: 0.26em; text-transform: uppercase; color: #8A8FA0;
+  }
+  .shift-cta .cta-url {
+    font-family: "Playfair Display", serif; font-size: 19pt; color: #FFFFFF;
+    letter-spacing: 0.01em;
+  }
+  .shift-cta .cta-note {
+    font-family: "Montserrat", sans-serif; font-size: 9pt; color: #C7CAD3;
+  }
+  .shift-bottom {
+    margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end;
+    font-family: "JetBrains Mono", monospace; font-size: 7pt;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #6E7384;
+  }
+  .shift-sign { font-family: "Playfair Display", serif; font-style: italic; font-size: 12pt; color: #B9728A; letter-spacing: 0; text-transform: none; }
 </style>
 </head>
 <body>
@@ -944,26 +1022,49 @@
 
   <div class="soma">
     <div class="soma-fig">
-      <svg viewBox="0 0 120 280" xmlns="http://www.w3.org/2000/svg" aria-label="Silueta corporal">
-        <g fill="none" stroke="#722F37" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
-          <!-- head -->
-          <circle cx="60" cy="26" r="17"/>
-          <!-- neck -->
-          <path d="M52 42 L52 52 M68 42 L68 52"/>
-          <!-- torso -->
-          <path d="M52 52 C40 56 33 62 31 78 L27 132 C26 140 32 144 38 142 L42 110
-                   L44 168 C44 178 47 196 48 214 L50 262 C50 270 62 270 62 262
-                   L62 200 L58 200 L58 262 C58 270 70 270 70 262 L72 214
-                   C73 196 76 178 76 168 L78 110 L82 142 C88 144 94 140 93 132
-                   L89 78 C87 62 80 56 68 52 Z"/>
-          <!-- arm left -->
-          <path d="M31 78 L20 128 L17 168"/>
-          <!-- arm right -->
-          <path d="M89 78 L100 128 L103 168"/>
-          <!-- chest line -->
-          <path d="M44 90 Q60 96 76 90" stroke-width="1" opacity="0.45"/>
-          <!-- waist line -->
-          <path d="M40 130 Q60 136 80 130" stroke-width="1" opacity="0.45"/>
+      <svg viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg" aria-label="Silueta corporal de frente">
+        <g fill="none" stroke="#722F37" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+          <!-- cabeza -->
+          <ellipse cx="100" cy="46" rx="26" ry="32"/>
+          <!-- cuello -->
+          <path d="M88 74 C88 84 86 90 80 96 M112 74 C112 84 114 90 120 96"/>
+          <!-- torso (hombros · cintura · cadera) -->
+          <path d="M84 94
+                   C75 97 65 101 59 111
+                   C54 125 57 140 64 152
+                   C69 176 70 193 72 212
+                   C73 230 75 242 79 252
+                   C85 264 92 270 100 272
+                   C108 270 115 264 121 252
+                   C125 242 127 230 128 212
+                   C130 193 131 176 136 152
+                   C143 140 146 125 141 111
+                   C135 101 125 97 116 94
+                   C108 92 92 92 84 94 Z"/>
+          <!-- brazo izquierdo + mano -->
+          <path d="M61 113 C51 142 45 178 49 212 C52 240 54 262 57 286"/>
+          <ellipse cx="57" cy="299" rx="8" ry="13"/>
+          <!-- brazo derecho + mano -->
+          <path d="M139 113 C149 142 155 178 151 212 C148 240 146 262 143 286"/>
+          <ellipse cx="143" cy="299" rx="8" ry="13"/>
+          <!-- piernas -->
+          <path d="M80 256
+                   C77 300 74 350 73 392
+                   C72 426 71 456 71 482
+                   C71 488 89 488 89 482
+                   C90 452 91 420 92 388
+                   C93 348 96 308 100 280
+                   C104 308 107 348 108 388
+                   C109 420 110 452 111 482
+                   C111 488 129 488 129 482
+                   C129 456 128 426 127 392
+                   C126 350 123 300 120 256"/>
+          <!-- pies -->
+          <path d="M71 482 C71 489 64 491 62 489 L71 489 Z M89 482 C89 489 96 491 98 489 L89 489 Z" stroke-width="1.6"/>
+          <!-- líneas guía suaves -->
+          <path d="M78 102 Q100 110 122 102" stroke-width="1.2" opacity="0.4"/>
+          <path d="M100 110 L100 206" stroke-width="1" opacity="0.28" stroke-dasharray="2 5"/>
+          <path d="M73 208 Q100 217 127 208" stroke-width="1.2" opacity="0.4"/>
         </g>
       </svg>
       <div class="cap">Marca aquí dónde se contrae</div>
@@ -1071,6 +1172,39 @@
   </div>
 
   <div class="closing-mark">&mdash;&nbsp; Lo viste. Eso ya no se puede deshacer. &nbsp;&mdash;</div>
+</section>
+
+<!-- ===================== PÁGINA FINAL · THE SHIFT ===================== -->
+<section class="shift-page">
+  <div class="shift-inner">
+    <div class="shift-top">
+      <span>InnerAxis Institute</span>
+      <span>The Shift</span>
+    </div>
+
+    <div class="shift-center">
+      <p class="shift-kicker">El siguiente paso</p>
+      <h2 class="shift-h">Verlo era la mitad.<br><em>Reprogramarlo</em> es The Shift.</h2>
+      <p class="shift-lead">Este cuaderno te sirvió para <strong>ver</strong> el termostato — la imagen que tu subconsciente ha tenido de ti. Verlo le quita el poder de decidir a oscuras. Pero verlo no es todavía reescribirlo. La reprogramación tiene un método, y Lara Lawn explica cómo empezar, paso a paso, en una clase gratuita.</p>
+
+      <ul class="shift-list">
+        <li><span class="n">01</span><span>Por qué ver el patrón no basta para cambiarlo de raíz.</span></li>
+        <li><span class="n">02</span><span>Cómo empieza la reprogramación del subconsciente con el método The Shift.</span></li>
+        <li><span class="n">03</span><span>El primer paso concreto que puedes dar esta misma semana.</span></li>
+      </ul>
+
+      <div class="shift-cta">
+        <span class="cta-lbl">Clase gratuita con Lara Lawn</span>
+        <span class="cta-url">reprogramaciónsubconsciente.es/resultado</span>
+        <span class="cta-note">Reprograma tu Subconsciente &middot; The Shift by Lara Lawn</span>
+      </div>
+    </div>
+
+    <div class="shift-bottom">
+      <span>No eres tú, es tu subconsciente</span>
+      <span class="shift-sign">Lo viste. Ahora se reescribe.</span>
+    </div>
+  </div>
 </section>
 
 </body>

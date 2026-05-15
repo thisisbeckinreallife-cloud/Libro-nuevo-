@@ -806,6 +806,85 @@
     @bottom-center { content: ""; }
     @bottom-right { content: ""; }
   }
+
+  /* ---------- PÁGINA FINAL · THE SHIFT (branding reprogramaciónsubconsciente.es) ---------- */
+  @page shift { size: A4; margin: 0;
+    @bottom-left { content: ""; } @bottom-center { content: ""; } @bottom-right { content: ""; }
+  }
+  .shift-page {
+    page: shift;
+    page-break-before: always;
+    width: 210mm;
+    min-height: 297mm;
+    background:
+      radial-gradient(circle at 80% 12%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 46%),
+      linear-gradient(180deg, #0A1230 0%, #06091A 100%);
+    color: #F4F4F6;
+    padding: 30mm 26mm 26mm;
+    position: relative;
+    display: flex;
+  }
+  .shift-page::before {
+    content: "";
+    position: absolute;
+    top: 14mm; left: 14mm; right: 14mm; bottom: 14mm;
+    border: 0.6pt solid rgba(255,255,255,0.14);
+  }
+  .shift-inner { position: relative; z-index: 1; display: flex; flex-direction: column; width: 100%; }
+  .shift-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-family: "JetBrains Mono", monospace; font-size: 7.5pt;
+    letter-spacing: 0.24em; text-transform: uppercase; color: #9AA3BE;
+  }
+  .shift-center { margin-top: auto; margin-bottom: auto; padding: 14mm 0; }
+  .shift-kicker {
+    font-family: "JetBrains Mono", monospace; font-size: 8pt;
+    letter-spacing: 0.32em; text-transform: uppercase; color: #93A0BE;
+    margin: 0 0 9mm;
+  }
+  .shift-h {
+    font-family: "Playfair Display", Georgia, serif; font-weight: 600;
+    font-size: 33pt; line-height: 1.12; color: #FFFFFF; margin: 0 0 8mm;
+    letter-spacing: -0.01em;
+  }
+  .shift-h em { font-family: "Playfair Display", serif; font-style: italic; color: #FFFFFF; font-weight: 500; }
+  .shift-lead {
+    font-family: "Montserrat", sans-serif; font-size: 11pt; line-height: 1.7;
+    color: #C7CBD8; max-width: 130mm; margin: 0 0 11mm;
+  }
+  .shift-lead strong { color: #FFFFFF; font-weight: 600; }
+  .shift-list { list-style: none; padding: 0; margin: 0 0 13mm; }
+  .shift-list li {
+    font-family: "Montserrat", sans-serif; font-size: 10pt; color: #DCDEE6;
+    padding: 4mm 0; border-top: 0.5pt solid rgba(255,255,255,0.12);
+    display: flex; gap: 7mm; align-items: baseline;
+  }
+  .shift-list li:last-child { border-bottom: 0.5pt solid rgba(255,255,255,0.12); }
+  .shift-list .n {
+    font-family: "JetBrains Mono", monospace; font-size: 8pt; color: #93A0BE;
+    letter-spacing: 0.1em; flex: 0 0 8mm;
+  }
+  .shift-cta {
+    border: 0.8pt solid rgba(255,255,255,0.55); border-radius: 2mm;
+    padding: 7mm 9mm; display: flex; flex-direction: column; gap: 2.5mm;
+  }
+  .shift-cta .cta-lbl {
+    font-family: "JetBrains Mono", monospace; font-size: 7.5pt;
+    letter-spacing: 0.26em; text-transform: uppercase; color: #93A0BE;
+  }
+  .shift-cta .cta-url {
+    font-family: "Playfair Display", serif; font-size: 19pt; color: #FFFFFF;
+    letter-spacing: 0.01em;
+  }
+  .shift-cta .cta-note {
+    font-family: "Montserrat", sans-serif; font-size: 9pt; color: #C7CBD8;
+  }
+  .shift-bottom {
+    margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end;
+    font-family: "JetBrains Mono", monospace; font-size: 7pt;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #767E96;
+  }
+  .shift-sign { font-family: "Playfair Display", serif; font-style: italic; font-size: 12pt; color: #93A0BE; letter-spacing: 0; text-transform: none; }
 </style>
 </head>
 <body>
@@ -1388,6 +1467,39 @@
   </div>
 
   <div class="closing-mark">&mdash;&nbsp; No se leyó. Se aplicó. &nbsp;&mdash;</div>
+</section>
+
+<!-- ===================== PÁGINA FINAL · THE SHIFT ===================== -->
+<section class="shift-page">
+  <div class="shift-inner">
+    <div class="shift-top">
+      <span>InnerAxis Institute</span>
+      <span>The Shift</span>
+    </div>
+
+    <div class="shift-center">
+      <p class="shift-kicker">El siguiente paso</p>
+      <h2 class="shift-h">Lo aplicaste.<br><em>Reprogramarlo</em> es The Shift.</h2>
+      <p class="shift-lead">Este manual te puso a operar: el diagnóstico, el funeral, los siete lunes. Las operaciones mueven tu vida ahora. Pero ir a la raíz &mdash; reprogramar el subconsciente que fijó el termostato &mdash; tiene su propio método. Lara Lawn explica cómo empezar, paso a paso, en una clase gratuita.</p>
+
+      <ul class="shift-list">
+        <li><span class="n">01</span><span>Por qué las operaciones se sostienen solo cuando el subconsciente cambia con ellas.</span></li>
+        <li><span class="n">02</span><span>Cómo empieza la reprogramación del subconsciente con el método The Shift.</span></li>
+        <li><span class="n">03</span><span>El primer paso concreto para sostener lo que ya aplicaste.</span></li>
+      </ul>
+
+      <div class="shift-cta">
+        <span class="cta-lbl">Clase gratuita con Lara Lawn</span>
+        <span class="cta-url">reprogramaciónsubconsciente.es/resultado</span>
+        <span class="cta-note">Reprograma tu Subconsciente &middot; The Shift by Lara Lawn</span>
+      </div>
+    </div>
+
+    <div class="shift-bottom">
+      <span>El método Arkwright</span>
+      <span class="shift-sign">Lo aplicaste. Ahora se sostiene.</span>
+    </div>
+  </div>
 </section>
 
 </body>
