@@ -11,7 +11,7 @@ import {
  *
  *   file = "ebook" | "audio"
  *
- * Counterpart of `/api/reward/[file]` for the paid funnel. Same
+ * Serves the paid-funnel downloads. Same
  * defence-in-depth shape:
  *
  *   1. Lookup Purchase by accessToken (constant-time via Postgres

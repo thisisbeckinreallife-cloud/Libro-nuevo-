@@ -398,43 +398,17 @@ export type Dict = {
     intro: string;
     steps: { title: string; body: string }[];
     amazonCta: string;
-    uploadLabel: string;
-    uploadHint: string;
-    previewAlt: string;
-    emailLabel: string;
-    submit: string;
+    contactCta: string;
+    emailSubject: string; // prefilled subject of the mailto to Lucía
+    emailBody: string;    // prefilled body of the mailto to Lucía
+    recode: {
+      label: string;
+      titlePre: string;
+      titleEm: string;
+      body: string;
+      modules: { title: string; detail: string }[];
+    };
     footNote: string;
-    errors: {
-      tooBig: string;
-      badType: string;
-      empty: string;
-      duplicate: string;
-      rateLimit: string;
-      invalidEmail: string;
-      needsEmail: string;
-      generic: string;
-    };
-    reward: {
-      eyebrow: string;
-      h1Pre: string;
-      h1Em: string;
-      intro: string;
-      ebookLabel: string;
-      ebookTitlePre: string;
-      ebookTitleEm: string;
-      ebookBody: string;
-      audioLabel: string;
-      audioTitlePre: string;
-      audioTitleEm: string;
-      audioBody: string;
-      download: string;
-      preparing: string;
-      remaining: string;
-      exhausted: string;
-      emailFallback: string;
-      genericError: string;
-      footNote: string;
-    };
   };
   biblioteca: {
     eyebrow: string;
@@ -611,13 +585,8 @@ export const dict: Record<Lang, Dict> = {
             detail: "Diagnóstico, Funeral, Próxima vida y Lunes. Tu progreso queda guardado entre dispositivos. Idéntico al que entrega Lara en consultoría privada de 4.800 €. Valor: 49 €.",
           },
           {
-            title: "BONUS · Primer libro en ebook",
-            detail: "“No eres tú, es tu subconsciente”. 38.000 copias vendidas. Se desbloquea al dejar tu reseña en Amazon. Valor: 18 €.",
-            bonus: true,
-          },
-          {
-            title: "BONUS · Audiolibro del primer libro",
-            detail: "6h 15min. Versión íntegra. Se desbloquea junto con el ebook bonus en cuanto subes tu reseña. Valor: 20 €.",
+            title: "BONUS · Acceso al campus RECODE",
+            detail: "El mini-curso de reprogramación subconsciente de Lara: 4 módulos, 7 lecciones, con tu primer audio de Reprogramación Sensorial Bilateral. Se desbloquea al dejar tu reseña en Amazon.",
             bonus: true,
           },
           {
@@ -958,19 +927,13 @@ export const dict: Record<Lang, Dict> = {
         intro: "Comprando ahora también te llevas:",
         items: [
           {
-            titlePre: "",
-            titleEm: "No eres tú, es tu subconsciente",
+            titlePre: "Acceso al campus ",
+            titleEm: "RECODE",
             detail:
-              "El primer libro de Lara en formato ebook · desbloqueado al dejar tu reseña.",
-          },
-          {
-            titlePre: "Audiolibro ",
-            titleEm: "No eres tú, es tu subconsciente",
-            detail:
-              "La versión narrada del primer libro de Lara · desbloqueado al dejar tu reseña.",
+              "El mini-curso de reprogramación subconsciente de Lara · 4 módulos, 7 lecciones · desbloqueado al dejar tu reseña.",
           },
         ],
-        foot: "Tras comprar, recibirás un enlace para reclamarlos en tu biblioteca.",
+        foot: "Tras comprar, encontrarás en tu biblioteca los pasos para desbloquearlo.",
       },
       digital: {
         tag: "Oferta digital · 12€",
@@ -1281,71 +1244,60 @@ export const dict: Record<Lang, Dict> = {
       },
     },
     resena: {
-      eyebrow: "Reseña + recompensa",
-      h1Pre: "Escribe tu reseña, llévate ",
-      h1Em: "los dos regalos.",
+      eyebrow: "Reseña + regalo",
+      h1Pre: "Tu reseña abre la puerta de ",
+      h1Em: "RECODE.",
       intro:
-        "Deja tu reseña honesta en Amazon, sube la captura y desbloquea al instante el primer libro de Lara en ebook y en audiolibro.",
+        "Deja tu reseña honesta del primer libro de Lara en Amazon y desbloquea el acceso a RECODE: su mini-curso de reprogramación subconsciente dentro del campus. No es un extra. Es la puerta de entrada al método Inneraxis™.",
       steps: [
         {
           title: "Deja tu reseña en Amazon",
-          body: "Abre la ficha del libro, puntúa con honestidad y publica tu reseña. Cualquier valoración es válida — pedimos sinceridad, no cinco estrellas.",
+          body: "Abre la ficha de “No eres tú, es tu subconsciente” — el primer libro de Lara —, puntúa con honestidad y publica. Cualquier valoración es válida: pedimos sinceridad, no cinco estrellas.",
         },
         {
           title: "Haz una captura de pantalla",
-          body: "Cuando Amazon confirme que la reseña está publicada, captura la pantalla con tu móvil. La captura nunca se publica — queda privada en el servidor de Lara.",
+          body: "Cuando Amazon confirme que tu reseña está publicada, captura la pantalla con el móvil. Esa captura es tu llave.",
         },
         {
-          title: "Súbela con tu email",
-          body: "Al subir la captura se abren las descargas automáticamente. Te mandamos también un recordatorio por email con los enlaces.",
+          title: "Escríbele a Lucía con tu captura",
+          body: "Vuelve aquí y pulsa el botón: se abre un email a Lucía, del equipo de Lara. Adjunta la captura y envía. Ella la revisa y te responde con tu acceso al campus — persona real, no un bot.",
         },
       ],
       amazonCta: "Ir a la reseña en Amazon",
-      uploadLabel: "Arrastra o selecciona tu captura",
-      uploadHint: "JPG, PNG o WEBP · máx. 5 MB",
-      previewAlt: "Vista previa de la captura",
-      emailLabel: "Email",
-      submit: "Subir y desbloquear",
+      contactCta: "Escribir a Lucía con mi captura",
+      emailSubject: "Mi reseña del primer libro — acceso a RECODE",
+      emailBody:
+        "Hola Lucía:\n\nAcabo de publicar mi reseña de “No eres tú, es tu subconsciente” en Amazon. Te adjunto la captura.\n\n(Recuerda adjuntar aquí tu captura de pantalla.)\n\nGracias,",
+      recode: {
+        label: "El regalo",
+        titlePre: "RECODE: ",
+        titleEm: "tu primer paso dentro del campus.",
+        body:
+          "Un mini-curso de reprogramación subconsciente dentro del campus de Lara. Cuatro módulos, siete lecciones. No es teoría para acumular — es la antesala práctica del método Inneraxis™.",
+        modules: [
+          {
+            title: "Bienvenida a RECODE",
+            detail:
+              "Tu bienvenida al campus + la Experiencia RSB · Primera Sesión: tu primer audio de Reprogramación Sensorial Bilateral, la herramienta estrella del método Inneraxis™.",
+          },
+          {
+            title: "Los 4 Pasos del Cambio Real",
+            detail: "Masterclass I en vídeo + workbook para aterrizarla.",
+          },
+          {
+            title: "Tu Subconsciente al Descubierto",
+            detail:
+              "Masterclass II en vídeo + workbook con “Tu Mapa Subconsciente”.",
+          },
+          {
+            title: "Tu Transformación Comienza Aquí",
+            detail:
+              "Tu Diagnóstico Personal: el test que desemboca en tu Sesión de Plan.",
+          },
+        ],
+      },
       footNote:
-        "Tu captura se usa sólo para verificar la reseña. No se comparte con terceros.",
-      errors: {
-        tooBig: "El archivo supera los 5 MB. Comprime o recorta la imagen.",
-        badType: "Sube una imagen (JPG, PNG o WEBP).",
-        empty: "Selecciona una captura antes de enviar.",
-        duplicate:
-          "Esa captura ya se había subido. Sube una distinta o contacta con Lara si crees que es un error.",
-        rateLimit:
-          "Demasiados intentos en poco tiempo. Espera unos minutos y vuelve a probar.",
-        invalidEmail: "Ese email no parece válido.",
-        needsEmail: "Añade tu email para recibir los enlaces de descarga.",
-        generic: "Algo ha salido mal al subir. Vuelve a intentarlo.",
-      },
-      reward: {
-        eyebrow: "Reseña recibida",
-        h1Pre: "Gracias. Ya puedes ",
-        h1Em: "descargar.",
-        intro:
-          "Tu captura se ha guardado. Estas dos descargas son tuyas — cada archivo admite hasta 2 descargas en las próximas 24 horas. También te las enviamos por email.",
-        ebookLabel: "Ebook · Libro 01",
-        ebookTitlePre: "",
-        ebookTitleEm: "No eres tú, es tu subconsciente",
-        ebookBody:
-          "El primer libro de Lara Lawn. Lectura directa, marco fundacional para leer el Arkwright Method con más profundidad.",
-        audioLabel: "Audiolibro · Libro 01",
-        audioTitlePre: "",
-        audioTitleEm: "No eres tú, es tu subconsciente — narrado.",
-        audioBody:
-          "La versión en audio del primer libro de Lara. Para escucharlo mientras conduces, paseas o entrenas.",
-        download: "Descargar",
-        preparing: "Preparando…",
-        remaining: "{n} descargas disponibles",
-        exhausted: "Descarga agotada para este enlace",
-        emailFallback:
-          "Te hemos enviado el enlace a tu email. Llega en unos minutos.",
-        genericError: "Algo ha salido mal. Reintenta en un momento.",
-        footNote:
-          "Guarda esta página. El enlace deja de funcionar en 24 horas; los archivos se quedan en tu dispositivo.",
-      },
+        "Tu captura se usa sólo para verificar la reseña. Nunca se publica ni se comparte. El acceso a RECODE llega a tu email en cuanto Lucía la revisa.",
     },
     biblioteca: {
       eyebrow: "Tu biblioteca",
@@ -1530,13 +1482,8 @@ export const dict: Record<Lang, Dict> = {
             detail: "Diagnosis, Funeral, Next Life and Monday. Your progress is saved across devices. Identical to the one Lara delivers in her 4,800 € private consultancy. Value: 49 €.",
           },
           {
-            title: "BONUS · First book as ebook",
-            detail: "“It's not you, it's your subconscious.” 38,000 copies sold. Unlocked when you leave your Amazon review. Value: 18 €.",
-            bonus: true,
-          },
-          {
-            title: "BONUS · Audiobook of the first book",
-            detail: "6h 15min. Full version. Unlocked together with the bonus ebook as soon as you upload your review. Value: 20 €.",
+            title: "BONUS · RECODE campus access",
+            detail: "Lara's subconscious-reprogramming mini-course: 4 modules, 7 lessons, including your first Bilateral Sensory Reprogramming audio. Unlocked when you leave your Amazon review.",
             bonus: true,
           },
           {
@@ -1877,19 +1824,13 @@ export const dict: Record<Lang, Dict> = {
         intro: "Order now and you also get:",
         items: [
           {
-            titlePre: "",
-            titleEm: "It's Not You, It's Your Subconscious",
+            titlePre: "Access to the ",
+            titleEm: "RECODE campus",
             detail:
-              "Lara's first book as an ebook · unlocked when you leave your review.",
-          },
-          {
-            titlePre: "Audiobook ",
-            titleEm: "It's Not You, It's Your Subconscious",
-            detail:
-              "The narrated version of Lara's first book · unlocked when you leave your review.",
+              "Lara's subconscious-reprogramming mini-course · 4 modules, 7 lessons · unlocked when you leave your review.",
           },
         ],
-        foot: "After paying you'll receive a link to redeem them from your library.",
+        foot: "After paying, your library shows the steps to unlock it.",
       },
       digital: {
         tag: "Digital offer · €12",
@@ -2195,71 +2136,60 @@ export const dict: Record<Lang, Dict> = {
       },
     },
     resena: {
-      eyebrow: "Review + reward",
-      h1Pre: "Write your review, get ",
-      h1Em: "both gifts.",
+      eyebrow: "Review + gift",
+      h1Pre: "Your review opens the door to ",
+      h1Em: "RECODE.",
       intro:
-        "Leave an honest review on Amazon, upload the screenshot, and instantly unlock Lara's first book as both an ebook and an audiobook.",
+        "Leave an honest Amazon review of Lara's first book and unlock access to RECODE: her subconscious-reprogramming mini-course inside the campus. Not an extra. The entry door to the Inneraxis™ method.",
       steps: [
         {
           title: "Leave your review on Amazon",
-          body: "Open the book's listing, rate it honestly, publish. Any rating works — we want truth, not five stars.",
+          body: "Open the listing for “No eres tú, es tu subconsciente” — Lara's first book —, rate it honestly, publish. Any rating works: we want truth, not five stars.",
         },
         {
           title: "Take a screenshot",
-          body: "Once Amazon confirms the review is live, capture the screen on your phone. The screenshot stays private on Lara's server — never published.",
+          body: "Once Amazon confirms your review is live, capture the screen on your phone. That screenshot is your key.",
         },
         {
-          title: "Upload with your email",
-          body: "Uploading the screenshot instantly opens the downloads. We also email you the links as a backup.",
+          title: "Email Lucía with your screenshot",
+          body: "Come back here and hit the button: it opens an email to Lucía, from Lara's team. Attach the screenshot and send. She checks it and replies with your campus access — a real person, not a bot.",
         },
       ],
       amazonCta: "Open the Amazon review",
-      uploadLabel: "Drag or choose your screenshot",
-      uploadHint: "JPG, PNG or WEBP · 5 MB max",
-      previewAlt: "Screenshot preview",
-      emailLabel: "Email",
-      submit: "Upload and unlock",
+      contactCta: "Email Lucía with my screenshot",
+      emailSubject: "My review of the first book — RECODE access",
+      emailBody:
+        "Hi Lucía,\n\nI've just published my review of “No eres tú, es tu subconsciente” on Amazon. Screenshot attached.\n\n(Remember to attach your screenshot here.)\n\nThank you,",
+      recode: {
+        label: "The gift",
+        titlePre: "RECODE: ",
+        titleEm: "your first step inside the campus.",
+        body:
+          "A subconscious-reprogramming mini-course inside Lara's campus. Four modules, seven lessons. Not theory to stack up — the practical doorway into the Inneraxis™ method.",
+        modules: [
+          {
+            title: "Welcome to RECODE",
+            detail:
+              "Your campus welcome + the RSB Experience · First Session: your first Bilateral Sensory Reprogramming audio, the flagship tool of the Inneraxis™ method.",
+          },
+          {
+            title: "The 4 Steps of Real Change",
+            detail: "Masterclass I on video + a workbook to land it.",
+          },
+          {
+            title: "Your Subconscious, Uncovered",
+            detail:
+              "Masterclass II on video + the “Your Subconscious Map” workbook.",
+          },
+          {
+            title: "Your Transformation Starts Here",
+            detail:
+              "Your Personal Diagnostic: the test that leads into your Plan Session.",
+          },
+        ],
+      },
       footNote:
-        "Your screenshot is only used to verify the review. It's never shared.",
-      errors: {
-        tooBig: "File is over 5 MB. Compress or crop the image.",
-        badType: "Please upload an image (JPG, PNG or WEBP).",
-        empty: "Please choose a screenshot before submitting.",
-        duplicate:
-          "That screenshot was already uploaded. Please use a different one, or contact Lara if this looks wrong.",
-        rateLimit:
-          "Too many attempts in a short window. Wait a few minutes and try again.",
-        invalidEmail: "That email doesn't look valid.",
-        needsEmail: "Please add your email to receive the download links.",
-        generic: "Something went wrong while uploading. Please try again.",
-      },
-      reward: {
-        eyebrow: "Review received",
-        h1Pre: "Thank you. You can now ",
-        h1Em: "download.",
-        intro:
-          "Your screenshot is saved. These two downloads are yours — each file allows up to 2 downloads in the next 24 hours. We've also sent them to your email.",
-        ebookLabel: "Ebook · Book 01",
-        ebookTitlePre: "",
-        ebookTitleEm: "It's Not You, It's Your Subconscious",
-        ebookBody:
-          "Lara Lawn's first book. A direct read and the foundational frame that lets you read The Arkwright Method deeper.",
-        audioLabel: "Audiobook · Book 01",
-        audioTitlePre: "",
-        audioTitleEm: "It's Not You, It's Your Subconscious — narrated.",
-        audioBody:
-          "The audio version of Lara's first book. For listening while driving, walking or training.",
-        download: "Download",
-        preparing: "Preparing…",
-        remaining: "{n} downloads left",
-        exhausted: "No downloads left on this link",
-        emailFallback:
-          "We've just emailed you this download. It lands in a couple of minutes.",
-        genericError: "Something went wrong. Try again in a moment.",
-        footNote:
-          "Bookmark this page. The link expires in 24 hours; the files stay on your device.",
-      },
+        "Your screenshot is only used to verify the review. It's never published or shared. Your RECODE access lands in your inbox as soon as Lucía checks it.",
     },
     biblioteca: {
       eyebrow: "Your library",

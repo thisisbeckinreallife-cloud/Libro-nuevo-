@@ -16,7 +16,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: ["/", "/oferta", "/contacto", "/como-escuchar", "/resena", "/recuperar-acceso", "/legal/"],
-        disallow: ["/admin", "/biblioteca", "/workbook", "/registro", "/api/", "/resena/recompensa"],
+        disallow: ["/admin", "/biblioteca", "/workbook", "/registro", "/api/"],
       },
     ],
     sitemap: `${base}/sitemap.xml`,

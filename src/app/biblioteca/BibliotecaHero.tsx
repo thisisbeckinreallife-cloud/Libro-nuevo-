@@ -203,17 +203,17 @@ export function BibliotecaHero({
       </section>
 
       {/* RESEÑA — siguiente paso opcional, después de descargar y entrar al
-          workbook. El comprador deja reseña con su screenshot y desbloquea
-          el bonus extra en /resena/recompensa. */}
+          workbook. El comprador deja reseña, escribe a Lucía con la captura
+          y recibe el acceso al campus RECODE. */}
       <section className="biblioteca-resena">
         <span className="biblioteca-resena-badge">Extra opcional</span>
         <h2 className="biblioteca-resena-title">
-          ¿Te gustó? <em>Déjanos una reseña</em> y recibe un bonus.
+          ¿Te gustó? <em>Deja tu reseña</em> y entra en RECODE.
         </h2>
         <p className="biblioteca-resena-body">
-          Sube una captura de tu reseña (Amazon, Goodreads, redes…) y desbloqueas
-          un contenido adicional exclusivo. Nos ayuda muchísimo a llegar a más
-          gente y nosotros te lo agradecemos con material extra.
+          Deja tu reseña honesta en Amazon, envíanos la captura y desbloqueas el
+          acceso a RECODE: el mini-curso de reprogramación subconsciente de Lara
+          dentro del campus. Los pasos están en la página de reseña.
         </p>
         <a className="biblioteca-resena-cta" href="/resena">
           <span>Dejar una reseña</span>

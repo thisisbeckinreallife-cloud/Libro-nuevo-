@@ -8,7 +8,7 @@ import type { MetadataRoute } from "next";
  *  - /biblioteca    (gated por accessToken — no público)
  *  - /api/*         (endpoints, no páginas)
  *  - /registro/*    (post-checkout, gated)
- *  - /resena/recompensa (gated por claim token)
+ *  - (el flujo de reseña ya no tiene página de recompensa — el acceso a RECODE lo entrega el equipo por email)
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const base =
