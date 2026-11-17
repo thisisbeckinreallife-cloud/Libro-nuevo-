@@ -30,7 +30,7 @@ export function Footer() {
           <a href="/legal/aviso-legal">{isES ? "Aviso legal" : "Legal notice"}</a>
         </div>
         <div className="footer-copy">
-          © 2026 INNERAXIS S.L. · {t.footer.rights}
+          © 2026 RUNXT LLC · {t.footer.rights}
         </div>
       </div>
     </footer>
