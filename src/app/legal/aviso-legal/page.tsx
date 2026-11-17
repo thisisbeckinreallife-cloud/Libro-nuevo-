@@ -38,6 +38,9 @@ function AvisoLegalES() {
           <strong>Denominación social:</strong> RUNXT LLC
         </li>
         <li>
+          <strong>Nombre comercial:</strong> Lara Lawn · El método Arkwright
+        </li>
+        <li>
           <strong>EIN (identificación fiscal en EE. UU.):</strong> 42-3249219
         </li>
         <li>
@@ -129,6 +132,9 @@ function AvisoLegalEN() {
       <ul>
         <li>
           <strong>Company name:</strong> RUNXT LLC
+        </li>
+        <li>
+          <strong>Trade name:</strong> Lara Lawn · The Arkwright Method
         </li>
         <li>
           <strong>Tax ID (EIN):</strong> 42-3249219
