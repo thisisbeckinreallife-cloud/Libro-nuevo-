@@ -34,7 +34,7 @@ termines, haz commit y push.
 RAZON_SOCIAL      = INNERAXIS S.L.
 FORMA_JURIDICA    = Sociedad Limitada
 CIF               = B22620348
-DOMICILIO         = Calle Ruiseñor 22, 45280 Olías del Rey (Toledo), España
+DOMICILIO         = España
 EMAIL_LEGAL       = info@inneraxisinstitute.com
 DOMINIO           = https://arkwright.laralawn.com
 JURISDICCION      = Juzgados y Tribunales de Toledo

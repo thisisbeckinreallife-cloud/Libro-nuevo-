@@ -37,10 +37,6 @@ export function JsonLdGlobal() {
     email: "info@inneraxisinstitute.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Calle Ruiseñor 22",
-      addressLocality: "Olías del Rey",
-      addressRegion: "Toledo",
-      postalCode: "45280",
       addressCountry: "ES",
     },
   };

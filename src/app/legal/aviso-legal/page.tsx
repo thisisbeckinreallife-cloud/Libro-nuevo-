@@ -41,8 +41,7 @@ function AvisoLegalES() {
           <strong>CIF:</strong> B22620348
         </li>
         <li>
-          <strong>Domicilio social:</strong> Calle Ruiseñor 22, 45280 Olías del
-          Rey (Toledo), España
+          <strong>Domicilio social:</strong> España
         </li>
         <li>
           <strong>Email de contacto:</strong>{" "}
@@ -140,8 +139,7 @@ function AvisoLegalEN() {
           <strong>Tax ID (CIF):</strong> B22620348
         </li>
         <li>
-          <strong>Registered office:</strong> Calle Ruiseñor 22, 45280 Olías
-          del Rey (Toledo), Spain
+          <strong>Registered office:</strong> Spain
         </li>
         <li>
           <strong>Contact email:</strong>{" "}
