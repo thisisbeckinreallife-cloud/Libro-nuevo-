@@ -29,7 +29,7 @@ function TerminosES() {
     >
       <p>
         Estas condiciones generales regulan la contratación de los
-        productos digitales ofrecidos por INNERAXIS S.L. a través de{" "}
+        productos digitales ofrecidos por RUNXT LLC a través de{" "}
         <a href="https://arkwright.laralawn.com">arkwright.laralawn.com</a>{" "}
         (en adelante, <strong>"el Sitio"</strong>).
       </p>
@@ -37,18 +37,18 @@ function TerminosES() {
       <h2>1. Vendedor</h2>
       <ul>
         <li>
-          <strong>Razón social:</strong> INNERAXIS S.L.
+          <strong>Razón social:</strong> RUNXT LLC
         </li>
         <li>
-          <strong>CIF:</strong> B22620348
+          <strong>EIN (identificación fiscal en EE. UU.):</strong> 42-3249219
         </li>
         <li>
-          <strong>Domicilio:</strong> España
+          <strong>Domicilio:</strong> 1209 Mountain Road Pl NE, Ste R, Albuquerque, NM 87110, Estados Unidos
         </li>
         <li>
           <strong>Contacto:</strong>{" "}
-          <a href="mailto:info@inneraxisinstitute.com">
-            info@inneraxisinstitute.com
+          <a href="mailto:info@runxt.com">
+            info@runxt.com
           </a>
         </li>
       </ul>
@@ -137,7 +137,7 @@ function TerminosES() {
         que la ejecución del contrato comienza inmediatamente con el
         acceso a la biblioteca digital, y reconoce que{" "}
         <strong>pierde el derecho de desistimiento</strong> en el momento
-        en que se le otorga ese acceso. En consecuencia, INNERAXIS S.L.{" "}
+        en que se le otorga ese acceso. En consecuencia, RUNXT LLC{" "}
         <strong>NO ADMITE DEVOLUCIONES</strong> una vez efectuada la
         compra.
       </p>
@@ -151,8 +151,8 @@ function TerminosES() {
 
       <h2>6. Excepciones — reembolsos voluntarios</h2>
       <p>
-        Sin perjuicio de lo establecido en la cláusula anterior, INNERAXIS
-        S.L. puede{" "}
+        Sin perjuicio de lo establecido en la cláusula anterior, RUNXT
+        LLC puede{" "}
         <strong>
           a su exclusiva discreción y de forma estrictamente excepcional
         </strong>{" "}
@@ -160,8 +160,8 @@ function TerminosES() {
         que impida el acceso al producto durante un plazo razonable, (ii)
         cobro duplicado por incidencia en Stripe, o (iii) facturación
         manifiestamente incorrecta. La solicitud se hará por escrito a{" "}
-        <a href="mailto:info@inneraxisinstitute.com">
-          info@inneraxisinstitute.com
+        <a href="mailto:info@runxt.com">
+          info@runxt.com
         </a>{" "}
         explicando los hechos.
       </p>
@@ -179,7 +179,7 @@ function TerminosES() {
 
       <h2>8. Propiedad intelectual y uso permitido</h2>
       <p>
-        El producto digital es propiedad de INNERAXIS S.L. y de Lara Lawn
+        El producto digital es propiedad de RUNXT LLC y de Lara Lawn
         como autora. El comprador adquiere una{" "}
         <strong>licencia personal, no exclusiva e intransferible</strong>{" "}
         para acceder al contenido para su uso privado. Queda{" "}
@@ -219,7 +219,7 @@ function TerminosES() {
       <p>
         Estas condiciones se rigen por la legislación española. Para la
         resolución de cualquier conflicto, las partes se someten a los
-        Juzgados y Tribunales de Toledo, salvo lo dispuesto en favor del
+        Juzgados y Tribunales competentes, salvo lo dispuesto en favor del
         consumidor por la legislación aplicable.
       </p>
     </LegalLayout>
@@ -231,7 +231,7 @@ function TermsEN() {
     <LegalLayout title="Terms and conditions" lastUpdated="May 14, 2026">
       <p>
         These general terms govern the purchase of digital products offered
-        by INNERAXIS S.L. through{" "}
+        by RUNXT LLC through{" "}
         <a href="https://arkwright.laralawn.com">arkwright.laralawn.com</a>{" "}
         (hereinafter <strong>"the Site"</strong>).
       </p>
@@ -239,18 +239,18 @@ function TermsEN() {
       <h2>1. Seller</h2>
       <ul>
         <li>
-          <strong>Company:</strong> INNERAXIS S.L.
+          <strong>Company:</strong> RUNXT LLC
         </li>
         <li>
-          <strong>Tax ID:</strong> B22620348
+          <strong>Tax ID (EIN):</strong> 42-3249219
         </li>
         <li>
-          <strong>Address:</strong> Spain
+          <strong>Address:</strong> 1209 Mountain Road Pl NE, Ste R, Albuquerque, NM 87110, United States
         </li>
         <li>
           <strong>Contact:</strong>{" "}
-          <a href="mailto:info@inneraxisinstitute.com">
-            info@inneraxisinstitute.com
+          <a href="mailto:info@runxt.com">
+            info@runxt.com
           </a>
         </li>
       </ul>
@@ -334,7 +334,7 @@ function TermsEN() {
         that performance of the contract begins immediately upon access to
         the digital library, and acknowledges that they{" "}
         <strong>lose the right of withdrawal</strong> the moment that
-        access is granted. Consequently, INNERAXIS S.L.{" "}
+        access is granted. Consequently, RUNXT LLC{" "}
         <strong>DOES NOT ACCEPT REFUNDS</strong> after purchase.
       </p>
       <p>
@@ -346,14 +346,14 @@ function TermsEN() {
 
       <h2>6. Exceptions — voluntary refunds</h2>
       <p>
-        Notwithstanding the previous clause, INNERAXIS S.L. may, at its{" "}
+        Notwithstanding the previous clause, RUNXT LLC may, at its{" "}
         <strong>sole and strictly exceptional discretion</strong>, refund
         the amount paid in cases such as (i) technical error preventing
         access to the product for a reasonable period, (ii) duplicate
         charge due to Stripe issue, or (iii) manifestly incorrect billing.
         The request must be made in writing to{" "}
-        <a href="mailto:info@inneraxisinstitute.com">
-          info@inneraxisinstitute.com
+        <a href="mailto:info@runxt.com">
+          info@runxt.com
         </a>{" "}
         explaining the facts.
       </p>
@@ -369,7 +369,7 @@ function TermsEN() {
 
       <h2>8. Intellectual property and permitted use</h2>
       <p>
-        The digital product is owned by INNERAXIS S.L. and Lara Lawn as
+        The digital product is owned by RUNXT LLC and Lara Lawn as
         author. The buyer acquires a{" "}
         <strong>personal, non-exclusive and non-transferable license</strong>{" "}
         to access the content for private use. The following are{" "}
@@ -407,7 +407,7 @@ function TermsEN() {
       <h2>11. Governing law and jurisdiction</h2>
       <p>
         These terms are governed by Spanish law. For any conflict, the
-        parties submit to the Courts and Tribunals of Toledo, except as
+        parties submit to the competent Courts and Tribunals, except as
         otherwise required by applicable law for consumer protection.
       </p>
     </LegalLayout>
