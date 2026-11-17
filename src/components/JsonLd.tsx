@@ -31,13 +31,17 @@ export function JsonLdGlobal() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${BASE}/#organization`,
-    name: "INNERAXIS S.L.",
+    name: "RUNXT LLC",
     url: BASE,
     logo: `${BASE}/lara-lawn-logo.png`,
-    email: "info@inneraxisinstitute.com",
+    email: "info@runxt.com",
     address: {
       "@type": "PostalAddress",
-      addressCountry: "ES",
+      streetAddress: "1209 Mountain Road Pl NE, Ste R",
+      addressLocality: "Albuquerque",
+      addressRegion: "NM",
+      postalCode: "87110",
+      addressCountry: "US",
     },
   };
 

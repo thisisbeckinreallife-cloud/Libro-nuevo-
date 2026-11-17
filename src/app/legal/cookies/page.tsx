@@ -31,7 +31,7 @@ function CookiesES() {
   return (
     <LegalLayout title="Política de cookies" lastUpdated="14 de mayo de 2026">
       <p>
-        Esta política describe cómo INNERAXIS S.L. utiliza cookies y
+        Esta política describe cómo RUNXT LLC utiliza cookies y
         tecnologías similares en{" "}
         <a href="https://arkwright.laralawn.com">arkwright.laralawn.com</a>,
         en cumplimiento del{" "}
@@ -73,7 +73,7 @@ function CookiesES() {
             <td>
               <code>workbook-session</code>
             </td>
-            <td>INNERAXIS S.L.</td>
+            <td>RUNXT LLC</td>
             <td>
               Mantener tu sesión en el workbook online y recordar tu
               progreso.
@@ -84,7 +84,7 @@ function CookiesES() {
             <td>
               <code>laraLang</code>
             </td>
-            <td>INNERAXIS S.L.</td>
+            <td>RUNXT LLC</td>
             <td>
               Recordar tu preferencia de idioma (ES / EN) entre visitas.
             </td>
@@ -94,7 +94,7 @@ function CookiesES() {
             <td>
               <code>cookieConsent</code>
             </td>
-            <td>INNERAXIS S.L.</td>
+            <td>RUNXT LLC</td>
             <td>
               Guardar tu elección sobre cookies para no volver a mostrarte
               el banner.
@@ -177,7 +177,7 @@ function CookiesEN() {
   return (
     <LegalLayout title="Cookie policy" lastUpdated="May 14, 2026">
       <p>
-        This policy describes how INNERAXIS S.L. uses cookies and similar
+        This policy describes how RUNXT LLC uses cookies and similar
         technologies at{" "}
         <a href="https://arkwright.laralawn.com">arkwright.laralawn.com</a>,
         in compliance with{" "}
@@ -218,7 +218,7 @@ function CookiesEN() {
             <td>
               <code>workbook-session</code>
             </td>
-            <td>INNERAXIS S.L.</td>
+            <td>RUNXT LLC</td>
             <td>Keep your workbook session and remember progress.</td>
             <td>30 days</td>
           </tr>
@@ -226,7 +226,7 @@ function CookiesEN() {
             <td>
               <code>laraLang</code>
             </td>
-            <td>INNERAXIS S.L.</td>
+            <td>RUNXT LLC</td>
             <td>Remember your language preference (ES / EN).</td>
             <td>1 year</td>
           </tr>
@@ -234,7 +234,7 @@ function CookiesEN() {
             <td>
               <code>cookieConsent</code>
             </td>
-            <td>INNERAXIS S.L.</td>
+            <td>RUNXT LLC</td>
             <td>
               Save your cookie choice to avoid showing the banner again.
             </td>

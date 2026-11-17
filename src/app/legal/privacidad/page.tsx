@@ -26,7 +26,7 @@ function PrivacidadES() {
       lastUpdated="14 de mayo de 2026"
     >
       <p>
-        Esta política explica cómo INNERAXIS S.L. trata los datos
+        Esta política explica cómo RUNXT LLC trata los datos
         personales que recoge a través del Sitio{" "}
         <a href="https://arkwright.laralawn.com">arkwright.laralawn.com</a>,
         en cumplimiento del <strong>RGPD (UE 2016/679)</strong> y la{" "}
@@ -36,18 +36,18 @@ function PrivacidadES() {
       <h2>1. Responsable del tratamiento</h2>
       <ul>
         <li>
-          <strong>Titular:</strong> INNERAXIS S.L.
+          <strong>Titular:</strong> RUNXT LLC
         </li>
         <li>
-          <strong>CIF:</strong> B22620348
+          <strong>EIN (identificación fiscal en EE. UU.):</strong> 42-3249219
         </li>
         <li>
-          <strong>Domicilio:</strong> España
+          <strong>Domicilio:</strong> 1209 Mountain Road Pl NE, Ste R, Albuquerque, NM 87110, Estados Unidos
         </li>
         <li>
           <strong>Contacto:</strong>{" "}
-          <a href="mailto:info@inneraxisinstitute.com">
-            info@inneraxisinstitute.com
+          <a href="mailto:info@runxt.com">
+            info@runxt.com
           </a>
         </li>
       </ul>
@@ -133,8 +133,8 @@ function PrivacidadES() {
       <p>
         Puedes ejercer en cualquier momento los siguientes derechos
         escribiendo a{" "}
-        <a href="mailto:info@inneraxisinstitute.com">
-          info@inneraxisinstitute.com
+        <a href="mailto:info@runxt.com">
+          info@runxt.com
         </a>{" "}
         e identificándote adecuadamente:
       </p>
@@ -201,7 +201,7 @@ function PrivacyEN() {
   return (
     <LegalLayout title="Privacy policy" lastUpdated="May 14, 2026">
       <p>
-        This policy explains how INNERAXIS S.L. processes personal data
+        This policy explains how RUNXT LLC processes personal data
         collected through{" "}
         <a href="https://arkwright.laralawn.com">arkwright.laralawn.com</a>,
         in compliance with the <strong>EU GDPR (2016/679)</strong> and the
@@ -211,18 +211,18 @@ function PrivacyEN() {
       <h2>1. Data controller</h2>
       <ul>
         <li>
-          <strong>Entity:</strong> INNERAXIS S.L.
+          <strong>Entity:</strong> RUNXT LLC
         </li>
         <li>
-          <strong>Tax ID:</strong> B22620348
+          <strong>Tax ID (EIN):</strong> 42-3249219
         </li>
         <li>
-          <strong>Address:</strong> Spain
+          <strong>Address:</strong> 1209 Mountain Road Pl NE, Ste R, Albuquerque, NM 87110, United States
         </li>
         <li>
           <strong>Contact:</strong>{" "}
-          <a href="mailto:info@inneraxisinstitute.com">
-            info@inneraxisinstitute.com
+          <a href="mailto:info@runxt.com">
+            info@runxt.com
           </a>
         </li>
       </ul>
@@ -304,8 +304,8 @@ function PrivacyEN() {
       <h2>4. Your rights</h2>
       <p>
         You can exercise the following rights at any time by writing to{" "}
-        <a href="mailto:info@inneraxisinstitute.com">
-          info@inneraxisinstitute.com
+        <a href="mailto:info@runxt.com">
+          info@runxt.com
         </a>{" "}
         with proper identification:
       </p>
